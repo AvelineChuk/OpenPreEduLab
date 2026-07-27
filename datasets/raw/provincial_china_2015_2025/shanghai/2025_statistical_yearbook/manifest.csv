@@ -1,0 +1,3 @@
+source_id,reference_year,filename,publisher,retrieval_date,geographic_level,format,original_url,sha256,intended_use
+SHANGHAI_2025_C2017,2024,C2017_kindergarten_basic.html,Shanghai Municipal Statistics Bureau,2026-07-28,provincial,HTML,https://tjj.sh.gov.cn/tjnj/2025tjnj/C2017.htm,4AC93B23B584DFB10963C6ABB928596959270232D67B4B6761658EBC34AFA3CF,"kindergarten counts and reported child/staff/teacher measures; staging extraction after review"
+SHANGHAI_2025_C0206,2024,C0206_registered_population_age_2024.html,Shanghai Municipal Statistics Bureau,2026-07-28,provincial,HTML,https://tjj.sh.gov.cn/tjnj/2025tjnj/C0206.htm,6B43301D95BAC144A64995FA55EA3A1B507563A2711CD02AECA101FD1B9A8F04,"registered-population age context only; not yet a preschool-age denominator"
