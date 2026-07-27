@@ -30,37 +30,45 @@ PRAI is calculated from ratios and rates. The table below identifies the raw dat
 
 For locality \(i\) and year \(t\), the model-ready indicators can be derived as follows:
 
-\[
-\text{teacher\_fte\_per\_100\_children}_{it}=100\times\frac{\text{fte\_teacher\_count}_{it}}{\text{enrolled\_children}_{it}}
-\]
+$$
+\mathrm{teacher\_fte\_per\_100\_children}_{it}
+= 100 \times \frac{\mathrm{fte\_teacher\_count}_{it}}{\mathrm{enrolled\_children}_{it}}
+$$
 
-\[
-\text{children\_per\_fte\_teacher}_{it}=\frac{\text{enrolled\_children}_{it}}{\text{fte\_teacher\_count}_{it}}
-\]
+$$
+\mathrm{children\_per\_fte\_teacher}_{it}
+= \frac{\mathrm{enrolled\_children}_{it}}{\mathrm{fte\_teacher\_count}_{it}}
+$$
 
-\[
-\text{licensed\_places\_per\_100\_resident\_children}_{it}=100\times\frac{\text{licensed\_preschool\_places}_{it}}{\text{resident\_preschool\_age\_population}_{it}}
-\]
+$$
+\mathrm{licensed\_places\_per\_100\_resident\_children}_{it}
+= 100 \times \frac{\mathrm{licensed\_preschool\_places}_{it}}{\mathrm{resident\_preschool\_age\_population}_{it}}
+$$
 
-\[
-\text{usable\_indoor\_area\_per\_child}_{it}=\frac{\text{usable\_indoor\_area\_sqm}_{it}}{\text{enrolled\_children}_{it}}
-\]
+$$
+\mathrm{usable\_indoor\_area\_per\_child}_{it}
+= \frac{\mathrm{usable\_indoor\_area\_sqm}_{it}}{\mathrm{enrolled\_children}_{it}}
+$$
 
-\[
-\text{average\_class\_size}_{it}=\frac{\text{enrolled\_children}_{it}}{\text{class\_count}_{it}}
-\]
+$$
+\mathrm{average\_class\_size}_{it}
+= \frac{\mathrm{enrolled\_children}_{it}}{\mathrm{class\_count}_{it}}
+$$
 
-\[
-\text{age\_specific\_enrolment\_coverage}_{it}=100\times\frac{\text{resident\_target\_age\_children\_enrolled}_{it}}{\text{resident\_preschool\_age\_population}_{it}}
-\]
+$$
+\mathrm{age\_specific\_enrolment\_coverage}_{it}
+= 100 \times \frac{\mathrm{resident\_target\_age\_children\_enrolled}_{it}}{\mathrm{resident\_preschool\_age\_population}_{it}}
+$$
 
-\[
-\text{unmet\_demand\_rate}_{it}=100\times\frac{\text{eligible\_children\_seeking\_but\_not\_enrolled}_{it}}{\text{eligible\_children\_seeking\_place}_{it}}
-\]
+$$
+\mathrm{unmet\_demand\_rate}_{it}
+= 100 \times \frac{\mathrm{eligible\_children\_seeking\_but\_not\_enrolled}_{it}}{\mathrm{eligible\_children\_seeking\_place}_{it}}
+$$
 
-\[
-\text{capacity\_pressure}_{it}=100\times\frac{\text{enrolled\_children}_{it}}{\text{licensed\_preschool\_places}_{it}}
-\]
+$$
+\mathrm{capacity\_pressure}_{it}
+= 100 \times \frac{\mathrm{enrolled\_children}_{it}}{\mathrm{licensed\_preschool\_places}_{it}}
+$$
 
 ## 3. CSV Schema
 

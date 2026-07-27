@@ -65,9 +65,14 @@ The baseline dataset uses city-year records with per-child government expenditur
 
 `simulate_teacher_cost_change()` holds service volume and physical inputs constant and adds the incremental cost:
 
-\[
-\Delta F=\text{FTE teachers}\times\text{baseline teacher cost}\times\text{teacher cost increase rate}
-\]
+$$
+\Delta F
+= N_{\mathrm{FTE}}
+\times C_{\mathrm{teacher},0}
+\times r_{\mathrm{cost}}
+$$
+
+where \(N_{\mathrm{FTE}}\) is the number of full-time-equivalent teachers, \(C_{\mathrm{teacher},0}\) is the baseline annual cost per teacher, and \(r_{\mathrm{cost}}\) is the proportional increase in teacher cost.
 
 The scenario therefore changes fiscal requirement and fiscal sustainability without asserting a direct change in enrolment or service quality.
 

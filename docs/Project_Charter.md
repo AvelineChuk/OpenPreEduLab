@@ -1,292 +1,135 @@
-OpenPreEduLab
+# OpenPreEduLab Project Charter
 
-Project Charter
+**Version:** v0.1
 
+**Project name:** OpenPreEduLab
 
+**Author:** Jiajia Zhu
 
-Version: v0.1
+**Date:** July 27, 2026
 
+## Motto
 
+> Research should not end with publication. Every study should become reusable and continuously evolving research infrastructure.
 
-Project Name: OpenPreEduLab
+## 1. Vision
 
+OpenPreEduLab aspires to become the world's first open-source AI research infrastructure designed specifically for preschool education research.
 
+The platform integrates statistical modelling, educational policy analysis, large language models (LLMs), and policy simulation to create an open, transparent, reproducible, and sustainable research environment. Its purpose is to provide more rigorous data-analysis tools and decision-support resources for preschool education research.
 
-Author: 祝嘉嘉
+Our long-term vision is that researchers studying preschool resource allocation, educational equity, fiscal support, educational quality, and related topics will be able to use OpenPreEduLab directly instead of repeatedly building analytical models from scratch.
 
+OpenPreEduLab is not merely a GitHub project; it is intended to become long-term research infrastructure.
 
+## 2. Mission
 
-Date: July 27, 2026
+Our mission is to make preschool education research more open, reproducible, interpretable, and intelligent.
 
+By developing a sustainable library of statistical models, educational policy simulation tools, and AI-assisted research systems, OpenPreEduLab seeks to improve research efficiency, promote the sharing of educational research outputs, and contribute to more evidence-informed and equitable educational policy.
 
+## 3. Why I Am Building OpenPreEduLab
 
-Motto
+My research journey began not with artificial intelligence, but with real problems in preschool education.
 
+During the second semester of my sophomore year, I first encountered the issue of preschool education resource allocation systematically through a field-based social research project. At the time, the effects of declining birth rates were becoming increasingly visible. In some areas experiencing sustained population outflow, falling numbers of young children were forcing kindergartens to merge or close. Meanwhile, areas attracting younger populations faced continuing demand to expand kindergartens, create additional places, and recruit teachers.
 
+This simultaneous pattern of contraction and expansion made me realise that preschool resource allocation is not simply a matter of quantity. It is a complex system shaped by demographic change, fiscal investment, teacher mobility, educational equity, and other interacting factors.
 
-科研成果不应该随着论文发表而结束，而应该沉淀为可以持续复用、不断演进的科研基础设施。
+For example, non-establishment teachers in kindergartens undergoing closure or consolidation may face unemployment, while expanding kindergartens elsewhere recruit large numbers of teachers on similarly non-established contracts. Such mismatches in human-resource allocation across regions and institutions led me to ask whether rigorous data analysis and statistical modelling could provide meaningful decision support for educational resource allocation, rather than leaving research at the level of descriptive observation.
 
+This year, China formally implemented a policy providing one year of free preschool education, marking a new stage in the development of the sector. This development deepened my interest in the policy and in research on fiscal support mechanisms and resource allocation, with the aim of ensuring that educational equity genuinely benefits every family and every child. I gradually came to understand that both resource allocation and free preschool education require more rigorous, dynamic, and sustainable data-analysis frameworks.
 
+At the same time, I began to follow developments in artificial intelligence.
 
-Research should not end with publication. Every study should become reusable and continuously evolving research infrastructure.
+Most current applications of LLMs in preschool education remain concentrated in practical settings such as teaching assistance and curriculum design. In educational research, LLMs are still used mainly for repetitive tasks such as literature summarisation and text organisation. I do not believe these uses represent their full potential.
 
+An LLM should be more than a conversational tool; it should serve as an intelligent research assistant.
 
+Genuine research innovation must always come from researchers rather than artificial intelligence. Researchers are responsible for formulating research questions, constructing theoretical frameworks, and identifying innovative directions. AI should undertake repetitive, mechanical, and time-consuming data-processing and analytical tasks to improve researchers' efficiency, not replace their thinking. I therefore hope to explore a new research model in which LLMs assist with data analysis, model interpretation, and policy simulation while preserving the principle that human beings are the agents of research and AI is a research tool.
 
-1\. Vision
+It was during this process that I began using GitHub.
 
+While exploring GitHub, I found very few open-source projects in education, particularly in preschool education. Many outstanding open-source platforms originate in computer science, artificial intelligence, and other science and engineering fields. Educational research outputs, by contrast, often remain confined to academic papers, while their models, data, and code are rarely accumulated and shared over time.
 
+I want to help change this situation. That motivation led me to conceive OpenPreEduLab.
 
-OpenPreEduLab 致力于成为全球首个面向学前教育研究的开源 AI 科研基础设施（Open-source AI Research Infrastructure for Preschool Education）。
+I hope it will become not only a GitHub project but also a long-term open research platform. Future studies of preschool resource allocation, fiscal support for free preschool education, educational equity, and related topics should be able to generate reusable statistical models and research tools. Educational researchers should be able to build upon these resources directly instead of starting from zero each time.
 
+Through this platform, I also hope to demonstrate that educational research can embrace artificial intelligence, participate in open-source communities, and continually draw on advances in other disciplines. Education can do more than apply AI: it can formulate its own research questions and develop research paradigms grounded in the needs of the field.
 
+I am still developing my skills as a researcher and developer. For me, open source means not only sharing but also learning and growth. By continually improving OpenPreEduLab, I hope to collaborate with researchers and developers around the world, strengthen my technical knowledge, and ensure that the platform genuinely serves educational researchers while advancing preschool education research in a more open, intelligent, and sustainable direction.
 
-平台希望融合统计建模（Statistical Modeling）、教育政策分析（Educational Policy Analysis）、大语言模型（Large Language Models）和政策模拟（Policy Simulation），构建一个开放、透明、可复现、可持续发展的科研平台，为学前教育研究提供更加科学的数据分析工具和决策支持。
+This is why I created OpenPreEduLab.
 
+## 4. Research Problems
 
+Preschool education research continues to face several fundamental challenges:
 
-我们希望未来任何一位研究者，在开展学前教育资源配置、教育公平、财政保障、教育质量等研究时，都能够直接使用 OpenPreEduLab，而不是从零开始重复搭建模型。
+- Statistical models often lack a shared framework, leading researchers to duplicate development efforts and limiting reuse.
+- Educational policy research frequently remains confined to static analysis and lacks dynamic simulation capabilities.
+- The use of LLMs in educational research is still largely limited to literature organisation and text generation rather than substantive participation in analytical workflows.
+- Data-analysis results often lack interpretability, leaving a gap between statistical models and policymaking.
+- Educational research lacks sufficiently open, collaborative platforms through which models, code, and data can continue to accumulate after publication.
 
+These challenges show that preschool education research needs not only new statistical models but also new research infrastructure.
 
+## 5. Research Philosophy
 
-OpenPreEduLab 不只是一个 GitHub 项目，而是一项长期发展的科研基础设施。
+### Research should be cumulative
 
+Research should accumulate over time rather than end when a paper is published.
 
+Every paper should contribute datasets, statistical models, algorithmic tools, and open code that can continue to be used. Every research output should become a foundation for future work rather than forcing the next researcher to begin again.
 
-2\. Mission
+### Artificial intelligence should assist, not replace, research
 
+Genuine innovation arises from the questions researchers formulate, the theories they construct, and the methods they design. The role of AI is to make research more efficient, open, and interpretable.
 
+## 6. Core Principles
 
-我们的使命是：
+OpenPreEduLab will consistently follow four principles:
 
+### Open
 
+Maintain an open-source approach and promote the sharing of educational research outputs.
 
-让学前教育研究更加开放（Open）、可复现（Reproducible）、可解释（Interpretable）和智能化（Intelligent）。
+### Scientific
 
+Ground every model in education, statistics, and relevant theoretical foundations.
 
+### Reproducible
 
-通过建立可持续发展的统计模型库、教育政策模拟工具以及 AI 辅助科研系统，提高教育研究效率，推动教育研究成果共享，促进教育政策更加科学、更加公平。
+Ensure that analytical procedures, data processing, and model calculations can be reproduced.
 
+### Policy-oriented
 
+Design models to serve educational practice and policy rather than pursuing algorithmic performance as an end in itself.
 
-3\. Why am I Building OpenPreEduLab?
+## 7. Long-Term Goal
 
+Over the next five years, OpenPreEduLab aims to develop into a comprehensive research platform for preschool education.
 
+### Phase I: Statistical Modelling
 
-我的研究起点，并不是人工智能，而是学前教育领域真实存在的问题。
+Develop foundational statistical models for resource allocation, educational equity, efficiency evaluation, and related topics.
 
+### Phase II: Policy Simulation
 
+Develop policy simulation systems for free preschool education, fiscal support, resource optimisation, and related policy questions.
 
-大二下学期，在一次社会实践调查中，我第一次系统接触到学前教育资源配置问题。当时，少子化趋势已经逐渐显现，一方面，一些人口持续流出的地区由于幼儿数量减少，不得不面临幼儿园撤并；另一方面，在年轻人口持续流入的区域，又不断出现幼儿园扩建、新增学位和招聘教师的需求。
+### Phase III: AI-Assisted Research
 
+Develop an LLM-assisted research system supporting literature analysis, variable extraction, model interpretation, and other research tasks.
 
+### Phase IV: Research Infrastructure
 
-这种"一边撤并、一边扩张"的现象，使我意识到，学前教育资源配置并不是简单的数量问题，而是涉及人口变化、财政投入、教师流动以及教育公平等多重因素的复杂系统。
+Build an open community in which models, data, and research outputs accumulate continuously, creating a collaborative platform for preschool education researchers worldwide.
 
+## Final Statement
 
+OpenPreEduLab is not intended to showcase artificial intelligence. It is intended to explore a new paradigm for preschool education research.
 
-例如，在一些撤并幼儿园中，非编教师面临失业风险；而与此同时，扩张中的幼儿园又重新招聘大量非编教师。不同地区、不同幼儿园之间在人力资源配置上的矛盾，使我开始思考：是否能够通过更加科学的数据分析和统计模型，为教育资源配置提供决策支持，而不仅仅停留在现象描述。
+We hope that every research output can become a sustainable research asset, enabling educational research to achieve genuine openness, cumulative development, and intelligent innovation.
 
-
-
-今年，国家正式实施一年免费学前教育，这意味着学前教育进入新的发展阶段。我开始进一步关注免费学前教育政策，希望研究财政保障机制和资源配置问题，让教育公平真正惠及每一个家庭、每一个孩子。我逐渐意识到，无论是资源配置还是免费学前教育，本质上都需要建立更加科学、动态、可持续的数据分析框架。
-
-
-
-与此同时，我也开始关注人工智能的发展。
-
-
-
-目前，大语言模型在学前教育领域的大多数应用仍然集中在教学辅助、课程设计等实践场景，而在教育科研中，LLM更多承担文献总结、文本整理等重复性工作。我认为，这并不是 LLM 最大的价值。
-
-
-
-LLM 不应该只是聊天工具，它更应该成为科研的智能助手。
-
-
-
-真正的科研创新永远来自研究者，而不是人工智能。研究问题、理论框架和创新方向只能由研究者提出；AI 应该承担的是重复、机械、耗时的数据处理和分析工作，帮助研究者提高效率，而不是替代研究者进行思考。因此，我希望探索一种新的科研模式，让 LLM 参与数据分析、模型解释和政策模拟，使科研更加高效，同时始终坚持"人是科研主体，AI 是科研工具"这一原则。
-
-
-
-也正是在这个过程中，我开始接触 GitHub。
-
-
-
-浏览 GitHub 时，我发现教育领域尤其是学前教育相关的开源项目非常少，大多数优秀的开源平台都来自计算机、人工智能等理工科领域。相比之下，教育研究成果往往停留在论文之中，模型、数据和代码很少能够持续积累和共享。
-
-
-
-我希望改变这种现状。
-
-
-
-因此，我开始构想 OpenPreEduLab。
-
-
-
-我希望它不仅仅是一个 GitHub 项目，更是一个长期发展的开源科研平台。未来，无论是学前教育资源配置、免费学前教育财政保障，还是教育公平等研究，都能够沉淀为可持续复用的统计模型和研究工具，让更多教育研究者能够直接使用，而不是每一位研究者都从零开始。
-
-
-
-我也希望通过这个平台，让更多人看到，教育研究同样可以拥抱人工智能、拥抱开源社区，并不断吸收其他学科的发展成果。教育学不仅能够使用 AI，更能够提出属于教育学自己的研究问题和研究范式。
-
-
-
-目前，我仍然是一名学习中的开发者。开源对我而言不仅意味着分享，也意味着成长。我希望通过不断完善 OpenPreEduLab，与来自世界各地的研究者和开发者交流合作，在学习技术的同时，也让这个平台真正服务于教育研究者，推动学前教育研究向更加开放、智能和可持续的方向发展。
-
-
-
-这，就是我创建 OpenPreEduLab 的初心。
-
-
-
-4\. Research Problems
-
-
-
-当前学前教育研究仍然存在几个核心问题：
-
-
-
-统计模型缺乏统一框架，研究者重复开发，难以复用。
-
-教育政策研究主要停留在静态分析，缺乏动态模拟能力。
-
-大语言模型在教育科研中的应用仍然局限于文献整理和文本生成，尚未真正参与科研分析流程。
-
-数据分析结果缺乏可解释性，统计模型与政策制定之间存在距离。
-
-教育研究缺少开放共享的平台，论文发表后模型、代码和数据难以持续积累。
-
-
-
-这些问题说明，学前教育研究不仅需要新的统计模型，更需要新的科研基础设施。
-
-
-
-5\. Research Philosophy
-
-
-
-OpenPreEduLab 坚持以下研究理念：
-
-
-
-Research should be cumulative.
-
-
-
-科研应该不断积累，而不是随着论文发表而结束。
-
-
-
-每一篇论文，都应该沉淀为可以持续使用的数据集、统计模型、算法工具和开放代码。
-
-
-
-每一个研究成果，都应该成为未来研究的基础，而不是新的起点。
-
-
-
-人工智能不能替代科研，但能够帮助科研。
-
-
-
-真正的创新来自研究者提出的问题、构建的理论和设计的方法；AI 的使命，是让科研更加高效、更加开放、更加可解释。
-
-
-
-6\. Core Principles
-
-
-
-OpenPreEduLab 将始终遵循四项原则：
-
-
-
-Open
-
-
-
-坚持开源，促进教育研究成果共享。
-
-
-
-Scientific
-
-
-
-所有模型必须建立在教育学、统计学和相关理论基础之上。
-
-
-
-Reproducible
-
-
-
-所有分析过程、数据处理和模型计算均应可复现。
-
-
-
-Policy-oriented
-
-
-
-所有模型最终服务于教育实践和教育政策，而不仅仅追求算法本身。
-
-
-
-7\. Long-term Goal
-
-
-
-未来五年，OpenPreEduLab 将逐步建设成为完整的学前教育科研平台。
-
-
-
-Phase I：Statistical Modeling
-
-
-
-建立资源配置、教育公平、效率评价等基础统计模型。
-
-
-
-Phase II：Policy Simulation
-
-
-
-建立免费学前教育、财政保障、资源优化等政策模拟系统。
-
-
-
-Phase III：AI-assisted Research
-
-
-
-构建 LLM 辅助科研系统，实现文献分析、变量提取、模型解释和研究辅助。
-
-
-
-Phase IV：Research Infrastructure
-
-
-
-建设开放社区，持续沉淀模型、数据和研究成果，形成全球学前教育研究者共同参与的科研平台。
-
-
-
-Final Statement
-
-
-
-OpenPreEduLab 并不是为了展示人工智能，而是希望探索一种新的学前教育研究范式。
-
-
-
-未来，我们希望让每一个研究成果都能够沉淀为可持续发展的科研资产，让教育研究真正实现开放共享、持续积累和智能创新。
-
-
-
-OpenPreEduLab 不只是一个 GitHub 项目，更希望成为学前教育研究共同成长的平台。
-
+OpenPreEduLab is more than a GitHub project. It aspires to become a platform through which the preschool education research community can grow together.

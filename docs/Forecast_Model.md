@@ -40,15 +40,15 @@ The sequence separates the demographic forecast from the resource translation. P
 
 The MVP uses separate city-level **linear regression** models:
 
-\[
-P_{it}=\alpha_i+\beta_i\cdot t+\varepsilon_{it}
-\]
+$$
+P_{it} = \alpha_i + \beta_i t + \varepsilon_{it}
+$$
 
 where \(P_{it}\) is the preschool-age child population in city \(i\) in year \(t\). The projected population is:
 
-\[
-\widehat{P}_{i,t+h}=\widehat{\alpha}_i+\widehat{\beta}_i(t+h)
-\]
+$$
+\widehat{P}_{i,t+h} = \widehat{\alpha}_i + \widehat{\beta}_i(t+h)
+$$
 
 This decision prioritises transparency and reproducibility over apparent sophistication. The sample dataset contains only five annual observations per city, so ARIMA and exponential-smoothing models would create an unjustified impression of precision. Negative extrapolations are truncated at zero because population cannot be negative.
 
@@ -74,9 +74,9 @@ The preschool-age definition must remain consistent across historical and future
 | Assumption | `teacher_child_ratio` | Planned FTE teachers per child | FTE teachers per child |
 | Output | `future_teacher_demand` | Projected FTE teacher requirement | FTE teachers |
 
-\[
-\widehat{T}_{it}=\widehat{P}_{it}\times r_T
-\]
+$$
+\widehat{T}_{it} = \widehat{P}_{it} \times r_T
+$$
 
 where \(r_T\) is a documented planning assumption. For example, \(r_T=0.065\) represents 6.5 FTE teachers per 100 children. This assumption should reflect a specified staffing standard, not an undocumented historical average.
 
@@ -88,9 +88,9 @@ where \(r_T\) is a documented planning assumption. For example, \(r_T=0.065\) re
 | Assumption | `cost_per_child` | Annual fiscal cost under a stated scope and price year | currency per child per year |
 | Output | `future_fiscal_need` | Projected annual fiscal requirement | currency per year |
 
-\[
-\widehat{F}_{it}=\widehat{P}_{it}\times c_t
-\]
+$$
+\widehat{F}_{it} = \widehat{P}_{it} \times c_t
+$$
 
 where \(c_t\) is the stated cost-per-child assumption. It must specify whether it represents public expenditure, operating cost, or another fiscal category, and must use a documented price year for comparisons over time.
 
