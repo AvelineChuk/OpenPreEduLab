@@ -1,0 +1,5 @@
+region,reference_year,kindergartens_staging,kindergartens_excel,enrolled_children_staging,enrolled_children_excel_converted,teaching_staff_staging,teaching_staff_excel_converted,full_time_teacher_staging,full_time_teacher_excel_converted,validation_status
+Guangdong,2015,16368,16368,4022800,4022800,436200,436200,240700,240700,validated
+Guangdong,2022,21566,21566,4980500,4980500,667800,667800,351000,351000,validated
+Guangdong,2023,21662,21662,4586200,4586200,651500,651500,337000,337000,validated
+Guangdong,2024,21247,21247,4139700,4139700,614500,614500,314000,314000,validated
