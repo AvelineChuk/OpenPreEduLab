@@ -80,3 +80,77 @@ The next stage will involve:
 OpenPreEduLab officially began today.
 
 By maintaining a continuous record of the research process, I hope to preserve the project's development history and transform each model design, data analysis, and research reflection into a reusable research asset.
+
+---
+
+## Entry 002
+
+**Date:** July 28, 2026
+
+### Today's Goal
+
+Move OpenPreEduLab from a software-prototype release toward a transparent real-data pilot by establishing source governance, collecting authoritative preschool-education records, and preventing unsupported variables from entering the PRAI workflow.
+
+### Completed Tasks
+
+The following tasks were completed:
+
+1. Established a provincial pilot data-governance workflow with separate `raw`, `staging`, and `processed` layers.
+2. Created a source registry, variable-source matrix, pilot-source availability audit, data-quality plan, provincial-panel roadmap, review protocol, review tracker, and data-gap register.
+3. Archived official statistical-yearbook evidence for Beijing, Shanghai, Guangdong, and Sichuan.
+4. Created source-faithful staging records for kindergarten counts, enrolled children, full-time teachers, selected class measures, population context, and general fiscal context where the original tables supported those fields.
+5. Preserved missing years rather than interpolating them, and flagged discontinuities for review rather than deleting observations.
+6. Identified and documented the principal data gap: no harmonised, annual, provincial series for preschool-age population and preschool-specific public expenditure has yet been verified for the pilot.
+7. Archived two user-supplied 2026 support-for-preschool-education fund attachments, recorded their checksums, and extracted pilot-region budget allocations as future policy-scenario parameters.
+8. Verified that the 2026 budget components reconcile arithmetically, while explicitly retaining the Guangdong-excluding-Shenzhen geographic-scope limitation.
+9. Reviewed the repository structure and confirmed the presence of the allocation, equity, efficiency, forecast, policy-simulation, LLM-interpretation, pipeline, visualisation, demo, and test modules.
+
+### Research Reflections
+
+Today's work clarified that data integrity is not achieved by making a dataset appear complete. It is achieved by making every field traceable to its source, definition, unit, and geographic scope.
+
+The collection process repeatedly showed why a research infrastructure must distinguish between several types of evidence:
+
+- a direct model input;
+- a contextual variable;
+- a future scenario parameter; and
+- an unresolved candidate source.
+
+For example, resident population aged 0–14 and general public-budget expenditure are informative contextual variables, but they cannot stand in for preschool-age population or preschool-specific public expenditure. Similarly, the 2026 support fund is relevant to future policy-simulation design but is not historical actual expenditure.
+
+This distinction protects the substantive validity of the PRAI model. A reproducible workflow should make it difficult to produce an attractive but conceptually invalid score.
+
+### Problems Encountered
+
+1. The Gansu official portals returned access controls to automated requests. No attempt was made to bypass them.
+2. Several relevant files were published at district level rather than at the provincial or municipal level required by the current pilot.
+3. The Guangdong fund allocation distinguishes Guangdong excluding Shenzhen from Shenzhen, while existing resource data are provincial totals; these records cannot be combined automatically.
+4. Several historical statistical tables provide total population or a 0–14 age group, but not the 3–5 or 3–6 preschool-age denominator required by the PRAI design.
+5. General education expenditure and general public-budget expenditure are not preschool-specific fiscal measures.
+6. Two user-supplied 2026 XLS files required hidden read-only Excel access because standard XLS parsers could not read their legacy named formulas.
+7. GitHub synchronisation was intermittently unavailable because of connection resets. Local Git commits were preserved; no force push was used.
+
+### Solutions and Next Steps
+
+1. Complete independent second review for every staging record before any promotion to `datasets/processed/`.
+2. Locate authorised sources for a consistent 3–5 or 3–6 preschool-age population denominator.
+3. Locate provincial preschool-specific public-expenditure or final-account tables; do not substitute aggregate education expenditure.
+4. Obtain Gansu official files through an ordinary browser session, then register their URLs, checksums, definitions, and geographic level.
+5. Record the issuing notice and original URL for the 2026 support-fund attachments before treating their provenance as independently verified.
+6. Run an end-to-end real-data pipeline only after a small, definition-harmonised and independently reviewed panel is available.
+7. Synchronise the local commits with GitHub when network access is restored.
+
+### Lessons Learned
+
+1. Authoritative data are not automatically analytically compatible data.
+2. Geographic scope is a substantive research decision, not a formatting detail.
+3. A future policy allocation, a budget, and an observed expenditure measure must be represented as different data types.
+4. Quality flags and review logs are research assets because they preserve the reasoning behind data inclusion and exclusion.
+5. The current priority is data validity, not an interactive interface or additional model complexity.
+
+### Plan for the Next Day
+
+1. Begin independent second review of the existing Beijing, Shanghai, Guangdong, and Sichuan staging tables.
+2. Continue targeted collection of preschool-age population and preschool-specific expenditure data.
+3. Obtain and register Gansu source files through authorised manual access.
+4. Restore GitHub synchronisation when the network connection becomes available.
