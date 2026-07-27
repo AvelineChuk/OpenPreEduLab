@@ -1,0 +1,11 @@
+region,reference_year,kindergartens,class_count,graduates,new_enrolment,enrolled_children,teaching_staff,full_time_teacher_count,source_id,source_table,entry_method,verification_status,quality_flag
+Beijing,2015,1487,14098,101928,149042,394121,61903,34040,BEIJING_2025_C2002,"20-2 Kindergarten Basic Conditions (1978-2024)",manual_visual_transcription,requires_second_review,none
+Beijing,2016,1570,14913,99626,152769,416982,65806,36071,BEIJING_2025_C2002,"20-2 Kindergarten Basic Conditions (1978-2024)",manual_visual_transcription,requires_second_review,none
+Beijing,2017,1604,15810,105651,177354,445535,69100,37903,BEIJING_2025_C2002,"20-2 Kindergarten Basic Conditions (1978-2024)",manual_visual_transcription,requires_second_review,none
+Beijing,2018,1657,16176,117102,165130,450645,71686,38867,BEIJING_2025_C2002,"20-2 Kindergarten Basic Conditions (1978-2024)",manual_visual_transcription,requires_second_review,none
+Beijing,2019,1733,16934,118178,168166,467595,79777,41187,BEIJING_2025_C2002,"20-2 Kindergarten Basic Conditions (1978-2024)",manual_visual_transcription,requires_second_review,none
+Beijing,2020,1899,18770,132884,221767,525878,88467,44740,BEIJING_2025_C2002,"20-2 Kindergarten Basic Conditions (1978-2024)",manual_visual_transcription,requires_second_review,none
+Beijing,2021,2000,20067,136077,190211,566735,98322,47973,BEIJING_2025_C2002,"20-2 Kindergarten Basic Conditions (1978-2024)",manual_visual_transcription,requires_second_review,none
+Beijing,2022,1989,20662,162717,178620,574235,99987,48774,BEIJING_2025_C2002,"20-2 Kindergarten Basic Conditions (1978-2024)",manual_visual_transcription,requires_second_review,none
+Beijing,2023,1991,19753,208037,164082,515267,96381,47125,BEIJING_2025_C2002,"20-2 Kindergarten Basic Conditions (1978-2024)",manual_visual_transcription,requires_second_review,none
+Beijing,2024,2019,19149,172776,139713,476193,92875,46572,BEIJING_2025_C2002,"20-2 Kindergarten Basic Conditions (1978-2024)",manual_visual_transcription,requires_second_review,none
