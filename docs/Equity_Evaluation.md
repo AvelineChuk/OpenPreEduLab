@@ -36,7 +36,7 @@ Theil decomposition additionally requires a complete, substantively meaningful g
 The coefficient of variation expresses relative dispersion as the sample standard deviation divided by the mean:
 
 $$
-\operatorname{CV} = \frac{s}{\bar{x}}
+\mathrm{CV} = \frac{s}{\bar{x}}
 $$
 
 where \(s\) is the sample standard deviation of the locality-level resource value \(x_i\), and \(\bar{x}\) is the arithmetic mean.
@@ -66,7 +66,7 @@ The Gini coefficient equals zero under complete equality in the observed distrib
 The Theil T index is:
 
 $$
-T = \frac{1}{n}\sum_{i=1}^{n}\frac{x_i}{\bar{x}}\ln\!\left(\frac{x_i}{\bar{x}}\right)
+T = \frac{1}{n}\sum_{i=1}^{n}\frac{x_i}{\bar{x}}\ln(\frac{x_i}{\bar{x}})
 $$
 
 where terms with \(x_i=0\) are treated as zero by continuity. Lower values indicate a more equal observed distribution.
@@ -76,15 +76,15 @@ where terms with \(x_i=0\) are treated as zero by continuity. Lower values indic
 When localities are assigned to groups \(g\), total Theil inequality is additively decomposed:
 
 $$
-T = T_{\mathrm{within}} + T_{\mathrm{between}}
+T = T_W + T_B
 $$
 
 $$
-T_{\mathrm{within}} = \sum_g \frac{n_g\bar{x}_g}{n\bar{x}}T_g
+T_W = \sum_g \frac{n_g\bar{x}_g}{n\bar{x}}T_g
 $$
 
 $$
-T_{\mathrm{between}} = \sum_g \frac{n_g\bar{x}_g}{n\bar{x}}\ln\!\left(\frac{\bar{x}_g}{\bar{x}}\right)
+T_B = \sum_g \frac{n_g\bar{x}_g}{n\bar{x}}\ln(\frac{\bar{x}_g}{\bar{x}})
 $$
 
 where \(n_g\), \(\bar{x}_g\), and \(T_g\) are the number of localities, mean resource value, and Theil index within group \(g\). The within component represents inequality among localities belonging to the same group; the between component represents inequality associated with group mean differences.

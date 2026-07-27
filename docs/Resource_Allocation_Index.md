@@ -89,13 +89,13 @@ For policy use and longitudinal comparability, PRAI should use transparent exter
 For a benefit indicator (higher is better):
 
 $$
-z_{ij} = \min\!\left\{1,\max\!\left[0,\frac{x_{ij}-L_j}{U_j-L_j}\right]\right\}
+z_{ij} = \min\{1,\max[0,\frac{x_{ij}-L_j}{U_j-L_j}]\}
 $$
 
 For a cost indicator (lower is better):
 
 $$
-z_{ij} = \min\!\left\{1,\max\!\left[0,\frac{U_j-x_{ij}}{U_j-L_j}\right]\right\}
+z_{ij} = \min\{1,\max[0,\frac{U_j-x_{ij}}{U_j-L_j}]\}
 $$
 
 where \(z_{ij}\in[0,1]\). Clipping prevents extreme values from exerting disproportionate influence and makes clear that the upper benchmark represents adequate attainment, not unlimited desirability.
@@ -106,9 +106,9 @@ $$
 z_{ij} =
 \begin{cases}
 0, & x_{ij} \leq L_j, \\
-\dfrac{x_{ij}-L_j}{a_j-L_j}, & L_j < x_{ij} < a_j, \\
+\frac{x_{ij}-L_j}{a_j-L_j}, & L_j < x_{ij} < a_j, \\
 1, & a_j \leq x_{ij} \leq b_j, \\
-\dfrac{U_j-x_{ij}}{U_j-b_j}, & b_j < x_{ij} < U_j, \\
+\frac{U_j-x_{ij}}{U_j-b_j}, & b_j < x_{ij} < U_j, \\
 0, & x_{ij} \geq U_j.
 \end{cases}
 $$
@@ -154,16 +154,16 @@ where \(z_{ij}\) is the standardised indicator score defined above.
 The equal-weight PRAI is:
 
 $$
-\operatorname{PRAI}_{i} = 100 \times \sum_{d\in D}\frac{1}{4}S_{id}
+\mathrm{PRAI}_{i} = 100 \times \sum_{d\in D}\frac{1}{4}S_{id}
 $$
 
 Equivalently:
 
 $$
-\operatorname{PRAI}_{i} = 25\left(S_{iF} + S_{iH} + S_{iM} + S_{iR}\right)
+\mathrm{PRAI}_{i} = 25(S_{iF} + S_{iH} + S_{iM} + S_{iR})
 $$
 
-Thus, \(\operatorname{PRAI}_{i}\in[0,100]\) when all component scores are available. The four dimension scores must be reported alongside the overall score.
+Thus, \(\mathrm{PRAI}_{i}\in[0,100]\) when all component scores are available. The four dimension scores must be reported alongside the overall score.
 
 ### 7.1 Missing-data rule
 

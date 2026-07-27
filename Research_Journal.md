@@ -1,244 +1,82 @@
-\# OpenPreEduLab Research Journal
+# OpenPreEduLab Research Journal
 
+## Project Information
 
+**Project:** OpenPreEduLab
 
-\## Project Information
+**Researcher:** Jiajia Zhu
 
+**Started:** July 27, 2026
 
+---
 
-\*\*Project:\*\* OpenPreEduLab
+# Research Log
 
+## Entry 001
 
+**Date:** July 27, 2026
 
-\*\*Researcher:\*\* Zhujiajia
+### Today's Goal
 
+Initialise the OpenPreEduLab project, define its vision, mission, and long-term direction, and establish the core project document, `Project_Charter.md` v0.1.
 
+### Completed Tasks
 
-\*\*Started:\*\* 2026-07-27
+The following tasks were completed:
 
+1. Created the initial OpenPreEduLab project structure.
+2. Created `Project_Charter.md` and completed version 0.1.
+3. Defined the project's central principle:
 
+> Research should not end with publication. Research outputs should become reusable and continuously evolving research infrastructure.
 
+### Research Reflections
 
+During the project's initial development, I reconsidered the role of artificial intelligence in preschool education research.
 
-\---
+Current applications of large language models (LLMs) in education are concentrated mainly in teaching assistance, content generation, and text organisation. Their potential contribution to educational research remains underexplored.
 
+I believe that an LLM should be more than a text-generation tool. It should serve as an intelligent assistant within the research workflow, helping researchers with data analysis, model interpretation, literature organisation, and policy simulation while improving research efficiency.
 
+At the same time, artificial intelligence cannot replace researchers in formulating questions, constructing theory, or developing original insights. The core of research innovation remains the researcher's theoretical reasoning and awareness of substantive problems.
 
-\# Research Log
+OpenPreEduLab therefore seeks to explore a research model based on the following principle:
 
+> Researchers remain the primary agents of inquiry, while artificial intelligence serves an assisting role. Integrating AI with statistical models can improve the efficiency, transparency, and reproducibility of preschool education research.
 
+### Problems Encountered
 
+A concrete implementation strategy for deeply integrating LLMs with statistical models has not yet been established.
 
+Further study is required in the following areas:
 
-\## Entry 001
+- AI-assisted research methods;
+- educational data-analysis techniques;
+- statistical modelling methods; and
+- practical examples of integrating LLMs with data analysis.
 
+### Solutions and Next Steps
 
+The next stage will involve:
 
-\*\*Date:\*\* 2026-07-27
+1. Developing the overall OpenPreEduLab platform architecture.
+2. Defining the data flow among the platform's modules.
+3. Specifying the research questions, variable system, and mathematical formulation of the first statistical model: the **Resource Allocation Engine**.
 
+### Lessons Learned
 
+1. A research project must first establish its research questions and theoretical value rather than proceeding immediately to technical development.
+2. GitHub is not only a code-hosting platform; it can also support the continuous accumulation, sharing, and iteration of research outputs.
+3. Preschool education research can intersect productively with data science and artificial intelligence, creating new research paradigms.
 
+### Plan for the Next Day
 
+1. Design the overall OpenPreEduLab architecture.
+2. Define the data flows among the platform's four core modules.
+3. Establish the initial research direction of the Resource Allocation Engine.
 
-\## Today's Goal
+### Additional Research Notes
 
+OpenPreEduLab officially began today.
 
-
-完成 OpenPreEduLab 项目初始化，明确项目愿景、使命和长期发展方向，建立项目核心文档 \*\*Project\_Charter.md v0.1\*\*。
-
-
-
-
-
-\---
-
-
-
-\## Completed Tasks
-
-
-
-今天完成：
-
-
-
-1\. 创建 OpenPreEduLab 项目文件结构。
-
-
-
-2\. 建立 `Project\_Charter.md`，并完成 v0.1 版本。
-
-
-
-3\. 明确项目核心理念：
-
-
-
-> 科研成果不应该随着论文发表而结束，而应该沉淀为可以持续复用、不断演进的科研基础设施。
-
-
-
-
-
-\---
-
-
-
-\## Research Thinking
-
-
-
-在项目启动过程中，我重新思考了人工智能在学前教育研究中的定位。
-
-
-
-目前，LLM 在教育领域的应用大多集中于教学辅助、内容生成以及文本整理等场景，而在教育科研领域，其价值仍有进一步探索空间。
-
-
-
-我认为，LLM 不应该只是一个文本生成工具，而应该成为科研流程中的智能助手，帮助研究者完成数据分析、模型解释、文献整理以及政策模拟等任务，提高科研效率。
-
-
-
-与此同时，人工智能不能替代研究者提出问题、构建理论和形成创新观点。科研创新的核心仍然来源于研究者自身的理论思考和问题意识。
-
-
-
-因此，OpenPreEduLab 希望探索一种新的科研模式：
-
-
-
-> 以研究者为主体，以人工智能为辅助，通过 AI 与统计模型的结合，提高学前教育研究的效率、透明度和可复现性。
-
-
-
-
-
-\---
-
-
-
-\## Problems Encountered
-
-
-
-今天遇到的问题：
-
-
-
-目前，对于如何将 LLM 与统计模型进行深度结合仍缺少具体实现方案。
-
-
-
-未来需要进一步学习：
-
-
-
-\- 人工智能辅助科研方法；
-
-\- 教育数据分析技术；
-
-\- 统计建模方法；
-
-\- LLM 与数据分析结合的应用案例。
-
-
-
-
-
-\---
-
-
-
-\## Solutions / Next Steps
-
-
-
-下一阶段需要：
-
-
-
-1\. 进一步设计 OpenPreEduLab 的整体平台架构。
-
-
-
-2\. 明确不同模块之间的数据流关系。
-
-
-
-3\. 确定第一个统计模型 \*\*Resource Allocation Engine（资源配置分析引擎）\*\* 的研究问题、变量体系和数学表达方式。
-
-
-
-
-
-\---
-
-
-
-\## What I Learned
-
-
-
-今天学习：
-
-
-
-1\. 一个科研项目首先需要明确研究问题和理论价值，而不是直接进入技术开发。
-
-
-
-2\. GitHub 不仅是代码托管平台，也可以成为科研成果持续积累、共享和迭代的平台。
-
-
-
-3\. 学前教育研究可以与数据科学、人工智能等领域产生交叉融合，形成新的研究范式。
-
-
-
-
-
-\---
-
-
-
-\## Tomorrow Plan
-
-
-
-明天计划：
-
-
-
-1\. 设计 OpenPreEduLab 整体架构。
-
-
-
-2\. 明确平台四个核心模块之间的数据流关系。
-
-
-
-3\. 初步确定第一个统计模型 Resource Allocation Engine 的研究方向。
-
-
-
-
-
-\---
-
-
-
-\## Research Notes
-
-
-
-其他记录：
-
-
-
-今天正式启动 OpenPreEduLab 项目。
-
-
-
-未来希望通过持续记录研究过程，沉淀项目发展轨迹，并将每一次模型设计、数据分析和研究思考转化为可复用的科研资产。
-
+By maintaining a continuous record of the research process, I hope to preserve the project's development history and transform each model design, data analysis, and research reflection into a reusable research asset.
