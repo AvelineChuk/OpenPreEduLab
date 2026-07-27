@@ -1,0 +1,26 @@
+year,indicator,value,equity_level,interpretation
+2021,Coefficient of Variation,0.480289,Low Equity,Relative dispersion in observed resource-allocation scores is classified as low equity under the MVP reporting thresholds.
+2021,Gini Coefficient,0.247471,Moderate Equity,Observed resource-allocation inequality is classified as moderate equity under the MVP reporting thresholds.
+2021,Theil Index,0.132893,Moderate Equity,Observed resource-allocation inequality is classified as moderate equity under the MVP reporting thresholds.
+2021,Theil Within-Group Component,7.8e-05,Decomposition component,Share of Theil inequality attributable to variation within the supplied groups.
+2021,Theil Between-Group Component,0.132815,Decomposition component,Share of Theil inequality attributable to differences between the supplied groups.
+2022,Coefficient of Variation,0.473863,Low Equity,Relative dispersion in observed resource-allocation scores is classified as low equity under the MVP reporting thresholds.
+2022,Gini Coefficient,0.243964,Moderate Equity,Observed resource-allocation inequality is classified as moderate equity under the MVP reporting thresholds.
+2022,Theil Index,0.12954,Moderate Equity,Observed resource-allocation inequality is classified as moderate equity under the MVP reporting thresholds.
+2022,Theil Within-Group Component,0.000103,Decomposition component,Share of Theil inequality attributable to variation within the supplied groups.
+2022,Theil Between-Group Component,0.129437,Decomposition component,Share of Theil inequality attributable to differences between the supplied groups.
+2023,Coefficient of Variation,0.469038,Low Equity,Relative dispersion in observed resource-allocation scores is classified as low equity under the MVP reporting thresholds.
+2023,Gini Coefficient,0.240994,Moderate Equity,Observed resource-allocation inequality is classified as moderate equity under the MVP reporting thresholds.
+2023,Theil Index,0.128081,Moderate Equity,Observed resource-allocation inequality is classified as moderate equity under the MVP reporting thresholds.
+2023,Theil Within-Group Component,0.000151,Decomposition component,Share of Theil inequality attributable to variation within the supplied groups.
+2023,Theil Between-Group Component,0.12793,Decomposition component,Share of Theil inequality attributable to differences between the supplied groups.
+2024,Coefficient of Variation,0.464076,Low Equity,Relative dispersion in observed resource-allocation scores is classified as low equity under the MVP reporting thresholds.
+2024,Gini Coefficient,0.239055,Moderate Equity,Observed resource-allocation inequality is classified as moderate equity under the MVP reporting thresholds.
+2024,Theil Index,0.12466,Moderate Equity,Observed resource-allocation inequality is classified as moderate equity under the MVP reporting thresholds.
+2024,Theil Within-Group Component,0.000193,Decomposition component,Share of Theil inequality attributable to variation within the supplied groups.
+2024,Theil Between-Group Component,0.124467,Decomposition component,Share of Theil inequality attributable to differences between the supplied groups.
+2025,Coefficient of Variation,0.461146,Low Equity,Relative dispersion in observed resource-allocation scores is classified as low equity under the MVP reporting thresholds.
+2025,Gini Coefficient,0.237532,Moderate Equity,Observed resource-allocation inequality is classified as moderate equity under the MVP reporting thresholds.
+2025,Theil Index,0.123497,Moderate Equity,Observed resource-allocation inequality is classified as moderate equity under the MVP reporting thresholds.
+2025,Theil Within-Group Component,0.000226,Decomposition component,Share of Theil inequality attributable to variation within the supplied groups.
+2025,Theil Between-Group Component,0.123271,Decomposition component,Share of Theil inequality attributable to differences between the supplied groups.

@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If you use OpenPreEduLab in academic work, please cite it using this metadata."
+title: "OpenPreEduLab: Open Preschool Education Research Platform"
+version: "0.1.0"
+date-released: 2026-07-28
+type: software
+authors:
+  - name: "OpenPreEduLab Contributors"
+abstract: "An open-source research software prototype for preschool education resource allocation, equity, efficiency, forecasting, policy simulation, and evidence-bounded research interpretation."

@@ -1,0 +1,152 @@
+# OpenPreEduLab
+
+[![Version](https://img.shields.io/badge/version-0.1.0-blue)](VERSION)
+[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+![Python](https://img.shields.io/badge/python-3.10%2B-blue)
+
+**Project Status:** Research Prototype v0.1.0
+
+Current version focuses on framework development and prototype implementation.
+
+## Open Preschool Education Research Platform
+
+OpenPreEduLab is an open-source research infrastructure project for preschool education research. It connects documented data, statistical models, conditional policy scenarios, and evidence-bounded language interpretation into a reproducible workflow.
+
+> Research should not end with publication. Each study can become reusable and evolving research infrastructure.
+
+## Project Overview
+
+The project supports research on preschool education resource allocation, equity, efficiency, demographic-resource demand, and fiscal sustainability. It is designed for researchers who need transparent computational tools rather than a general-purpose chatbot.
+
+OpenPreEduLab does not replace scholarly judgement. Researchers remain responsible for research questions, theory, data governance, model selection, causal claims, and final interpretation.
+
+## Research Motivation
+
+Preschool education research often relies on manually assembled evidence and one-off analytical workflows. Indicators, data transformations, and model specifications can remain confined to individual papers, limiting inspection, replication, and cumulative development.
+
+OpenPreEduLab addresses this problem by treating research outputs as reusable assets. Its first implementation focuses on evaluating preschool resource allocation and its related distributional, efficiency, forecast, and scenario-analysis questions.
+
+## System Architecture
+
+```text
+Policy question and research design
+        ↓
+Documented city-year data
+        ↓
+Statistical Modeling Engine
+  ├─ Resource Allocation (PRAI)
+  ├─ Equity Evaluation
+  ├─ Efficiency Evaluation (DEA)
+  └─ Forecast Engine
+        ↓
+Policy Simulation Engine
+        ↓
+Optional LLM Interpretation Engine
+        ↓
+Researcher-reviewed outputs
+```
+
+The LLM layer is deliberately downstream of the statistical models. It receives structured outputs for interpretation and does not calculate or validate statistical results.
+
+## Demo Preview
+
+The following figures demonstrate the workflow of OpenPreEduLab using sample data. They are project showcase materials for a research prototype, not real-world deployment results.
+
+![OpenPreEduLab architecture](docs/screenshots/architecture.png)
+
+![OpenPreEduLab research pipeline workflow](docs/screenshots/pipeline_workflow.png)
+
+![Sample-data visualisation examples](docs/screenshots/visualization_example.png)
+
+See [Project Showcase](docs/Project_Showcase.md) for interpretation notes and presentation context.
+
+## Implemented Features (v0.1)
+
+- **Preschool Resource Allocation Index (PRAI):** multi-dimensional evaluation of financial, human, material, and demand-responsive conditions.
+- **Educational Equity Engine:** coefficient of variation, Gini coefficient, and decomposable Theil T index.
+- **Efficiency Evaluation Engine:** year-specific, input-oriented VRS/CCR DEA evaluation.
+- **Forecast Engine:** transparent city-level linear population trend projections, with conditional teacher and fiscal requirements.
+- **Policy Simulation Engine:** conditional scenarios for subsidy changes, population decline, teacher-cost increases, and fiscal constraints.
+- **Visualization Engine:** ranking, trend, radar, heatmap, forecast, and scenario-comparison figures using matplotlib.
+- **LLM Interpretation Engine:** provider-agnostic, prompt-reviewed, evidence-bounded research interpretation interface.
+- **Research Pipeline:** an end-to-end workflow that writes reproducible result tables and a provenance-oriented summary.
+
+The included dataset is synthetic and intended only for testing the workflow. Results generated from it must not be interpreted as evidence about real cities or policies.
+
+## Future Development
+
+Planned work may include literature and policy evidence mining, benchmark-oriented PRAI normalisation, richer demographic methods, uncertainty analysis, expanded validation, data-governance tooling, and community-contributed research assets.
+
+These are directions of development, not currently available capabilities.
+
+## Installation
+
+OpenPreEduLab v0.1 requires Python 3.10 or later.
+
+```bash
+git clone <your-repository-url>
+cd OpenPreEduLab
+python -m pip install numpy pandas scipy scikit-learn matplotlib
+```
+
+No external LLM credential is required for the core pipeline. An LLM is called only when a researcher explicitly provides an approved client implementation.
+
+## Quick Start
+
+Run the complete pipeline with the synthetic dataset:
+
+```bash
+python -c "from pipeline.research_pipeline import run_research_pipeline; run_research_pipeline('datasets/sample_preschool_data.csv')"
+```
+
+The pipeline writes result tables and `research_summary.md` to `results/`. See [Getting Started](docs/Getting_Started.md) for the full workflow and interpretation guidance.
+
+## Example Workflow
+
+```python
+from pipeline.research_pipeline import run_research_pipeline
+
+result = run_research_pipeline(
+    "datasets/sample_preschool_data.csv",
+    forecast_years=[2026, 2027],
+)
+
+print(result.allocation_result.head())
+print(result.equity_result.head())
+```
+
+The default scenario parameters are prototype assumptions for workflow demonstration. Replace them with documented study-specific assumptions before substantive research use.
+
+## Project Roadmap
+
+1. **v0.1 — Research workflow prototype:** PRAI, equity, efficiency, forecasting, scenario simulation, visualisation, optional LLM interpretation, and pipeline integration.
+2. **Method validation:** indicator validation, sensitivity analysis, benchmark development, and reproducibility tests using authorised real-world data.
+3. **Research Intelligence:** documented support for literature, policy, and variable evidence handling.
+4. **Open research infrastructure:** reusable model specifications, data standards, and community contributions.
+
+## Research Philosophy
+
+- **Open:** share research assets whenever ethically and legally possible.
+- **Scientific:** connect every model to explicit educational and statistical assumptions.
+- **Reproducible:** retain data definitions, transformations, parameters, and outputs.
+- **Policy-oriented:** study substantive educational questions rather than optimise technical metrics in isolation.
+- **Human-led:** AI supports research interpretation; it does not substitute for researchers' intellectual responsibility.
+
+## Documentation
+
+- [Project Charter](docs/Project_Charter.md)
+- [Vision](docs/Vision.md)
+- [Architecture](docs/Architecture.md)
+- [PRAI Method](docs/Resource_Allocation_Index.md)
+- [Data Dictionary](docs/Data_Dictionary.md)
+- [Pipeline Guide](docs/Pipeline_Guide.md)
+- [LLM Interpretation](docs/LLM_Interpretation.md)
+- [Research Journal](Research_Journal.md)
+
+## Citation
+
+If you use OpenPreEduLab in academic work, please cite the software record in [CITATION.cff](CITATION.cff). A citation entry can be generated automatically by GitHub from this file.
+
+## Status
+
+OpenPreEduLab v0.1 is an early-stage research software prototype. Its models and scenario mechanisms require contextual validation before use with substantive data or policy claims.
