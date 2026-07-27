@@ -88,29 +88,30 @@ For policy use and longitudinal comparability, PRAI should use transparent exter
 
 For a benefit indicator (higher is better):
 
-\[
-z_{ij}=\min\left(1,\max\left(0,\frac{x_{ij}-L_j}{U_j-L_j}\right)\right)
-\]
+$$
+z_{ij} = \min\!\left\{1,\max\!\left[0,\frac{x_{ij}-L_j}{U_j-L_j}\right]\right\}
+$$
 
 For a cost indicator (lower is better):
 
-\[
-z_{ij}=\min\left(1,\max\left(0,\frac{U_j-x_{ij}}{U_j-L_j}\right)\right)
-\]
+$$
+z_{ij} = \min\!\left\{1,\max\!\left[0,\frac{U_j-x_{ij}}{U_j-L_j}\right]\right\}
+$$
 
 where \(z_{ij}\in[0,1]\). Clipping prevents extreme values from exerting disproportionate influence and makes clear that the upper benchmark represents adequate attainment, not unlimited desirability.
 
 For a target-range indicator such as capacity pressure, let \([a_j,b_j]\) be the preferred range and \(L_j<a_j\leq b_j<U_j\) be tolerable outer bounds:
 
-\[
-z_{ij}=\begin{cases}
-0, & x_{ij}\leq L_j \\ 
-\frac{x_{ij}-L_j}{a_j-L_j}, & L_j<x_{ij}<a_j \\ 
-1, & a_j\leq x_{ij}\leq b_j \\ 
-\frac{U_j-x_{ij}}{U_j-b_j}, & b_j<x_{ij}<U_j \\ 
-0, & x_{ij}\geq U_j
+$$
+z_{ij} =
+\begin{cases}
+0, & x_{ij} \leq L_j, \\
+\dfrac{x_{ij}-L_j}{a_j-L_j}, & L_j < x_{ij} < a_j, \\
+1, & a_j \leq x_{ij} \leq b_j, \\
+\dfrac{U_j-x_{ij}}{U_j-b_j}, & b_j < x_{ij} < U_j, \\
+0, & x_{ij} \geq U_j.
 \end{cases}
-\]
+$$
 
 All reference values and their policy or theoretical justification must be published with a PRAI application.
 
@@ -144,23 +145,23 @@ Let \(D=\{F,H,M,R\}\) denote the four dimensions: Financial Resources, Human Res
 
 The score for locality \(i\) on dimension \(d\) is:
 
-\[
-S_{id}=\sum_{j\in J_d}\frac{1}{n_d}z_{ij}
-\]
+$$
+S_{id} = \sum_{j\in J_d} \frac{1}{n_d}z_{ij}
+$$
 
 where \(z_{ij}\) is the standardised indicator score defined above.
 
 The equal-weight PRAI is:
 
-\[
-\operatorname{PRAI}_{i}=100\times\sum_{d\in D}\frac{1}{4}S_{id}
-\]
+$$
+\operatorname{PRAI}_{i} = 100 \times \sum_{d\in D}\frac{1}{4}S_{id}
+$$
 
 Equivalently:
 
-\[
-\operatorname{PRAI}_{i}=25\left(S_{iF}+S_{iH}+S_{iM}+S_{iR}\right)
-\]
+$$
+\operatorname{PRAI}_{i} = 25\left(S_{iF} + S_{iH} + S_{iM} + S_{iR}\right)
+$$
 
 Thus, \(\operatorname{PRAI}_{i}\in[0,100]\) when all component scores are available. The four dimension scores must be reported alongside the overall score.
 

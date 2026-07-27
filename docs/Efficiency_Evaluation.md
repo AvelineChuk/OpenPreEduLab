@@ -30,25 +30,27 @@ The default DMU is a **city in a single year**. A panel dataset is evaluated yea
 
 ### 3.2 Inputs and outputs
 
-For DMU \(o\), let \(x_o\) be a vector of \(m\) positive inputs and \(y_o\) a vector of \(s\) positive outputs. The default engine estimates an input-oriented variable-returns-to-scale (VRS/BCC) DEA model:
+For DMU \(o\), let \(\mathbf{x}_o\) be a vector of \(m\) positive inputs and \(\mathbf{y}_o\) a vector of \(s\) positive outputs. The default engine estimates an input-oriented variable-returns-to-scale (VRS/BCC) DEA model:
 
-\[
-\min_{\theta,\lambda}\ \theta
-\]
+$$
+\min_{\theta,\boldsymbol{\lambda}} \quad \theta
+$$
 
 subject to:
 
-\[
-\sum_{j=1}^{n}\lambda_j x_j \leq \theta x_o
-\]
+$$
+\sum_{j=1}^{n} \lambda_j \mathbf{x}_j \leq \theta\mathbf{x}_o
+$$
 
-\[
-\sum_{j=1}^{n}\lambda_j y_j \geq y_o
-\]
+$$
+\sum_{j=1}^{n} \lambda_j \mathbf{y}_j \geq \mathbf{y}_o
+$$
 
-\[
-\sum_{j=1}^{n}\lambda_j=1, \quad \lambda_j\geq0
-\]
+$$
+\sum_{j=1}^{n} \lambda_j = 1,
+\qquad
+\lambda_j \geq 0 \quad (j = 1,\ldots,n)
+$$
 
 The convexity condition \(\sum_j\lambda_j=1\) creates the VRS/BCC frontier. The engine also permits a constant-returns-to-scale (CRS/CCR) specification, which removes this condition, but VRS is the default because city preschool systems may operate at different scales.
 
