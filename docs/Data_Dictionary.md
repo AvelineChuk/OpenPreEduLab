@@ -28,46 +28,74 @@ PRAI is calculated from ratios and rates. The table below identifies the raw dat
 
 ### 2.1 Derived variables for PRAI calculation
 
-For locality \(i\) and year \(t\), the model-ready indicators can be derived as follows:
+For locality \(i\) and year \(t\), define:
+
+- \(E_{it}\): enrolled children;
+- \(T_{it}^{\mathrm{FTE}}\): full-time-equivalent teachers;
+- \(K_{it}\): licensed preschool places;
+- \(P_{it}\): resident preschool-age population;
+- \(A_{it}\): usable indoor educational area;
+- \(C_{it}\): number of classes;
+- \(Q_{it}\): resident target-age children enrolled;
+- \(S_{it}\): eligible children seeking a preschool place; and
+- \(U_{it}\): eligible children seeking a place but not enrolled.
+
+The model-ready indicators are derived as follows.
+
+**FTE teachers per 100 enrolled children**
 
 $$
-\mathrm{teacher\_fte\_per\_100\_children}_{it}
-= 100 \times \frac{\mathrm{fte\_teacher\_count}_{it}}{\mathrm{enrolled\_children}_{it}}
+R_{it}^{\mathrm{teacher}}
+= 100\frac{T_{it}^{\mathrm{FTE}}}{E_{it}}
 $$
 
-$$
-\mathrm{children\_per\_fte\_teacher}_{it}
-= \frac{\mathrm{enrolled\_children}_{it}}{\mathrm{fte\_teacher\_count}_{it}}
-$$
+**Enrolled children per FTE teacher**
 
 $$
-\mathrm{licensed\_places\_per\_100\_resident\_children}_{it}
-= 100 \times \frac{\mathrm{licensed\_preschool\_places}_{it}}{\mathrm{resident\_preschool\_age\_population}_{it}}
+W_{it}^{\mathrm{teacher}}
+= \frac{E_{it}}{T_{it}^{\mathrm{FTE}}}
 $$
 
-$$
-\mathrm{usable\_indoor\_area\_per\_child}_{it}
-= \frac{\mathrm{usable\_indoor\_area\_sqm}_{it}}{\mathrm{enrolled\_children}_{it}}
-$$
+**Licensed places per 100 resident preschool-age children**
 
 $$
-\mathrm{average\_class\_size}_{it}
-= \frac{\mathrm{enrolled\_children}_{it}}{\mathrm{class\_count}_{it}}
+R_{it}^{\mathrm{places}}
+= 100\frac{K_{it}}{P_{it}}
 $$
 
-$$
-\mathrm{age\_specific\_enrolment\_coverage}_{it}
-= 100 \times \frac{\mathrm{resident\_target\_age\_children\_enrolled}_{it}}{\mathrm{resident\_preschool\_age\_population}_{it}}
-$$
+**Usable indoor area per enrolled child**
 
 $$
-\mathrm{unmet\_demand\_rate}_{it}
-= 100 \times \frac{\mathrm{eligible\_children\_seeking\_but\_not\_enrolled}_{it}}{\mathrm{eligible\_children\_seeking\_place}_{it}}
+R_{it}^{\mathrm{area}}
+= \frac{A_{it}}{E_{it}}
 $$
 
+**Average class size**
+
 $$
-\mathrm{capacity\_pressure}_{it}
-= 100 \times \frac{\mathrm{enrolled\_children}_{it}}{\mathrm{licensed\_preschool\_places}_{it}}
+\overline{C}_{it}^{\mathrm{size}}
+= \frac{E_{it}}{C_{it}}
+$$
+
+**Age-specific enrolment coverage**
+
+$$
+R_{it}^{\mathrm{coverage}}
+= 100\frac{Q_{it}}{P_{it}}
+$$
+
+**Unmet-demand rate**
+
+$$
+R_{it}^{\mathrm{unmet}}
+= 100\frac{U_{it}}{S_{it}}
+$$
+
+**Capacity pressure**
+
+$$
+R_{it}^{\mathrm{capacity}}
+= 100\frac{E_{it}}{K_{it}}
 $$
 
 ## 3. CSV Schema

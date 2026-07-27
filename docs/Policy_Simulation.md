@@ -55,11 +55,11 @@ The baseline dataset uses city-year records with per-child government expenditur
 
 ### Scenario A: Increase Subsidy
 
-`simulate_subsidy_policy()` multiplies government expenditure per child by \(1+\text{subsidy\_increase\_rate}\). Enrolment, staffing, and facilities are held constant. Fiscal requirement increases with the expenditure change; fiscal capacity remains at the specified baseline capacity unless the researcher changes that assumption.
+Let \(r_s\) denote the proportional subsidy increase. `simulate_subsidy_policy()` multiplies government expenditure per child by \(1+r_s\). Enrolment, staffing, and facilities are held constant. Fiscal requirement increases with the expenditure change; fiscal capacity remains at the specified baseline capacity unless the researcher changes that assumption.
 
 ### Scenario B: Declining Population
 
-`simulate_population_change()` multiplies resident preschool-age population and enrolment demand by \(1+\text{population\_change\_rate}\). Existing teachers and facilities remain fixed. Teacher demand is calculated from the explicit planning ratio. This is a demand-side transition rule; it does not assume automatic closure, hiring, or facility adjustment.
+Let \(r_p\) denote the proportional population change. `simulate_population_change()` multiplies resident preschool-age population and enrolment demand by \(1+r_p\). Existing teachers and facilities remain fixed. Teacher demand is calculated from the explicit planning ratio. This is a demand-side transition rule; it does not assume automatic closure, hiring, or facility adjustment.
 
 ### Scenario C: Teacher Cost Increase
 
@@ -78,7 +78,7 @@ The scenario therefore changes fiscal requirement and fiscal sustainability with
 
 ### Scenario D: Fiscal Constraint
 
-`simulate_fiscal_constraint()` changes available fiscal capacity by \(1+\text{fiscal\_growth\_rate}\). When assumed capacity falls below the cost of baseline service, per-child government expenditure is proportionally scaled down for the PRAI calculation. The reported fiscal requirement remains the cost of maintaining baseline service, so the sustainability ratio reveals the funding gap. Coverage is held constant in this MVP because no empirically validated mechanism connects reduced funding to enrolment withdrawal.
+Let \(r_f\) denote the proportional change in fiscal capacity. `simulate_fiscal_constraint()` changes available fiscal capacity by \(1+r_f\). When assumed capacity falls below the cost of baseline service, per-child government expenditure is proportionally scaled down for the PRAI calculation. The reported fiscal requirement remains the cost of maintaining baseline service, so the sustainability ratio reveals the funding gap. Coverage is held constant in this MVP because no empirically validated mechanism connects reduced funding to enrolment withdrawal.
 
 ## 5. Resource Allocation Comparability
 
