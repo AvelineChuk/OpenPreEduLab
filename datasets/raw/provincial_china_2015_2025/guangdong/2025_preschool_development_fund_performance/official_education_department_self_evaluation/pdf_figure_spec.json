@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "status": "needs_chart_type_confirmation",
+  "source": {
+    "input_file": "C:\\Users\\86198\\Desktop\\OpenPreEduLab\\datasets\\raw\\provincial_china_2015_2025\\guangdong\\2025_preschool_development_fund_performance\\official_education_department_self_evaluation\\official_2025_preschool_development_fund_self_evaluation.pdf",
+    "sha256": "a86048eb8aed689b2491ba339f7f2462a3b2df6a5e7df3e200d167baf0fbf73b",
+    "media_kind": "pdf",
+    "coordinate_space": "pdf_pt",
+    "measurement_space": "pdf_page_points",
+    "resampling_applied": false,
+    "width": 595.2999877929688,
+    "height": 841.9000244140625,
+    "page": 1
+  },
+  "panels": [
+    {
+      "panel_id": "panel-1",
+      "bounds": [
+        0.0,
+        0.0,
+        595.2999877929688,
+        841.9000244140625
+      ],
+      "bounds_verification": "proposed",
+      "plot_bounds": [
+        0.0,
+        0.0,
+        595.2999877929688,
+        841.9000244140625
+      ],
+      "plot_bounds_verification": "proposed",
+      "chart_type": "unknown",
+      "chart_type_verification": "missing",
+      "coordinate_model": "unknown",
+      "coordinate_model_verification": "missing",
+      "axes": [],
+      "series": [],
+      "mark_grammars": [
+        "unknown"
+      ],
+      "route": {
+        "route_id": "unknown_refuse",
+        "maturity": "refusal",
+        "implementation": null,
+        "automated_extraction": false
+      },
+      "required_confirmations": [
+        "chart_type",
+        "coordinate_model",
+        "recoverable_representation"
+      ],
+      "confirmations": {
+        "chart_type": "missing",
+        "coordinate_model": "missing",
+        "recoverable_representation": "missing"
+      },
+      "recoverable": "Input metadata and routing diagnostics only.",
+      "non_recoverable": "All numeric values until the chart grammar and coordinate model are verified."
+    }
+  ],
+  "evidence_contract": {
+    "required": [
+      "input_hash",
+      "panel_and_plot_bounds",
+      "calibration_anchors",
+      "immutable_extraction_csv",
+      "json_report",
+      "overlay_or_recreation",
+      "confidence_and_refusal_reasons"
+    ],
+    "source_data_role": "independent_validation_only"
+  }
+}
