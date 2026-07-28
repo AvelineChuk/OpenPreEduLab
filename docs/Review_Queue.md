@@ -13,15 +13,16 @@ final decisions there.
 
 Review raw sources before creating any new transcription or analytical table.
 
-| Priority | Review ID | Why it comes first | Required register |
+| Priority | Review ID | Current status | Required register |
 | --- | --- | --- | --- |
-| 1 | `GD_2022_FUND_PERFORMANCE` | Establishes the earliest verified central-transfer programme execution record | `raw_source_review_register.csv` |
-| 2 | `GD_2024_FUND_PERFORMANCE` | Establishes the 2024 programme record and calculated execution-rate provenance | `raw_source_review_register.csv` |
-| 3 | `GD_2025_FUND_PERFORMANCE` | Establishes the most recent programme execution record | `raw_source_review_register.csv` |
-| 4 | `GD_2023_FUND_ALLOCATION` | Confirms allocation-attachment units and limits of use | `raw_source_review_register.csv` |
-| 5 | `GD_2024_EDU_FINANCE_CONTEXT` | Confirms general education expenditure remains context-only | `raw_source_review_register.csv` |
-| 6 | `GD_2017_FINAL_ACCOUNTS_SCREEN` | Confirms absence of preschool-specific expenditure in the screened table | `raw_source_review_register.csv` |
-| 7 | `NBS_2020_GROUPED_AGE_SCREEN` | Confirms that grouped ages cannot be used for a strict preschool-age variable | `raw_source_review_register.csv` |
+| Completed | `GD_2022_FUND_PERFORMANCE` | Confirmed policy-simulation candidate after independent review | `raw_source_review_register.csv` |
+| Completed | `GD_2024_FUND_PERFORMANCE` | Confirmed policy-simulation candidate after independent review | `raw_source_review_register.csv` |
+| 1 | `GD_2025_FUND_PERFORMANCE` | Establishes the most recent programme execution record | `raw_source_review_register.csv` |
+| 2 | `GD_2023_FUND_ALLOCATION` | Confirms allocation-attachment units and limits of use | `raw_source_review_register.csv` |
+| 3 | `GD_2024_EDU_FINANCE_CONTEXT` | Confirms general education expenditure remains context-only | `raw_source_review_register.csv` |
+| 4 | `GD_2017_FINAL_ACCOUNTS_SCREEN` | Confirms absence of preschool-specific expenditure in the screened table | `raw_source_review_register.csv` |
+| 5 | `NBS_2020_GROUPED_AGE_SCREEN` | Confirms that grouped ages cannot be used for a strict preschool-age variable | `raw_source_review_register.csv` |
+| 6 | `GD_2025_POP_SAMPLE_SCREEN` | Confirms that the 0-14 group cannot be used for a strict preschool-age variable | `raw_source_review_register.csv` |
 
 ## Phase 2: Staging-data value review
 

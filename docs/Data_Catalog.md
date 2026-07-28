@@ -12,7 +12,7 @@ complete or that any policy effect has been validated.
 | --- | ---: | --- | --- |
 | Sample data | `sample_preschool_data.csv` | Demonstration-ready | Tests, notebooks, and software examples only |
 | Staging data | 11 datasets | Pending independent review | Source comparison only |
-| Raw-source review register | 8 sources | Pending independent review | Scope and provenance review only |
+| Raw-source review register | 8 sources | 2 independently reviewed; 6 pending | Scope and provenance review only |
 | Processed data | 0 datasets | Not available | None |
 
 ## Staging datasets
