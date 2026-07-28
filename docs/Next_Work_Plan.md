@@ -4,13 +4,13 @@
 
 Advance the provincial pilot from source-faithful staging records to a small, independently reviewed, definition-compatible dataset. The immediate objective is not to produce a PRAI score. It is to establish whether a valid score can eventually be constructed.
 
-## Priority 0: Verify the 2026 Fund Source
+## Priority 0: Complete the 2026 Fund Provenance Chain
 
-**Why this matters:** The 2026 support-for-preschool-education fund attachments contain directly relevant policy-budget parameters, but their issuing notice and original publication URL are not yet recorded.
+**Current status:** An official government republication has been verified: Xinxing County Finance Bureau's page for the Ministry of Finance and Ministry of Education notice `Caijiao [2026] No. 68`, with both XLS attachments. The local supplied files and republished files have different binary hashes but identical visible workbook content.
 
-**Action:** Locate the original notice through an authorised browser session. Record the issuing institution, notice title, publication date, URL, and any associated document number in the raw-source manifest.
+**Action:** Retain the verified republication evidence and, if available, locate the primary Ministry of Finance or Ministry of Education publication URL. Record any primary URL in the raw-source manifest without replacing the archived republication files.
 
-**Completion condition:** The attachments move from `user_supplied_local_file_pending_url_provenance` to a documented-source status. This verifies provenance only; the allocation remains a future scenario parameter, not historical expenditure.
+**Completion condition:** The republication evidence remains documented; a primary central-government URL is recorded if available. This verifies provenance only; the allocation remains a future scenario parameter, not historical expenditure.
 
 ## Priority 1: Independent Review of Existing Staging Records
 
