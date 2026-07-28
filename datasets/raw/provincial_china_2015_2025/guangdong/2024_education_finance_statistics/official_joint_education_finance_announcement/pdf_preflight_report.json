@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "status": "needs_chart_type_confirmation",
+  "inspection": {
+    "input_file": "C:\\Users\\86198\\Desktop\\OpenPreEduLab\\datasets\\raw\\provincial_china_2015_2025\\guangdong\\2024_education_finance_statistics\\official_joint_education_finance_announcement\\official_2024_guangdong_education_finance_statistics.pdf",
+    "input_sha256": "61e5cd4a49cb38505cfd8c3810035436daf78bcfbdb2c92fcc16c8f8533861b3",
+    "file_size_bytes": 1837344,
+    "media_kind": "pdf",
+    "coordinate_space": "pdf_pt",
+    "page_count": 4,
+    "selected_page": 1,
+    "page_selection": "user_provided",
+    "width": 595.0800170898438,
+    "height": 841.6799926757812,
+    "pdf_composition": "raster_images_only",
+    "pdf_inspection": {
+      "page_number_1_based": 1,
+      "page_rect_pt": {
+        "x0_pt": 0.0,
+        "y0_pt": 0.0,
+        "x1_pt": 595.080017,
+        "y1_pt": 841.679993
+      },
+      "text_span_count": 0,
+      "embedded_image_count": 1,
+      "embedded_images": [
+        {
+          "xref": 10,
+          "width_px": 1653,
+          "height_px": 2338,
+          "bits_per_component": 8,
+          "colourspace": "DeviceRGB"
+        }
+      ],
+      "drawing_path_count": 0,
+      "drawing_paths_with_nonempty_bounds": 0,
+      "filled_bezier_path_count": 0,
+      "path_operation_counts": [],
+      "fill_colour_counts": [],
+      "stroke_colour_counts": [],
+      "composition_status": "raster_images_only",
+      "suggested_next_step": "Use the calibrated raster workflow; preserve the raster dimensions and crop evidence.",
+      "limitations": [
+        "A vector drawing path is not necessarily a plotted datum.",
+        "This report does not identify panel bounds, axis transforms, legends, or source-data parameters."
+      ]
+    }
+  },
+  "route_selection": {
+    "chart_type": null,
+    "primary": {
+      "route_id": "unknown_refuse",
+      "title": "Unknown chart: refuse numeric extraction",
+      "chart_types": [
+        "unknown"
+      ],
+      "media_kinds": [
+        "raster",
+        "pdf"
+      ],
+      "coordinate_models": [
+        "unknown"
+      ],
+      "mark_grammars": [
+        "unknown"
+      ],
+      "maturity": "refusal",
+      "implementation": null,
+      "required_confirmations": [
+        "chart_type",
+        "coordinate_model",
+        "recoverable_representation"
+      ],
+      "recoverable": "Input metadata and routing diagnostics only.",
+      "non_recoverable": "All numeric values until the chart grammar and coordinate model are verified.",
+      "automated_extraction": false
+    },
+    "fallback": null,
+    "decision": "needs_chart_type_confirmation",
+    "reason": "No chart-type hint was provided; numeric extraction is refused until classification is verified."
+  },
+  "figure_spec_status": "valid_template_not_yet_verified",
+  "safety": {
+    "numeric_extraction_authorized": false,
+    "reason": "Preflight routing never converts proposed chart type, ROI, axes, or series into verified values."
+  }
+}
