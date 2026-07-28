@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "status": "needs_chart_type_confirmation",
+  "source": {
+    "input_file": "C:\\Users\\86198\\Desktop\\OpenPreEduLab\\datasets\\raw\\provincial_china_2015_2025\\guangdong\\provincial_general_budget_final_accounts\\official_provincial_finance_notice\\official_provincial_general_budget_expenditure_final_accounts.pdf",
+    "sha256": "899213582c92a23d64ec51895158a4028f19e7caea91e83d016bba7b2a1778dd",
+    "media_kind": "pdf",
+    "coordinate_space": "pdf_pt",
+    "measurement_space": "pdf_page_points",
+    "resampling_applied": false,
+    "width": 595.25,
+    "height": 841.8499755859375,
+    "page": 1
+  },
+  "panels": [
+    {
+      "panel_id": "panel-1",
+      "bounds": [
+        0.0,
+        0.0,
+        595.25,
+        841.8499755859375
+      ],
+      "bounds_verification": "proposed",
+      "plot_bounds": [
+        0.0,
+        0.0,
+        595.25,
+        841.8499755859375
+      ],
+      "plot_bounds_verification": "proposed",
+      "chart_type": "unknown",
+      "chart_type_verification": "missing",
+      "coordinate_model": "unknown",
+      "coordinate_model_verification": "missing",
+      "axes": [],
+      "series": [],
+      "mark_grammars": [
+        "unknown"
+      ],
+      "route": {
+        "route_id": "unknown_refuse",
+        "maturity": "refusal",
+        "implementation": null,
+        "automated_extraction": false
+      },
+      "required_confirmations": [
+        "chart_type",
+        "coordinate_model",
+        "recoverable_representation"
+      ],
+      "confirmations": {
+        "chart_type": "missing",
+        "coordinate_model": "missing",
+        "recoverable_representation": "missing"
+      },
+      "recoverable": "Input metadata and routing diagnostics only.",
+      "non_recoverable": "All numeric values until the chart grammar and coordinate model are verified."
+    }
+  ],
+  "evidence_contract": {
+    "required": [
+      "input_hash",
+      "panel_and_plot_bounds",
+      "calibration_anchors",
+      "immutable_extraction_csv",
+      "json_report",
+      "overlay_or_recreation",
+      "confidence_and_refusal_reasons"
+    ],
+    "source_data_role": "independent_validation_only"
+  }
+}
