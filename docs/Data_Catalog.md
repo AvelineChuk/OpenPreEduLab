@@ -12,7 +12,7 @@ complete or that any policy effect has been validated.
 | --- | ---: | --- | --- |
 | Sample data | `sample_preschool_data.csv` | Demonstration-ready | Tests, notebooks, and software examples only |
 | Staging data | 11 datasets | Pending independent review | Source comparison only |
-| Raw-source review register | 7 sources | Pending independent review | Scope and provenance review only |
+| Raw-source review register | 8 sources | Pending independent review | Scope and provenance review only |
 | Processed data | 0 datasets | Not available | None |
 
 ## Staging datasets
@@ -36,6 +36,7 @@ Assignments are maintained in
 | Source group | Verified status | Permitted provisional use |
 | --- | --- | --- |
 | 2020 national census grouped-age table | Does not provide separate ages 3, 4, and 5 | Exclusion evidence only |
+| Guangdong 2025 population sample survey bulletin | Reports only the broad 0-14 age group | Exclusion evidence only |
 | Guangdong 2017 provincial final accounts | Does not list `学前教育` / `20502` | Exclusion evidence only |
 | Guangdong 2024 education-finance statistics | General-public-budget education expenditure, not preschool-specific | Context-only cross-validation candidate |
 | Guangdong 2023 preschool fund allocation | Central transfer allocation, with separate attachment scopes | Policy-simulation parameter candidate |
