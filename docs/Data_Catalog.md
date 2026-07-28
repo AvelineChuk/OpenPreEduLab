@@ -11,7 +11,7 @@ complete or that any policy effect has been validated.
 | Layer | Records | Readiness | Permitted use |
 | --- | ---: | --- | --- |
 | Sample data | `sample_preschool_data.csv` | Demonstration-ready | Tests, notebooks, and software examples only |
-| Staging data | 11 datasets | Pending independent review | Source comparison only |
+| Staging data | 12 datasets | Pending independent review | Source comparison only |
 | Raw-source review register | 8 sources | 3 independently reviewed; 5 pending | Scope and provenance review only |
 | Processed data | 0 datasets | Not available | None |
 
@@ -27,6 +27,7 @@ The current staging register is maintained in
 | Guangdong | Kindergarten statistics; population and fiscal context | Pending review; general fiscal variables are context only |
 | Sichuan | Kindergarten statistics; population context | Pending review; preschool-age population remains unavailable |
 | National 2026 fund allocation | Support-for-preschool-development allocation attachment | Scenario-parameter candidate only |
+| Guangdong programme performance | 2022, 2024, and 2025 central transfer-payment funding and execution records | Staging pending review; policy-simulation parameter candidate only |
 
 ## Raw sources requiring scope review
 

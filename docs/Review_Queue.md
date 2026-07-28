@@ -32,10 +32,11 @@ in `docs/Data_Review_Protocol.md`.
 
 | Priority | Review IDs | Reason |
 | --- | --- | --- |
-| 1 | `GD_KG_2015_2024`, `SC_KG_2015_2024`, `BJ_KG_2015_2024`, `SH_KG_2020_2024` | These kindergarten-resource series are closest to PRAI resource variables. |
-| 2 | `GD_POP_CONTEXT_2015_2024`, `SC_POP_CONTEXT_2015_2024`, `SH_POP_CONTEXT_2015_2024`, `BJ_CONTEXT_2015_2023` | Confirm context-only boundaries and population-method notes. |
-| 3 | `GD_FISCAL_CONTEXT_2015_2024`, `SH_FISCAL_CONTEXT_2015_2024` | Confirm broad fiscal variables remain context-only. |
-| 4 | `NATIONAL_2026_FUND_ALLOCATIONS` | Confirm future-scenario status and the Guangdong-excluding-Shenzhen scope. |
+| 1 | `GD_PROGRAMME_PERFORMANCE_2022_2025` | Confirms the source-faithful compilation of three independently reviewed programme records. |
+| 2 | `GD_KG_2015_2024`, `SC_KG_2015_2024`, `BJ_KG_2015_2024`, `SH_KG_2020_2024` | These kindergarten-resource series are closest to PRAI resource variables. |
+| 3 | `GD_POP_CONTEXT_2015_2024`, `SC_POP_CONTEXT_2015_2024`, `SH_POP_CONTEXT_2015_2024`, `BJ_CONTEXT_2015_2023` | Confirm context-only boundaries and population-method notes. |
+| 4 | `GD_FISCAL_CONTEXT_2015_2024`, `SH_FISCAL_CONTEXT_2015_2024` | Confirm broad fiscal variables remain context-only. |
+| 5 | `NATIONAL_2026_FUND_ALLOCATIONS` | Confirm future-scenario status and the Guangdong-excluding-Shenzhen scope. |
 
 ## Promotion rule
 

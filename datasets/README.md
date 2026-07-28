@@ -30,7 +30,7 @@ must not be relabelled as a 3-5 or 3-6 preschool-age population series.
 
 ## Current pilot status
 
-The project has 11 staged datasets awaiting independent review and a separate
+The project has 12 staged datasets awaiting independent review and a separate
 raw-source review register for archived sources. The `processed/` layer remains
 empty because annual, definition-compatible preschool-age population and
 preschool-specific public-expenditure variables have not yet been established.
