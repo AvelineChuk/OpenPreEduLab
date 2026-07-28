@@ -6,6 +6,9 @@ This queue orders the current independent-review work. It does not replace the
 authoritative registers in `datasets/metadata/`; reviewers must record their
 final decisions there.
 
+**Assigned reviewer (pending acceptance and confirmation of independence):**
+[`Barnabe-Zihan-Ding`](https://github.com/Barnabe-Zihan-Ding)
+
 ## Phase 1: Raw-source scope review
 
 Review raw sources before creating any new transcription or analytical table.
