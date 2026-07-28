@@ -73,6 +73,23 @@ See [Project Showcase](docs/Project_Showcase.md) for interpretation notes and pr
 
 The included dataset is synthetic and intended only for testing the workflow. Results generated from it must not be interpreted as evidence about real cities or policies.
 
+## Data Governance and Review
+
+The repository distinguishes immutable official-source archives, source-faithful
+staging records, and processed analytical inputs. The current real-data pilot
+is under independent review; `datasets/processed/` intentionally contains no
+real-world model-ready panel.
+
+Do not treat general education expenditure as preschool expenditure, or grouped
+child-age statistics as a 3-5 or 3-6 preschool-age population measure. Some
+official transfer-payment records are retained only as conditional policy-
+simulation parameters.
+
+See the [Data Directory](datasets/README.md), [Data Catalog](docs/Data_Catalog.md),
+[Data Review Protocol](docs/Data_Review_Protocol.md), and
+[Raw Source Review Packet](docs/Raw_Source_Review_Packet.md) for current scope,
+review status, and permitted uses.
+
 ## Future Development
 
 Planned work may include literature and policy evidence mining, benchmark-oriented PRAI normalisation, richer demographic methods, uncertainty analysis, expanded validation, data-governance tooling, and community-contributed research assets.
@@ -139,9 +156,11 @@ The default scenario parameters are prototype assumptions for workflow demonstra
 - [Architecture](docs/Architecture.md)
 - [PRAI Method](docs/Resource_Allocation_Index.md)
 - [Data Dictionary](docs/Data_Dictionary.md)
+- [Data Catalog](docs/Data_Catalog.md)
 - [Pipeline Guide](docs/Pipeline_Guide.md)
 - [LLM Interpretation](docs/LLM_Interpretation.md)
 - [Research Journal](Research_Journal.md)
+- [Contributing](CONTRIBUTING.md)
 
 ## Citation
 
