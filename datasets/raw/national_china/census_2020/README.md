@@ -19,10 +19,13 @@
 
 ## Intended use and restriction
 
-This file is an immutable raw-source archive. It is a candidate source for a
-**2020 provincial 3-5-year-old population baseline**, obtained by summing the
-published values for ages 3, 4, and 5 after independent transcription and
-review. It is not a continuous annual series, a preschool enrolment measure,
-or an automatically approved PRAI input. The raw table must be transcribed,
-checked against this image by an independent reviewer, and accompanied by a
-definition and unit record before any derived value is staged.
+This file is an immutable raw-source archive and a documented source-screening
+record. Its regional age columns are `0`, `1-4`, `5-9`, and subsequent grouped
+ages; it does **not** publish separate values for ages 3, 4, and 5. It must
+therefore not be used to derive a strict provincial 3-5-year-old population
+baseline or be staged as a PRAI input.
+
+It remains useful as evidence that this official table was assessed and
+rejected for the required age definition. A future eligible source must publish
+an explicitly compatible 3-5 or 3-6 age population variable, or single-year
+age values that can be transparently aggregated after review.
