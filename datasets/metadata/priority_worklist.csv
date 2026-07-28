@@ -1,0 +1,9 @@
+priority,work_item,owner,required_evidence,status,completion_gate
+P0,Verify original notice for 2026 preschool-development-fund attachments,Researcher,"issuer; notice title; publication date; official URL; document number if present",pending_manual_source_provenance,"manifest provenance updated; allocation remains scenario-only"
+P1,Independently review all current staging records,Independent reviewer,"raw-table comparison; unit check; definition check; documented review decision",pending_independent_review,"review tracker decision recorded for each dataset"
+P2,Collect annual preschool-age population,Researcher,"official 3-5 or 3-6 age definition; geographic level; year; unit",source_discovery_required,"definition-compatible source registered and independently reviewed"
+P3,Collect preschool-specific public expenditure,Researcher,"explicit preschool/kindergarten expenditure definition; geographic level; year; unit",source_discovery_required,"definition-compatible source registered and independently reviewed"
+P4,Acquire Gansu official source files,Researcher,"official raw files; URL; publisher; checksum; table title",pending_authorised_browser_access,"raw files registered before staging extraction"
+P5,Build a small processed pilot panel,Researcher,"approved staging records with documented variable mapping",blocked_by_P0_to_P4,"processed dataset passes review and logical checks"
+P6,Run real-data software-flow check,Researcher,"approved processed pilot panel; reproducible run record",blocked_by_P5,"outputs labelled as software/reproducibility validation only"
+P7,Synchronise local Git commits,Researcher,"network connection; normal fetch and push",blocked_by_network,"local and origin main are aligned without force push"
