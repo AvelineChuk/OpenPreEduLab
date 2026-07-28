@@ -12,7 +12,7 @@ complete or that any policy effect has been validated.
 | --- | ---: | --- | --- |
 | Sample data | `sample_preschool_data.csv` | Demonstration-ready | Tests, notebooks, and software examples only |
 | Staging data | 11 datasets | Pending independent review | Source comparison only |
-| Raw-source review register | 8 sources | 2 independently reviewed; 6 pending | Scope and provenance review only |
+| Raw-source review register | 8 sources | 3 independently reviewed; 5 pending | Scope and provenance review only |
 | Processed data | 0 datasets | Not available | None |
 
 ## Staging datasets
@@ -40,7 +40,7 @@ Assignments are maintained in
 | Guangdong 2017 provincial final accounts | Does not list `学前教育` / `20502` | Exclusion evidence only |
 | Guangdong 2024 education-finance statistics | General-public-budget education expenditure, not preschool-specific | Context-only cross-validation candidate |
 | Guangdong 2023 preschool fund allocation | Central transfer allocation, with separate attachment scopes | Policy-simulation parameter candidate |
-| Guangdong 2022, 2024, and 2025 performance reports | Central support-for-preschool-development transfer-payment programme | Programme funding/execution parameter candidates |
+| Guangdong 2022, 2024, and 2025 performance reports | Central support-for-preschool-development transfer-payment programme | Independently reviewed programme funding/execution parameter candidates |
 
 The 2022, 2024, and 2025 performance reports are comparable only as records of
 the named central transfer-payment programme. They must not be interpreted as a
