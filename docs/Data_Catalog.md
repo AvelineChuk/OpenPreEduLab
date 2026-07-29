@@ -12,7 +12,7 @@ complete or that any policy effect has been validated.
 | --- | ---: | --- | --- |
 | Sample data | `sample_preschool_data.csv` | Demonstration-ready | Tests, notebooks, and software examples only |
 | Staging data | 12 datasets | One conditionally approved for policy-simulation parameters; 11 pending independent review | Approved programme table: conditional policy simulation only; all others: source comparison only |
-| Raw-source review register | 8 sources | 4 independently reviewed; 4 pending | Scope and provenance review only |
+| Raw-source review register | 8 sources | 6 confirmed; 1 returned for correction and re-review; 1 pending | Scope and provenance review only |
 | Processed data | 0 datasets | Not available | None |
 
 ## Staging datasets
@@ -36,10 +36,10 @@ Assignments are maintained in
 
 | Source group | Verified status | Permitted provisional use |
 | --- | --- | --- |
-| 2020 national census grouped-age table | Does not provide separate ages 3, 4, and 5 | Exclusion evidence only |
-| Guangdong 2025 population sample survey bulletin | Reports only the broad 0-14 age group | Exclusion evidence only |
-| Guangdong 2017 provincial final accounts | Does not list `学前教育` / `20502` | Exclusion evidence only |
-| Guangdong 2024 education-finance statistics | General-public-budget education expenditure, not preschool-specific | Context-only cross-validation candidate |
+| 2020 national census grouped-age table | Uses 0, 1-4, and 5-9 age groups; no compatible 3-5 or 3-6 group | Independently confirmed exclusion evidence only |
+| Guangdong 2025 population sample survey bulletin | Reports only the broad 0-14 age group | Pending independent scope review; not a strict preschool-age variable |
+| Guangdong 2017 provincial-level final accounts | Contains a `学前教育` row, but covers Guangdong provincial-level expenditure rather than a Guangdong-wide total | Corrected source documentation pending independent re-review; not an analytical input |
+| Guangdong 2024 education-finance statistics | General-public-budget education expenditure, not preschool-specific | Independently reviewed; context-only cross-validation candidate |
 | Guangdong 2023 preschool fund allocation | Central transfer allocation, with separate attachment scopes | Independently reviewed policy-simulation parameter candidate only |
 | Guangdong 2022, 2024, and 2025 performance reports | Central support-for-preschool-development transfer-payment programme | Independently reviewed programme funding/execution parameter candidates |
 
@@ -56,6 +56,12 @@ the separate annual-total attachment; the two values must not be added together.
 The source is approved only as a conditional central transfer-payment parameter
 for policy simulation, not as Guangdong's total preschool expenditure or a PRAI
 fiscal input.
+
+The 2017 provincial-level final-accounts screening was returned for correction
+in Issue #13 and PR #14. The retained PDF includes a preschool-education row,
+but it is limited to Guangdong provincial-level expenditure rather than a
+Guangdong-wide total. Its corrected documentation remains outside analytical
+data layers and requires renewed independent review.
 
 The compiled Guangdong programme table was independently reviewed in Issue #7
 and merged through PR #8 on 29 July 2026. The approval confirms transcription
