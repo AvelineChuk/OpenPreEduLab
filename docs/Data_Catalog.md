@@ -11,8 +11,8 @@ complete or that any policy effect has been validated.
 | Layer | Records | Readiness | Permitted use |
 | --- | ---: | --- | --- |
 | Sample data | `sample_preschool_data.csv` | Demonstration-ready | Tests, notebooks, and software examples only |
-| Staging data | 12 datasets | One conditionally approved for policy-simulation parameters; 11 pending independent review | Approved programme table: conditional policy simulation only; all others: source comparison only |
-| Raw-source review register | 8 sources | 6 confirmed; 1 returned for correction and re-review; 1 pending | Scope and provenance review only |
+| Staging data | 12 datasets | One conditionally approved for policy-simulation parameters; two reviewed but held for definition review; nine pending independent review | Approved programme table: conditional policy simulation only; held records: no processed use; all others: source comparison only |
+| Raw-source review register | 8 sources | Seven scope decisions confirmed; one returned for correction and renewed review | Scope and provenance review only |
 | Processed data | 0 datasets | Not available | None |
 
 ## Staging datasets
@@ -22,9 +22,9 @@ The current staging register is maintained in
 
 | Coverage | Contents | Current analytical status |
 | --- | --- | --- |
-| Beijing | Kindergarten statistics; population and education-finance context | Pending review; context fields are not preschool-specific substitutions |
+| Beijing | Kindergarten statistics; population and education-finance context | Kindergarten values independently confirmed but held for teacher-definition review; context fields remain pending and are not preschool-specific substitutions |
 | Shanghai | Kindergarten statistics; population and fiscal context | Pending review; incomplete years and definition mapping remain |
-| Guangdong | Kindergarten statistics; population and fiscal context | Pending review; general fiscal variables are context only |
+| Guangdong | Kindergarten statistics; population and fiscal context | Kindergarten values independently confirmed but held for teacher-definition review; population and fiscal context remain pending; general fiscal variables are context only |
 | Sichuan | Kindergarten statistics; population context | Pending review; preschool-age population remains unavailable |
 | National 2026 fund allocation | Support-for-preschool-development allocation attachment | Scenario-parameter candidate only |
 | Guangdong programme performance | 2022, 2024, and 2025 central transfer-payment funding and execution records | Independently reviewed; approved only as a conditional policy-simulation parameter |
@@ -62,6 +62,12 @@ in Issue #13 and PR #14. The retained PDF includes a preschool-education row,
 but it is limited to Guangdong provincial-level expenditure rather than a
 Guangdong-wide total. Its corrected documentation remains outside analytical
 data layers and requires renewed independent review.
+
+Beijing and Guangdong kindergarten staging tables were independently reviewed
+on 30 July 2026. Their reported values are source-faithful, but the source term
+`专任教师` has not been shown to be a full-time-equivalent (FTE) measure. Both
+tables are therefore held for definition review and remain outside
+`datasets/processed/`.
 
 The compiled Guangdong programme table was independently reviewed in Issue #7
 and merged through PR #8 on 29 July 2026. The approval confirms transcription
