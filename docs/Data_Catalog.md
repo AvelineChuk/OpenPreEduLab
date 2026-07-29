@@ -12,7 +12,7 @@ complete or that any policy effect has been validated.
 | --- | ---: | --- | --- |
 | Sample data | `sample_preschool_data.csv` | Demonstration-ready | Tests, notebooks, and software examples only |
 | Staging data | 12 datasets | One conditionally approved for policy-simulation parameters; 11 pending independent review | Approved programme table: conditional policy simulation only; all others: source comparison only |
-| Raw-source review register | 8 sources | 3 independently reviewed; 5 pending | Scope and provenance review only |
+| Raw-source review register | 8 sources | 4 independently reviewed; 4 pending | Scope and provenance review only |
 | Processed data | 0 datasets | Not available | None |
 
 ## Staging datasets
@@ -40,7 +40,7 @@ Assignments are maintained in
 | Guangdong 2025 population sample survey bulletin | Reports only the broad 0-14 age group | Exclusion evidence only |
 | Guangdong 2017 provincial final accounts | Does not list `学前教育` / `20502` | Exclusion evidence only |
 | Guangdong 2024 education-finance statistics | General-public-budget education expenditure, not preschool-specific | Context-only cross-validation candidate |
-| Guangdong 2023 preschool fund allocation | Central transfer allocation, with separate attachment scopes | Policy-simulation parameter candidate |
+| Guangdong 2023 preschool fund allocation | Central transfer allocation, with separate attachment scopes | Independently reviewed policy-simulation parameter candidate only |
 | Guangdong 2022, 2024, and 2025 performance reports | Central support-for-preschool-development transfer-payment programme | Independently reviewed programme funding/execution parameter candidates |
 
 The 2022, 2024, and 2025 performance reports are comparable only as records of
@@ -48,6 +48,14 @@ the named central transfer-payment programme. They must not be interpreted as a
 continuous series of Guangdong's total preschool public expenditure. The 2023
 programme performance report has not yet been located and is recorded as a
 missing year, not imputed.
+
+The 2023 allocation source was independently reviewed in Issue #9 and merged
+through PR #10 on 29 July 2026. Its 41,000,000 yuan municipal-allocation
+attachment equals the 4,100 (10,000 yuan) supplementary component reported in
+the separate annual-total attachment; the two values must not be added together.
+The source is approved only as a conditional central transfer-payment parameter
+for policy simulation, not as Guangdong's total preschool expenditure or a PRAI
+fiscal input.
 
 The compiled Guangdong programme table was independently reviewed in Issue #7
 and merged through PR #8 on 29 July 2026. The approval confirms transcription
