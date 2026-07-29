@@ -22,17 +22,20 @@ interpolation or carry-forward value is used.
 
 ## Permitted use
 
-After the staging-table review is complete, these fields may be used as
-conditional policy-simulation parameters for the named programme. They may not
-be used as Guangdong's total preschool public expenditure, as a per-child fiscal
-input, or as a direct PRAI indicator.
+The completed independent review approves these fields as conditional
+policy-simulation parameters for the named programme. They may not be used as
+Guangdong's total preschool public expenditure, as a per-child fiscal input, or
+as a direct PRAI indicator.
 
 ## Required review
 
 The staging table is registered as `GD_PROGRAMME_PERFORMANCE_2022_2025` in
-`datasets/metadata/staging_review_tracker.csv`. The reviewer must compare each
-cell to the three independently reviewed raw-source records and confirm that the
-2024 execution rate retains its calculated origin.
+`datasets/metadata/staging_review_tracker.csv`. It was independently reviewed
+by `Barnabe-Zihan-Ding` on 29 July 2026 (Issue #7; PR #8). All three rows and
+39 staged fields were compared with the reviewed source manifests and retained
+PDF hashes. The 2023 row remains intentionally absent, and the 2024 execution
+rate retains its calculated origin.
 
-No row in this table is eligible for `datasets/processed/` until that review is
-recorded.
+This decision is `approved_scenario_parameter`, not
+`approved_for_processed`. No row in this table may be copied to
+`datasets/processed/`.

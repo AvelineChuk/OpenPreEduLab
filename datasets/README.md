@@ -9,7 +9,7 @@ not currently contain a validated real-world PRAI panel.
 | --- | --- | --- |
 | `sample_preschool_data.csv` | Synthetic, documented sample data for software demonstrations and tests | Not real-world evidence |
 | `raw/` | Immutable copies of official source files, source manifests, and review evidence | Not model-ready |
-| `staging/` | Source-faithful transcriptions prepared for independent comparison | Pending independent review |
+| `staging/` | Source-faithful transcriptions prepared for independent comparison | One programme-parameter table conditionally approved; remaining tables pending independent review |
 | `processed/` | Definition-compatible records approved for a specific analytical use | Intentionally empty |
 | `metadata/` | Source coverage, review registers, priority worklists, and governance records | Active |
 
@@ -30,9 +30,10 @@ must not be relabelled as a 3-5 or 3-6 preschool-age population series.
 
 ## Current pilot status
 
-The project has 12 staged datasets awaiting independent review and a separate
-raw-source review register for archived sources. The `processed/` layer remains
-empty because annual, definition-compatible preschool-age population and
+The project has one conditionally approved programme-parameter staging dataset,
+11 other staged datasets awaiting independent review, and a separate raw-source
+review register for archived sources. The `processed/` layer remains empty
+because annual, definition-compatible preschool-age population and
 preschool-specific public-expenditure variables have not yet been established.
 
 Some Guangdong central transfer-payment records are retained as potential

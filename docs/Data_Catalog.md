@@ -11,7 +11,7 @@ complete or that any policy effect has been validated.
 | Layer | Records | Readiness | Permitted use |
 | --- | ---: | --- | --- |
 | Sample data | `sample_preschool_data.csv` | Demonstration-ready | Tests, notebooks, and software examples only |
-| Staging data | 12 datasets | Pending independent review | Source comparison only |
+| Staging data | 12 datasets | One conditionally approved for policy-simulation parameters; 11 pending independent review | Approved programme table: conditional policy simulation only; all others: source comparison only |
 | Raw-source review register | 8 sources | 3 independently reviewed; 5 pending | Scope and provenance review only |
 | Processed data | 0 datasets | Not available | None |
 
@@ -27,7 +27,7 @@ The current staging register is maintained in
 | Guangdong | Kindergarten statistics; population and fiscal context | Pending review; general fiscal variables are context only |
 | Sichuan | Kindergarten statistics; population context | Pending review; preschool-age population remains unavailable |
 | National 2026 fund allocation | Support-for-preschool-development allocation attachment | Scenario-parameter candidate only |
-| Guangdong programme performance | 2022, 2024, and 2025 central transfer-payment funding and execution records | Staging pending review; policy-simulation parameter candidate only |
+| Guangdong programme performance | 2022, 2024, and 2025 central transfer-payment funding and execution records | Independently reviewed; approved only as a conditional policy-simulation parameter |
 
 ## Raw sources requiring scope review
 
@@ -48,6 +48,11 @@ the named central transfer-payment programme. They must not be interpreted as a
 continuous series of Guangdong's total preschool public expenditure. The 2023
 programme performance report has not yet been located and is recorded as a
 missing year, not imputed.
+
+The compiled Guangdong programme table was independently reviewed in Issue #7
+and merged through PR #8 on 29 July 2026. The approval confirms transcription
+and scope for conditional policy-simulation use only. It is not an
+`approved_for_processed` dataset and does not establish a PRAI fiscal input.
 
 ## Binding data limitations
 
