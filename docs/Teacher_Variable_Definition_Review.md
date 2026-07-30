@@ -3,7 +3,7 @@
 ## Purpose
 
 This note records the definition issue identified in the independently reviewed
-Beijing and Guangdong kindergarten-statistics staging tables. It prevents a
+Beijing, Guangdong, and Sichuan kindergarten-statistics staging tables. It prevents a
 source-faithful reported teacher count from being silently treated as a
 full-time-equivalent (FTE) teacher measure in empirical analysis.
 
@@ -22,7 +22,7 @@ supported evidence.
 
 ## Current decision
 
-The Beijing and Guangdong kindergarten staging tables are retained as
+The Beijing, Guangdong, and Sichuan kindergarten staging tables are retained as
 source-faithful records and are marked `hold_for_definition_review`. They must
 not be copied to `datasets/processed/`, renamed to `fte_teacher_count`, or used
 to calculate real-data PRAI, DEA, forecast, or policy-simulation results.
