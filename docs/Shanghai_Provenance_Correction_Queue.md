@@ -10,6 +10,11 @@ failure.
 
 ## Required corrections
 
+Before changing a manifest, consult
+`docs/Shanghai_Provenance_Discrepancy_Audit.md`. The repository-held files
+currently reproduce the manifest hashes, while the review notes cite a distinct
+evidence set. This contradiction requires explicit renewed-review resolution.
+
 | Review ID | Dataset | Review issue | Required action | Analytical status |
 | --- | --- | --- | --- | --- |
 | `SH_KG_2020_2024` | `datasets/staging/shanghai_kindergarten_statistics_2020_2024.csv` | #24 | Restore the originally archived source matching the manifest, or update the manifest through a documented, reproducible provenance correction. Recheck the child-count mapping and teacher definition. | `return_for_correction` |
