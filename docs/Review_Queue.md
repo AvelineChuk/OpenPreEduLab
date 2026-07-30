@@ -2,44 +2,52 @@
 
 ## Purpose
 
-This queue orders the current independent-review work. It does not replace the
-authoritative registers in `datasets/metadata/`; reviewers must record their
-final decisions there.
+This queue records work remaining after the first complete independent-review
+round. The authoritative historical decisions remain in
+`datasets/metadata/raw_source_review_register.csv` and
+`datasets/metadata/staging_review_tracker.csv`.
 
-**Assigned reviewer (pending acceptance and confirmation of independence):**
-[`Barnabe-Zihan-Ding`](https://github.com/Barnabe-Zihan-Ding)
+## Completed review round
 
-## Phase 1: Raw-source scope review
+All archived raw-source scope records and all 12 staging datasets received an
+independent review. No dataset was promoted to `datasets/processed/`.
 
-Review raw sources before creating any new transcription or analytical table.
+| Outcome | Records | Permitted state |
+| --- | ---: | --- |
+| Conditional policy-simulation parameter | 2 staging datasets | Scenario parameter only |
+| Context-only | 4 staging datasets; 2 raw-source references | Contextual analysis only |
+| Definition held | 3 kindergarten datasets | No FTE substitution or processed use |
+| Provenance correction required | 3 Shanghai staging datasets | No analytical use until renewed review |
 
-| Priority | Review ID | Current status | Required register |
-| --- | --- | --- | --- |
-| Completed | `GD_2022_FUND_PERFORMANCE` | Confirmed policy-simulation candidate after independent review | `raw_source_review_register.csv` |
-| Completed | `GD_2024_FUND_PERFORMANCE` | Confirmed policy-simulation candidate after independent review | `raw_source_review_register.csv` |
-| Completed | `GD_2025_FUND_PERFORMANCE` | Confirmed policy-simulation candidate after independent review | `raw_source_review_register.csv` |
-| 1 | `GD_2023_FUND_ALLOCATION` | Confirms allocation-attachment units and limits of use | `raw_source_review_register.csv` |
-| 2 | `GD_2024_EDU_FINANCE_CONTEXT` | Confirms general education expenditure remains context-only | `raw_source_review_register.csv` |
-| 3 | `GD_2017_FINAL_ACCOUNTS_SCREEN` | Confirms absence of preschool-specific expenditure in the screened table | `raw_source_review_register.csv` |
-| 4 | `NBS_2020_GROUPED_AGE_SCREEN` | Confirms that grouped ages cannot be used for a strict preschool-age variable | `raw_source_review_register.csv` |
-| 5 | `GD_2025_POP_SAMPLE_SCREEN` | Confirms that the 0-14 group cannot be used for a strict preschool-age variable | `raw_source_review_register.csv` |
+## Active priority 1: Shanghai provenance discrepancy
 
-## Phase 2: Staging-data value review
+| Review IDs | Required action |
+| --- | --- |
+| `SH_KG_2020_2024`, `SH_POP_CONTEXT_2015_2024`, `SH_FISCAL_CONTEXT_2015_2024` | Resolve the discrepancy between the reviewer-cited hashes and the repository-held files, then obtain renewed independent review. |
 
-After source scope review, compare the 11 staging datasets against their raw
-tables. The reviewer must use `staging_review_tracker.csv` and the procedures
-in `docs/Data_Review_Protocol.md`.
+See `docs/Shanghai_Provenance_Discrepancy_Audit.md` and
+`docs/Shanghai_Provenance_Correction_Queue.md`. No manifest, raw file, or
+staging value may be changed until the evidence-set discrepancy is explained.
 
-| Priority | Review IDs | Reason |
-| --- | --- | --- |
-| 1 | `GD_PROGRAMME_PERFORMANCE_2022_2025` | Confirms the source-faithful compilation of three independently reviewed programme records. |
-| 2 | `GD_KG_2015_2024`, `SC_KG_2015_2024`, `BJ_KG_2015_2024`, `SH_KG_2020_2024` | These kindergarten-resource series are closest to PRAI resource variables. |
-| 3 | `GD_POP_CONTEXT_2015_2024`, `SC_POP_CONTEXT_2015_2024`, `SH_POP_CONTEXT_2015_2024`, `BJ_CONTEXT_2015_2023` | Confirm context-only boundaries and population-method notes. |
-| 4 | `GD_FISCAL_CONTEXT_2015_2024`, `SH_FISCAL_CONTEXT_2015_2024` | Confirm broad fiscal variables remain context-only. |
-| 5 | `NATIONAL_2026_FUND_ALLOCATIONS` | Confirm future-scenario status and the Guangdong-excluding-Shenzhen scope. |
+## Active priority 2: teacher-variable definition
 
-## Promotion rule
+| Review IDs | Required action |
+| --- | --- |
+| `BJ_KG_2015_2024`, `GD_KG_2015_2024`, `SC_KG_2015_2024` | Establish an official FTE mapping for `专任教师`, or formally revise the empirical staffing variable and its cross-region comparability rules. |
 
-No task in this queue can create a `datasets/processed/` record by itself. Only
-a completed staging review with the decision `approved_for_processed` and a
-documented definition-compatible model mapping can authorize that transition.
+See `docs/Teacher_Variable_Definition_Review.md`. This is a research-design
+question; reported teacher counts must not be silently relabelled as FTE.
+
+## Active priority 3: binding model-data gaps
+
+The project still lacks two definition-compatible variables for a real PRAI
+pilot:
+
+1. annual 3-5 or 3-6 preschool-age population, with a documented consistent
+   definition; and
+2. annual preschool- or kindergarten-specific public expenditure, with a
+   documented geographic scope and unit.
+
+Source discovery, archival, and review for those variables must follow the
+existing data-governance path. Until then, `datasets/processed/` remains empty
+and no substantive real-data PRAI results may be produced.
