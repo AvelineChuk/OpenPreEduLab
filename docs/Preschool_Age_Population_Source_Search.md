@@ -29,6 +29,11 @@ The Guangdong Government public-search queries `学前三年 适龄人口` and
 `学龄前儿童 人口` returned no relevant results on 30 July 2026. These negative
 search outcomes do not establish non-existence and do not authorise a proxy.
 
+The Guangdong Provincial Statistics Bureau site search and accessible topic
+archive were also checked on 30 July 2026. Neither exposed a relevant
+population-census age table. This is recorded as a navigation and search result
+only; it does not demonstrate that a provincial tabulation is unavailable.
+
 ## Next official channels
 
 1. Provincial population-census yearbooks or tabulation annexes that may publish
