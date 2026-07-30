@@ -34,6 +34,11 @@ archive were also checked on 30 July 2026. Neither exposed a relevant
 population-census age table. This is recorded as a navigation and search result
 only; it does not demonstrate that a provincial tabulation is unavailable.
 
+The Guangdong Provincial Department of Education public search was checked with
+education-planning terminology. It did not return a definition-compatible
+population table; the only `3至6周岁` results concerned curriculum or child
+development. These results are not demographic evidence.
+
 ## Next official channels
 
 1. Provincial population-census yearbooks or tabulation annexes that may publish
