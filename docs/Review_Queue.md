@@ -63,3 +63,6 @@ pilot:
 Source discovery, archival, and review for those variables must follow the
 existing data-governance path. Until then, `datasets/processed/` remains empty
 and no substantive real-data PRAI results may be produced.
+
+For the preschool-age population search boundary and prior outcomes, see
+`docs/Preschool_Age_Population_Source_Search.md`.
