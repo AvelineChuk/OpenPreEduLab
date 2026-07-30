@@ -12,7 +12,7 @@ complete or that any policy effect has been validated.
 | --- | ---: | --- | --- |
 | Sample data | `sample_preschool_data.csv` | Demonstration-ready | Tests, notebooks, and software examples only |
 | Staging data | 12 datasets | Two conditionally approved for policy-simulation parameters; four approved context-only; three held for definition review; three returned for provenance correction | No staging dataset is approved for processed analytical use |
-| Raw-source review register | 9 records | Eight scope decisions confirmed; one original return-for-correction record retained as audit history | Scope and provenance review only |
+| Raw-source review register | 10 records | Eight scope decisions confirmed; one original return-for-correction record retained as audit history; one new source pending scope review | Scope and provenance review only |
 | Processed data | 0 datasets | Not available | None |
 
 ## Staging datasets
@@ -40,6 +40,7 @@ Assignments are maintained in
 | Guangdong 2025 population sample survey bulletin | Reports only broad 0-14 and 0-15 age groups | Independently confirmed exclusion evidence only |
 | Guangdong 2017 provincial-level final accounts | Contains a `学前教育` row and covers Guangdong provincial-level expenditure rather than a Guangdong-wide total | Correction independently re-reviewed; context-only narrow fiscal reference, not an analytical input |
 | Guangdong 2024 education-finance statistics | General-public-budget education expenditure, not preschool-specific | Independently reviewed; context-only cross-validation candidate |
+| Guangdong 2020 provincial-level final accounts | Contains a `学前教育` row in a provincial-level final-accounts table | Raw candidate pending independent scope review; not an analytical input |
 | Guangdong 2023 preschool fund allocation | Central transfer allocation, with separate attachment scopes | Independently reviewed policy-simulation parameter candidate only |
 | Guangdong 2022, 2024, and 2025 performance reports | Central support-for-preschool-development transfer-payment programme | Independently reviewed programme funding/execution parameter candidates |
 
@@ -63,6 +64,12 @@ in Issue #13 and PR #14. The correction was independently re-reviewed in Issue
 limited to Guangdong provincial-level expenditure rather than a Guangdong-wide
 total. It remains outside analytical data layers as a single-year,
 context-only fiscal reference.
+
+The 2020 provincial-level final-accounts source is separately archived because
+it visibly reports a preschool-education row. It remains pending independent
+scope review and is limited by its provincial-level, single-year, non-per-child
+coverage. It must not be treated as a Guangdong-wide fiscal total or a PRAI
+input.
 
 Beijing, Guangdong, and Sichuan kindergarten staging tables were independently
 reviewed on 30 July 2026. Their reported values are source-faithful, but the
