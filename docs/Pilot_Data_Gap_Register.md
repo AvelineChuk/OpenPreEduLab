@@ -8,7 +8,13 @@ The machine-readable record is `datasets/metadata/pilot_variable_coverage.csv`.
 
 ## Current Finding
 
-The pilot has preliminary evidence for selected education-supply variables: kindergarten count, enrolled children, and full-time teachers. These records remain in the staging layer, and most require independent review. No region currently has a documented, harmonised set of all PRAI dimensions.
+The pilot has independently reviewed source-faithful evidence for selected
+education-supply variables, including kindergarten count, enrolled children,
+and reported `专任教师` counts. These records remain in the staging layer. Three
+kindergarten datasets are held because reported teacher counts have no
+documented FTE mapping, and three Shanghai datasets require provenance
+resolution. No region currently has a documented, harmonised set of all PRAI
+dimensions.
 
 The archive also contains provincial or municipal context series for Beijing, Shanghai, Guangdong, and Sichuan, such as total or 0–14 resident population and general public-budget aggregates. These support descriptive context, source review, and later calibration work. They do not satisfy the PRAI requirement for preschool-age population or preschool-specific public expenditure and must not be substituted for those variables.
 
@@ -19,7 +25,8 @@ In particular, the current archive does not yet contain a validated annual serie
 - facility or capacity measures with a common definition; and
 - qualified-teacher measures comparable across regions.
 
-Consequently, the pilot is **not ready for real-data PRAI scoring**, regional equity estimates, DEA efficiency analysis, forecasting, or policy simulation.
+Consequently, the pilot is **not ready for real-data PRAI scoring**, regional
+equity estimates, DEA efficiency analysis, forecasting, or policy simulation.
 
 ## Collection Priorities
 
