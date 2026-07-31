@@ -39,6 +39,12 @@ education-planning terminology. It did not return a definition-compatible
 population table; the only `3至6周岁` results concerned curriculum or child
 development. These results are not demographic evidence.
 
+The National Bureau of Statistics official site search was checked on 31 July
+2026 using `广东 3-5岁 人口`, `广东 3至5岁 人口`, and `广东 学前三年 适龄人口`.
+It did not return a Guangdong table with an explicit 3-5 or 3-6 population
+definition. This is a search result only; it neither establishes non-existence
+nor permits the use of broad grouped-age data.
+
 ## Next official channels
 
 1. Provincial population-census yearbooks or tabulation annexes that may publish
