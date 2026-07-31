@@ -21,11 +21,12 @@ was promoted to `datasets/processed/`.
 | Definition held | 3 kindergarten datasets | No FTE substitution or processed use |
 | Provenance correction required | 3 Shanghai staging datasets | No analytical use until renewed review |
 
-## Active priority 0: 2020 Guangdong final-accounts scope review
+## Active priority 0: Guangdong raw-source scope reviews
 
 | Review ID | Required action |
 | --- | --- |
 | `GD_2019_FINAL_ACCOUNTS_SCREEN`, `GD_2020_FINAL_ACCOUNTS_SCREEN` | Verify each official PDF hash, Table 5 location, 10,000-yuan unit, preschool-education values, and Guangdong provincial-level rather than Guangdong-wide scope. |
+| `GD_YEARBOOK_2025_TABLE_3_4_SCREEN` | Verify the official ZIP hash, `directory/03/html/03-04.htm` entry, table title, unit, and the visible `0-14`, `15-64`, and `65 and over` headers. Confirm that it cannot supply a strict 3-5 or 3-6 denominator. |
 
 The source is a single-year context-reference candidate only. It must not be
 staged, processed, or used as a PRAI fiscal input unless a later study design

@@ -45,6 +45,14 @@ It did not return a Guangdong table with an explicit 3-5 or 3-6 population
 definition. This is a search result only; it neither establishes non-existence
 nor permits the use of broad grouped-age data.
 
+The archived official *Guangdong Statistical Yearbook 2025* was also checked
+on 31 July 2026. Table 3-4, *Age Composition and Dependency Ratio of Permanent
+Population*, reports 2015-2024 values only for `0-14`, `15-64`, and `65 and
+over`. It does not provide single-year ages or a 3-5/3-6 group. The source has
+been registered as `GD_YEARBOOK_2025_TABLE_3_4_SCREEN` for independent
+confirmation; pending that review, it is exclusion evidence only and may not
+be used as a preschool-age denominator.
+
 ## Next official channels
 
 1. Provincial population-census yearbooks or tabulation annexes that may publish
