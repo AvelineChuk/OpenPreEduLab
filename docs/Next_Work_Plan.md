@@ -12,13 +12,17 @@ Advance the provincial pilot from source-faithful staging records to a small, in
 
 **Completion condition:** The republication evidence remains documented; a primary central-government URL is recorded if available. This verifies provenance only; the allocation remains a future scenario parameter, not historical expenditure.
 
-## Priority 1: Independent Review of Existing Staging Records
+## Completed: Independent Review of Existing Staging Records
 
-**Why this matters:** Staging records are not yet eligible for `datasets/processed/`.
+**Status:** All original staging records have an independent review decision.
+The decisions include conditional policy-simulation use, context-only use,
+definition holds, and provenance corrections; none authorises a processed PRAI
+input.
 
-**Action:** A reviewer who was not the original transcriber compares every staged value with the retained raw source, checks units and definitions, and records the decision in `datasets/metadata/staging_review_tracker.csv`.
-
-**Completion condition:** Each reviewed dataset is marked either `approved_for_processed`, `approved_context_only`, `return_for_correction`, or `hold_for_definition_review` under `docs/Data_Review_Protocol.md`.
+**Remaining review action:** The newer 2019 and 2020 Guangdong provincial-level
+final-accounts raw candidates require independent scope review under
+`docs/Raw_Source_Review_Packet.md`. They are not staging datasets and remain
+outside `datasets/processed/`.
 
 ## Priority 2: Preschool-Age Population
 
@@ -36,6 +40,11 @@ Advance the provincial pilot from source-faithful staging records to a small, in
 
 **Do not use as a substitute:** General education expenditure, general public-budget expenditure, or an unverified future allocation.
 
+**Current source boundary:** The archived Guangdong 2017, 2019, and 2020
+provincial-level final-accounts tables are narrow fiscal context references,
+not Guangdong-wide or per-child inputs. The 2019 and 2020 sources remain
+pending independent scope review. See `docs/Fiscal_Source_Search.md`.
+
 ## Priority 4: Gansu Source Acquisition
 
 **Action:** Obtain Gansu official yearbooks or education-statistics files through normal authorised browser access. Store originals under `datasets/raw/provincial_china_2015_2025/gansu/`, then register URL, publisher, year, table title, checksum, geographic level, and variable definition before transcription.
@@ -44,6 +53,8 @@ Advance the provincial pilot from source-faithful staging records to a small, in
 
 Only after the above gates are met for a definition-compatible subset should approved records be copied to `datasets/processed/`. The first pipeline execution should be treated as a reproducibility and software-flow check, not a real policy evaluation.
 
-## Priority 6: Repository Synchronisation
+## Completed: Repository Synchronisation
 
-The local branch is ahead of GitHub because recent normal pushes were blocked by network resets. When connectivity returns, run a normal fetch, inspect any remote divergence, merge if necessary, and push. Do not use force push.
+On 31 July 2026, the local `main` branch was fetched and normally pushed to
+`origin/main`. Future updates should continue to use normal fetch and push
+operations; force push is not permitted.
