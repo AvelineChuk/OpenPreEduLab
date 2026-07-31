@@ -12,7 +12,7 @@ complete or that any policy effect has been validated.
 | --- | ---: | --- | --- |
 | Sample data | `sample_preschool_data.csv` | Demonstration-ready | Tests, notebooks, and software examples only |
 | Staging data | 12 datasets | Two conditionally approved for policy-simulation parameters; four approved context-only; three held for definition review; three returned for provenance correction | No staging dataset is approved for processed analytical use |
-| Raw-source review register | 10 records | Eight scope decisions confirmed; one original return-for-correction record retained as audit history; one new source pending scope review | Scope and provenance review only |
+| Raw-source review register | 11 records | Eight scope decisions confirmed; one original return-for-correction record retained as audit history; two new sources pending scope review | Scope and provenance review only |
 | Processed data | 0 datasets | Not available | None |
 
 ## Staging datasets
@@ -41,6 +41,7 @@ Assignments are maintained in
 | Guangdong 2017 provincial-level final accounts | Contains a `学前教育` row and covers Guangdong provincial-level expenditure rather than a Guangdong-wide total | Correction independently re-reviewed; context-only narrow fiscal reference, not an analytical input |
 | Guangdong 2024 education-finance statistics | General-public-budget education expenditure, not preschool-specific | Independently reviewed; context-only cross-validation candidate |
 | Guangdong 2020 provincial-level final accounts | Contains a `学前教育` row in a provincial-level final-accounts table | Raw candidate pending independent scope review; not an analytical input |
+| Guangdong 2019 provincial-level final accounts | Contains a `学前教育` row in a provincial-level final-accounts table | Raw candidate pending independent scope review; not an analytical input |
 | Guangdong 2023 preschool fund allocation | Central transfer allocation, with separate attachment scopes | Independently reviewed policy-simulation parameter candidate only |
 | Guangdong 2022, 2024, and 2025 performance reports | Central support-for-preschool-development transfer-payment programme | Independently reviewed programme funding/execution parameter candidates |
 

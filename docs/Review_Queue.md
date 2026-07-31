@@ -25,7 +25,7 @@ was promoted to `datasets/processed/`.
 
 | Review ID | Required action |
 | --- | --- |
-| `GD_2020_FINAL_ACCOUNTS_SCREEN` | Verify the official PDF hash, Table 5 location, 10,000-yuan unit, preschool-education values, and Guangdong provincial-level rather than Guangdong-wide scope. |
+| `GD_2019_FINAL_ACCOUNTS_SCREEN`, `GD_2020_FINAL_ACCOUNTS_SCREEN` | Verify each official PDF hash, Table 5 location, 10,000-yuan unit, preschool-education values, and Guangdong provincial-level rather than Guangdong-wide scope. |
 
 The source is a single-year context-reference candidate only. It must not be
 staged, processed, or used as a PRAI fiscal input unless a later study design
