@@ -56,6 +56,13 @@ final-accounts publication. This is a platform-search outcome only. It does
 not establish that the source does not exist, and it does not authorise a
 non-official substitute, interpolation, or reconstruction of a value.
 
+On 1 August 2026, the China Government Website search service was queried for
+`财教〔2026〕68号 支持学前教育发展资金`. It did not return a primary central
+publication that could be confirmed as the source of the retained attachments.
+This is a search outcome only. The verified county-finance-bureau republication
+remains the retained official-government source, and the funding record remains
+a policy-simulation parameter rather than historical preschool expenditure.
+
 ## Next official channels
 
 1. Guangdong Provincial Department of Finance historical information-disclosure
