@@ -12,7 +12,7 @@ complete or that any policy effect has been validated.
 | --- | ---: | --- | --- |
 | Sample data | `sample_preschool_data.csv` | Demonstration-ready | Tests, notebooks, and software examples only |
 | Staging data | 12 datasets | Two conditionally approved for policy-simulation parameters; four approved context-only; three held for definition review; three returned for provenance correction | No staging dataset is approved for processed analytical use |
-| Raw-source review register | 12 records | Eight scope decisions confirmed; one original return-for-correction record retained as audit history; three new sources pending scope review | Scope and provenance review only |
+| Raw-source review register | 13 records | Eight scope decisions confirmed; one original return-for-correction record retained as audit history; four new sources pending scope review | Scope and provenance review only |
 | Processed data | 0 datasets | Not available | None |
 
 ## Staging datasets
@@ -39,6 +39,7 @@ Assignments are maintained in
 | 2020 national census grouped-age table | Uses 0, 1-4, and 5-9 age groups; no compatible 3-5 or 3-6 group | Independently confirmed exclusion evidence only |
 | Guangdong 2025 population sample survey bulletin | Reports only broad 0-14 and 0-15 age groups | Independently confirmed exclusion evidence only |
 | Guangdong Statistical Yearbook 2025, Table 3-4 | Reports only 0-14, 15-64, and 65-and-over permanent-population groups | Raw candidate pending independent exclusion review only |
+| Guangdong Statistical Yearbook 2025, Table 8-2 | Reports general education expenditure without a preschool/kindergarten sub-item | Raw candidate pending independent exclusion review only |
 | Guangdong 2017 provincial-level final accounts | Contains a `学前教育` row and covers Guangdong provincial-level expenditure rather than a Guangdong-wide total | Correction independently re-reviewed; context-only narrow fiscal reference, not an analytical input |
 | Guangdong 2024 education-finance statistics | General-public-budget education expenditure, not preschool-specific | Independently reviewed; context-only cross-validation candidate |
 | Guangdong 2020 provincial-level final accounts | Contains a `学前教育` row in a provincial-level final-accounts table | Raw candidate pending independent scope review; not an analytical input |

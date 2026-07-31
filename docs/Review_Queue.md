@@ -27,6 +27,7 @@ was promoted to `datasets/processed/`.
 | --- | --- |
 | `GD_2019_FINAL_ACCOUNTS_SCREEN`, `GD_2020_FINAL_ACCOUNTS_SCREEN` | Verify each official PDF hash, Table 5 location, 10,000-yuan unit, preschool-education values, and Guangdong provincial-level rather than Guangdong-wide scope. |
 | `GD_YEARBOOK_2025_TABLE_3_4_SCREEN` | Verify the official ZIP hash, `directory/03/html/03-04.htm` entry, table title, unit, and the visible `0-14`, `15-64`, and `65 and over` headers. Confirm that it cannot supply a strict 3-5 or 3-6 denominator. |
+| `GD_YEARBOOK_2025_TABLE_8_2_SCREEN` | Verify the official ZIP hash, `directory/08/html/08-02.htm` entry, title, unit, the visible general `Education expenditure` row, and the absence of a preschool/kindergarten sub-item. Confirm that it cannot supply a preschool-specific fiscal input. |
 
 The source is a single-year context-reference candidate only. It must not be
 staged, processed, or used as a PRAI fiscal input unless a later study design

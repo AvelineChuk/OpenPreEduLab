@@ -32,6 +32,14 @@ public-budget expenditure final-accounts table. The field must not be staged,
 aggregated into a Guangdong-wide total, or used as a PRAI fiscal input unless a
 later study design documents a definition-compatible use.
 
+The archived official *Guangdong Statistical Yearbook 2025* was screened on
+31 July 2026. Its Table 8-2, *Basic Items of Local Government General Public
+Budget Revenue and Expenditure*, reports a general `教育` (Education)
+expenditure row for 2010-2024 but no preschool/kindergarten sub-item. It is
+registered as `GD_YEARBOOK_2025_TABLE_8_2_SCREEN` for independent confirmation
+and may be used only as potential general-education-finance context, never as
+preschool-specific expenditure or a PRAI fiscal input.
+
 ## Official search boundary
 
 On 31 July 2026, the Guangdong Provincial Department of Finance homepage
