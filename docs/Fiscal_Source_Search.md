@@ -63,6 +63,13 @@ This is a search outcome only. The verified county-finance-bureau republication
 remains the retained official-government source, and the funding record remains
 a policy-simulation parameter rather than historical preschool expenditure.
 
+On 2 August 2026, the Guangdong Provincial Department of Education official
+search service was queried for `学前教育 决算`, `幼儿园 决算`, and `学前教育
+经费`. It returned no result that could be verified as a preschool- or
+kindergarten-specific expenditure publication. This negative official-search
+result does not establish non-existence; it does not permit substitution with
+general education expenditure or transfer-payment allocations.
+
 ## Next official channels
 
 1. Guangdong Provincial Department of Finance historical information-disclosure
