@@ -45,3 +45,15 @@ deciding whether:
 
 No manifest hash, raw file, staging value, or processed dataset may be changed
 until that provenance question is resolved.
+
+## Renewed-review addendum, 2026-08-01
+
+The earlier statement that the current worktree hashes matched the manifest was
+not reproducible in the synchronized reviewer worktree. The differing hashes
+were traced to line endings: official downloads and manifest hashes use CRLF,
+whereas current worktree files use LF. Converting only the line endings
+reproduces every manifest hash exactly, and fresh official downloads match the
+manifest. The renewed decisions and both byte-level representations are
+recorded in `docs/Shanghai_Provenance_Correction_Queue.md` and
+`datasets/metadata/staging_review_tracker.csv`. No raw file, manifest, or staged
+value was changed.
