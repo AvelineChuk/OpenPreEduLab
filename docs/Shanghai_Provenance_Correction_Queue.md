@@ -1,33 +1,28 @@
 # Shanghai Raw-Provenance Correction Queue
 
-## Purpose
+## Renewed review resolution
 
-This queue records the three Shanghai staging datasets returned during
-independent review because the SHA-256 values of retained HTML evidence do not
-match the corresponding manifests. The staged numeric values were compared
-successfully with the retained pages, but that does not repair the provenance
-failure.
+Resolved on 2026-08-01 by `Barnabe-Zihan-Ding` without changing any manifest,
+raw file, or staging value.
 
-## Required corrections
+The manifest hashes identify the official HTTP response bytes, which use CRLF
+line endings. The current worktree files use LF line endings. Re-inserting CR
+before every retained LF reproduces each manifest hash exactly. A fresh download
+from every official URL also reproduces the manifest hash. Git history shows no
+later content overwrite. The discrepancy is therefore a byte-representation
+difference, not a value or source-identity change.
 
-Before changing a manifest, consult
-`docs/Shanghai_Provenance_Discrepancy_Audit.md`. The repository-held files
-currently reproduce the manifest hashes, while the review notes cite a distinct
-evidence set. This contradiction requires explicit renewed-review resolution.
-
-| Review ID | Dataset | Review issue | Required action | Analytical status |
+| Review ID | Official URL | Official / manifest CRLF SHA-256 | Worktree LF SHA-256 | Renewed decision |
 | --- | --- | --- | --- | --- |
-| `SH_KG_2020_2024` | `datasets/staging/shanghai_kindergarten_statistics_2020_2024.csv` | #24 | Restore the originally archived source matching the manifest, or update the manifest through a documented, reproducible provenance correction. Recheck the child-count mapping and teacher definition. | `return_for_correction` |
-| `SH_POP_CONTEXT_2015_2024` | `datasets/staging/shanghai_population_context_2015_2024.csv` | #29 | Restore or correctly register both retained header and main-table hashes, with an explanation of the evidence change. | `return_for_correction` |
-| `SH_FISCAL_CONTEXT_2015_2024` | `datasets/staging/shanghai_fiscal_context_2015_2024.csv` | #30 | Restore or correctly register both retained header and main-table hashes, with an explanation of the evidence change. | `return_for_correction` |
+| `SH_KG_2020_2024` | `https://tjj.sh.gov.cn/tjnj/2025tjnj/C2017.htm` | `4ac93b23b584dfb10963c6abb928596959270232d67b4b6761658ebc34afa3cf` | `ce0bbf527b71188b4289616047f47528e6bd3be4b488db1c0ec09b48b6ba597f` | `hold_for_definition_review` |
+| `SH_POP_CONTEXT_2015_2024` header | `https://tjj.sh.gov.cn/tjnj/2025tjnj/C02/C0201A.htm` | `7167d306421840a943253a4dc698034546fd739f033cedddc4fbab646bbd1dfd` | `7e772928627c4301c0cd41d9adf26af6a59d93e41077a07d8f88254645073230` | `approved_context_only` |
+| `SH_POP_CONTEXT_2015_2024` main | `https://tjj.sh.gov.cn/tjnj/2025tjnj/C02/C0201B.htm` | `eaf746de0d58becc0ded4d229f5ce89fa535d9f9a4d5fb5f2107cc6c5168da07` | `18224fdaea7c2b8cb0be296d0a7d119ec7049f61bddcf256532248e796fcb62b` | `approved_context_only` |
+| `SH_FISCAL_CONTEXT_2015_2024` header | `https://tjj.sh.gov.cn/tjnj/2025tjnj/C04/C0401A.htm` | `ef340591886e8c668684ba1d1e3302587df64f138a80dc38fa2e6a84f98e9838` | `9ca0257b31e2604524f0598241abb18195d6508d511aafa0485f046aa4689a69` | `approved_context_only` |
+| `SH_FISCAL_CONTEXT_2015_2024` main | `https://tjj.sh.gov.cn/tjnj/2025tjnj/C04/C0401B.htm` | `15b636561673d38e26d7bddd897e624dac5d48a3ec72f4ce6fdf7acc57406587` | `bfab0f2ce7c6783b3a1a843babee010a844e8a619c960f2058a9742ad121539e` | `approved_context_only` |
 
-## Correction rules
-
-1. Do not overwrite or delete the current retained evidence.
-2. Record the official URL, retrieval date, file role, previous hash, corrected
-   hash, and reason for the discrepancy.
-3. Do not alter staging values merely to resolve a hash mismatch.
-4. Submit the correction for a new independent review before changing the
-   staging decision.
-5. Keep all three datasets out of `datasets/processed/` until provenance and
-   remaining definition questions are resolved.
+The official URLs were retrieved again on 2026-08-01. The population tables
+remain general context rather than a preschool-age denominator. The fiscal
+table remains a general public-budget aggregate rather than preschool-specific
+expenditure. The kindergarten table remains held because `幼儿数` comparability
+and the mapping from `专任教师` to FTE are unresolved. Nothing is authorized for
+promotion to `datasets/processed/`.
