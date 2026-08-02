@@ -28,6 +28,13 @@ from models.allocation import (  # noqa: E402
     prepare_indicators,
 )
 from models.equity import generate_equity_report  # noqa: E402
+from models.efficiency import evaluate_panel_efficiency, prepare_efficiency_data  # noqa: E402
+from models.forecast import (  # noqa: E402
+    forecast_fiscal_requirement,
+    forecast_population,
+    forecast_teacher_demand,
+)
+from models.policy_simulation import simulate_policy_scenarios  # noqa: E402
 from visualization.resource_allocation_plot import (  # noqa: E402
     calculate_dimension_scores,
     plot_dimension_radar,
@@ -317,6 +324,63 @@ def _visualisation_page(data: pd.DataFrame, results: pd.DataFrame) -> None:
         figure, axis = plt.subplots(figsize=(8, 5))
         plot_resource_allocation_ranking(results, year=int(year), ax=axis)
         st.pyplot(figure, clear_figure=True)
+
+
+def _efficiency_page(data: pd.DataFrame) -> pd.DataFrame:
+    """Run the documented VRS/BCC DEA prototype on the current input."""
+    st.markdown("<div class='eyebrow'>Efficiency evaluation</div><h2>Resource use and educational output.</h2><p class='section-copy'>Input-oriented VRS DEA compares city-year decision-making units within each observed year. Scores are relative to the selected sample, not absolute quality ratings.</p>", unsafe_allow_html=True)
+    prepared = prepare_efficiency_data(data)
+    results = evaluate_panel_efficiency(prepared, ["total_government_expenditure_yuan", "fte_teacher_count", "usable_indoor_area_sqm"], ["enrolled_children", "age_specific_enrolment_coverage_pct", "qualified_teacher_rate_pct"])
+    year = st.selectbox("DEA reference year", sorted(results["year"].unique()), key="dea_year")
+    subset = results.loc[results["year"] == year].sort_values("efficiency_score", ascending=False)
+    cards = st.columns(3, gap="medium")
+    values = [("Frontier DMUs", str(int((subset["efficiency_score"] >= .999).sum())), "relative score = 1.00", "status-ok"), ("Mean efficiency", f"{subset['efficiency_score'].mean():.3f}", "selected cross-section", ""), ("Returns to scale", "VRS", "input-oriented BCC model", "")]
+    for column, item in zip(cards, values):
+        with column: st.markdown(_metric(*item), unsafe_allow_html=True)
+    st.dataframe(subset, use_container_width=True, hide_index=True)
+    st.download_button("Download DEA efficiency results", results.to_csv(index=False).encode("utf-8"), "efficiency_result.csv", "text/csv")
+    return results
+
+
+def _forecast_page(data: pd.DataFrame) -> pd.DataFrame:
+    """Run transparent population-linked planning forecasts."""
+    st.markdown("<div class='eyebrow'>Forecast framework</div><h2>Planning assumptions made visible.</h2><p class='section-copy'>Population uses city-level linear time trends. Teacher and fiscal outputs translate projected child population through explicit planning assumptions; they are not factual forecasts.</p>", unsafe_allow_html=True)
+    latest = int(data["year"].max())
+    years = st.multiselect("Forecast years", list(range(latest + 1, latest + 6)), default=[latest + 1, latest + 2])
+    ratio_default = float((data["fte_teacher_count"] / data["enrolled_children"]).mean())
+    cost_default = float(data["government_expenditure_per_child_yuan"].mean())
+    left, right = st.columns(2)
+    with left: ratio = st.number_input("Planning FTE teachers per child", min_value=0.001, value=round(ratio_default, 4), step=0.001, format="%.4f")
+    with right: cost = st.number_input("Planning cost per child (yuan)", min_value=1.0, value=float(round(cost_default, 2)), step=100.0)
+    if not years:
+        st.info("Select at least one future year to run a forecast.")
+        return pd.DataFrame()
+    population = forecast_population(data, years)
+    teacher = forecast_teacher_demand(population, ratio)
+    fiscal = forecast_fiscal_requirement(population, cost)
+    results = population.merge(teacher, on=["city", "year", "future_child_population"]).merge(fiscal, on=["city", "year", "future_child_population"])
+    st.dataframe(results, use_container_width=True, hide_index=True)
+    st.download_button("Download forecast results", results.to_csv(index=False).encode("utf-8"), "forecast_result.csv", "text/csv")
+    return results
+
+
+def _simulation_page(data: pd.DataFrame) -> pd.DataFrame:
+    """Run explicit prototype policy scenarios on the current input."""
+    st.markdown("<div class='eyebrow'>Policy simulation</div><h2>Compare assumptions, not predictions.</h2><p class='section-copy'>Each control changes a documented prototype parameter. Scenario output is conditional on those assumptions and is not a validated policy forecast.</p>", unsafe_allow_html=True)
+    a, b, c = st.columns(3)
+    with a: subsidy = st.slider("Subsidy increase", 0.0, 0.30, 0.10, 0.01)
+    with b: population = st.slider("Population change", -0.30, 0.10, -0.08, 0.01)
+    with c: teacher_cost = st.slider("Teacher cost increase", 0.0, 0.30, 0.08, 0.01)
+    d, e, f = st.columns(3)
+    with d: base_cost = st.number_input("Baseline teacher cost (yuan)", min_value=1.0, value=80000.0, step=1000.0)
+    with e: fiscal_growth = st.slider("Fiscal growth rate", -0.30, 0.20, -0.12, 0.01)
+    with f: capacity = st.slider("Fiscal capacity multiplier", 0.50, 1.50, 1.10, 0.01)
+    results = simulate_policy_scenarios(data, subsidy, population, teacher_cost, base_cost, fiscal_growth, capacity)
+    latest = int(data["year"].max())
+    summary = results.loc[results["year"] == latest].groupby("scenario", as_index=False)[["fiscal_requirement_yuan", "resource_allocation_score", "teacher_demand", "education_coverage_pct"]].mean(numeric_only=True)
+    st.dataframe(summary, use_container_width=True, hide_index=True)
+    st.download_button("Download scenario comparison", results.to_csv(index=False).encode("utf-8"), "simulation_result.csv", "text/csv")
+    return results
     with right:
         figure, axis = plt.subplots(figsize=(8, 5))
         plot_score_heatmap(results, ax=axis)
@@ -338,10 +402,34 @@ def _coming_soon_page(title: str, tag: str, detail: str) -> None:
     st.markdown("<div class='quiet-note'>The underlying research module is retained in the repository. Interactive controls will be enabled only after a definition-compatible processed dataset is available and the module-specific input assumptions are visible to the researcher.</div>", unsafe_allow_html=True)
 
 
-def _report_page() -> None:
+def _report_page(data: pd.DataFrame) -> None:
     """Render the bounded report-output page."""
     st.markdown("<div class='eyebrow'>Research output</div><h2>Research reports with traceable inputs.</h2><p class='section-copy'>The pipeline can generate structured outputs from the sample workflow. Real-world reports must retain source provenance, model assumptions, validation notes, and interpretation limits.</p>", unsafe_allow_html=True)
-    st.markdown(_module_card("↗", "Report generation", "Use the existing pipeline for reproducible tables and a research summary. The platform will not represent generated text as an automatically validated paper.", "PIPELINE OUTPUT"), unsafe_allow_html=True)
+    allocation = calculate_prai_score(data)
+    latest = int(data["year"].max())
+    latest_scores = allocation.loc[allocation["year"] == latest, "resource_allocation_score"]
+    report = f"""# OpenPreEduLab Research Run Summary
+
+## Scope
+
+- Input source: current platform dataset
+- Observations: {len(data)} city-year records
+- Latest observed year: {latest}
+- PRAI scoring: equal-dimension MVP weighting
+
+## Descriptive output
+
+- Latest-year mean PRAI score: {latest_scores.mean():.2f}
+- Latest-year score range: {latest_scores.min():.2f}–{latest_scores.max():.2f}
+
+## Research-use note
+
+This summary records a computational run. It does not establish real-world findings, causal effects, or policy recommendations. Interpret results only with documented data provenance, model assumptions, and limitations.
+"""
+    st.markdown(_module_card("↗", "Research run summary", "Generate a transparent record of the current PRAI run. The platform does not present this text as an automatically validated research paper.", "PROTOTYPE OUTPUT"), unsafe_allow_html=True)
+    st.download_button("Download research run summary", report.encode("utf-8"), "research_run_summary.md", "text/markdown")
+    with st.expander("Preview summary"):
+        st.markdown(report)
 
 
 def _documentation_page() -> None:
@@ -406,13 +494,13 @@ def _dashboard() -> None:
     elif page == "Data": _data_page(data, source)
     elif page == "PRAI": _prai_page(data)
     elif page == "Equity": _equity_page(calculate_prai_score(data))
-    elif page == "Efficiency": _coming_soon_page("Efficiency evaluation.", "DEA MODULE", "DEA methods are implemented in the research codebase. Its interface awaits an approved processed input panel with documented input-output comparability.")
-    elif page == "Forecast": _coming_soon_page("Forecast framework.", "FORECAST MODULE", "Population, teacher-demand, and fiscal-requirement forecasting remains a research prototype. It requires a documented historical series before interactive output is meaningful.")
-    elif page == "Simulation": _coming_soon_page("Policy simulation.", "SCENARIO MODULE", "Scenario comparison is a transparent research prototype. It must not be used as a real-world policy forecast without calibrated parameters and validated inputs.")
+    elif page == "Efficiency": _efficiency_page(data)
+    elif page == "Forecast": _forecast_page(data)
+    elif page == "Simulation": _simulation_page(data)
     elif page == "AI Interpretation": _coming_soon_page("AI-assisted interpretation.", "INTERPRETATION LAYER", "LLM output is bounded to model-result interpretation. It does not replace statistical evidence, causal identification, or researcher judgment.")
     elif page == "Inclusive Support": _coming_soon_page("Inclusive education support.", "FUTURE DEVELOPMENT", "A future platform area for organising evidence, practice resources and research workflows related to inclusive preschool education. Its design will follow accessibility, ethics and evidence requirements.")
     elif page == "Teacher Development": _coming_soon_page("Teacher professional development.", "FUTURE DEVELOPMENT", "A future platform area for teacher learning, professional-capability evidence and reflective practice. It will not infer teacher quality from incomplete administrative variables.")
-    elif page == "Reports": _report_page()
+    elif page == "Reports": _report_page(data)
     elif page == "Documentation": _documentation_page()
     else: _settings_page()
 
