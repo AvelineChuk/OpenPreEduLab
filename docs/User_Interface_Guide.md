@@ -18,14 +18,34 @@ streamlit run app/streamlit_app.py
 
 The application opens in a local browser window.
 
+## Platform structure
+
+The application has two connected spaces:
+
+1. **Landing Page** — an editorial introduction to the research challenge,
+   workflow, modules, and research philosophy. Select **Launch Platform** to
+   enter the workspace.
+2. **Research Platform** — a sidebar-based research workspace with an overview,
+   data layer, PRAI, equity, visualisation, and module-status pages.
+
+The Landing Page is intentionally a research presentation rather than a
+generic data-dashboard entry point. The platform uses a restrained white,
+soft-gray, and deep-blue visual system to keep analytical content primary.
+
 ## Available workflow
 
-1. Select the synthetic sample dataset or upload a PRAI-compatible CSV.
-2. Inspect the schema and data-governance notice.
+1. Select the synthetic sample dataset or upload a PRAI-compatible CSV in the
+   sidebar.
+2. Inspect the Data page for schema and research-governance boundaries.
 3. Calculate the MVP PRAI result using documented equal-dimension weights.
 4. Inspect descriptive equity indicators for one selected year.
 5. Review ranking, trend, heatmap, and dimension-profile visualisations.
 6. Download calculated PRAI results for transparent downstream analysis.
+
+The Efficiency, Forecast, Simulation, AI Interpretation, and Report pages make
+their scope visible without inventing outputs. Their underlying modules remain
+in the repository; direct interactive controls require approved,
+definition-compatible processed data.
 
 ## Data-governance boundary
 
