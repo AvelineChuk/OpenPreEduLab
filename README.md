@@ -3,10 +3,13 @@
 [![Version](https://img.shields.io/badge/version-0.1.0-blue)](VERSION)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 ![Python](https://img.shields.io/badge/python-3.10%2B-blue)
+[![Launch Platform](https://img.shields.io/badge/launch-platform-3F7357)](https://openpreedulab-85aycdefait8stbdivqxpx.streamlit.app/)
 
 **Project Status:** Research Prototype v0.1.0
 
 Current version focuses on framework development and prototype implementation.
+
+> [Launch OpenPreEduLab Platform](https://openpreedulab-85aycdefait8stbdivqxpx.streamlit.app/)
 
 ## Open Preschool Education Research Platform
 
@@ -128,15 +131,14 @@ evaluation, reusable visualisations, and result download.
 streamlit run app/streamlit_app.py
 ```
 
-The interface is a research prototype. Calculations with the sample dataset or
+The interface is available at [OpenPreEduLab Platform](https://openpreedulab-85aycdefait8stbdivqxpx.streamlit.app/). It is a research prototype. Calculations with the sample dataset or
 an uploaded CSV do not establish source provenance, variable comparability, or
 policy effects. See [User Interface Guide](docs/User_Interface_Guide.md).
 
 ## Platform Deployment
 
 GitHub hosts the project source and research documentation. The interactive
-Streamlit interface can be deployed separately after a deployment URL is
-confirmed. See [Deployment Guide](docs/Deployment_Guide.md) for the
+Streamlit interface is deployed at [OpenPreEduLab Platform](https://openpreedulab-85aycdefait8stbdivqxpx.streamlit.app/). See [Deployment Guide](docs/Deployment_Guide.md) for the
 Streamlit Community Cloud workflow and post-deployment verification checklist.
 
 ## Example Workflow
