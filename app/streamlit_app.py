@@ -436,6 +436,25 @@ def _report_page(data: pd.DataFrame) -> None:
     allocation = calculate_prai_score(data)
     latest = int(data["year"].max())
     latest_scores = allocation.loc[allocation["year"] == latest, "resource_allocation_score"]
+    equity = generate_equity_report(allocation, year=latest)
+    dea_data = prepare_efficiency_data(data)
+    efficiency = evaluate_panel_efficiency(dea_data, ["total_government_expenditure_yuan", "fte_teacher_count", "usable_indoor_area_sqm"], ["enrolled_children", "age_specific_enrolment_coverage_pct", "qualified_teacher_rate_pct"])
+    latest_efficiency = efficiency.loc[efficiency["year"] == latest, "efficiency_score"]
+    forecast_years = [latest + 1, latest + 2]
+    population = forecast_population(data, forecast_years)
+    teacher_ratio = float((data["fte_teacher_count"] / data["enrolled_children"]).mean())
+    cost_per_child = float(data["government_expenditure_per_child_yuan"].mean())
+    forecast = forecast_population(data, forecast_years).merge(
+        forecast_teacher_demand(population, teacher_ratio), on=["city", "year", "future_child_population"]
+    ).merge(
+        forecast_fiscal_requirement(population, cost_per_child), on=["city", "year", "future_child_population"]
+    )
+    simulation = simulate_policy_scenarios(data, 0.10, -0.08, 0.08, 80000.0, -0.12, 1.10)
+    simulation_latest = simulation.loc[simulation["year"] == latest]
+    equity_summary = "\n".join(
+        f"- {row.indicator}: {row.value:.3f} ({row.equity_level})"
+        for row in equity.itertuples(index=False)
+    )
     report = f"""# OpenPreEduLab Research Run Summary
 
 ## Scope
@@ -450,11 +469,34 @@ def _report_page(data: pd.DataFrame) -> None:
 - Latest-year mean PRAI score: {latest_scores.mean():.2f}
 - Latest-year score range: {latest_scores.min():.2f}–{latest_scores.max():.2f}
 
+## Equity output
+
+{equity_summary}
+
+## Efficiency output
+
+- Latest-year mean DEA efficiency: {latest_efficiency.mean():.3f}
+- Latest-year relative-efficiency range: {latest_efficiency.min():.3f}–{latest_efficiency.max():.3f}
+- Specification: input-oriented VRS/BCC DEA with documented prototype inputs and outputs.
+
+## Forecast output
+
+- Forecast years: {", ".join(map(str, forecast_years))}
+- Planning FTE-teacher ratio: {teacher_ratio:.4f} teachers per child
+- Planning cost per child: {cost_per_child:.2f} yuan
+- Forecast records: {len(forecast)} city-year projections
+
+## Scenario output
+
+- Scenario records: {len(simulation)}
+- Latest-year fiscal sustainability ratio range: {simulation_latest["fiscal_sustainability_ratio"].min():.3f}–{simulation_latest["fiscal_sustainability_ratio"].max():.3f}
+- Parameters: subsidy +10%; population change -8%; teacher cost +8%; fiscal growth -12%; capacity multiplier 1.10.
+
 ## Research-use note
 
 This summary records a computational run. It does not establish real-world findings, causal effects, or policy recommendations. Interpret results only with documented data provenance, model assumptions, and limitations.
 """
-    st.markdown(_module_card("↗", "Research run summary", "Generate a transparent record of the current PRAI run. The platform does not present this text as an automatically validated research paper.", "PROTOTYPE OUTPUT"), unsafe_allow_html=True)
+    st.markdown(_module_card("↗", "Research run summary", "Generate a transparent record across allocation, equity, efficiency, forecast and conditional scenario output. The platform does not present this text as an automatically validated research paper.", "PROTOTYPE OUTPUT"), unsafe_allow_html=True)
     st.download_button("Download research run summary", report.encode("utf-8"), "research_run_summary.md", "text/markdown")
     with st.expander("Preview summary"):
         st.markdown(report)
