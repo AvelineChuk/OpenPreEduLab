@@ -58,3 +58,16 @@ FTE values. Real data must follow the repository workflow:
 
 Until a definition-compatible processed dataset exists, interface outputs using
 sample or user-provided data are software demonstrations only.
+
+## Research report downloads
+
+The **Reports** page creates one bounded research-run summary and lets the
+visitor select its presentation format before downloading:
+
+- **Markdown (.md)** for transparent, version-controlled research records;
+- **Word (.docx)** for reading, annotation, and sharing with collaborators; or
+- **PDF (.pdf)** for a fixed-layout copy.
+
+The three formats contain the same computed summary and research-use note.
+Changing the file format does not validate a dataset or turn a prototype run
+into a real-world policy finding.

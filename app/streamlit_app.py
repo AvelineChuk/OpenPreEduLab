@@ -37,6 +37,7 @@ from models.forecast import (  # noqa: E402
 from models.policy_simulation import simulate_policy_scenarios  # noqa: E402
 from llm.deepseek import DeepSeekClient, DeepSeekRequestError, SUPPORTED_MODELS  # noqa: E402
 from llm.interpreter import ResearchInterpretationAssistant, create_interpretation_request  # noqa: E402
+from reporting.exports import report_to_docx, report_to_pdf  # noqa: E402
 from visualization.resource_allocation_plot import (  # noqa: E402
     calculate_dimension_scores,
     plot_dimension_radar,
@@ -530,7 +531,22 @@ def _report_page(data: pd.DataFrame) -> None:
 This summary records a computational run. It does not establish real-world findings, causal effects, or policy recommendations. Interpret results only with documented data provenance, model assumptions, and limitations.
 """
     st.markdown(_module_card("↗", "Research run summary", "Generate a transparent record across allocation, equity, efficiency, forecast and conditional scenario output. The platform does not present this text as an automatically validated research paper.", "PROTOTYPE OUTPUT"), unsafe_allow_html=True)
-    st.download_button("Download research run summary", report.encode("utf-8"), "research_run_summary.md", "text/markdown")
+    output_format = st.selectbox(
+        "Download format",
+        ["Markdown (.md)", "Word document (.docx)", "PDF document (.pdf)"],
+        help="All formats contain the same computational summary, assumptions, and research-use limitations.",
+    )
+    if output_format == "Markdown (.md)":
+        payload, filename, mime_type = report.encode("utf-8"), "research_run_summary.md", "text/markdown"
+    elif output_format == "Word document (.docx)":
+        payload, filename, mime_type = (
+            report_to_docx(report),
+            "research_run_summary.docx",
+            "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        )
+    else:
+        payload, filename, mime_type = report_to_pdf(report), "research_run_summary.pdf", "application/pdf"
+    st.download_button(f"Download research run summary ({output_format})", payload, filename, mime_type)
     with st.expander("Preview summary"):
         st.markdown(report)
 

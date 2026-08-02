@@ -46,3 +46,16 @@ def test_ai_interpretation_page_renders_external_provider_boundary() -> None:
     assert "Optional DeepSeek interpretation" in content
     assert "external service" in content
     assert len(app.get("download_button")) >= 1
+
+
+def test_reports_page_offers_markdown_word_and_pdf_downloads() -> None:
+    """Users should be able to choose a familiar report-download format."""
+    app = AppTest.from_file(str(APP_PATH))
+    app.run(timeout=60)
+
+    next(button for button in app.button if button.label == "Launch Platform").click().run(timeout=60)
+    app.radio[0].set_value("Reports").run(timeout=60)
+
+    assert not app.exception
+    assert app.selectbox[0].options == ["Markdown (.md)", "Word document (.docx)", "PDF document (.pdf)"]
+    assert len(app.get("download_button")) >= 1
