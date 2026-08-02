@@ -37,15 +37,22 @@ soft-gray, and deep-blue visual system to keep analytical content primary.
 1. Select the synthetic sample dataset or upload a PRAI-compatible CSV in the
    sidebar.
 2. Inspect the Data page for schema and research-governance boundaries.
-3. Calculate the MVP PRAI result using documented equal-dimension weights.
-4. Inspect descriptive equity indicators for one selected year.
-5. Review ranking, trend, heatmap, and dimension-profile visualisations.
-6. Download calculated PRAI results for transparent downstream analysis.
+3. Calculate the MVP PRAI result and download it for transparent downstream
+   analysis.
+4. Inspect descriptive equity indicators and the ranking, trend, heatmap, and
+   dimension-profile visualisations.
+5. Run the documented prototype interfaces for DEA efficiency, population and
+   resource forecasting, and conditional policy scenarios. Their visible
+   assumptions remain adjustable and their outputs are exportable.
+6. Use **AI Interpretation** either to download a bounded prompt or, after
+   explicit consent and with a visitor-controlled DeepSeek key, generate a
+   clearly labelled interpretation draft.
+7. Use **Reports** to download the same research-run summary as Markdown,
+   Word, or PDF.
 
-The Efficiency, Forecast, Simulation, AI Interpretation, and Report pages make
-their scope visible without inventing outputs. Their underlying modules remain
-in the repository; direct interactive controls require approved,
-definition-compatible processed data.
+These interactive functions demonstrate reproducible software workflows. They
+do not validate a dataset, establish causal effects, or turn a prototype output
+into a policy conclusion.
 
 ## Data-governance boundary
 
