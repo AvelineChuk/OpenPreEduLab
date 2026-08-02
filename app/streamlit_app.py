@@ -35,6 +35,7 @@ from models.forecast import (  # noqa: E402
     forecast_teacher_demand,
 )
 from models.policy_simulation import simulate_policy_scenarios  # noqa: E402
+from llm.interpreter import create_interpretation_request  # noqa: E402
 from visualization.resource_allocation_plot import (  # noqa: E402
     calculate_dimension_scores,
     plot_dimension_radar,
@@ -52,6 +53,7 @@ NAV_ITEMS = [
     "Data",
     "PRAI",
     "Equity",
+    "Visualisation",
     "Efficiency",
     "Forecast",
     "Simulation",
@@ -324,6 +326,19 @@ def _visualisation_page(data: pd.DataFrame, results: pd.DataFrame) -> None:
         figure, axis = plt.subplots(figsize=(8, 5))
         plot_resource_allocation_ranking(results, year=int(year), ax=axis)
         st.pyplot(figure, clear_figure=True)
+    with right:
+        figure, axis = plt.subplots(figsize=(8, 5))
+        plot_score_heatmap(results, ax=axis)
+        st.pyplot(figure, clear_figure=True)
+    figure, axis = plt.subplots(figsize=(10, 5))
+    plot_trend_analysis(results, ax=axis)
+    st.pyplot(figure, clear_figure=True)
+    dimensions = calculate_dimension_scores(normalize_indicators(prepare_indicators(data)))
+    cities = st.multiselect("Cities for dimension profile", sorted(dimensions["city"].unique()), default=sorted(dimensions["city"].unique())[:3])
+    if cities:
+        figure, axis = plt.subplots(figsize=(7, 7), subplot_kw={"projection": "polar"})
+        plot_dimension_radar(dimensions, year=int(year), cities=cities, ax=axis)
+        st.pyplot(figure, clear_figure=True)
 
 
 def _efficiency_page(data: pd.DataFrame) -> pd.DataFrame:
@@ -381,21 +396,34 @@ def _simulation_page(data: pd.DataFrame) -> pd.DataFrame:
     st.dataframe(summary, use_container_width=True, hide_index=True)
     st.download_button("Download scenario comparison", results.to_csv(index=False).encode("utf-8"), "simulation_result.csv", "text/csv")
     return results
-    with right:
-        figure, axis = plt.subplots(figsize=(8, 5))
-        plot_score_heatmap(results, ax=axis)
-        st.pyplot(figure, clear_figure=True)
-    figure, axis = plt.subplots(figsize=(10, 5))
-    plot_trend_analysis(results, ax=axis)
-    st.pyplot(figure, clear_figure=True)
-    dimensions = calculate_dimension_scores(normalize_indicators(prepare_indicators(data)))
-    cities = st.multiselect("Cities for dimension profile", sorted(dimensions["city"].unique()), default=sorted(dimensions["city"].unique())[:3])
-    if cities:
-        figure, axis = plt.subplots(figsize=(7, 7), subplot_kw={"projection": "polar"})
-        plot_dimension_radar(dimensions, year=int(year), cities=cities, ax=axis)
-        st.pyplot(figure, clear_figure=True)
 
 
+def _ai_interpretation_page(data: pd.DataFrame) -> None:
+    """Build a reviewable, evidence-bounded LLM interpretation request."""
+    st.markdown("<div class='eyebrow'>AI-assisted interpretation</div><h2>Interpret results. Do not replace research judgement.</h2><p class='section-copy'>The platform constructs a bounded request from the current model outputs. No external call is made unless a researcher configures and approves an LLM client.</p>", unsafe_allow_html=True)
+    latest = int(data["year"].max())
+    allocation = calculate_prai_score(data)
+    equity = generate_equity_report(allocation, year=latest)
+    dea_data = prepare_efficiency_data(data)
+    efficiency = evaluate_panel_efficiency(dea_data, ["total_government_expenditure_yuan", "fte_teacher_count", "usable_indoor_area_sqm"], ["enrolled_children", "age_specific_enrolment_coverage_pct", "qualified_teacher_rate_pct"])
+    simulation = simulate_policy_scenarios(data, 0.10, -0.08, 0.08, 80000.0, -0.12, 1.10)
+    context = st.text_area("Research context (optional)", placeholder="State the research question, study boundary, and any interpretation constraints.")
+    results = {
+        "resource_allocation": allocation.loc[allocation["year"] == latest],
+        "equity": equity,
+        "efficiency": efficiency.loc[efficiency["year"] == latest],
+        "policy_simulation": simulation.loc[simulation["year"] == latest],
+    }
+    request = create_interpretation_request(results, context)
+    st.markdown("<div class='quiet-note'>No model result has been transmitted to an external service. Review the prompt and data-governance boundary before configuring any provider or API credential.</div>", unsafe_allow_html=True)
+    with st.expander("Preview interpretation request"):
+        st.markdown("**System prompt**")
+        st.code(request.system_prompt, language="text")
+        st.markdown("**Evidence-bounded user prompt**")
+        st.code(request.user_prompt, language="markdown")
+    packet = f"# OpenPreEduLab AI Interpretation Request\n\n## System Prompt\n\n{request.system_prompt}\n\n## User Prompt\n\n{request.user_prompt}\n"
+    st.download_button("Download reviewed interpretation request", packet.encode("utf-8"), "llm_interpretation_request.md", "text/markdown")
+    st.caption("To generate an LLM response, configure a provider-specific client outside the public interface and retain the reviewed request, provider, model, date, and researcher review record.")
 def _coming_soon_page(title: str, tag: str, detail: str) -> None:
     """Render an honest module-integration page without fictitious output."""
     st.markdown(f"<div class='eyebrow'>{tag}</div><h2>{title}</h2><p class='section-copy'>{detail}</p>", unsafe_allow_html=True)
@@ -494,10 +522,11 @@ def _dashboard() -> None:
     elif page == "Data": _data_page(data, source)
     elif page == "PRAI": _prai_page(data)
     elif page == "Equity": _equity_page(calculate_prai_score(data))
+    elif page == "Visualisation": _visualisation_page(data, calculate_prai_score(data))
     elif page == "Efficiency": _efficiency_page(data)
     elif page == "Forecast": _forecast_page(data)
     elif page == "Simulation": _simulation_page(data)
-    elif page == "AI Interpretation": _coming_soon_page("AI-assisted interpretation.", "INTERPRETATION LAYER", "LLM output is bounded to model-result interpretation. It does not replace statistical evidence, causal identification, or researcher judgment.")
+    elif page == "AI Interpretation": _ai_interpretation_page(data)
     elif page == "Inclusive Support": _coming_soon_page("Inclusive education support.", "FUTURE DEVELOPMENT", "A future platform area for organising evidence, practice resources and research workflows related to inclusive preschool education. Its design will follow accessibility, ethics and evidence requirements.")
     elif page == "Teacher Development": _coming_soon_page("Teacher professional development.", "FUTURE DEVELOPMENT", "A future platform area for teacher learning, professional-capability evidence and reflective practice. It will not infer teacher quality from incomplete administrative variables.")
     elif page == "Reports": _report_page(data)
