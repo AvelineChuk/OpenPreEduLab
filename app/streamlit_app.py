@@ -38,6 +38,7 @@ from visualization.resource_allocation_plot import (  # noqa: E402
 
 
 SAMPLE_PATH = PROJECT_ROOT / "datasets" / "sample_preschool_data.csv"
+PRAI_TEMPLATE_PATH = PROJECT_ROOT / "datasets" / "templates" / "prai_input_template.csv"
 HERO_IMAGE_PATH = PROJECT_ROOT / "assets" / "hero_children_learning.jpg"
 NAV_ITEMS = [
     "Workflow",
@@ -267,6 +268,9 @@ def _data_page(data: pd.DataFrame, source: str) -> None:
     with left:
         st.markdown(_metric("Schema fields", f"{present}/{len(REQUIRED_COLUMNS)}", "existing engine requirements", "status-ok"), unsafe_allow_html=True)
         st.markdown("<div class='module-card'><div class='module-tag'>GOVERNANCE</div><h3>Research data gate</h3><p>Real data must progress from raw source to staging, independent review, and processed release. The interface will not impute, smooth, or silently remap variables.</p></div>", unsafe_allow_html=True)
+        st.download_button("Download PRAI input template", PRAI_TEMPLATE_PATH.read_bytes(), "prai_input_template.csv", "text/csv", use_container_width=True)
+        st.download_button("Download sample dataset", SAMPLE_PATH.read_bytes(), "sample_preschool_data.csv", "text/csv", use_container_width=True)
+        st.caption("See docs/Data_Upload_Guide.md for the upload and research-use boundary.")
     with right:
         with st.expander("Inspect input records", expanded=True):
             st.dataframe(data, use_container_width=True, hide_index=True)
