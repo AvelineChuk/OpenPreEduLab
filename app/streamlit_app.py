@@ -596,6 +596,13 @@ def _dashboard() -> None:
             data = _load_uploaded_csv(upload)
     except (OSError, ValueError, pd.errors.ParserError) as error:
         st.error(f"Input validation failed: {error}")
+        st.info("To correct the file, use the PRAI input template and verify: required column names, one unique city-year record per row, numeric values in required fields, positive count denominators, and children-not-enrolled not exceeding children-seeking-a-place.")
+        st.download_button(
+            "Download PRAI input template",
+            PRAI_TEMPLATE_PATH.read_bytes(),
+            "prai_input_template.csv",
+            "text/csv",
+        )
         return
 
     if page == "Workflow":
