@@ -103,7 +103,7 @@ OpenPreEduLab v0.1 requires Python 3.10 or later.
 ```bash
 git clone <your-repository-url>
 cd OpenPreEduLab
-python -m pip install numpy pandas scipy scikit-learn matplotlib
+python -m pip install -r requirements.txt
 ```
 
 No external LLM credential is required for the core pipeline. An LLM is called only when a researcher explicitly provides an approved client implementation.
@@ -117,6 +117,20 @@ python -c "from pipeline.research_pipeline import run_research_pipeline; run_res
 ```
 
 The pipeline writes result tables and `research_summary.md` to `results/`. See [Getting Started](docs/Getting_Started.md) for the full workflow and interpretation guidance.
+
+## Local Research Interface
+
+The repository also includes a local Streamlit interface for the sample-data
+workflow. It provides input-schema checks, PRAI calculation, descriptive equity
+evaluation, reusable visualisations, and result download.
+
+```bash
+streamlit run app/streamlit_app.py
+```
+
+The interface is a research prototype. Calculations with the sample dataset or
+an uploaded CSV do not establish source provenance, variable comparability, or
+policy effects. See [User Interface Guide](docs/User_Interface_Guide.md).
 
 ## Example Workflow
 
