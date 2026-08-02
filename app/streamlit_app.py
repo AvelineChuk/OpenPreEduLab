@@ -200,10 +200,10 @@ def _landing_page() -> None:
     )
     action_left, action_middle, action_right = st.columns([0.32, 0.18, 0.32])
     with action_left:
-        st.button("Launch Platform", on_click=_switch_to_platform, use_container_width=True)
+        st.button("Launch Platform", on_click=_switch_to_platform, width="stretch")
     with action_middle:
         st.markdown("<div class='secondary-button'>", unsafe_allow_html=True)
-        st.button("Explore Research", key="hero_workflow", use_container_width=True)
+        st.button("Explore Research", key="hero_workflow", width="stretch")
         st.markdown("</div>", unsafe_allow_html=True)
 
     st.markdown("<div class='section'><div class='eyebrow'>01 — Research story</div><h2 class='section-title'>Research begins with children.</h2><p class='section-copy'>OpenPreEduLab treats data and policy as tools for understanding children's learning, development, and educational opportunities — never as an end in themselves.</p></div>", unsafe_allow_html=True)
@@ -233,7 +233,7 @@ def _landing_page() -> None:
     st.markdown("<div class='launch-panel'><h2>Start your research.</h2><p>Explore the documented prototype workflow with the repository sample dataset. Real data remain subject to provenance and definition review.</p></div>", unsafe_allow_html=True)
     launch_left, launch_middle, launch_right = st.columns([0.35, 0.3, 0.35])
     with launch_middle:
-        st.button("Launch OpenPreEduLab", key="footer_launch", on_click=_switch_to_platform, use_container_width=True)
+        st.button("Launch OpenPreEduLab", key="footer_launch", on_click=_switch_to_platform, width="stretch")
 
 
 def _dashboard_header(data: pd.DataFrame) -> None:
@@ -279,12 +279,12 @@ def _data_page(data: pd.DataFrame, source: str) -> None:
     with left:
         st.markdown(_metric("Schema fields", f"{present}/{len(REQUIRED_COLUMNS)}", "existing engine requirements", "status-ok"), unsafe_allow_html=True)
         st.markdown("<div class='module-card'><div class='module-tag'>GOVERNANCE</div><h3>Research data gate</h3><p>Real data must progress from raw source to staging, independent review, and processed release. The interface will not impute, smooth, or silently remap variables.</p></div>", unsafe_allow_html=True)
-        st.download_button("Download PRAI input template", PRAI_TEMPLATE_PATH.read_bytes(), "prai_input_template.csv", "text/csv", use_container_width=True)
-        st.download_button("Download sample dataset", SAMPLE_PATH.read_bytes(), "sample_preschool_data.csv", "text/csv", use_container_width=True)
+        st.download_button("Download PRAI input template", PRAI_TEMPLATE_PATH.read_bytes(), "prai_input_template.csv", "text/csv", width="stretch")
+        st.download_button("Download sample dataset", SAMPLE_PATH.read_bytes(), "sample_preschool_data.csv", "text/csv", width="stretch")
         st.caption("See docs/Data_Upload_Guide.md for the upload and research-use boundary.")
     with right:
         with st.expander("Inspect input records", expanded=True):
-            st.dataframe(data, use_container_width=True, hide_index=True)
+            st.dataframe(data, width="stretch", hide_index=True)
 
 
 def _prai_page(data: pd.DataFrame) -> pd.DataFrame:
@@ -301,7 +301,7 @@ def _prai_page(data: pd.DataFrame) -> pd.DataFrame:
     plot_resource_allocation_ranking(results, year=int(year), ax=axis)
     st.pyplot(figure, clear_figure=True)
     with st.expander("Inspect calculated PRAI results"):
-        st.dataframe(results.sort_values(["year", "resource_allocation_score"], ascending=[True, False]), use_container_width=True, hide_index=True)
+        st.dataframe(results.sort_values(["year", "resource_allocation_score"], ascending=[True, False]), width="stretch", hide_index=True)
     st.download_button("Download PRAI results", results.to_csv(index=False).encode("utf-8"), "allocation_result.csv", "text/csv")
     return results
 
@@ -316,7 +316,7 @@ def _equity_page(results: pd.DataFrame) -> None:
         with column:
             st.markdown(_metric(row["indicator"], f"{row['value']:.3f}", row["equity_level"], "status-ok" if row["equity_level"] == "Excellent Equity" else ""), unsafe_allow_html=True)
     st.write("")
-    st.dataframe(report, use_container_width=True, hide_index=True)
+    st.dataframe(report, width="stretch", hide_index=True)
 
 
 def _visualisation_page(data: pd.DataFrame, results: pd.DataFrame) -> None:
@@ -354,7 +354,7 @@ def _efficiency_page(data: pd.DataFrame) -> pd.DataFrame:
     values = [("Frontier DMUs", str(int((subset["efficiency_score"] >= .999).sum())), "relative score = 1.00", "status-ok"), ("Mean efficiency", f"{subset['efficiency_score'].mean():.3f}", "selected cross-section", ""), ("Returns to scale", "VRS", "input-oriented BCC model", "")]
     for column, item in zip(cards, values):
         with column: st.markdown(_metric(*item), unsafe_allow_html=True)
-    st.dataframe(subset, use_container_width=True, hide_index=True)
+    st.dataframe(subset, width="stretch", hide_index=True)
     st.download_button("Download DEA efficiency results", results.to_csv(index=False).encode("utf-8"), "efficiency_result.csv", "text/csv")
     return results
 
@@ -376,7 +376,7 @@ def _forecast_page(data: pd.DataFrame) -> pd.DataFrame:
     teacher = forecast_teacher_demand(population, ratio)
     fiscal = forecast_fiscal_requirement(population, cost)
     results = population.merge(teacher, on=["city", "year", "future_child_population"]).merge(fiscal, on=["city", "year", "future_child_population"])
-    st.dataframe(results, use_container_width=True, hide_index=True)
+    st.dataframe(results, width="stretch", hide_index=True)
     st.download_button("Download forecast results", results.to_csv(index=False).encode("utf-8"), "forecast_result.csv", "text/csv")
     return results
 
@@ -395,7 +395,7 @@ def _simulation_page(data: pd.DataFrame) -> pd.DataFrame:
     results = simulate_policy_scenarios(data, subsidy, population, teacher_cost, base_cost, fiscal_growth, capacity)
     latest = int(data["year"].max())
     summary = results.loc[results["year"] == latest].groupby("scenario", as_index=False)[["fiscal_requirement_yuan", "resource_allocation_score", "teacher_demand", "education_coverage_pct"]].mean(numeric_only=True)
-    st.dataframe(summary, use_container_width=True, hide_index=True)
+    st.dataframe(summary, width="stretch", hide_index=True)
     st.download_button("Download scenario comparison", results.to_csv(index=False).encode("utf-8"), "simulation_result.csv", "text/csv")
     return results
 
@@ -434,7 +434,7 @@ def _ai_interpretation_page(data: pd.DataFrame) -> None:
         model = st.selectbox("DeepSeek model", SUPPORTED_MODELS, help="Model availability and billing are determined by your DeepSeek account.")
         api_key = st.text_input("Your DeepSeek API key", type="password", help="This field is cleared after submission and is never displayed in generated files.")
         consent = st.checkbox("I understand that the reviewed prompt and its model results will be sent to DeepSeek, an external provider.")
-        submitted = st.form_submit_button("Generate interpretation with DeepSeek", use_container_width=True)
+        submitted = st.form_submit_button("Generate interpretation with DeepSeek", width="stretch")
 
     if submitted:
         if not api_key.strip():
@@ -582,7 +582,7 @@ def _dashboard() -> None:
         source = st.radio("Research input", ["Sample dataset", "Upload CSV"], label_visibility="collapsed")
         upload = st.file_uploader("Upload PRAI CSV", type=["csv"], label_visibility="collapsed") if source == "Upload CSV" else None
         st.caption("raw → staging → review → processed")
-        if st.button("← Back to landing", use_container_width=True):
+        if st.button("← Back to landing", width="stretch"):
             st.session_state["view"] = "landing"
             st.rerun()
 
