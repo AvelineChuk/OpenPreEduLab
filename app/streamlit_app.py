@@ -251,7 +251,7 @@ def _dashboard_header(data: pd.DataFrame) -> None:
 
 def _workflow_strip() -> None:
     """Render the dashboard's horizontal pipeline state."""
-    nodes = [("Data", True), ("Allocation", True), ("Equity", True), ("Efficiency", False), ("Forecast", False), ("Simulation", False), ("Report", False)]
+    nodes = [("Data", True), ("Allocation", True), ("Equity", True), ("Efficiency", True), ("Forecast", True), ("Simulation", True), ("Report", True)]
     fragments = []
     for index, (label, complete) in enumerate(nodes):
         class_name = "" if complete else " pipeline-off"
