@@ -32,6 +32,31 @@ authorised to access it through the repository owner's GitHub account. Do not
 publish raw source files, reviewer identifiers, or unapproved datasets merely
 to make the application public.
 
+## Public-access strategy
+
+The recommended configuration is **private research repository + public
+Streamlit application**. This permits collaborators, supervisors, and other
+visitors to open the interface while preserving the project's raw-source and
+review records in the private repository.
+
+In Streamlit Community Cloud, open **My apps → OpenPreEduLab → Manage app**
+and select the available public-sharing setting, such as **Public** or
+**Anyone with the link**. Save the setting and reboot the app. Verify it in an
+incognito browser window before sharing the URL.
+
+If the selected Streamlit plan does not provide public sharing for an app
+backed by a private repository, do not publish the research repository by
+default. Instead, create a separate public deployment mirror containing only:
+
+- `app/` and public interface assets;
+- `models/` and `visualization/` code intended for public release;
+- `datasets/sample_preschool_data.csv` and the blank data template;
+- public documentation and dependency files.
+
+The mirror must exclude `datasets/raw/`, `datasets/staging/`, reviewer
+identities, unapproved data, and any restricted evidence. This fallback
+requires an explicit repository-visibility decision before creation.
+
 ## Deployment boundary
 
 The deployed interface is a research prototype. It defaults to synthetic sample
