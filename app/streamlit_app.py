@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import sys
 import tempfile
+import base64
 from pathlib import Path
 
 import matplotlib.pyplot as plt
@@ -37,6 +38,7 @@ from visualization.resource_allocation_plot import (  # noqa: E402
 
 
 SAMPLE_PATH = PROJECT_ROOT / "datasets" / "sample_preschool_data.csv"
+HERO_IMAGE_PATH = PROJECT_ROOT / "assets" / "hero_children_learning.jpg"
 NAV_ITEMS = [
     "Overview",
     "Data",
@@ -110,6 +112,12 @@ def _inject_design_system() -> None:
         """,
         unsafe_allow_html=True,
     )
+    if HERO_IMAGE_PATH.exists():
+        encoded_image = base64.b64encode(HERO_IMAGE_PATH.read_bytes()).decode("ascii")
+        st.markdown(
+            f"<style>.impact-hero{{background-image:linear-gradient(90deg,rgba(11,33,43,.57),rgba(17,55,61,.16) 54%,rgba(28,66,51,.34)),url('data:image/jpeg;base64,{encoded_image}')!important;background-size:cover!important;background-position:center!important;}}.impact-hero:before{{background:linear-gradient(0deg,rgba(248,237,220,.42),transparent 50%)!important;filter:none!important;}}</style>",
+            unsafe_allow_html=True,
+        )
 
 
 def _load_uploaded_csv(uploaded_file: object) -> pd.DataFrame:
@@ -162,16 +170,6 @@ def _landing_page() -> None:
           <div class='hero-orbit'></div>
           <svg class='hero-arc' viewBox='0 0 600 150' aria-hidden='true'><path id='arcPath' d='M 60,128 A 245,245 0 0,1 540,128' fill='none'/><text fill='#f7ead7' font-family='DM Mono, monospace' font-size='15' letter-spacing='4'><textPath href='#arcPath' startOffset='50%' text-anchor='middle'>OPEN PRESCHOOL EDUCATION PLATFORM</textPath></text></svg>
           <div class='hero-center'><div class='hero-flag'>RESEARCH · PRACTICE · DEVELOPMENT</div><h1>OpenPreEduLab</h1><p>A comprehensive interactive platform for preschool education — connecting research, inclusive support, teacher development, policy, data and everyday learning.</p></div>
-          <div class='hero-kid-scene'>
-            <svg viewBox='0 0 900 340' role='img' aria-label='Two stylised children collaborating with learning blocks'>
-              <ellipse cx='450' cy='287' rx='370' ry='36' fill='#d8c3a5' opacity='.6'/>
-              <path d='M78 280 C180 215 264 232 339 276' fill='none' stroke='#86a892' stroke-width='2' opacity='.5'/><path d='M548 278 C657 220 745 229 835 268' fill='none' stroke='#86a892' stroke-width='2' opacity='.5'/>
-              <g transform='translate(180 40)'><circle cx='115' cy='88' r='52' fill='#cf8f6d'/><path d='M66 83c3-60 90-70 104-7-27-20-63-19-104 7Z' fill='#2b3132'/><path d='M71 147c42-21 74-18 99 1l28 102H40l31-103Z' fill='#f2c784'/><path d='M78 174c-32 27-40 54-50 83M152 176c35 20 54 46 65 76' stroke='#cf8f6d' stroke-width='18' stroke-linecap='round'/><path d='M72 248l-16 65M164 248l27 65' stroke='#2e5360' stroke-width='22' stroke-linecap='round'/></g>
-              <g transform='translate(550 32)'><circle cx='118' cy='92' r='53' fill='#9b644a'/><path d='M65 84c8-59 91-71 111 3-35-23-70-19-111-3Z' fill='#5d412f'/><path d='M68 151c41-20 78-20 104 1l26 100H36l32-101Z' fill='#8bb7a3'/><path d='M77 179c-30 24-43 51-53 76M159 179c27 14 52 42 60 70' stroke='#9b644a' stroke-width='18' stroke-linecap='round'/><path d='M71 250l-13 61M165 250l29 61' stroke='#294650' stroke-width='22' stroke-linecap='round'/></g>
-              <g transform='translate(372 170)'><rect x='0' y='66' width='160' height='17' rx='8' fill='#9a704e'/><rect x='17' y='17' width='48' height='48' rx='5' fill='#d77b54'/><rect x='68' y='0' width='48' height='65' rx='5' fill='#e6bd70'/><rect x='119' y='29' width='35' height='36' rx='5' fill='#557b6a'/><circle cx='91' cy='-6' r='16' fill='#f4e2bf'/></g>
-              <g fill='none' stroke='#f5ead9' stroke-width='1.5' opacity='.72'><circle cx='104' cy='60' r='16'/><circle cx='789' cy='74' r='11'/><path d='M106 77 L170 134 M789 85 L716 143 M446 45 L463 123'/></g>
-            </svg>
-          </div>
           <div class='hero-side-note'>INCLUSIVE SUPPORT<br>TEACHER DEVELOPMENT<br>POLICY · DATA · PRACTICE</div>
         </div>
         """,
