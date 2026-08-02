@@ -35,7 +35,8 @@ from models.forecast import (  # noqa: E402
     forecast_teacher_demand,
 )
 from models.policy_simulation import simulate_policy_scenarios  # noqa: E402
-from llm.interpreter import create_interpretation_request  # noqa: E402
+from llm.deepseek import DeepSeekClient, DeepSeekRequestError, SUPPORTED_MODELS  # noqa: E402
+from llm.interpreter import ResearchInterpretationAssistant, create_interpretation_request  # noqa: E402
 from visualization.resource_allocation_plot import (  # noqa: E402
     calculate_dimension_scores,
     plot_dimension_radar,
@@ -423,7 +424,39 @@ def _ai_interpretation_page(data: pd.DataFrame) -> None:
         st.code(request.user_prompt, language="markdown")
     packet = f"# OpenPreEduLab AI Interpretation Request\n\n## System Prompt\n\n{request.system_prompt}\n\n## User Prompt\n\n{request.user_prompt}\n"
     st.download_button("Download reviewed interpretation request", packet.encode("utf-8"), "llm_interpretation_request.md", "text/markdown")
-    st.caption("To generate an LLM response, configure a provider-specific client outside the public interface and retain the reviewed request, provider, model, date, and researcher review record.")
+    st.caption("The downloadable request is the no-network option. Any generated response remains an assistive draft that requires researcher review.")
+
+    st.divider()
+    st.markdown("### Optional DeepSeek interpretation")
+    st.markdown("<div class='quiet-note'>DeepSeek is an external service. Selecting Generate sends the reviewed system prompt, research context, and current model results to DeepSeek. OpenPreEduLab does not provide a shared or guaranteed free API quota. Use only a key and account you control; the key is used for this request only and is not written to this repository, downloaded reports, or platform files.</div>", unsafe_allow_html=True)
+    with st.form("deepseek_interpretation_form", clear_on_submit=True):
+        model = st.selectbox("DeepSeek model", SUPPORTED_MODELS, help="Model availability and billing are determined by your DeepSeek account.")
+        api_key = st.text_input("Your DeepSeek API key", type="password", help="This field is cleared after submission and is never displayed in generated files.")
+        consent = st.checkbox("I understand that the reviewed prompt and its model results will be sent to DeepSeek, an external provider.")
+        submitted = st.form_submit_button("Generate interpretation with DeepSeek", use_container_width=True)
+
+    if submitted:
+        if not api_key.strip():
+            st.error("Enter your own DeepSeek API key to generate an interpretation.")
+        elif not consent:
+            st.error("Confirm the external-data transmission notice before generating an interpretation.")
+        else:
+            try:
+                with st.spinner("Generating an evidence-bounded interpretation…"):
+                    assistant = ResearchInterpretationAssistant(DeepSeekClient(api_key, model=model))
+                    response = assistant.interpret(results, context)
+                st.session_state["deepseek_interpretation"] = response
+                st.session_state["deepseek_model"] = model
+                st.success("Interpretation generated. Review it against the displayed evidence and research design.")
+            except (ValueError, DeepSeekRequestError) as error:
+                st.error(str(error))
+
+    response = st.session_state.get("deepseek_interpretation")
+    if response:
+        st.markdown("### Generated draft — researcher review required")
+        st.markdown(response)
+        record = f"# OpenPreEduLab AI-assisted Interpretation Record\n\nProvider: DeepSeek\nModel: {st.session_state.get('deepseek_model', 'unknown')}\n\n## System Prompt\n\n{request.system_prompt}\n\n## User Prompt\n\n{request.user_prompt}\n\n## Generated Draft\n\n{response}\n\n---\nThis draft is not a validated research finding, causal claim, or policy conclusion. It requires researcher review.\n"
+        st.download_button("Download interpretation record", record.encode("utf-8"), "deepseek_interpretation_record.md", "text/markdown")
 def _coming_soon_page(title: str, tag: str, detail: str) -> None:
     """Render an honest module-integration page without fictitious output."""
     st.markdown(f"<div class='eyebrow'>{tag}</div><h2>{title}</h2><p class='section-copy'>{detail}</p>", unsafe_allow_html=True)

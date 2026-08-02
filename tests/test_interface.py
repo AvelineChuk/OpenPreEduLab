@@ -31,3 +31,18 @@ def test_launch_platform_enters_research_workspace() -> None:
     assert "Workflow" in app.radio[0].options
     assert "Inclusive Support" in app.radio[0].options
     assert "Teacher Development" in app.radio[0].options
+
+
+def test_ai_interpretation_page_renders_external_provider_boundary() -> None:
+    """The optional DeepSeek path must render without contacting a provider."""
+    app = AppTest.from_file(str(APP_PATH))
+    app.run(timeout=60)
+
+    next(button for button in app.button if button.label == "Launch Platform").click().run(timeout=60)
+    app.radio[0].set_value("AI Interpretation").run(timeout=60)
+
+    assert not app.exception
+    content = "\n".join(item.value for item in app.markdown)
+    assert "Optional DeepSeek interpretation" in content
+    assert "external service" in content
+    assert len(app.get("download_button")) >= 1
