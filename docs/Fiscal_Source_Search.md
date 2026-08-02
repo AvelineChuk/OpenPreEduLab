@@ -24,8 +24,8 @@ review:
 | Year | Official publication | Provisional status |
 | --- | --- | --- |
 | 2017 | Provincial-level final accounts | Independently confirmed as a narrow, single-year context reference only |
-| 2019 | Provincial-level final-accounts draft (statements) | Pending independent scope review |
-| 2020 | Provincial-level final-accounts draft (statements) | Pending independent scope review |
+| 2019 | Provincial-level final accounts | Independently confirmed as a provincial-level, single-year context reference only |
+| 2020 | Provincial-level final accounts | Independently confirmed as a provincial-level, single-year context reference only |
 
 Each source visibly reports a `学前教育` field in a provincial-level general
 public-budget expenditure final-accounts table. The field must not be staged,
@@ -36,8 +36,8 @@ The archived official *Guangdong Statistical Yearbook 2025* was screened on
 31 July 2026. Its Table 8-2, *Basic Items of Local Government General Public
 Budget Revenue and Expenditure*, reports a general `教育` (Education)
 expenditure row for 2010-2024 but no preschool/kindergarten sub-item. It is
-registered as `GD_YEARBOOK_2025_TABLE_8_2_SCREEN` for independent confirmation
-and may be used only as potential general-education-finance context, never as
+registered as `GD_YEARBOOK_2025_TABLE_8_2_SCREEN` and independently confirmed
+as general-education-finance context only. It can never be used as
 preschool-specific expenditure or a PRAI fiscal input.
 
 ## Official search boundary

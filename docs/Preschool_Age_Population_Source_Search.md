@@ -49,9 +49,9 @@ The archived official *Guangdong Statistical Yearbook 2025* was also checked
 on 31 July 2026. Table 3-4, *Age Composition and Dependency Ratio of Permanent
 Population*, reports 2015-2024 values only for `0-14`, `15-64`, and `65 and
 over`. It does not provide single-year ages or a 3-5/3-6 group. The source has
-been registered as `GD_YEARBOOK_2025_TABLE_3_4_SCREEN` for independent
-confirmation; pending that review, it is exclusion evidence only and may not
-be used as a preschool-age denominator.
+been registered as `GD_YEARBOOK_2025_TABLE_3_4_SCREEN` and independently
+confirmed as exclusion evidence on 1 August 2026; it may not be used as a
+preschool-age denominator.
 
 ## Next official channels
 
