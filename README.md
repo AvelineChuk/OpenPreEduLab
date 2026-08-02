@@ -132,6 +132,13 @@ The interface is a research prototype. Calculations with the sample dataset or
 an uploaded CSV do not establish source provenance, variable comparability, or
 policy effects. See [User Interface Guide](docs/User_Interface_Guide.md).
 
+## Platform Deployment
+
+GitHub hosts the project source and research documentation. The interactive
+Streamlit interface can be deployed separately after a deployment URL is
+confirmed. See [Deployment Guide](docs/Deployment_Guide.md) for the
+Streamlit Community Cloud workflow and post-deployment verification checklist.
+
 ## Example Workflow
 
 ```python

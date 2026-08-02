@@ -40,7 +40,7 @@ from visualization.resource_allocation_plot import (  # noqa: E402
 SAMPLE_PATH = PROJECT_ROOT / "datasets" / "sample_preschool_data.csv"
 HERO_IMAGE_PATH = PROJECT_ROOT / "assets" / "hero_children_learning.jpg"
 NAV_ITEMS = [
-    "Overview",
+    "Workflow",
     "Data",
     "PRAI",
     "Equity",
@@ -48,7 +48,10 @@ NAV_ITEMS = [
     "Forecast",
     "Simulation",
     "AI Interpretation",
-    "Report",
+    "Inclusive Support",
+    "Teacher Development",
+    "Reports",
+    "Documentation",
     "Settings",
 ]
 
@@ -337,6 +340,20 @@ def _report_page() -> None:
     st.markdown(_module_card("↗", "Report generation", "Use the existing pipeline for reproducible tables and a research summary. The platform will not represent generated text as an automatically validated paper.", "PIPELINE OUTPUT"), unsafe_allow_html=True)
 
 
+def _documentation_page() -> None:
+    """Render the research documentation entry point."""
+    st.markdown("<div class='eyebrow'>Research documentation</div><h2>Methods remain visible.</h2><p class='section-copy'>OpenPreEduLab treats documentation as part of the research system: theory, variable definitions, data governance, validation and interpretation limits remain inspectable.</p>", unsafe_allow_html=True)
+    cards = st.columns(3, gap="medium")
+    items = [
+        ("◫", "Research framework", "Vision, architecture and the research workflow.", "DOCS"),
+        ("◌", "Model specifications", "PRAI, equity, efficiency, forecast and simulation assumptions.", "METHODS"),
+        ("↗", "Data governance", "Source hierarchy, review protocol and processed-data boundary.", "DATA"),
+    ]
+    for column, item in zip(cards, items):
+        with column:
+            st.markdown(_module_card(*item), unsafe_allow_html=True)
+
+
 def _settings_page() -> None:
     """Render project provenance and version information."""
     st.markdown("<div class='eyebrow'>Platform settings</div><h2>Prototype configuration.</h2>", unsafe_allow_html=True)
@@ -370,7 +387,7 @@ def _dashboard() -> None:
         st.error(f"Input validation failed: {error}")
         return
 
-    if page == "Overview":
+    if page == "Workflow":
         _dashboard_header(data)
         _workflow_strip()
         st.markdown("<div class='eyebrow' style='margin-top:42px'>Quick actions</div>", unsafe_allow_html=True)
@@ -389,7 +406,10 @@ def _dashboard() -> None:
     elif page == "Forecast": _coming_soon_page("Forecast framework.", "FORECAST MODULE", "Population, teacher-demand, and fiscal-requirement forecasting remains a research prototype. It requires a documented historical series before interactive output is meaningful.")
     elif page == "Simulation": _coming_soon_page("Policy simulation.", "SCENARIO MODULE", "Scenario comparison is a transparent research prototype. It must not be used as a real-world policy forecast without calibrated parameters and validated inputs.")
     elif page == "AI Interpretation": _coming_soon_page("AI-assisted interpretation.", "INTERPRETATION LAYER", "LLM output is bounded to model-result interpretation. It does not replace statistical evidence, causal identification, or researcher judgment.")
-    elif page == "Report": _report_page()
+    elif page == "Inclusive Support": _coming_soon_page("Inclusive education support.", "FUTURE DEVELOPMENT", "A future platform area for organising evidence, practice resources and research workflows related to inclusive preschool education. Its design will follow accessibility, ethics and evidence requirements.")
+    elif page == "Teacher Development": _coming_soon_page("Teacher professional development.", "FUTURE DEVELOPMENT", "A future platform area for teacher learning, professional-capability evidence and reflective practice. It will not infer teacher quality from incomplete administrative variables.")
+    elif page == "Reports": _report_page()
+    elif page == "Documentation": _documentation_page()
     else: _settings_page()
 
 
