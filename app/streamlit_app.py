@@ -457,7 +457,23 @@ def _ai_interpretation_page(data: pd.DataFrame) -> None:
         st.markdown("### Generated draft — researcher review required")
         st.markdown(response)
         record = f"# OpenPreEduLab AI-assisted Interpretation Record\n\nProvider: DeepSeek\nModel: {st.session_state.get('deepseek_model', 'unknown')}\n\n## System Prompt\n\n{request.system_prompt}\n\n## User Prompt\n\n{request.user_prompt}\n\n## Generated Draft\n\n{response}\n\n---\nThis draft is not a validated research finding, causal claim, or policy conclusion. It requires researcher review.\n"
-        st.download_button("Download interpretation record", record.encode("utf-8"), "deepseek_interpretation_record.md", "text/markdown")
+        output_format = st.selectbox(
+            "Interpretation record format",
+            ["Markdown (.md)", "Word document (.docx)", "PDF document (.pdf)"],
+            key="deepseek_record_format",
+            help="All formats contain the same prompts, provider metadata, generated draft, and researcher-review notice. No format includes your API key.",
+        )
+        if output_format == "Markdown (.md)":
+            payload, filename, mime_type = record.encode("utf-8"), "deepseek_interpretation_record.md", "text/markdown"
+        elif output_format == "Word document (.docx)":
+            payload, filename, mime_type = (
+                report_to_docx(record),
+                "deepseek_interpretation_record.docx",
+                "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            )
+        else:
+            payload, filename, mime_type = report_to_pdf(record), "deepseek_interpretation_record.pdf", "application/pdf"
+        st.download_button(f"Download interpretation record ({output_format})", payload, filename, mime_type)
 def _coming_soon_page(title: str, tag: str, detail: str) -> None:
     """Render an honest module-integration page without fictitious output."""
     st.markdown(f"<div class='eyebrow'>{tag}</div><h2>{title}</h2><p class='section-copy'>{detail}</p>", unsafe_allow_html=True)
