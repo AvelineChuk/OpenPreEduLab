@@ -10,16 +10,15 @@ round. The authoritative historical decisions remain in
 ## Completed review round
 
 All previously archived raw-source scope records and all 12 staging datasets
-received an independent review. A newly archived 2020 Guangdong provincial-level
-final-accounts source is pending its first independent scope review. No dataset
-was promoted to `datasets/processed/`.
+received an independent review. No dataset was promoted to
+`datasets/processed/`.
 
 | Outcome | Records | Permitted state |
 | --- | ---: | --- |
 | Conditional policy-simulation parameter | 2 staging datasets | Scenario parameter only |
-| Context-only | 4 staging datasets; 2 raw-source references | Contextual analysis only |
-| Definition held | 3 kindergarten datasets | No FTE substitution or processed use |
-| Provenance correction required | 3 Shanghai staging datasets | No analytical use until renewed review |
+| Context-only | 6 staging datasets; 5 raw-source references | Contextual analysis only |
+| Definition held | 4 kindergarten datasets | No FTE substitution or processed use |
+| Provenance discrepancy | Resolved for 3 Shanghai staging datasets | Shanghai population and fiscal: context-only; kindergarten: definition held |
 
 ## Completed priority 0: Guangdong raw-source scope reviews
 

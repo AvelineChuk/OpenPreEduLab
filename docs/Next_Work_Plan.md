@@ -15,14 +15,10 @@ Advance the provincial pilot from source-faithful staging records to a small, in
 ## Completed: Independent Review of Existing Staging Records
 
 **Status:** All original staging records have an independent review decision.
-The decisions include conditional policy-simulation use, context-only use,
-definition holds, and provenance corrections; none authorises a processed PRAI
-input.
-
-**Remaining review action:** The newer 2019 and 2020 Guangdong provincial-level
-final-accounts raw candidates require independent scope review under
-`docs/Raw_Source_Review_Packet.md`. They are not staging datasets and remain
-outside `datasets/processed/`.
+The decisions include conditional policy-simulation use, context-only use, and
+definition holds; none authorises a processed PRAI input. Shanghai provenance
+review has been resolved, and the Guangdong 2019/2020 provincial-level
+final-accounts sources have been independently confirmed as context-only.
 
 ## Priority 2: Preschool-Age Population
 
@@ -42,8 +38,8 @@ outside `datasets/processed/`.
 
 **Current source boundary:** The archived Guangdong 2017, 2019, and 2020
 provincial-level final-accounts tables are narrow fiscal context references,
-not Guangdong-wide or per-child inputs. The 2019 and 2020 sources remain
-pending independent scope review. See `docs/Fiscal_Source_Search.md`.
+not Guangdong-wide or per-child inputs. All three have completed independent
+scope review. See `docs/Fiscal_Source_Search.md`.
 
 ## Priority 4: Gansu Source Acquisition
 
