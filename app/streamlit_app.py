@@ -76,6 +76,11 @@ def _inject_design_system() -> None:
         .impact-hero { min-height:680px; position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center; text-align:center; border-radius:34px; background:radial-gradient(circle at 50% 35%,#faebd4 0,#eecba2 20%,transparent 45%),radial-gradient(circle at 85% 86%,#547c6c 0,transparent 31%),linear-gradient(135deg,#102c3c,#194458 56%,#476d63); box-shadow:0 32px 80px rgba(15,40,52,.22); }
         .impact-hero:before { content:''; position:absolute; width:110%; height:58%; left:-5%; bottom:-23%; background:#f8eddc; border-radius:50% 50% 0 0 / 58% 58% 0 0; transform:rotate(-4deg); opacity:.94; }
         .impact-hero:after { content:''; position:absolute; inset:0; background:linear-gradient(90deg,rgba(10,34,47,.35),transparent 40%,rgba(14,43,53,.22)); pointer-events:none; }
+        .sun-disc { position:absolute; right:10%; top:11%; width:210px; height:210px; border-radius:50%; background:radial-gradient(circle at 34% 32%,#fff8e9,#e9c38d 62%,#c48e58); box-shadow:0 0 80px rgba(255,227,173,.42); z-index:1; opacity:.93; }
+        .wood-arch { position:absolute; right:-5%; bottom:0; width:420px; height:350px; border:34px solid rgba(183,133,82,.68); border-bottom:0; border-radius:220px 220px 0 0; z-index:1; transform:rotate(-9deg); box-shadow:inset 0 0 0 1px rgba(255,236,205,.28); }
+        .glass-research-card { position:absolute; left:7%; bottom:10%; width:215px; min-height:126px; z-index:4; padding:18px; text-align:left; border-radius:18px; background:rgba(244,249,244,.2); border:1px solid rgba(255,255,255,.35); backdrop-filter:blur(18px); box-shadow:0 18px 38px rgba(5,27,38,.17); color:#eef6ef; transform:rotate(-4deg); }
+        .glass-research-card b{display:block;font:500 10px 'DM Mono',monospace;letter-spacing:.1em;color:#dcebdc;margin-bottom:15px}.glass-research-card span{display:block;font-size:13px;line-height:1.45}.mini-bars{display:flex;align-items:flex-end;gap:5px;height:25px;margin-top:12px}.mini-bars i{display:block;width:12px;background:#efcd94;border-radius:4px 4px 0 0}.mini-bars i:nth-child(1){height:9px}.mini-bars i:nth-child(2){height:22px}.mini-bars i:nth-child(3){height:15px}.mini-bars i:nth-child(4){height:25px}.mini-bars i:nth-child(5){height:18px}
+        .hero-network { position:absolute; right:7%; bottom:12%; width:230px; height:130px; z-index:2; opacity:.75; }.hero-network:before,.hero-network:after{content:'';position:absolute;height:1px;background:#e5d5b7;transform-origin:left center}.hero-network:before{width:180px;left:18px;top:55px;transform:rotate(-20deg)}.hero-network:after{width:146px;left:35px;top:78px;transform:rotate(19deg)}.hero-network i{position:absolute;width:11px;height:11px;border-radius:50%;background:#f6e1b8;box-shadow:0 0 0 7px rgba(246,225,184,.12)}.hero-network i:nth-child(1){left:10px;top:51px}.hero-network i:nth-child(2){left:100px;top:18px}.hero-network i:nth-child(3){right:10px;top:83px}.hero-network i:nth-child(4){left:104px;bottom:6px;background:#a8d2b4}
         .hero-arc { position:absolute; top:6%; left:50%; width:540px; max-width:92%; transform:translateX(-50%); z-index:2; }
         .hero-center { position:relative; z-index:3; max-width:760px; padding:130px 20px 20px; color:white; }
         .hero-center h1 { color:white!important; font-family:'Playfair Display',serif!important; font-size:clamp(48px,7.2vw,104px); font-weight:600; white-space:nowrap; line-height:.9; margin:12px 0 20px; letter-spacing:-.075em; text-shadow:0 4px 20px rgba(7,28,38,.18); }
@@ -168,9 +173,12 @@ def _landing_page() -> None:
         """
         <div class='impact-hero' aria-label='OpenPreEduLab visual introduction'>
           <div class='hero-orbit'></div>
+          <div class='sun-disc'></div><div class='wood-arch'></div>
           <svg class='hero-arc' viewBox='0 0 600 150' aria-hidden='true'><path id='arcPath' d='M 60,128 A 245,245 0 0,1 540,128' fill='none'/><text fill='#f7ead7' font-family='DM Mono, monospace' font-size='15' letter-spacing='4'><textPath href='#arcPath' startOffset='50%' text-anchor='middle'>OPEN PRESCHOOL EDUCATION PLATFORM</textPath></text></svg>
           <div class='hero-center'><div class='hero-flag'>RESEARCH · PRACTICE · DEVELOPMENT</div><h1>OpenPreEduLab</h1><p>A comprehensive interactive platform for preschool education — connecting research, inclusive support, teacher development, policy, data and everyday learning.</p></div>
           <div class='hero-side-note'>INCLUSIVE SUPPORT<br>TEACHER DEVELOPMENT<br>POLICY · DATA · PRACTICE</div>
+          <div class='glass-research-card'><b>OPEN RESEARCH SYSTEM</b><span>Evidence that connects learning, support, practice and policy.</span><div class='mini-bars'><i></i><i></i><i></i><i></i><i></i></div></div>
+          <div class='hero-network'><i></i><i></i><i></i><i></i></div>
         </div>
         """,
         unsafe_allow_html=True,
