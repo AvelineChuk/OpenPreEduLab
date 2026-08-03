@@ -1,0 +1,373 @@
+# OpenPreEduLab — Codex Continuation Guide
+
+**Last updated:** 4 August 2026  
+**Repository:** `C:\Users\86198\Desktop\OpenPreEduLab`  
+**GitHub:** <https://github.com/AvelineChuk/OpenPreEduLab>  
+**Branch:** `main`  
+**Current version:** v0.1 Research Prototype  
+**Public platform:** <https://openpreedulab-85aycdefait8stbdivqxpx.streamlit.app/>
+
+This file is the operational handoff for future Codex sessions. **Read it in
+full before taking any action.** It records the project state, the research
+boundaries, and the rules that protect data integrity and the user's GitHub
+repository.
+
+---
+
+## 1. Project identity and non-negotiable positioning
+
+OpenPreEduLab is an open-source, AI-assisted research infrastructure prototype
+for preschool education research. Its intended workflow is:
+
+`Research Question / Policy → Data → Statistical Models → Simulation → AI-assisted Interpretation → Research Output`
+
+It is **not**:
+
+- a general chatbot;
+- a completed real-world policy evaluation;
+- evidence that any policy has been effective;
+- a finished commercial product; or
+- an automatic paper-writing system.
+
+The platform is research-first, children-centred, reproducible, and cautious.
+Statistical models calculate; the LLM only assists the interpretation of
+supplied outputs. Do not market the prototype as a validated deployment.
+
+---
+
+## 2. Mandatory first-session checklist
+
+Before editing, downloading, processing data, or pushing commits:
+
+1. Read this file and `docs/Project_History_README_2026-08-03.md`.
+2. Run (using the explicit Git path if `git` is absent from `PATH`):
+
+   ```powershell
+   cd C:\Users\86198\Desktop\OpenPreEduLab
+   & "C:\Program Files\Git\cmd\git.exe" status -sb
+   & "C:\Program Files\Git\cmd\git.exe" log --oneline -8
+   ```
+
+3. Inspect whether the worktree is dirty. Preserve unrelated user changes.
+4. Before relying on remote status, use normal `fetch` when the network works.
+   GitHub connections have intermittently reset in prior sessions; retry normal
+   requests carefully, but never force push.
+5. Confirm the current data boundary:
+
+   ```powershell
+   Get-ChildItem datasets\processed -File
+   ```
+
+   At handoff, this directory must contain only `.gitkeep`.
+6. Run tests after any code change:
+
+   ```powershell
+   python -m pytest tests -q
+   ```
+
+---
+
+## 3. Current implementation status
+
+### Implemented and tested
+
+- Landing Page and Streamlit Research Dashboard (`app/streamlit_app.py`);
+- data preview, PRAI input template, sample-dataset download, and upload
+  validation guidance;
+- Preschool Resource Allocation Index (PRAI): validation, normalisation,
+  weighting, scores, ranking, and export;
+- equity evaluation: CV, Gini, and Theil;
+- visualisation: ranking, trend, heatmap, and radar chart;
+- DEA efficiency prototype;
+- population, teacher-demand, and fiscal-requirement forecast prototypes;
+- scenario-based policy-simulation prototype;
+- bounded AI Interpretation prompt workflow;
+- optional DeepSeek integration using a visitor-controlled API key;
+- Research Report export in Markdown, Word (`.docx`), and PDF (`.pdf`);
+- AI Interpretation record export in Markdown, Word, and PDF;
+- documentation, changelog, citation file, license, tests, and GitHub Actions;
+- public Streamlit deployment;
+- a verified Workflow interface screenshot at
+  `docs/screenshots/platform_workflow.png`.
+
+### Recent verified maintenance
+
+- `dd8b3d2 Fix landing page transition warning`: removed `st.rerun()` from a
+  button callback. The old Dashboard warning *“Calling st.rerun() within a
+  callback is a no-op.”* should not reappear.
+- `04e5177 Update Streamlit width parameters`: deprecated
+  `use_container_width` uses were replaced with `width="stretch"`.
+- `a53f8e8 Improve upload validation guidance`.
+- `93f084e Add AI interpretation DOCX and PDF downloads`.
+- `e60babd Document AI interpretation export formats`.
+- `69765b8 Add project history record and workflow screenshot`.
+
+The most recent validated test result was **30 passed**. A Streamlit smoke test
+also loaded all 14 Dashboard pages successfully.
+
+### Deliberately incomplete / future areas
+
+- Inclusive Support is an honest future-development page, not an implemented
+  assessment or recommendation engine.
+- Teacher Development is an honest future-development page, not an implemented
+  teacher-quality evaluation engine.
+- A knowledge graph, research agents, accounts, collaboration features, and
+  real-data project storage are not implemented.
+- No real-data empirical PRAI, equity, DEA, forecast, or policy conclusion has
+  been produced.
+
+---
+
+## 4. Data governance: absolute rules
+
+The only permitted progression is:
+
+`raw → staging → independent review → processed`
+
+### Never do the following
+
+- Do **not** write unreviewed values to `datasets/processed/`.
+- Do **not** alter official raw files, their manifests, checksums, or source
+  URLs after archival.
+- Do **not** interpolate, smooth, impute, fabricate, delete, or silently
+  “clean” extreme values. Record an anomaly and investigate its source,
+  definition, unit, geography, and reference year instead.
+- Do **not** treat broad age groups (`0–14`, `1–4`, `5–9`, etc.) as strict
+  `3–5` or `3–6` preschool-age population.
+- Do **not** treat general education expenditure or general public-budget
+  expenditure as preschool-specific expenditure.
+- Do **not** treat reported `专任教师` / full-time teacher headcount as FTE without
+  an official mapping or a separately approved empirical variable redesign.
+- Do **not** call sample results real findings, policy effects, or causal
+  evidence.
+- Do **not** bypass official-site access controls, CAPTCHAs, authentication, or
+  browser restrictions.
+
+### Current data status
+
+`datasets/processed/` is empty except for `.gitkeep`.
+
+Reviewed staging records: 12 total.
+
+- 2: conditional policy-simulation parameters only;
+- 6: context-only use;
+- 4: held for teacher-variable definition review;
+- 0: approved for processed analytical use.
+
+The four definition holds are Beijing, Shanghai, Guangdong, and Sichuan
+kindergarten datasets. Their reported teacher field has no verified FTE mapping.
+
+### Binding empirical gaps
+
+Do not start real-data model validation until an approved compatible subset has:
+
+1. annual regional population explicitly defined as ages `3–5` or `3–6`;
+2. annual preschool- or kindergarten-specific public expenditure with scope,
+   unit, and denominator compatibility;
+3. an official FTE mapping, or a documented and approved staffing-variable
+   redesign; and
+4. compatible facility/capacity and qualified-teacher measures.
+
+Relevant source and review documents:
+
+- `docs/Data_Review_Protocol.md`
+- `docs/Raw_Source_Review_Packet.md`
+- `docs/Pilot_Data_Gap_Register.md`
+- `docs/Preschool_Age_Population_Source_Search.md`
+- `docs/Fiscal_Source_Search.md`
+- `docs/Teacher_Variable_Definition_Review.md`
+- `docs/Data_Catalog.md`
+- `docs/Review_Queue.md`
+
+### Already resolved review facts
+
+- Shanghai provenance discrepancy was resolved as an official CRLF/LF
+  representation difference. Shanghai population and fiscal series are
+  context-only; its kindergarten record remains definition-held.
+- Guangdong 2017, 2019, and 2020 provincial-level final-accounts preschool
+  fields are provincial-level, single-year, context-only references—not
+  Guangdong-wide PRAI fiscal inputs.
+- Guangdong Yearbook Table 3-4 is incompatible with strict preschool-age
+  population; Table 8-2 is general-education-finance context only.
+
+---
+
+## 5. AI Interpretation and DeepSeek rules
+
+The AI module is designed for evidence-bounded research interpretation.
+
+- Keep the system-prompt restrictions intact: supplied results only, no
+  invented facts, no causal claim without a stated causal design, uncertainty
+  visible, mechanisms as hypotheses only.
+- The public app must never contain a shared DeepSeek key or any other provider
+  credential.
+- The visitor supplies their own key within the current session and explicitly
+  confirms external transmission before any call.
+- Do not log, commit, display, export, or transmit API keys.
+- Do not silently add a different LLM provider or send user data to any service
+  without explicit user authority and a documented data-governance review.
+- The AI Interpretation record may be exported as `.md`, `.docx`, or `.pdf`;
+  all formats must carry the same prompt, model metadata, generated draft, and
+  researcher-review disclaimer, but never the key.
+
+When reviewing generated text, reject or revise drafts that:
+
+- infer associations across distinct model blocks (for example PRAI versus a
+  separate simulation coverage output);
+- claim real regional findings from the sample dataset;
+- use causal or policy-effect language without an actual causal design; or
+- invent sources, city characteristics, mechanisms, or policies.
+
+See `docs/DeepSeek_Integration.md` and `docs/LLM_Interpretation.md`.
+
+---
+
+## 6. Platform and deployment operations
+
+### Local run
+
+```powershell
+cd C:\Users\86198\Desktop\OpenPreEduLab
+python -m pip install -r requirements.txt
+streamlit run app\streamlit_app.py
+```
+
+### Important dependencies
+
+`requirements.txt` includes the reporting libraries `python-docx` and
+`reportlab`. Do not remove them: they provide the Word/PDF exports.
+
+### Deployment safety
+
+- The GitHub repository can remain private while the Streamlit app is public.
+- Never expose `datasets/raw/`, `datasets/staging/`, reviewer identifiers,
+  unapproved evidence, API keys, or restricted data through a public deployment
+  mirror.
+- Streamlit Cloud normally redeploys after a push to `main`; allow a few minutes
+  and use a hard refresh before diagnosing a missing change.
+- Public mobile access was checked successfully with HTTP 200 and no detected
+  login wall. This is not a substitute for visual device testing.
+
+### Screenshot/showcase rules
+
+- Existing conceptual assets are under `docs/screenshots/`.
+- The verified real Workflow screenshot is
+  `docs/screenshots/platform_workflow.png`.
+- Further wanted assets: Landing Page, Reports format selector, and AI
+  Interpretation format selector.
+- Do not use screenshots that show an API key, personal data, an unreviewed
+  real dataset, browser warnings, or an AI draft that violates the project’s
+  evidence boundary.
+- Do not create fake “real platform” screenshots. Use actual browser captures.
+
+---
+
+## 7. Coding and testing rules
+
+### Permitted work without additional research-design approval
+
+- fix reproducible software bugs;
+- improve clear user-facing errors, documentation, test coverage, and safe UI
+  polish;
+- add non-destructive validation checks;
+- update current-status documentation from authoritative review registers;
+- generate report files from existing bounded outputs;
+- improve reproducibility while preserving documented model logic.
+
+### Work requiring a documented design decision or user direction
+
+- changing PRAI indicator definitions, weights, or score interpretation;
+- replacing FTE with teacher headcount in real empirical models;
+- choosing a real-data pilot geography or time period that changes research
+  scope;
+- treating a source as analytical rather than context-only;
+- adding a new external AI provider, paid service, user account system, or data
+  storage service;
+- publishing a repository, data, or screenshots that may contain sensitive
+  material.
+
+### Required verification after changes
+
+For code changes:
+
+```powershell
+python -m pytest tests -q
+& "C:\Program Files\Git\cmd\git.exe" diff --check
+```
+
+For Streamlit changes, also use `streamlit.testing.v1.AppTest` to test the
+affected route. For major app changes, load all Dashboard navigation pages.
+Do not claim a feature is complete merely because it renders; verify its output,
+error path, and export path as applicable.
+
+Use `apply_patch` for text/code edits. Preserve a dirty worktree. Never use
+`git reset --hard`, `git checkout --`, force push, or destructive deletion
+unless the user has clearly authorised it.
+
+---
+
+## 8. Git and collaboration rules
+
+Git executable:
+
+```powershell
+& "C:\Program Files\Git\cmd\git.exe"
+```
+
+Recommended normal flow:
+
+```powershell
+& "C:\Program Files\Git\cmd\git.exe" status -sb
+& "C:\Program Files\Git\cmd\git.exe" fetch origin
+& "C:\Program Files\Git\cmd\git.exe" add <only intended files>
+& "C:\Program Files\Git\cmd\git.exe" commit -m "Clear, scoped message"
+& "C:\Program Files\Git\cmd\git.exe" push origin main
+```
+
+If GitHub resets the connection:
+
+- retain the local commit;
+- retry a normal push later;
+- do not force push;
+- report whether the commit is local-only or has been confirmed pushed;
+- do not invent remote or CI results.
+
+Independent reviewer: `Barnabe-Zihan-Ding`. Historical review decisions are
+already recorded in the metadata registers. New real-data promotion requires
+an independently reviewable record; do not self-certify raw/staging evidence as
+approved for processed use.
+
+---
+
+## 9. Priority queue for continuation
+
+Proceed in this order unless the user explicitly changes priorities.
+
+1. **Complete showcase assets:** import only approved real screenshots, update
+   README and `docs/Project_Showcase.md`, then verify links and push.
+2. **Continue definition-compatible source discovery:** use normal authorised
+   browser access to official census/yearbook/finance publications. Archive only
+   original, official candidate files with URL, retrieval date, visible table,
+   scope, unit, and checksum.
+3. **Independent review:** route every candidate through raw → staging → review.
+   Do not place candidate values in processed merely to unblock the interface.
+4. **Real-data model validation:** only after processed data exists. Validate
+   PRAI directions, standardisation, weights/sensitivity, DEA inputs/outputs,
+   forecasts, and scenario parameters. Treat the first run as software and
+   reproducibility validation, not a policy study.
+5. **Platform experience:** continue browser/mobile/accessibility checks,
+   meaningful upload feedback, and documentation accuracy.
+6. **v0.2 design:** define theory, ethics, data, and interaction requirements
+   for Inclusive Support and Teacher Development before implementation.
+
+---
+
+## 10. Definition of “done” for the current phase
+
+The v0.1 software prototype is functionally complete. The empirical research
+phase is **not** complete until definition-compatible, independently reviewed
+real data are present in `datasets/processed/` and the models have been
+validated against that data. Accuracy, provenance, reproducibility, and
+children-centred research ethics take priority over speed or apparent
+completeness.
+
