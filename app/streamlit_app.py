@@ -170,7 +170,6 @@ def _module_card(icon: str, title: str, description: str, tag: str) -> str:
 def _switch_to_platform() -> None:
     """Persist the transition from landing page to research platform."""
     st.session_state["view"] = "platform"
-    st.rerun()
 
 
 def _landing_page() -> None:
