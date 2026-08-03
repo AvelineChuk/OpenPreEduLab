@@ -26,9 +26,8 @@ The API key is used only in the request header. It is not committed to GitHub, w
 - It distinguishes descriptive association from causal inference.
 - It asks for limitations and future research as required output sections.
 - The generated text is labelled as a draft requiring researcher review.
-- A downloadable record preserves the prompts, provider, selected model, and returned draft; it deliberately excludes the API key.
+- A downloadable record preserves the prompts, provider, selected model, and returned draft; it deliberately excludes the API key. Visitors may select Markdown, Word, or PDF; the three formats preserve the same record content.
 
 ## Operational limitations
 
 This is an API integration, not an offline model. It needs a valid DeepSeek account, available quota or billing access, network connectivity, and a provider-supported model. Provider availability, pricing, model behaviour, and data-processing terms can change independently of OpenPreEduLab.
-

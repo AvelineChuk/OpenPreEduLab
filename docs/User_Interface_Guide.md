@@ -46,7 +46,8 @@ soft-gray, and deep-blue visual system to keep analytical content primary.
    assumptions remain adjustable and their outputs are exportable.
 6. Use **AI Interpretation** either to download a bounded prompt or, after
    explicit consent and with a visitor-controlled DeepSeek key, generate a
-   clearly labelled interpretation draft.
+   clearly labelled interpretation draft. The resulting interpretation record
+   can be downloaded as Markdown, Word, or PDF.
 7. Use **Reports** to download the same research-run summary as Markdown,
    Word, or PDF.
 
