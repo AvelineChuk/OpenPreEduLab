@@ -61,6 +61,10 @@ The following figures demonstrate the workflow of OpenPreEduLab using sample dat
 
 ![Sample-data visualisation examples](docs/screenshots/visualization_example.png)
 
+![OpenPreEduLab landing page](docs/screenshots/platform_landing.jpg)
+
+![Research report format selector](docs/screenshots/platform_reports_format.jpg)
+
 See [Project Showcase](docs/Project_Showcase.md) for interpretation notes and presentation context.
 
 ## Implemented Features (v0.1)
