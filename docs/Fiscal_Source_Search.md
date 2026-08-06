@@ -82,3 +82,20 @@ general education expenditure or transfer-payment allocations.
 Any future candidate must be archived with its source URL, retrieval date,
 SHA-256 checksum, visible table location, unit, and scope. It must then pass
 independent review before any proposed analytical use is considered.
+
+## Gansu yearbook candidate
+
+The Gansu Provincial Bureau of Statistics official *Gansu Statistical Yearbook
+2025* was acquired through a normal browser session on 6 August 2026 and
+archived with its URL and SHA-256 in the raw-source manifest. Archive entry
+`zk/html/18-24.xls` is titled *Basic Statistics on Educational Funds in Various
+School (2023)*. Its visible table structure includes a `Kindergartens` row and
+`Government Appropriation for Education` fields, making it a prospective
+preschool-fiscal source candidate.
+
+This is not yet an approved analytical source. The table is single-year and
+requires independent verification of geographic scope, unit (`万元`),
+accounting basis, and whether the government-appropriation field is compatible
+with the intended preschool-expenditure variable. No values have been
+transcribed to staging or processed. The candidate is registered as
+`GANSU_2025_YEARBOOK_TABLE_18_24_SCREEN`.

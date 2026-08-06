@@ -66,3 +66,11 @@ Any candidate must be registered before extraction, archived without
 modification, independently reviewed, and checked against the project variable
 definition. A broad age group, enrolment count, gross-enrolment-rate inversion,
 or demographic interpolation is not an acceptable substitute.
+
+The Gansu Provincial Bureau of Statistics official *Gansu Statistical Yearbook
+2025* was acquired through a normal browser session on 6 August 2026. Its
+archive entry `zk/html/02-04.xls`, *Age Composition and Dependency Ratio of
+Population*, reports only `0-14`, `15-64`, and `65 and over` groups for
+2001-2024. It is recorded as `GANSU_YEARBOOK_2025_TABLE_2_4_SCREEN` and cannot
+provide a strict 3-5 or 3-6 denominator without unsupported decomposition.
+Independent source review remains pending.
