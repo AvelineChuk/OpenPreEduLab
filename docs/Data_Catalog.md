@@ -12,7 +12,7 @@ complete or that any policy effect has been validated.
 | --- | ---: | --- | --- |
 | Sample data | `sample_preschool_data.csv` | Demonstration-ready | Tests, notebooks, and software examples only |
 | Staging data | 12 datasets | Two conditionally approved for policy-simulation parameters; six approved context-only; four held for definition review | No staging dataset is approved for processed analytical use |
-| Raw-source review register | 13 records | Five context-only decisions, three definition-incompatible decisions, four policy-simulation candidate decisions, and one retained return-for-correction audit record | Scope and provenance review only |
+| Raw-source review register | 14 records | Five context-only decisions, three definition-incompatible decisions, four policy-simulation candidate decisions, one retained return-for-correction audit record, and one pending Gansu source-screening assignment | Scope and provenance review only |
 | Processed data | 0 datasets | Not available | None |
 
 ## Staging datasets
@@ -46,6 +46,7 @@ Assignments are maintained in
 | Guangdong 2019 provincial-level final accounts | Contains a `学前教育` row in a provincial-level final-accounts table | Raw candidate pending independent scope review; not an analytical input |
 | Guangdong 2023 preschool fund allocation | Central transfer allocation, with separate attachment scopes | Independently reviewed policy-simulation parameter candidate only |
 | Guangdong 2022, 2024, and 2025 performance reports | Central support-for-preschool-development transfer-payment programme | Independently reviewed programme funding/execution parameter candidates |
+| Gansu Statistical Yearbook 2025 | Official provincial ZIP archive containing 2024 education and kindergarten table entries; its population age-structure table uses broad age groups | Pending independent source-scope review; no staging or analytical use |
 
 The 2022, 2024, and 2025 performance reports are comparable only as records of
 the named central transfer-payment programme. They must not be interpreted as a
