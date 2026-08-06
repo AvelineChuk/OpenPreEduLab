@@ -6,11 +6,11 @@ Advance the provincial pilot from source-faithful staging records to a small, in
 
 ## Priority 0: Complete the 2026 Fund Provenance Chain
 
-**Current status:** An official government republication has been verified: Xinxing County Finance Bureau's page for the Ministry of Finance and Ministry of Education notice `Caijiao [2026] No. 68`, with both XLS attachments. The local supplied files and republished files have different binary hashes but identical visible workbook content.
+**Current status:** An official government republication has been verified: Xinxing County Finance Bureau's page for the Ministry of Finance and Ministry of Education notice `Caijiao [2026] No. 68`, with both XLS attachments. The local supplied files and republished files have different binary hashes but identical visible workbook content. The primary Ministry of Finance notice page has now been located: `http://jkw.mof.gov.cn/zxzyzf/zcxqjyfzzj/202604/t20260429_3988831.htm`, published 2026-04-29.
 
 **Action:** Retain the verified republication evidence and, if available, locate the primary Ministry of Finance or Ministry of Education publication URL. Record any primary URL in the raw-source manifest without replacing the archived republication files.
 
-**Completion condition:** The republication evidence remains documented; a primary central-government URL is recorded if available. This verifies provenance only; the allocation remains a future scenario parameter, not historical expenditure.
+**Completion condition:** The primary URL and notice identity receive an independently reviewable provenance check. This verifies provenance only; the allocation remains a future scenario parameter, not historical expenditure.
 
 ## Completed: Independent Review of Existing Staging Records
 
