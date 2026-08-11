@@ -33,6 +33,9 @@ Current prototype functions include:
 - data-template and sample-data download;
 - AI Interpretation with an evidence-bounded prompt workflow;
 - optional visitor-controlled DeepSeek integration;
+- Inclusive Education Research Module with five prototype dimensions,
+  descriptive Support Gap, Researcher Mode, exploratory scenarios, and bounded
+  research exports using synthetic or non-identifying institution-level data;
 - research-run summary downloads in Markdown, Word, and PDF;
 - AI interpretation-record downloads in Markdown, Word, and PDF.
 
@@ -127,9 +130,9 @@ released.
 
 Current automated software validation status:
 
-- 30 project tests passed after report-export, AI integration, and interface
-  changes;
-- all 14 Dashboard pages loaded in Streamlit smoke testing;
+- 47 project tests passed after the Inclusive Education module, report-export,
+  AI integration, and interface changes;
+- all current Dashboard routes loaded in Streamlit smoke testing;
 - DOCX and PDF exports were checked as valid document containers;
 - public mobile access returned HTTP 200 without a detected login wall.
 
@@ -163,11 +166,12 @@ Screenshots must not reveal API keys, private data, or unreviewed real data.
    exists.
 4. Complete current interface screenshots and update README / Project Showcase.
 5. Continue responsive browser testing and future accessibility review.
-6. Design v0.2 areas—Inclusive Support and Teacher Development—only after their
-   theoretical, ethical, and data-governance requirements are specified.
+6. Continue review and accessibility work for the aggregate Inclusive Education
+   prototype without treating its synthetic data as empirical evidence.
+7. Design v0.2 Teacher Development only after its theoretical, ethical, and
+   data-governance requirements are specified.
 
 ## 10. Core principle
 
 OpenPreEduLab prioritises reproducibility, evidence boundaries, and children-
 centred educational research over rapid but unsupported outputs.
-

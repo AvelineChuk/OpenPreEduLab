@@ -83,6 +83,9 @@ Before editing, downloading, processing data, or pushing commits:
 - scenario-based policy-simulation prototype;
 - bounded AI Interpretation prompt workflow;
 - optional DeepSeek integration using a visitor-controlled API key;
+- Inclusive Education Research Module: synthetic institution-level input,
+  five-dimension scores, Researcher Mode, descriptive Support Gap, visualisation,
+  exploratory scenarios, bounded research insights, and export;
 - Research Report export in Markdown, Word (`.docx`), and PDF (`.pdf`);
 - AI Interpretation record export in Markdown, Word, and PDF;
 - documentation, changelog, citation file, license, tests, and GitHub Actions;
@@ -102,19 +105,27 @@ Before editing, downloading, processing data, or pushing commits:
 - `e60babd Document AI interpretation export formats`.
 - `69765b8 Add project history record and workflow screenshot`.
 
-The most recent validated test result was **30 passed**. A Streamlit smoke test
-also loaded all 14 Dashboard pages successfully.
+The most recent validated test result was **47 passed** when non-interface and
+interface test files were run separately. A dedicated Streamlit smoke test
+loaded all current Dashboard routes, including Inclusive Education. The
+combined pytest process previously exceeded the environment timeout because of
+AppTest accumulation; this was a test-runner timing issue, not an assertion
+failure.
 
 ### Deliberately incomplete / future areas
 
 - Inclusive Support is an honest future-development page, not an implemented
   assessment or recommendation engine.
+- Inclusive Education is implemented only as an aggregate research prototype.
+  Its included dataset is synthetic, its scores and Support Gap are descriptive,
+  and it must not be used for child diagnosis, disability determination, teacher
+  ranking, or causal conclusions.
 - Teacher Development is an honest future-development page, not an implemented
   teacher-quality evaluation engine.
 - A knowledge graph, research agents, accounts, collaboration features, and
   real-data project storage are not implemented.
-- No real-data empirical PRAI, equity, DEA, forecast, or policy conclusion has
-  been produced.
+- No approved real-data empirical PRAI, equity, DEA, forecast, policy, or
+  inclusive-education conclusion has been produced.
 
 ---
 
@@ -357,8 +368,11 @@ Proceed in this order unless the user explicitly changes priorities.
    reproducibility validation, not a policy study.
 5. **Platform experience:** continue browser/mobile/accessibility checks,
    meaningful upload feedback, and documentation accuracy.
-6. **v0.2 design:** define theory, ethics, data, and interaction requirements
-   for Inclusive Support and Teacher Development before implementation.
+6. **Inclusive Education maintenance:** continue method review, accessibility
+   checks, and synthetic-data validation without promoting records to
+   `datasets/processed/`.
+7. **v0.2 design:** define theory, ethics, data, and interaction requirements
+   for Teacher Development before implementation.
 
 ---
 
@@ -370,4 +384,3 @@ real data are present in `datasets/processed/` and the models have been
 validated against that data. Accuracy, provenance, reproducibility, and
 children-centred research ethics take priority over speed or apparent
 completeness.
-
