@@ -16,6 +16,7 @@ from models.inclusion import (
     ITEM_COLUMNS,
     SCORE_COLUMNS,
     calculate_inclusion_dimension_scores,
+    calculate_dimension_sensitivity,
     cluster_institutions,
     correlation_matrix,
     descriptive_statistics,
@@ -300,6 +301,20 @@ def render_inclusive_education_page(project_root: Path) -> None:
         if selected_variables:
             st.markdown("#### Descriptive statistics")
             st.dataframe(descriptive_statistics(analysis_data, selected_variables), width="stretch", hide_index=True)
+        st.markdown("#### Dimension sensitivity")
+        st.caption(
+            "Leave-one-item-out analysis checks whether a dimension mean is highly "
+            "dependent on one item. It does not validate the item or imply causality."
+        )
+        sensitivity = calculate_dimension_sensitivity(raw_data, source_min, source_max)
+        st.dataframe(sensitivity, width="stretch", hide_index=True)
+        st.download_button(
+            "Download dimension sensitivity analysis",
+            sensitivity.to_csv(index=False).encode("utf-8"),
+            "inclusive_dimension_sensitivity.csv",
+            "text/csv",
+            key="inclusive_sensitivity_download",
+        )
         if len(selected_variables) >= 2:
             st.markdown("#### Correlation — descriptive association only")
             st.dataframe(correlation_matrix(analysis_data, selected_variables), width="stretch")

@@ -99,6 +99,9 @@ Before editing, downloading, processing data, or pushing commits:
   pathway, radar, Gap, and heatmap views. Automated/code-level review is in
   `docs/Inclusive_Education_Accessibility_Check.md`; keyboard, screen-reader,
   zoom/reflow, contrast, and mobile review remain manual follow-up items.
+- Inclusive Education Researcher Mode now includes leave-one-item-out dimension
+  sensitivity analysis. This is a robustness check, not item validation or a
+  causal analysis.
 - `dd8b3d2 Fix landing page transition warning`: removed `st.rerun()` from a
   button callback. The old Dashboard warning *“Calling st.rerun() within a
   callback is a no-op.”* should not reappear.
@@ -109,7 +112,7 @@ Before editing, downloading, processing data, or pushing commits:
 - `e60babd Document AI interpretation export formats`.
 - `69765b8 Add project history record and workflow screenshot`.
 
-The most recent validated test result was **47 passed** when non-interface and
+The most recent validated test result was **48 passed** when non-interface and
 interface test files were run separately. A dedicated Streamlit smoke test
 loaded all current Dashboard routes, including Inclusive Education. The
 combined pytest process previously exceeded the environment timeout because of

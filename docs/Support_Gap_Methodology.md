@@ -92,3 +92,8 @@ processes, and measurement error. Future work should examine reliability,
 construct validity, sensitivity to weights, subgroup variation, longitudinal
 stability, and relationships with independently measured participation. Causal
 research requires a separately justified design.
+
+The Researcher Mode leave-one-item-out analysis is the first software-level
+robustness check. It reports how each dimension mean changes when one item is
+removed. It does not replace expert content review, alternative weighting
+models, or empirical validation of the instrument.

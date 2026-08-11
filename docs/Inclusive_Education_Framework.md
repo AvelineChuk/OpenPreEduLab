@@ -106,7 +106,8 @@ The first release separates four activities:
 1. validate and standardise institution-level aggregate inputs;
 2. calculate transparent equal-item dimension scores;
 3. describe distributions, associations, gaps, and exploratory clusters; and
-4. generate bounded insights, research-question candidates, and scenarios.
+4. inspect item sensitivity through leave-one-item-out checks; and
+5. generate bounded insights, research-question candidates, and scenarios.
 
 Deterministic insight rules operate before any optional LLM request. The LLM
 receives calculated aggregate outputs only and cannot alter statistical results.
@@ -132,6 +133,7 @@ remain visible in exported research records.
 ## 8. Limitations
 
 - Equal item weighting is a prototype assumption.
+- Leave-one-item-out sensitivity is a robustness check, not item validation.
 - The synthetic sample is structured for software testing, not empirical claims.
 - Institution-level aggregates can mask within-institution variation.
 - Correlation does not establish causation.

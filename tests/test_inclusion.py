@@ -8,6 +8,7 @@ from models.inclusion import (
     ITEM_COLUMNS,
     SCORE_COLUMNS,
     calculate_inclusion_dimension_scores,
+    calculate_dimension_sensitivity,
     cluster_institutions,
     correlation_matrix,
     descriptive_statistics,
@@ -101,6 +102,17 @@ def test_inclusion_insights_and_scenarios_are_bounded(sample_inclusive_dataset_p
         "Improve Curriculum Adaptation",
     }
     assert scenarios[list(SCORE_COLUMNS)].apply(lambda column: column.between(0, 100)).all().all()
+
+
+def test_inclusion_dimension_sensitivity_is_complete(sample_inclusive_dataset_path) -> None:
+    """Leave-one-item-out sensitivity returns one row per dimension item."""
+    data = load_inclusion_data(sample_inclusive_dataset_path)
+    sensitivity = calculate_dimension_sensitivity(data)
+    assert len(sensitivity) == len(ITEM_COLUMNS)
+    assert sensitivity["item_excluded"].nunique() == len(ITEM_COLUMNS)
+    assert sensitivity[["baseline_mean_score", "leave_one_out_mean_score", "max_abs_institution_delta"]].apply(
+        lambda column: column.between(0, 100)
+    ).all().all()
 
 
 def test_inclusion_llm_request_preserves_non_diagnostic_boundary() -> None:

@@ -197,6 +197,42 @@ def descriptive_statistics(data: pd.DataFrame, columns: Sequence[str]) -> pd.Dat
     return result.round(4)
 
 
+def calculate_dimension_sensitivity(
+    data: pd.DataFrame,
+    source_min: float = 0.0,
+    source_max: float = 100.0,
+) -> pd.DataFrame:
+    """Run transparent leave-one-item-out sensitivity for each dimension.
+
+    For every dimension, one item is removed at a time and the equal-item
+    mean is recalculated. The output compares sample means and the largest
+    institution-level absolute change with the default score. This is a
+    diagnostic robustness check, not evidence that any item is more valid or
+    causally important.
+    """
+    standardised = standardize_inclusion_data(data, source_min, source_max)
+    rows: list[dict[str, float | str]] = []
+    for score_column, items in DIMENSION_ITEMS.items():
+        if len(items) < 2:
+            raise ValueError(f"Sensitivity analysis requires at least two items in {score_column}.")
+        baseline = standardised.loc[:, list(items)].mean(axis=1)
+        for excluded_item in items:
+            retained = [item for item in items if item != excluded_item]
+            leave_one_out = standardised.loc[:, retained].mean(axis=1)
+            rows.append(
+                {
+                    "dimension": DIMENSION_LABELS[score_column],
+                    "score_column": score_column,
+                    "item_excluded": excluded_item,
+                    "baseline_mean_score": round(float(baseline.mean()), 4),
+                    "leave_one_out_mean_score": round(float(leave_one_out.mean()), 4),
+                    "mean_score_delta": round(float((leave_one_out.mean() - baseline.mean())), 4),
+                    "max_abs_institution_delta": round(float((leave_one_out - baseline).abs().max()), 4),
+                }
+            )
+    return pd.DataFrame(rows)
+
+
 def correlation_matrix(data: pd.DataFrame, columns: Sequence[str]) -> pd.DataFrame:
     """Calculate a descriptive Pearson correlation matrix for selected variables."""
     selected = list(dict.fromkeys(columns))

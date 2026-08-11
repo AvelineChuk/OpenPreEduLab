@@ -68,6 +68,11 @@ institutions, and optionally run exploratory K-means clustering.
 Correlation is descriptive association only. Cluster numbers are neutral
 pattern identifiers, not validated institution types or performance labels.
 
+Researcher Mode also provides **Dimension sensitivity**. It removes each item
+one at a time and compares the resulting dimension mean with the default equal-
+item score. Large changes identify a measurement-robustness question; they do
+not prove that the excluded item is invalid or causally important.
+
 ## Exploratory Scenarios
 
 Four interfaces change one item by a researcher-selected number of 0–100 scale

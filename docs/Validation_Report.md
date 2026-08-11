@@ -24,6 +24,9 @@ Each implemented model module has four test categories:
 | Inclusive Education | Produces five bounded dimension scores | Accepts 0 and 100 scale endpoints and declared 0–1 conversion | Missing item or value | Out-of-range value or duplicate institution ID |
 | Support Gap | Produces signed adjacent and overall gaps | Retains negative gaps | Missing pathway score | Non-finite or out-of-range score |
 
+Inclusive Education validation also checks that leave-one-item-out sensitivity
+returns one diagnostic row per item with bounded recalculated scores.
+
 Run the suite from the project root with:
 
 ```bash
