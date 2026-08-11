@@ -479,6 +479,25 @@ def _coming_soon_page(title: str, tag: str, detail: str) -> None:
     st.markdown("<div class='quiet-note'>The underlying research module is retained in the repository. Interactive controls will be enabled only after a definition-compatible processed dataset is available and the module-specific input assumptions are visible to the researcher.</div>", unsafe_allow_html=True)
 
 
+def _inclusive_support_design_page() -> None:
+    """Render the non-diagnostic inclusive-support design foundation."""
+    st.markdown("<div class='eyebrow'>v0.2 design discovery</div><h2>Inclusive education support.</h2><p class='section-copy'>This design-stage area organises evidence and team reflection around participation in preschool education. It does not assess children, assign labels, or generate individual recommendations.</p>", unsafe_allow_html=True)
+    columns = st.columns(3, gap="medium")
+    cards = [
+        ("01", "Frame a practice question", "Use broad, non-identifying questions about participation, communication, play, routines, environment, or family partnership."),
+        ("02", "Inspect citable evidence", "Future evidence cards will display their source, setting, claim boundary, limitations, and review record."),
+        ("03", "Keep people in the loop", "Any support decision remains with families, authorised professionals, and relevant support teams—not this platform."),
+    ]
+    for column, (number, title, detail) in zip(columns, cards):
+        with column:
+            st.markdown(_module_card(number, title, detail, "DESIGN FOUNDATION"), unsafe_allow_html=True)
+    st.divider()
+    st.markdown("### Current safety boundary")
+    st.markdown("- No child, family, teacher, or case data are collected or uploaded here.\n- No screening, diagnosis, risk score, placement decision, eligibility decision, or automated recommendation is provided.\n- No teacher-quality rating or performance inference is made.\n- Any future data flow, external AI use, or personalised feature requires separate ethics, safeguarding, accessibility, and data-governance approval.")
+    st.markdown("### Before interactive resources are enabled")
+    st.markdown("The project must approve the module scope, complete safeguarding and accessibility review, and independently review every published evidence card. The full design and release gates are documented in `docs/Inclusive_Support_Design.md`.")
+    st.info("This is a transparent design foundation. It is not a service for individual cases or an emergency support channel.")
+
 def _report_page(data: pd.DataFrame) -> None:
     """Render the bounded report-output page."""
     st.markdown("<div class='eyebrow'>Research output</div><h2>Research reports with traceable inputs.</h2><p class='section-copy'>The pipeline can generate structured outputs from the sample workflow. Real-world reports must retain source provenance, model assumptions, validation notes, and interpretation limits.</p>", unsafe_allow_html=True)
@@ -594,8 +613,13 @@ def _dashboard() -> None:
         st.caption("RESEARCH WORKSPACE")
         page = st.radio("Workflow navigation", NAV_ITEMS, label_visibility="collapsed")
         st.divider()
-        source = st.radio("Research input", ["Sample dataset", "Upload CSV"], label_visibility="collapsed")
-        upload = st.file_uploader("Upload PRAI CSV", type=["csv"], label_visibility="collapsed") if source == "Upload CSV" else None
+        if page == "Inclusive Support":
+            source = "Sample dataset"
+            upload = None
+            st.caption("This design page does not accept child, family, teacher, or case data.")
+        else:
+            source = st.radio("Research input", ["Sample dataset", "Upload CSV"], label_visibility="collapsed")
+            upload = st.file_uploader("Upload PRAI CSV", type=["csv"], label_visibility="collapsed") if source == "Upload CSV" else None
         st.caption("raw → staging → review → processed")
         if st.button("← Back to landing", width="stretch"):
             st.session_state["view"] = "landing"
@@ -640,7 +664,7 @@ def _dashboard() -> None:
     elif page == "Forecast": _forecast_page(data)
     elif page == "Simulation": _simulation_page(data)
     elif page == "AI Interpretation": _ai_interpretation_page(data)
-    elif page == "Inclusive Support": _coming_soon_page("Inclusive education support.", "FUTURE DEVELOPMENT", "A future platform area for organising evidence, practice resources and research workflows related to inclusive preschool education. Its design will follow accessibility, ethics and evidence requirements.")
+    elif page == "Inclusive Support": _inclusive_support_design_page()
     elif page == "Teacher Development": _coming_soon_page("Teacher professional development.", "FUTURE DEVELOPMENT", "A future platform area for teacher learning, professional-capability evidence and reflective practice. It will not infer teacher quality from incomplete administrative variables.")
     elif page == "Reports": _report_page(data)
     elif page == "Documentation": _documentation_page()

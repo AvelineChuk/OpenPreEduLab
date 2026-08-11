@@ -101,7 +101,15 @@ review status, and permitted uses.
 
 Planned work may include literature and policy evidence mining, benchmark-oriented PRAI normalisation, richer demographic methods, uncertainty analysis, expanded validation, data-governance tooling, and community-contributed research assets.
 
-These are directions of development, not currently available capabilities.
+The v0.2 [Inclusive Support design blueprint](docs/Inclusive_Support_Design.md)
+has begun. It is a non-diagnostic, non-personal-data design foundation for
+evidence organisation and human-reviewed inclusive-practice reflection; it is
+not an assessment, placement, or automated recommendation service. The public
+interface now exposes only its static purpose, safety boundaries, and release
+gates; evidence resources and other interactive functions are not enabled.
+
+The remaining items in this section are directions of development, not current
+platform capabilities.
 
 ## Installation
 

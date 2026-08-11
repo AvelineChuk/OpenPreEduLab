@@ -48,6 +48,23 @@ def test_ai_interpretation_page_renders_external_provider_boundary() -> None:
     assert len(app.get("download_button")) >= 1
 
 
+def test_inclusive_support_page_renders_non_diagnostic_design_boundary() -> None:
+    """Inclusive Support must remain a transparent, non-personal design page."""
+    app = AppTest.from_file(str(APP_PATH))
+    app.run(timeout=60)
+
+    next(button for button in app.button if button.label == "Launch Platform").click().run(timeout=60)
+    app.radio[1].set_value("Upload CSV").run(timeout=60)
+    assert len(app.get("file_uploader")) == 1
+    app.radio[0].set_value("Inclusive Support").run(timeout=60)
+
+    assert not app.exception
+    assert len(app.get("file_uploader")) == 0
+    content = "\n".join(item.value for item in app.markdown)
+    assert "Inclusive education support" in content
+    assert "does not assess children" in content
+    assert "No child, family, teacher, or case data" in content
+
 def test_reports_page_offers_markdown_word_and_pdf_downloads() -> None:
     """Users should be able to choose a familiar report-download format."""
     app = AppTest.from_file(str(APP_PATH))
