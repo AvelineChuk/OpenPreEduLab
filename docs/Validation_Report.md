@@ -8,7 +8,9 @@ This is **software validation**, not policy validation. Passing tests does not v
 
 ## Validation Method
 
-The test suite is organised with `pytest` in `tests/` and uses `datasets/sample_preschool_data.csv` as its source dataset. The sample data are synthetic and are used only to exercise the software workflow.
+The test suite is organised with `pytest` in `tests/` and uses the synthetic
+`datasets/sample_preschool_data.csv` and `datasets/sample_inclusive_data.csv`
+files only to exercise software workflows.
 
 Each implemented model module has four test categories:
 
@@ -19,6 +21,8 @@ Each implemented model module has four test categories:
 | Efficiency Evaluation | Produces DEA scores for the panel | Two-DMU cross-section | Missing preparation field | Same variable selected as input and output |
 | Forecast | Produces population, teacher, and fiscal projections | One-year horizon | Missing population field | Forecast year is not future |
 | Policy Simulation | Produces baseline plus four scenarios | Zero population change | Missing baseline field | Population decline at or below 100 percent |
+| Inclusive Education | Produces five bounded dimension scores | Accepts 0 and 100 scale endpoints and declared 0–1 conversion | Missing item or value | Out-of-range value or duplicate institution ID |
+| Support Gap | Produces signed adjacent and overall gaps | Retains negative gaps | Missing pathway score | Non-finite or out-of-range score |
 
 Run the suite from the project root with:
 
@@ -35,11 +39,15 @@ The expected result is that all tests pass when the code is run with the documen
 - forecast and simulation outputs have the expected records and fields;
 - documented boundary behaviour is reproducible; and
 - missing or invalid inputs raise explicit errors rather than silently producing results.
+- inclusive charts and the Streamlit route render from synthetic data; and
+- the inclusive LLM request preserves non-diagnostic and non-causal boundaries.
 
 ## Current Limitations
 
 - The tests use synthetic data and do not assess real-world data quality or external validity.
 - Unit tests do not establish the theoretical validity of selected indicators, weights, DEA variables, or scenario transition rules.
+- Inclusive education tests do not validate the item system, equal weights,
+  Equity Score, Support Gap interpretation, or institution-level instrument.
 - The suite does not yet include performance, cross-platform, security, uncertainty, or regression testing against versioned empirical benchmarks.
 - The LLM Interpretation Engine is intentionally excluded from external-call testing because it is provider-agnostic and does not make network requests by default.
 

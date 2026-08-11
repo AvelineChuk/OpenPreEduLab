@@ -1,0 +1,102 @@
+# Inclusive Education Research Module User Guide
+
+## Purpose and Boundary
+
+The module supports educational research on the pathway from policy and
+resources to practices, participation, and equity. It is not a diagnostic tool,
+does not determine disability status, and does not replace professional
+judgement.
+
+## Open the Module
+
+Run the platform and select **Inclusive Education** in the sidebar:
+
+```bash
+streamlit run app/streamlit_app.py
+```
+
+The existing **Inclusive Support** page remains a separate design-and-safety
+foundation. **Inclusive Education** is the aggregate research-analysis module.
+
+## Data Input
+
+Choose either:
+
+- **Synthetic demonstration data**, which contain 12 fictional institutions; or
+- **Upload institution-level CSV**, using the downloadable template.
+
+Do not upload identifiable child, family, teacher, clinical, or case records.
+CSV validation checks required fields, institution-ID uniqueness, numeric
+conversion, missing values, finite values, and the declared source range.
+
+## Scale Conversion
+
+Select the documented source scale:
+
+- 0–100;
+- 0–1; or
+- a custom minimum and maximum.
+
+Custom and 0–1 values are converted linearly to 0–100. The platform does not
+infer a scale automatically. Values outside the declared interval fail
+validation. Missing scoring values are not imputed.
+
+## Dashboard
+
+The Dashboard provides:
+
+- five mean dimension scores;
+- a Policy-to-Equity pathway chart;
+- a five-dimension radar chart;
+- Resource-to-Practice and Practice-to-Participation gaps;
+- the major descriptive gap and a hypothesis-labelled interpretation; and
+- an institution-by-dimension heatmap.
+
+## Researcher Mode
+
+Researchers can inspect variables and records, select dimensions and variables,
+calculate descriptive statistics and Pearson correlations, examine CV/Gini/
+Theil distributional inequality, inspect institution-level gaps, compare
+institutions, and optionally run exploratory K-means clustering.
+
+Correlation is descriptive association only. Cluster numbers are neutral
+pattern identifiers, not validated institution types or performance labels.
+
+## Exploratory Scenarios
+
+Four interfaces change one item by a researcher-selected number of 0–100 scale
+points:
+
+1. Increase Teacher Support;
+2. Increase Training Support;
+3. Increase Financial Support; and
+4. Improve Curriculum Adaptation.
+
+Other reported items remain fixed. Scenario results are arithmetic comparisons,
+not causal predictions or forecasts.
+
+## Research Insight and AI
+
+The platform first generates deterministic descriptive insights and research-
+question candidates. An optional bounded prompt can then be reviewed and
+downloaded without an external call.
+
+Visitors may optionally use a visitor-controlled DeepSeek key after explicit
+consent. The prompt prohibits diagnosis, child labelling, disability decisions,
+teacher-quality inference, and unsupported causal claims. Generated text is
+labelled:
+
+> AI-generated interpretation. Please verify with professional judgment and
+> empirical evidence.
+
+## Downloads
+
+Available outputs include:
+
+- institution dimension scores and Support Gaps as CSV;
+- exploratory scenario comparison as CSV;
+- reviewed AI request as Markdown; and
+- research summary as Markdown, Word, or PDF.
+
+Changing an export format does not validate the instrument, data, scores, or
+interpretation.

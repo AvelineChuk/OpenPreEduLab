@@ -76,6 +76,7 @@ See [Project Showcase](docs/Project_Showcase.md) for interpretation notes and pr
 - **Policy Simulation Engine:** conditional scenarios for subsidy changes, population decline, teacher-cost increases, and fiscal constraints.
 - **Visualization Engine:** ranking, trend, radar, heatmap, forecast, and scenario-comparison figures using matplotlib.
 - **LLM Interpretation Engine:** provider-agnostic, prompt-reviewed, evidence-bounded research interpretation interface.
+- **Inclusive Education Research Module:** five-dimension Policy → Resources → Practices → Participation → Equity analysis, descriptive Support Gap, Researcher Mode, exploratory scenarios, bounded insights, and research exports using synthetic or non-identifying institution-level inputs.
 - **Research Pipeline:** an end-to-end workflow that writes reproducible result tables and a provenance-oriented summary.
 
 The included dataset is synthetic and intended only for testing the workflow. Results generated from it must not be interpreted as evidence about real cities or policies.
@@ -107,6 +108,12 @@ evidence organisation and human-reviewed inclusive-practice reflection; it is
 not an assessment, placement, or automated recommendation service. The public
 interface now exposes only its static purpose, safety boundaries, and release
 gates; evidence resources and other interactive functions are not enabled.
+
+The separate [Inclusive Education Research Framework](docs/Inclusive_Education_Framework.md)
+now provides a working aggregate research prototype. It does not assess or
+diagnose children, determine disability status, rate teachers, or estimate
+causal effects. Its Support Gap is descriptive, and its included institution
+data are entirely synthetic.
 
 The remaining items in this section are directions of development, not current
 platform capabilities.
@@ -194,6 +201,9 @@ The default scenario parameters are prototype assumptions for workflow demonstra
 - [Data Catalog](docs/Data_Catalog.md)
 - [Pipeline Guide](docs/Pipeline_Guide.md)
 - [LLM Interpretation](docs/LLM_Interpretation.md)
+- [Inclusive Education Framework](docs/Inclusive_Education_Framework.md)
+- [Support Gap Methodology](docs/Support_Gap_Methodology.md)
+- [Inclusive Education User Guide](docs/Inclusive_Education_User_Guide.md)
 - [Research Journal](Research_Journal.md)
 - [Contributing](CONTRIBUTING.md)
 

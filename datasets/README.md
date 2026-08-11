@@ -8,6 +8,7 @@ not currently contain a validated real-world PRAI panel.
 | Location | Purpose | Current status |
 | --- | --- | --- |
 | `sample_preschool_data.csv` | Synthetic, documented sample data for software demonstrations and tests | Not real-world evidence |
+| `sample_inclusive_data.csv` | Synthetic institution-level inclusive education data for demonstrations, tests, visualisation, and model-validation prototyping | Not real institutions or child records |
 | `raw/` | Immutable copies of official source files, source manifests, and review evidence | Not model-ready |
 | `staging/` | Source-faithful transcriptions prepared for independent comparison | Two parameter tables conditionally approved; four context-only tables approved; three kindergarten tables held for definition review; three Shanghai tables returned for provenance correction |
 | `processed/` | Definition-compatible records approved for a specific analytical use | Intentionally empty |
@@ -27,6 +28,11 @@ Official source
 No record may skip a stage. In particular, a general education-expenditure
 series must not be relabelled as preschool expenditure, and a grouped age table
 must not be relabelled as a 3-5 or 3-6 preschool-age population series.
+
+The inclusive education sample is a separate synthetic research asset. It does
+not originate from the real-data pilot and must not be interpreted as reviewed
+institutional evidence. Inclusive uploads must remain non-identifying and do
+not become approved data merely because they pass software validation.
 
 ## Current pilot status
 

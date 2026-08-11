@@ -71,3 +71,13 @@ A designated human reviewer must check provenance, claim wording, accessibility,
 5. Decide whether any separately governed practice-resource workflow is justified; do not add individual data or automation by default.
 
 This work may proceed in parallel with the v1 empirical data pathway. It must not use unreviewed raw/staging data and does not alter the existing `raw -> staging -> independent review -> processed` requirement.
+
+## Relationship to the Inclusive Education Research Module
+
+The platform now also contains a separate aggregate **Inclusive Education**
+research module. It uses synthetic or researcher-provided non-identifying
+institution-level item data to demonstrate five-dimension scoring, descriptive
+Support Gap analysis, visualisation, and research-question generation. It does
+not enable child case submission or individual recommendations. The present
+Inclusive Support page remains the design foundation for future evidence and
+practice-resource workflows.

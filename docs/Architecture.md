@@ -8,20 +8,22 @@ The architecture is intended to support a reproducible pathway from preschool ed
 
 ## Current Implementation
 
-OpenPreEduLab is currently in the Project Foundation Setup stage.
+OpenPreEduLab is currently an implemented v0.1 research-software prototype with
+an additional v0.2 Inclusive Education research module.
 
 | Component | Current state |
 | --- | --- |
 | Project charter | Present |
 | Foundational documentation | Present |
-| Source code modules | Not yet implemented |
-| Data ingestion and validation | Not yet implemented |
-| Statistical models | Not yet implemented |
-| Policy simulation | Not yet implemented |
-| LLM interpretation | Not yet implemented |
-| User interface or service | Not yet implemented |
+| Source code modules | Implemented and tested |
+| Data ingestion and validation | Implemented for PRAI and inclusive research schemas |
+| Statistical models | PRAI, equity, DEA, forecast, simulation, and inclusive dimension/gap prototypes implemented |
+| Policy simulation | Conditional PRAI scenarios and exploratory inclusive-support scenarios implemented |
+| LLM interpretation | Reviewable prompts plus optional visitor-controlled DeepSeek integration implemented |
+| User interface or service | Streamlit Landing Page and Research Dashboard implemented and publicly deployed |
 
-No diagram or module below should be interpreted as a currently operational system.
+Implemented components remain research prototypes. Operational software status
+does not establish empirical validity, causal identification, or policy effects.
 
 ## Design Principles
 
@@ -150,4 +152,3 @@ The architecture suggests a staged development path:
 6. add LLM-assisted interpretation only after structured result records are available.
 
 This sequence deliberately places methodological validity and auditability before automation or interface development.
-

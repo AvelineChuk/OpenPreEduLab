@@ -48,7 +48,12 @@ soft-gray, and deep-blue visual system to keep analytical content primary.
    explicit consent and with a visitor-controlled DeepSeek key, generate a
    clearly labelled interpretation draft. The resulting interpretation record
    can be downloaded as Markdown, Word, or PDF.
-7. Use **Reports** to download the same research-run summary as Markdown,
+7. Use **Inclusive Education** for a separate non-identifying institution-level
+   workflow covering Policy, Resources, Practices, Child Participation, Equity,
+   Support Gap, Researcher Mode, exploratory scenarios, bounded insight, and
+   CSV/Markdown/Word/PDF export. See
+   `docs/Inclusive_Education_User_Guide.md`.
+8. Use **Reports** to download the same research-run summary as Markdown,
    Word, or PDF.
 
 These interactive functions demonstrate reproducible software workflows. They
@@ -66,6 +71,11 @@ FTE values. Real data must follow the repository workflow:
 
 Until a definition-compatible processed dataset exists, interface outputs using
 sample or user-provided data are software demonstrations only.
+
+The Inclusive Education upload path is separate from PRAI. It accepts only
+non-identifying institution-level aggregate research fields. Passing its schema
+and range checks does not validate an instrument, research design, institution,
+or child-participation claim.
 
 ## Research report downloads
 

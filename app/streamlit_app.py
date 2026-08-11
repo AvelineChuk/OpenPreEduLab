@@ -38,6 +38,7 @@ from models.policy_simulation import simulate_policy_scenarios  # noqa: E402
 from llm.deepseek import DeepSeekClient, DeepSeekRequestError, SUPPORTED_MODELS  # noqa: E402
 from llm.interpreter import ResearchInterpretationAssistant, create_interpretation_request  # noqa: E402
 from reporting.exports import report_to_docx, report_to_pdf  # noqa: E402
+from app.inclusive_education import render_inclusive_education_page  # noqa: E402
 from visualization.resource_allocation_plot import (  # noqa: E402
     calculate_dimension_scores,
     plot_dimension_radar,
@@ -60,6 +61,7 @@ NAV_ITEMS = [
     "Forecast",
     "Simulation",
     "AI Interpretation",
+    "Inclusive Education",
     "Inclusive Support",
     "Teacher Development",
     "Reports",
@@ -613,10 +615,13 @@ def _dashboard() -> None:
         st.caption("RESEARCH WORKSPACE")
         page = st.radio("Workflow navigation", NAV_ITEMS, label_visibility="collapsed")
         st.divider()
-        if page == "Inclusive Support":
+        if page in {"Inclusive Education", "Inclusive Support"}:
             source = "Sample dataset"
             upload = None
-            st.caption("This design page does not accept child, family, teacher, or case data.")
+            if page == "Inclusive Support":
+                st.caption("This design page does not accept child, family, teacher, or case data.")
+            else:
+                st.caption("Inclusive Education uses a separate, non-identifying institution-level research input.")
         else:
             source = st.radio("Research input", ["Sample dataset", "Upload CSV"], label_visibility="collapsed")
             upload = st.file_uploader("Upload PRAI CSV", type=["csv"], label_visibility="collapsed") if source == "Upload CSV" else None
@@ -664,6 +669,7 @@ def _dashboard() -> None:
     elif page == "Forecast": _forecast_page(data)
     elif page == "Simulation": _simulation_page(data)
     elif page == "AI Interpretation": _ai_interpretation_page(data)
+    elif page == "Inclusive Education": render_inclusive_education_page(PROJECT_ROOT)
     elif page == "Inclusive Support": _inclusive_support_design_page()
     elif page == "Teacher Development": _coming_soon_page("Teacher professional development.", "FUTURE DEVELOPMENT", "A future platform area for teacher learning, professional-capability evidence and reflective practice. It will not infer teacher quality from incomplete administrative variables.")
     elif page == "Reports": _report_page(data)

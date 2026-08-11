@@ -2,6 +2,17 @@
 
 All notable changes to OpenPreEduLab are documented in this file.
 
+## Unreleased
+
+### Added
+
+- Inclusive Education Research Module with five prototype dimensions.
+- Synthetic institution-level demonstration data and upload template.
+- Support Gap methodology, deterministic research insights, and research-question candidates.
+- Researcher Mode with descriptive statistics, correlation, distributional equity, gap, comparison, and exploratory cluster analysis.
+- Five inclusive education visualisations and four non-causal exploratory scenarios.
+- Bounded inclusive-education LLM request and Markdown, Word, PDF, and CSV exports.
+
 ## v0.1.0
 
 Release Date: 2026-07-28
