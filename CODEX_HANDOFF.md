@@ -95,6 +95,10 @@ Before editing, downloading, processing data, or pushing commits:
 
 ### Recent verified maintenance
 
+- Inclusive Education now provides accessible numerical alternatives for the
+  pathway, radar, Gap, and heatmap views. Automated/code-level review is in
+  `docs/Inclusive_Education_Accessibility_Check.md`; keyboard, screen-reader,
+  zoom/reflow, contrast, and mobile review remain manual follow-up items.
 - `dd8b3d2 Fix landing page transition warning`: removed `st.rerun()` from a
   button callback. The old Dashboard warning *“Calling st.rerun() within a
   callback is a no-op.”* should not reappear.

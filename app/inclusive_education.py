@@ -243,6 +243,41 @@ def render_inclusive_education_page(project_root: Path) -> None:
         heatmap_figure, heatmap_axis = plt.subplots(figsize=(10, max(5, 0.45 * len(scores))))
         plot_dimension_heatmap(scores, ax=heatmap_axis)
         st.pyplot(heatmap_figure, clear_figure=True)
+        st.caption(
+            "All chart values are also available in the accessible tables below; "
+            "the research interpretation does not depend on colour alone."
+        )
+        with st.expander("Accessible chart data tables"):
+            pathway_table = pd.DataFrame(
+                {
+                    "pathway_stage": [DIMENSION_LABELS[column] for column in SCORE_COLUMNS],
+                    "mean_score_0_100": [round(float(means[column]), 2) for column in SCORE_COLUMNS],
+                }
+            )
+            gap_table = pd.DataFrame(
+                {
+                    "support_gap": [
+                        "Resource → Practice",
+                        "Practice → Participation",
+                        "Overall Resource → Participation",
+                    ],
+                    "mean_signed_gap_points": [
+                        round(float(gaps["gap_resource_practice"].mean()), 2),
+                        round(float(gaps["gap_practice_participation"].mean()), 2),
+                        round(float(gaps["overall_support_conversion_gap"].mean()), 2),
+                    ],
+                }
+            )
+            st.markdown("**Research pathway values**")
+            st.dataframe(pathway_table, width="stretch", hide_index=True)
+            st.markdown("**Support Gap values**")
+            st.dataframe(gap_table, width="stretch", hide_index=True)
+            st.markdown("**Institution-by-dimension values**")
+            st.dataframe(
+                scores.loc[:, ["institution_id", *SCORE_COLUMNS]],
+                width="stretch",
+                hide_index=True,
+            )
 
     with researcher:
         st.markdown("### Researcher Mode")

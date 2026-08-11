@@ -14,6 +14,11 @@ not empirically validated, and no inclusive-education record is approved for
 `datasets/processed/`. Future work is methodological review, accessibility, and
 eventual separately governed real-data validation.
 
+An automated and code-level accessibility follow-up has added non-colour chart
+data tables and route regression coverage. Manual keyboard, screen-reader,
+zoom/reflow, contrast, and mobile checks remain pending; see
+`docs/Inclusive_Education_Accessibility_Check.md`.
+
 ## Priority 0: Complete the 2026 Fund Provenance Chain
 
 **Current status:** An official government republication has been verified: Xinxing County Finance Bureau's page for the Ministry of Finance and Ministry of Education notice `Caijiao [2026] No. 68`, with both XLS attachments. The local supplied files and republished files have different binary hashes but identical visible workbook content. The primary Ministry of Finance notice page has now been located: `http://jkw.mof.gov.cn/zxzyzf/zcxqjyfzzj/202604/t20260429_3988831.htm`, published 2026-04-29.

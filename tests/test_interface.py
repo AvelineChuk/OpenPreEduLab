@@ -76,11 +76,16 @@ def test_inclusive_education_dashboard_renders_research_pathway() -> None:
     app.radio[0].set_value("Inclusive Education").run(timeout=60)
 
     assert not app.exception
-    content = "\n".join(item.value for item in app.markdown)
+    content = "\n".join(
+        [item.value for item in app.markdown]
+        + [item.value for item in app.caption]
+    )
     assert "From Resources to Participation" in content
     assert "Policy → Resources → Practices → Child Participation → Equity" in content
     assert "not a child assessment" in content
     assert "Research Question Candidates" in content
+    assert "does not depend on colour alone" in content
+    assert "Accessible chart data tables" in [expander.label for expander in app.expander]
     assert len(app.get("download_button")) >= 4
 
 def test_reports_page_offers_markdown_word_and_pdf_downloads() -> None:

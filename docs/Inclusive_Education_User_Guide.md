@@ -52,6 +52,12 @@ The Dashboard provides:
 - the major descriptive gap and a hypothesis-labelled interpretation; and
 - an institution-by-dimension heatmap.
 
+Every chart is accompanied by numerical information. Expand **Accessible chart
+data tables** to inspect the pathway, Support Gap, and institution-dimension
+values without relying on colour or chart geometry. See
+`docs/Inclusive_Education_Accessibility_Check.md` for the current automated
+review and remaining manual checks.
+
 ## Researcher Mode
 
 Researchers can inspect variables and records, select dimensions and variables,
