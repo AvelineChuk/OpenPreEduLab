@@ -49,4 +49,4 @@ No institution, teacher, child, family, clinical, or case data belong in the ver
 
 ## 8. Completion criteria
 
-A structural audit is complete when both version snapshots pass validation, all detected changes are documented, limitations are visible, and the research team records whether a separate empirical linking study is needed. Completion does not mean the versions are interchangeable.
+A structural audit is complete when both version snapshots pass validation, all detected changes are documented, limitations are visible, and the research team records whether a separate empirical linking study is needed. Completion does not mean the versions are interchangeable. Once a version is ready for governed administration, software-level collection review should follow the [Feasibility Pilot and Data Quality Protocol](Inclusive_Education_Feasibility_Protocol.md).

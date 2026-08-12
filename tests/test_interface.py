@@ -99,7 +99,15 @@ def test_inclusive_education_dashboard_renders_research_pathway() -> None:
     assert "Upload item revision decision CSV" in uploader_labels
     assert "Instrument version and comparability workflow" in expander_labels
     assert "Upload instrument version registry CSV" in uploader_labels
-    assert len(app.get("download_button")) >= 8
+    assert "Feasibility pilot and data-quality workflow" in expander_labels
+    assert "Upload feasibility pilot CSV" in uploader_labels
+    assert "Feasibility pilot response scale" in [
+        selectbox.label for selectbox in app.selectbox
+    ]
+    slider_labels = [slider.label for slider in app.slider]
+    assert "Endpoint follow-up threshold" in slider_labels
+    assert "Missingness follow-up threshold" in slider_labels
+    assert len(app.get("download_button")) >= 9
 
 def test_reports_page_offers_markdown_word_and_pdf_downloads() -> None:
     """Users should be able to choose a familiar report-download format."""

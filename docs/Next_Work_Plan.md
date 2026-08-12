@@ -34,7 +34,10 @@ rating upload interface are implemented. The cognitive-interview evidence and
 versioned item-revision audit templates, validators, summaries, uploads, and
 exports are also implemented. Complete instrument-version registration and
 structural comparability auditing are implemented without score conversion or
-automatic comparison. Actual expert recruitment, rating collection,
+automatic comparison. A separate feasibility-pilot workflow now preserves
+missingness and audits completion, endpoint concentration, variation, duration,
+burden, and administration modes without treating them as validity evidence.
+Actual expert recruitment, rating collection,
 cognitive interviews, and instrument decisions require separate governance and
 human participation; they have not been completed.
 

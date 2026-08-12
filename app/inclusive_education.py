@@ -34,6 +34,11 @@ from models.inclusion_cognitive_interviews import (
     summarize_cognitive_interviews,
     summarize_item_revision_log,
 )
+from models.inclusion_feasibility import (
+    audit_feasibility_pilot,
+    create_feasibility_pilot_template,
+    load_feasibility_pilot_csv,
+)
 from models.inclusion_versioning import (
     audit_instrument_version_comparability,
     create_instrument_version_registry_template,
@@ -597,6 +602,135 @@ def render_inclusive_education_page(project_root: Path) -> None:
                                 "text/csv",
                                 key="inclusive_version_item_changes_download",
                             )
+        st.markdown("#### Feasibility pilot and data-quality audit")
+        st.caption(
+            "Collection-process audit only. Missingness is preserved for analysis and is "
+            "never imputed into five-dimension scores."
+        )
+        with st.expander("Feasibility pilot and data-quality workflow"):
+            feasibility_template = create_feasibility_pilot_template()
+            st.markdown(
+                "Use one non-identifying administration record per institutional pilot. "
+                "Do not include child, family, teacher, clinical, or case data."
+            )
+            st.download_button(
+                "Download feasibility pilot template",
+                feasibility_template.to_csv(index=False).encode("utf-8-sig"),
+                "inclusive_feasibility_pilot_template.csv",
+                "text/csv",
+                key="inclusive_feasibility_template_download",
+            )
+            feasibility_upload = st.file_uploader(
+                "Upload feasibility pilot CSV",
+                type=["csv"],
+                key="inclusive_feasibility_upload",
+                help="Session-only processing. Item missingness is retained, not imputed.",
+            )
+            feasibility_scale = st.selectbox(
+                "Feasibility pilot response scale",
+                ["0–100", "0–1", "Custom range"],
+                key="inclusive_feasibility_scale",
+            )
+            if feasibility_scale == "0–100":
+                feasibility_min, feasibility_max = 0.0, 100.0
+            elif feasibility_scale == "0–1":
+                feasibility_min, feasibility_max = 0.0, 1.0
+            else:
+                feasibility_scale_columns = st.columns(2)
+                with feasibility_scale_columns[0]:
+                    feasibility_min = float(
+                        st.number_input(
+                            "Feasibility scale minimum",
+                            value=1.0,
+                            key="inclusive_feasibility_min",
+                        )
+                    )
+                with feasibility_scale_columns[1]:
+                    feasibility_max = float(
+                        st.number_input(
+                            "Feasibility scale maximum",
+                            value=5.0,
+                            key="inclusive_feasibility_max",
+                        )
+                    )
+            threshold_columns = st.columns(2)
+            with threshold_columns[0]:
+                endpoint_threshold = st.slider(
+                    "Endpoint follow-up threshold",
+                    min_value=0.0,
+                    max_value=1.0,
+                    value=0.15,
+                    step=0.05,
+                    key="inclusive_endpoint_threshold",
+                )
+            with threshold_columns[1]:
+                missing_threshold = st.slider(
+                    "Missingness follow-up threshold",
+                    min_value=0.0,
+                    max_value=1.0,
+                    value=0.10,
+                    step=0.05,
+                    key="inclusive_missing_threshold",
+                )
+            st.caption(
+                "Thresholds are researcher-declared prototype flags, not psychometric "
+                "standards and not automatic item-removal rules."
+            )
+            if feasibility_upload is not None:
+                try:
+                    feasibility_data = load_feasibility_pilot_csv(
+                        feasibility_upload,
+                        feasibility_min,
+                        feasibility_max,
+                    )
+                    feasibility_audit = audit_feasibility_pilot(
+                        feasibility_data,
+                        feasibility_min,
+                        feasibility_max,
+                        endpoint_threshold,
+                        missing_threshold,
+                    )
+                except ValueError as error:
+                    st.error(f"Feasibility-pilot validation failed: {error}")
+                else:
+                    st.warning(str(feasibility_audit["interpretation"]))
+                    st.markdown("**Administration summary**")
+                    st.dataframe(
+                        feasibility_audit["administration_summary"],
+                        width="stretch",
+                        hide_index=True,
+                    )
+                    st.markdown("**Item data-quality summary**")
+                    st.dataframe(
+                        feasibility_audit["item_quality_summary"],
+                        width="stretch",
+                        hide_index=True,
+                    )
+                    st.markdown("**Missing-item count distribution**")
+                    st.dataframe(
+                        feasibility_audit["missing_count_distribution"],
+                        width="stretch",
+                        hide_index=True,
+                    )
+                    st.markdown("**Administration-mode summary**")
+                    st.dataframe(
+                        feasibility_audit["administration_mode_summary"],
+                        width="stretch",
+                        hide_index=True,
+                    )
+                    for summary_key, file_name, label in (
+                        ("administration_summary", "inclusive_feasibility_administration_summary.csv", "Download feasibility administration summary"),
+                        ("item_quality_summary", "inclusive_feasibility_item_quality.csv", "Download feasibility item data-quality summary"),
+                        ("missing_count_distribution", "inclusive_feasibility_missing_distribution.csv", "Download feasibility missing-count distribution"),
+                        ("administration_mode_summary", "inclusive_feasibility_mode_summary.csv", "Download feasibility administration-mode summary"),
+                    ):
+                        st.download_button(
+                            label,
+                            feasibility_audit[summary_key].to_csv(index=False).encode("utf-8-sig"),
+                            file_name,
+                            "text/csv",
+                            key=f"inclusive_{summary_key}_download",
+                        )
         if len(selected_variables) >= 2:
             st.markdown("#### Correlation — descriptive association only")
             st.dataframe(correlation_matrix(analysis_data, selected_variables), width="stretch")

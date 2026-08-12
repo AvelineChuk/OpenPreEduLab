@@ -115,6 +115,12 @@ Before editing, downloading, processing data, or pushing commits:
   wording, dimension, response-scale, weight, added-item, and removed-item
   changes. It never converts scores or authorises direct comparison; no
   empirical linking study has been completed.
+- Researcher Mode now includes a session-only feasibility-pilot and data-
+  quality audit. It preserves legitimate item missingness solely to inspect
+  completion, missing patterns, endpoints, variation, duration, burden, and
+  administration mode. It never imputes missing responses or passes incomplete
+  records into five-dimension scoring, and its flags are not validity evidence
+  or automatic item-removal rules.
 - `dd8b3d2 Fix landing page transition warning`: removed `st.rerun()` from a
   button callback. The old Dashboard warning *“Calling st.rerun() within a
   callback is a no-op.”* should not reappear.
@@ -125,7 +131,7 @@ Before editing, downloading, processing data, or pushing commits:
 - `e60babd Document AI interpretation export formats`.
 - `69765b8 Add project history record and workflow screenshot`.
 
-The most recent validated test result was **74 passed** in one complete pytest
+The most recent validated test result was **82 passed** in one complete pytest
 run. Streamlit interface tests loaded all current Dashboard routes, including
 Inclusive Education, and explicitly checked the expert content-review materials
 and download entry.

@@ -101,6 +101,12 @@ scale, and weight changes. Structural alignment does not establish empirical
 comparability, and structural change does not permit automatic score conversion.
 See the [Instrument Versioning and Comparability Protocol](Inclusive_Education_Versioning_Protocol.md).
 
+The feasibility-pilot workflow preserves missing item responses to audit
+completion, missingness, endpoint concentration, response variation, duration,
+burden, and administration mode. These outputs are implementation and data-
+quality questions, not reliability or validity evidence. See the
+[Feasibility Pilot and Data Quality Protocol](Inclusive_Education_Feasibility_Protocol.md).
+
 ## Exploratory Scenarios
 
 Four interfaces change one item by a researcher-selected number of 0–100 scale

@@ -35,7 +35,10 @@ logic, non-identifying summaries, version transitions, move targets, revised
 wording, dates, and duplicate decisions. Version-registry tests cover complete
 five-dimension snapshots, weights, predecessor metadata, release metadata,
 wording/scale/weight changes, added and removed item IDs, and the rule that no
-audit authorises direct comparison.
+audit authorises direct comparison. Feasibility-pilot tests cover preserved
+missingness, numeric and range errors, completion-status consistency, duration
+and burden rules, endpoint and no-variation flags, explicit thresholds, UTF-8
+loading, and de-identified summaries.
 
 Run the suite from the project root with:
 
