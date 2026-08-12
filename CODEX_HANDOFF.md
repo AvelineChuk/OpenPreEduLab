@@ -163,6 +163,13 @@ Before editing, downloading, processing data, or pushing commits:
   means, bias, standard errors, and percentile bounds for five dimension and
   three Support Gap means without exporting draws or unit IDs. It does not
   establish representativeness, validity, causal effects, or stability labels.
+- Researcher Mode now includes a session-only longitudinal panel readiness
+  audit for complete institutional records across at least two rounds of one
+  instrument version. It reports round and complete-panel coverage, adjacent-
+  round matching, dimension and Support Gap summaries, and aggregate matched
+  change statistics without exporting unit trajectories. Missing rounds are
+  not imputed and versions are not pooled. Time order is not treated as
+  evidence of improvement, deterioration, policy effects, or causality.
 - `dd8b3d2 Fix landing page transition warning`: removed `st.rerun()` from a
   button callback. The old Dashboard warning *“Calling st.rerun() within a
   callback is a no-op.”* should not reappear.
@@ -173,7 +180,7 @@ Before editing, downloading, processing data, or pushing commits:
 - `e60babd Document AI interpretation export formats`.
 - `69765b8 Add project history record and workflow screenshot`.
 
-The most recent validated test result was **144 passed** in one complete pytest
+The most recent validated test result was **152 passed** in one complete pytest
 run. Streamlit interface tests loaded all current Dashboard routes, including
 Inclusive Education, and explicitly checked the expert content-review materials
 and download entry.

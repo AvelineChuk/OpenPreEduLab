@@ -158,6 +158,15 @@ random seed. These summaries do not establish representativeness, validity,
 causal effects, population parameters, or stability classifications. See the
 [Bootstrap Sampling Uncertainty Protocol](Inclusive_Education_Bootstrap_Uncertainty_Protocol.md).
 
+The longitudinal panel readiness workflow audits complete institutional records
+across at least two rounds of one instrument version. It reports round coverage,
+complete-panel coverage, adjacent-round matching, five-dimension and Support Gap
+summaries, and aggregate matched change statistics. Missing rounds are not
+imputed, versions are not pooled, and unit-level trajectories are not exported.
+Time order and descriptive change do not establish longitudinal measurement
+comparability, improvement, deterioration, policy effects, or causality. See the
+[Longitudinal Panel Readiness Protocol](Inclusive_Education_Longitudinal_Readiness_Protocol.md).
+
 ## Exploratory Scenarios
 
 Four interfaces change one item by a researcher-selected number of 0–100 scale

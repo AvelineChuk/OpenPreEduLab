@@ -56,6 +56,7 @@ from models.inclusion_reliability import (
     create_reliability_audit_template,
     load_reliability_audit_csv,
 )
+from models.inclusion_longitudinal import audit_longitudinal_panel_readiness
 from models.inclusion_subgroup_comparability import (
     audit_subgroup_comparability,
     create_subgroup_comparability_template,
@@ -1657,6 +1658,139 @@ def render_inclusive_education_page(project_root: Path) -> None:
                                 file_name,
                                 "text/csv",
                                 key=f"inclusive_bootstrap_{summary_key}_download",
+                            )
+        st.markdown("#### Longitudinal panel readiness audit")
+        st.caption(
+            "Descriptive longitudinal readiness only. Time order does not establish "
+            "causality, policy effects, improvement, or deterioration."
+        )
+        with st.expander("Longitudinal panel readiness workflow"):
+            st.download_button(
+                "Download longitudinal panel response template",
+                create_reliability_audit_template().to_csv(index=False).encode("utf-8-sig"),
+                "inclusive_longitudinal_panel_template.csv",
+                "text/csv",
+                key="inclusive_longitudinal_template_download",
+            )
+            longitudinal_upload = st.file_uploader(
+                "Upload longitudinal panel response CSV",
+                type=["csv"],
+                key="inclusive_longitudinal_upload",
+                help=(
+                    "Use stable pseudonymous institutional IDs across rounds within one "
+                    "instrument version. Do not upload child, family, teacher, or case data."
+                ),
+            )
+            longitudinal_scale = st.selectbox(
+                "Longitudinal panel response scale",
+                ["0–100", "0–1", "Custom range"],
+                key="inclusive_longitudinal_scale",
+            )
+            if longitudinal_scale == "0–100":
+                longitudinal_min, longitudinal_max = 0.0, 100.0
+            elif longitudinal_scale == "0–1":
+                longitudinal_min, longitudinal_max = 0.0, 1.0
+            else:
+                longitudinal_scale_columns = st.columns(2)
+                with longitudinal_scale_columns[0]:
+                    longitudinal_min = float(
+                        st.number_input(
+                            "Longitudinal scale minimum",
+                            value=1.0,
+                            key="inclusive_longitudinal_min",
+                        )
+                    )
+                with longitudinal_scale_columns[1]:
+                    longitudinal_max = float(
+                        st.number_input(
+                            "Longitudinal scale maximum",
+                            value=5.0,
+                            key="inclusive_longitudinal_max",
+                        )
+                    )
+            if longitudinal_upload is not None:
+                try:
+                    longitudinal_data = load_reliability_audit_csv(
+                        longitudinal_upload,
+                        longitudinal_min,
+                        longitudinal_max,
+                    )
+                except ValueError as error:
+                    st.error(f"Longitudinal-panel validation failed: {error}")
+                else:
+                    longitudinal_versions = (
+                        longitudinal_data["instrument_version"].drop_duplicates().tolist()
+                    )
+                    selected_longitudinal_version = st.selectbox(
+                        "Version for longitudinal panel audit",
+                        longitudinal_versions,
+                        key="inclusive_longitudinal_version",
+                    )
+                    try:
+                        longitudinal_audit = audit_longitudinal_panel_readiness(
+                            longitudinal_data,
+                            selected_longitudinal_version,
+                            longitudinal_min,
+                            longitudinal_max,
+                        )
+                    except ValueError as error:
+                        st.error(f"Longitudinal panel audit failed: {error}")
+                    else:
+                        st.warning(str(longitudinal_audit["interpretation"]))
+                        for title, summary_key in (
+                            ("Panel completeness", "longitudinal_panel_summary"),
+                            ("Round coverage", "round_coverage_summary"),
+                            ("Round score summaries", "round_statistic_summary"),
+                            ("Adjacent-round matching", "adjacent_round_matching_summary"),
+                            ("Adjacent matched changes", "adjacent_round_change_summary"),
+                            ("Research question candidates", "research_question_candidates"),
+                        ):
+                            st.markdown(f"**{title}**")
+                            st.dataframe(
+                                longitudinal_audit[summary_key],
+                                width="stretch",
+                                hide_index=True,
+                            )
+                        for label, summary_key, file_name in (
+                            (
+                                "Download longitudinal panel summary",
+                                "longitudinal_panel_summary",
+                                "inclusive_longitudinal_panel_summary.csv",
+                            ),
+                            (
+                                "Download longitudinal round coverage",
+                                "round_coverage_summary",
+                                "inclusive_longitudinal_round_coverage.csv",
+                            ),
+                            (
+                                "Download longitudinal round statistics",
+                                "round_statistic_summary",
+                                "inclusive_longitudinal_round_statistics.csv",
+                            ),
+                            (
+                                "Download adjacent-round matching summary",
+                                "adjacent_round_matching_summary",
+                                "inclusive_longitudinal_adjacent_matching.csv",
+                            ),
+                            (
+                                "Download adjacent-round change summary",
+                                "adjacent_round_change_summary",
+                                "inclusive_longitudinal_adjacent_changes.csv",
+                            ),
+                            (
+                                "Download longitudinal research questions",
+                                "research_question_candidates",
+                                "inclusive_longitudinal_research_questions.csv",
+                            ),
+                        ):
+                            st.download_button(
+                                label,
+                                longitudinal_audit[summary_key].to_csv(index=False).encode(
+                                    "utf-8-sig"
+                                ),
+                                file_name,
+                                "text/csv",
+                                key=f"inclusive_longitudinal_{summary_key}_download",
                             )
         if len(selected_variables) >= 2:
             st.markdown("#### Correlation — descriptive association only")
