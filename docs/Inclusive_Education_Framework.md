@@ -101,7 +101,7 @@ estimator, treatment effect, risk score, or proof of institutional failure.
 
 ## 6. Research Logic
 
-The first release separates four activities:
+The first release separates five activities:
 
 1. validate and standardise institution-level aggregate inputs;
 2. calculate transparent equal-item dimension scores;
@@ -162,3 +162,8 @@ reliability assessment, measurement invariance, alternative weights, missing-
 data protocols, multilevel designs, longitudinal analysis, and independently
 reviewed real-data studies. Causal questions require an explicit identification
 strategy rather than interpretation of the conceptual arrows.
+
+The planned expert-review process is specified in the
+[Inclusive Education Content Validation Protocol](Inclusive_Education_Content_Validation_Protocol.md).
+It is a prospective protocol and does not imply that content validity has
+already been established.

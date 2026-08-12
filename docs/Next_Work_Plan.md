@@ -23,6 +23,11 @@ The first inclusive-method robustness check is also complete: Researcher Mode
 now reports leave-one-item-out dimension sensitivity. It does not replace
 expert content review, alternative weights, or empirical validation.
 
+The next inclusive-method step is now specified as a prospective expert and
+content-validation protocol. No expert ratings have been collected and no
+content-validity claim is authorised. See
+`docs/Inclusive_Education_Content_Validation_Protocol.md`.
+
 ## Priority 0: Complete the 2026 Fund Provenance Chain
 
 **Current status:** An official government republication has been verified: Xinxing County Finance Bureau's page for the Ministry of Finance and Ministry of Education notice `Caijiao [2026] No. 68`, with both XLS attachments. The local supplied files and republished files have different binary hashes but identical visible workbook content. The primary Ministry of Finance notice page has now been located: `http://jkw.mof.gov.cn/zxzyzf/zcxqjyfzzj/202604/t20260429_3988831.htm`, published 2026-04-29.

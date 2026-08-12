@@ -204,6 +204,7 @@ The default scenario parameters are prototype assumptions for workflow demonstra
 - [Inclusive Education Framework](docs/Inclusive_Education_Framework.md)
 - [Support Gap Methodology](docs/Support_Gap_Methodology.md)
 - [Inclusive Education User Guide](docs/Inclusive_Education_User_Guide.md)
+- [Inclusive Education Content Validation Protocol](docs/Inclusive_Education_Content_Validation_Protocol.md)
 - [Inclusive Education Accessibility Check](docs/Inclusive_Education_Accessibility_Check.md)
 - [Research Journal](Research_Journal.md)
 - [Contributing](CONTRIBUTING.md)

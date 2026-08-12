@@ -73,6 +73,11 @@ one at a time and compares the resulting dimension mean with the default equal-
 item score. Large changes identify a measurement-robustness question; they do
 not prove that the excluded item is invalid or causally important.
 
+The current item set has not completed expert content validation. Researchers
+planning substantive use should follow the
+[Inclusive Education Content Validation Protocol](Inclusive_Education_Content_Validation_Protocol.md)
+before treating the dimensions as a validated instrument.
+
 ## Exploratory Scenarios
 
 Four interfaces change one item by a researcher-selected number of 0–100 scale

@@ -102,6 +102,10 @@ Before editing, downloading, processing data, or pushing commits:
 - Inclusive Education Researcher Mode now includes leave-one-item-out dimension
   sensitivity analysis. This is a robustness check, not item validation or a
   causal analysis.
+- The next methodological stage is documented in
+  `docs/Inclusive_Education_Content_Validation_Protocol.md`. It is a prospective
+  expert-review protocol; no expert ratings or content-validity conclusion
+  currently exist.
 - `dd8b3d2 Fix landing page transition warning`: removed `st.rerun()` from a
   button callback. The old Dashboard warning *“Calling st.rerun() within a
   callback is a no-op.”* should not reappear.
