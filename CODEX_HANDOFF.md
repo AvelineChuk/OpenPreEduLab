@@ -106,6 +106,10 @@ Before editing, downloading, processing data, or pushing commits:
   `docs/Inclusive_Education_Content_Validation_Protocol.md`. It is a prospective
   expert-review protocol; no expert ratings or content-validity conclusion
   currently exist.
+- Researcher Mode now includes session-only cognitive-interview evidence and
+  versioned item-revision audit workflows. They validate and summarize
+  human-entered records without simulating interviews or making item decisions;
+  no real interviews or revision decisions have been completed.
 - `dd8b3d2 Fix landing page transition warning`: removed `st.rerun()` from a
   button callback. The old Dashboard warning *“Calling st.rerun() within a
   callback is a no-op.”* should not reappear.
@@ -116,7 +120,7 @@ Before editing, downloading, processing data, or pushing commits:
 - `e60babd Document AI interpretation export formats`.
 - `69765b8 Add project history record and workflow screenshot`.
 
-The most recent validated test result was **55 passed** in one complete pytest
+The most recent validated test result was **66 passed** in one complete pytest
 run. Streamlit interface tests loaded all current Dashboard routes, including
 Inclusive Education, and explicitly checked the expert content-review materials
 and download entry.

@@ -30,10 +30,11 @@ content-validity claim is authorised. See
 
 The blank 28-item expert-review CSV, strict rating validation, threshold-free
 I-CVI, S-CVI/Ave, and CVR calculation backend, and session-only completed-
-rating upload interface are implemented. Actual
-expert recruitment, rating collection, cognitive interviewing, and instrument
-revision require separate governance and human participation; they have not
-been completed.
+rating upload interface are implemented. The cognitive-interview evidence and
+versioned item-revision audit templates, validators, summaries, uploads, and
+exports are also implemented. Actual expert recruitment, rating collection,
+cognitive interviews, and instrument decisions require separate governance and
+human participation; they have not been completed.
 
 ## Priority 0: Complete the 2026 Fund Provenance Chain
 

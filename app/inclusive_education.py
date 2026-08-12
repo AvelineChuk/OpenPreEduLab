@@ -26,6 +26,14 @@ from models.inclusion import (
     simulate_inclusion_scenarios,
     standardize_inclusion_data,
 )
+from models.inclusion_cognitive_interviews import (
+    create_cognitive_interview_template,
+    create_item_revision_log_template,
+    load_cognitive_interview_csv,
+    load_item_revision_log_csv,
+    summarize_cognitive_interviews,
+    summarize_item_revision_log,
+)
 from models.inclusion_content_validity import (
     calculate_content_validity_summaries,
     create_content_validity_review_template,
@@ -395,6 +403,97 @@ def render_inclusive_education_page(project_root: Path) -> None:
                     "text/csv",
                     key="inclusive_content_review_dimension_summary_download",
                 )
+        st.markdown("#### Cognitive interview and item revision audit")
+        st.caption(
+            "Human-generated evidence only. The platform does not simulate interviews "
+            "or infer retain, revise, move, split, or remove decisions."
+        )
+        with st.expander("Cognitive interview evidence workflow"):
+            cognitive_template = create_cognitive_interview_template()
+            st.markdown(
+                "Record non-identifying observations for the items actually discussed. "
+                "Partial item coverage is allowed and must remain visible in the coverage summary."
+            )
+            st.download_button(
+                "Download cognitive interview record template",
+                cognitive_template.to_csv(index=False).encode("utf-8-sig"),
+                "inclusive_cognitive_interview_template.csv",
+                "text/csv",
+                key="inclusive_cognitive_interview_template_download",
+            )
+            cognitive_upload = st.file_uploader(
+                "Upload cognitive interview record CSV",
+                type=["csv"],
+                key="inclusive_cognitive_interview_upload",
+                help="Session-only processing. Do not include names, contact details, or case records.",
+            )
+            if cognitive_upload is not None:
+                try:
+                    cognitive_records = load_cognitive_interview_csv(cognitive_upload)
+                    cognitive_summaries = summarize_cognitive_interviews(cognitive_records)
+                except ValueError as error:
+                    st.error(f"Cognitive-interview validation failed: {error}")
+                else:
+                    st.warning(
+                        "Issue counts describe recorded interview evidence. They are not item-validity "
+                        "scores and do not determine revision decisions."
+                    )
+                    st.markdown("**Interview issue summary**")
+                    st.dataframe(cognitive_summaries["issue_summary"], width="stretch", hide_index=True)
+                    st.markdown("**Interview coverage summary**")
+                    st.dataframe(cognitive_summaries["coverage_summary"], width="stretch", hide_index=True)
+                    st.download_button(
+                        "Download cognitive interview issue summary",
+                        cognitive_summaries["issue_summary"].to_csv(index=False).encode("utf-8-sig"),
+                        "inclusive_cognitive_interview_issue_summary.csv",
+                        "text/csv",
+                        key="inclusive_cognitive_issue_summary_download",
+                    )
+                    st.download_button(
+                        "Download cognitive interview coverage summary",
+                        cognitive_summaries["coverage_summary"].to_csv(index=False).encode("utf-8-sig"),
+                        "inclusive_cognitive_interview_coverage_summary.csv",
+                        "text/csv",
+                        key="inclusive_cognitive_coverage_summary_download",
+                    )
+        with st.expander("Item revision decision audit workflow"):
+            revision_template = create_item_revision_log_template()
+            st.markdown(
+                "Research teams must record explicit version transitions, rationale, minority views, "
+                "and safeguarding and equity/accessibility review status."
+            )
+            st.download_button(
+                "Download item revision log template",
+                revision_template.to_csv(index=False).encode("utf-8-sig"),
+                "inclusive_item_revision_log_template.csv",
+                "text/csv",
+                key="inclusive_item_revision_template_download",
+            )
+            revision_upload = st.file_uploader(
+                "Upload item revision decision CSV",
+                type=["csv"],
+                key="inclusive_item_revision_upload",
+                help="Session-only processing. Decisions must be entered by the responsible research team.",
+            )
+            if revision_upload is not None:
+                try:
+                    revision_records = load_item_revision_log_csv(revision_upload)
+                    revision_summary = summarize_item_revision_log(revision_records)
+                except ValueError as error:
+                    st.error(f"Item-revision validation failed: {error}")
+                else:
+                    st.warning(
+                        "The summary reports human-entered decisions. The platform did not generate "
+                        "or validate the substantive decision."
+                    )
+                    st.dataframe(revision_summary, width="stretch", hide_index=True)
+                    st.download_button(
+                        "Download item revision decision summary",
+                        revision_summary.to_csv(index=False).encode("utf-8-sig"),
+                        "inclusive_item_revision_decision_summary.csv",
+                        "text/csv",
+                        key="inclusive_item_revision_summary_download",
+                    )
         if len(selected_variables) >= 2:
             st.markdown("#### Correlation — descriptive association only")
             st.dataframe(correlation_matrix(analysis_data, selected_variables), width="stretch")

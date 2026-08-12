@@ -74,4 +74,4 @@ Content review is complete only when panel composition, materials, ratings, comm
 
 ## 10. Subsequent validation stages
 
-After content review and separate ethics and data-governance approval, future work may include cognitive interviews, feasibility testing, reliability analysis where theoretically appropriate, construct analysis, measurement-invariance assessment, alternative-weight sensitivity, and validation against independent measures. Real-data studies must follow repository review rules and cannot enter `datasets/processed/` without independent approval.
+After content review and separate ethics and data-governance approval, cognitive interviews and versioned item-revision auditing should follow the [Cognitive Interview and Item Revision Protocol](Inclusive_Education_Cognitive_Interview_Protocol.md). Future work may then include feasibility testing, reliability analysis where theoretically appropriate, construct analysis, measurement-invariance assessment, alternative-weight sensitivity, and validation against independent measures. Real-data studies must follow repository review rules and cannot enter `datasets/processed/` without independent approval.

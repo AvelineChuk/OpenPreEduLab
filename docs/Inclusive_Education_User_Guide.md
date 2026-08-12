@@ -88,6 +88,13 @@ item-level I-CVI, clarity I-CVI, and CVR plus dimension-level S-CVI/Ave
 summaries. It does not apply automatic retain/remove thresholds. Uploads are
 processed in the current session and are not intentionally persisted.
 
+Researcher Mode also provides separate cognitive-interview and item-revision
+audit workflows. Cognitive interviews may cover only the items discussed and
+report issue and coverage summaries without interview IDs or free text. Item
+revision decisions require explicit instrument-version transitions, rationale,
+minority-view records, and safeguarding and equity/accessibility review. See
+the [Cognitive Interview and Item Revision Protocol](Inclusive_Education_Cognitive_Interview_Protocol.md).
+
 ## Exploratory Scenarios
 
 Four interfaces change one item by a researcher-selected number of 0–100 scale
