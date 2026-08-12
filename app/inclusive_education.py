@@ -60,6 +60,11 @@ from models.inclusion_subgroup_comparability import (
     create_subgroup_comparability_template,
     load_subgroup_comparability_csv,
 )
+from models.inclusion_weight_sensitivity import (
+    audit_weight_sensitivity,
+    create_weight_scheme_template,
+    load_weight_scheme_csv,
+)
 from models.inclusion_versioning import (
     audit_instrument_version_comparability,
     create_instrument_version_registry_template,
@@ -1326,6 +1331,159 @@ def render_inclusive_education_page(project_root: Path) -> None:
                                 file_name,
                                 "text/csv",
                                 key=f"inclusive_external_{summary_key}_download",
+                            )
+        st.markdown("#### Alternative item-weight sensitivity audit")
+        st.caption(
+            "Sensitivity evidence only. Researcher-declared weights do not identify a best "
+            "scheme and do not change the platform's equal-item default scoring model."
+        )
+        with st.expander("Alternative item-weight sensitivity workflow"):
+            st.download_button(
+                "Download complete response template for weight sensitivity",
+                create_reliability_audit_template().to_csv(index=False).encode("utf-8-sig"),
+                "inclusive_weight_sensitivity_responses_template.csv",
+                "text/csv",
+                key="inclusive_weight_sensitivity_responses_template_download",
+            )
+            weight_template = create_weight_scheme_template()
+            st.download_button(
+                "Download alternative weight scheme template",
+                weight_template.to_csv(index=False).encode("utf-8-sig"),
+                "inclusive_alternative_weight_scheme_template.csv",
+                "text/csv",
+                key="inclusive_weight_scheme_template_download",
+            )
+            weight_response_upload = st.file_uploader(
+                "Upload complete responses for weight sensitivity",
+                type=["csv"],
+                key="inclusive_weight_sensitivity_responses_upload",
+                help="Complete, non-identifying institutional records only.",
+            )
+            weight_scheme_upload = st.file_uploader(
+                "Upload alternative weight scheme CSV",
+                type=["csv"],
+                key="inclusive_weight_scheme_upload",
+                help=(
+                    "Every named scheme must contain all 28 current items and positive "
+                    "weights summing to 1 within each dimension."
+                ),
+            )
+            weight_scale = st.selectbox(
+                "Weight sensitivity response scale",
+                ["0–100", "0–1", "Custom range"],
+                key="inclusive_weight_sensitivity_scale",
+            )
+            if weight_scale == "0–100":
+                weight_min, weight_max = 0.0, 100.0
+            elif weight_scale == "0–1":
+                weight_min, weight_max = 0.0, 1.0
+            else:
+                weight_scale_columns = st.columns(2)
+                with weight_scale_columns[0]:
+                    weight_min = float(
+                        st.number_input(
+                            "Weight sensitivity scale minimum",
+                            value=1.0,
+                            key="inclusive_weight_sensitivity_min",
+                        )
+                    )
+                with weight_scale_columns[1]:
+                    weight_max = float(
+                        st.number_input(
+                            "Weight sensitivity scale maximum",
+                            value=5.0,
+                            key="inclusive_weight_sensitivity_max",
+                        )
+                    )
+            if weight_response_upload is not None and weight_scheme_upload is not None:
+                try:
+                    weight_response_data = load_reliability_audit_csv(
+                        weight_response_upload,
+                        weight_min,
+                        weight_max,
+                    )
+                    weight_scheme_data = load_weight_scheme_csv(weight_scheme_upload)
+                except ValueError as error:
+                    st.error(f"Weight-sensitivity validation failed: {error}")
+                else:
+                    weight_versions = (
+                        weight_response_data["instrument_version"]
+                        .drop_duplicates()
+                        .tolist()
+                    )
+                    selected_weight_version = st.selectbox(
+                        "Version for weight sensitivity audit",
+                        weight_versions,
+                        key="inclusive_weight_sensitivity_version",
+                    )
+                    weight_rounds = sorted(
+                        weight_response_data.loc[
+                            weight_response_data["instrument_version"].eq(
+                                selected_weight_version
+                            ),
+                            "administration_round",
+                        ].unique()
+                    )
+                    selected_weight_round = st.selectbox(
+                        "Administration round for weight sensitivity audit",
+                        weight_rounds,
+                        key="inclusive_weight_sensitivity_round",
+                    )
+                    try:
+                        weight_audit = audit_weight_sensitivity(
+                            weight_response_data,
+                            weight_scheme_data,
+                            selected_weight_version,
+                            int(selected_weight_round),
+                            weight_min,
+                            weight_max,
+                        )
+                    except ValueError as error:
+                        st.error(f"Weight-sensitivity audit failed: {error}")
+                    else:
+                        st.warning(str(weight_audit["interpretation"]))
+                        for title, summary_key in (
+                            ("Declared weight schemes", "weight_scheme_summary"),
+                            ("Five-dimension sensitivity", "dimension_sensitivity_summary"),
+                            ("Support Gap sensitivity", "support_gap_sensitivity_summary"),
+                            ("Research question candidates", "research_question_candidates"),
+                        ):
+                            st.markdown(f"**{title}**")
+                            st.dataframe(
+                                weight_audit[summary_key],
+                                width="stretch",
+                                hide_index=True,
+                            )
+                        for label, summary_key, file_name in (
+                            (
+                                "Download weight scheme summary",
+                                "weight_scheme_summary",
+                                "inclusive_weight_scheme_summary.csv",
+                            ),
+                            (
+                                "Download dimension weight sensitivity",
+                                "dimension_sensitivity_summary",
+                                "inclusive_dimension_weight_sensitivity.csv",
+                            ),
+                            (
+                                "Download Support Gap weight sensitivity",
+                                "support_gap_sensitivity_summary",
+                                "inclusive_support_gap_weight_sensitivity.csv",
+                            ),
+                            (
+                                "Download weight sensitivity research questions",
+                                "research_question_candidates",
+                                "inclusive_weight_sensitivity_questions.csv",
+                            ),
+                        ):
+                            st.download_button(
+                                label,
+                                weight_audit[summary_key].to_csv(index=False).encode(
+                                    "utf-8-sig"
+                                ),
+                                file_name,
+                                "text/csv",
+                                key=f"inclusive_weight_{summary_key}_download",
                             )
         if len(selected_variables) >= 2:
             st.markdown("#### Correlation — descriptive association only")

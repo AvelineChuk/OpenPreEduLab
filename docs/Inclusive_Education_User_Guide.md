@@ -140,6 +140,15 @@ does not establish convergent, discriminant, criterion-related, predictive,
 external, or causal validity. See the
 [External Measure Relationship Readiness Protocol](Inclusive_Education_External_Measure_Protocol.md).
 
+The alternative item-weight sensitivity workflow compares the current
+equal-item baseline with complete researcher-declared weighting schemes. Each
+scheme must document its rationale and evidence status and use positive weights
+that sum to 1 within every dimension. Outputs describe changes in five-dimension
+means, aggregated institution-level score sensitivity, and Support Gap summaries.
+The platform does not learn, rank, recommend, validate, or adopt weights, and
+the default scoring model remains equal-item weighting. See the
+[Alternative Weight Sensitivity Protocol](Inclusive_Education_Weight_Sensitivity_Protocol.md).
+
 ## Exploratory Scenarios
 
 Four interfaces change one item by a researcher-selected number of 0–100 scale

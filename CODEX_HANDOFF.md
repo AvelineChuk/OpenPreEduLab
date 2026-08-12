@@ -149,6 +149,13 @@ Before editing, downloading, processing data, or pushing commits:
   and approximate Fisher-z intervals. Expected relationship type is design
   metadata only; the workflow does not establish any form of validity, make
   causal claims, or produce automatic thresholds or decisions.
+- Researcher Mode now includes a session-only alternative item-weight
+  sensitivity audit. Complete researcher-declared schemes must cover all 28
+  items, use positive within-dimension weights summing to one, and document
+  rationale and evidence status. The audit compares five-dimension and Support
+  Gap summaries with the equal-item baseline without exposing unit IDs. It
+  does not learn, optimise, rank, recommend, validate, or adopt weights; the
+  platform default remains equal-item weighting.
 - `dd8b3d2 Fix landing page transition warning`: removed `st.rerun()` from a
   button callback. The old Dashboard warning *“Calling st.rerun() within a
   callback is a no-op.”* should not reappear.
@@ -159,7 +166,7 @@ Before editing, downloading, processing data, or pushing commits:
 - `e60babd Document AI interpretation export formats`.
 - `69765b8 Add project history record and workflow screenshot`.
 
-The most recent validated test result was **119 passed** in one complete pytest
+The most recent validated test result was **127 passed** in one complete pytest
 run. Streamlit interface tests loaded all current Dashboard routes, including
 Inclusive Education, and explicitly checked the expert content-review materials
 and download entry.
