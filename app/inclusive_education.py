@@ -34,6 +34,11 @@ from models.inclusion_cognitive_interviews import (
     summarize_cognitive_interviews,
     summarize_item_revision_log,
 )
+from models.inclusion_construct_structure import (
+    audit_construct_structure,
+    create_construct_structure_template,
+    load_construct_structure_csv,
+)
 from models.inclusion_feasibility import (
     audit_feasibility_pilot,
     create_feasibility_pilot_template,
@@ -905,6 +910,128 @@ def render_inclusive_education_page(project_root: Path) -> None:
                                     "text/csv",
                                     key="inclusive_reliability_stability_download",
                                 )
+        st.markdown("#### Construct structure readiness and exploratory components audit")
+        st.caption(
+            "Exploratory structural evidence only. This workflow is not confirmatory "
+            "factor analysis and does not validate the five-dimension structure."
+        )
+        with st.expander("Construct structure readiness and exploratory components workflow"):
+            construct_template = create_construct_structure_template()
+            st.download_button(
+                "Download construct structure audit template",
+                construct_template.to_csv(index=False).encode("utf-8-sig"),
+                "inclusive_construct_structure_audit_template.csv",
+                "text/csv",
+                key="inclusive_construct_structure_template_download",
+            )
+            construct_upload = st.file_uploader(
+                "Upload construct structure audit CSV",
+                type=["csv"],
+                key="inclusive_construct_structure_upload",
+                help=(
+                    "Use complete, non-identifying records. Analysis is restricted to one "
+                    "explicitly selected instrument version and administration round."
+                ),
+            )
+            construct_scale = st.selectbox(
+                "Construct structure audit response scale",
+                ["0–100", "0–1", "Custom range"],
+                key="inclusive_construct_structure_scale",
+            )
+            if construct_scale == "0–100":
+                construct_min, construct_max = 0.0, 100.0
+            elif construct_scale == "0–1":
+                construct_min, construct_max = 0.0, 1.0
+            else:
+                construct_scale_columns = st.columns(2)
+                with construct_scale_columns[0]:
+                    construct_min = float(
+                        st.number_input(
+                            "Construct structure scale minimum",
+                            value=1.0,
+                            key="inclusive_construct_structure_min",
+                        )
+                    )
+                with construct_scale_columns[1]:
+                    construct_max = float(
+                        st.number_input(
+                            "Construct structure scale maximum",
+                            value=5.0,
+                            key="inclusive_construct_structure_max",
+                        )
+                    )
+            if construct_upload is not None:
+                try:
+                    construct_data = load_construct_structure_csv(
+                        construct_upload,
+                        construct_min,
+                        construct_max,
+                    )
+                except ValueError as error:
+                    st.error(f"Construct-structure validation failed: {error}")
+                else:
+                    construct_versions = construct_data["instrument_version"].drop_duplicates().tolist()
+                    selected_construct_version = st.selectbox(
+                        "Version for construct structure audit",
+                        construct_versions,
+                        key="inclusive_construct_structure_version",
+                    )
+                    construct_rounds = sorted(
+                        construct_data.loc[
+                            construct_data["instrument_version"].eq(selected_construct_version),
+                            "administration_round",
+                        ].unique()
+                    )
+                    selected_construct_round = st.selectbox(
+                        "Administration round for construct structure audit",
+                        construct_rounds,
+                        key="inclusive_construct_structure_round",
+                    )
+                    construct_component_count = st.number_input(
+                        "Exploratory principal component count",
+                        min_value=1,
+                        max_value=len(ITEM_COLUMNS),
+                        value=min(5, len(ITEM_COLUMNS)),
+                        step=1,
+                        key="inclusive_construct_structure_components",
+                        help="Researcher-selected. The software does not determine the factor count.",
+                    )
+                    try:
+                        construct_audit = audit_construct_structure(
+                            construct_data,
+                            selected_construct_version,
+                            int(selected_construct_round),
+                            int(construct_component_count),
+                            construct_min,
+                            construct_max,
+                        )
+                    except ValueError as error:
+                        st.error(f"Construct-structure audit failed: {error}")
+                    else:
+                        st.warning(str(construct_audit["interpretation"]))
+                        for title, summary_key in (
+                            ("Readiness and Bartlett summary", "readiness_summary"),
+                            ("Item-level KMO and variance", "item_kmo_summary"),
+                            ("Item correlation matrix", "correlation_matrix"),
+                            ("Correlation-matrix eigenvalues", "eigenvalue_summary"),
+                            ("Unrotated principal-component loadings", "component_loading_summary"),
+                        ):
+                            st.markdown(f"**{title}**")
+                            st.dataframe(construct_audit[summary_key], width="stretch")
+                        for label, summary_key, file_name in (
+                            ("Download construct readiness summary", "readiness_summary", "inclusive_construct_readiness.csv"),
+                            ("Download item KMO summary", "item_kmo_summary", "inclusive_construct_item_kmo.csv"),
+                            ("Download item correlation matrix", "correlation_matrix", "inclusive_construct_correlations.csv"),
+                            ("Download eigenvalue summary", "eigenvalue_summary", "inclusive_construct_eigenvalues.csv"),
+                            ("Download exploratory component loadings", "component_loading_summary", "inclusive_construct_component_loadings.csv"),
+                        ):
+                            st.download_button(
+                                label,
+                                construct_audit[summary_key].to_csv(index=False).encode("utf-8-sig"),
+                                file_name,
+                                "text/csv",
+                                key=f"inclusive_{summary_key}_download",
+                            )
         if len(selected_variables) >= 2:
             st.markdown("#### Correlation — descriptive association only")
             st.dataframe(correlation_matrix(analysis_data, selected_variables), width="stretch")

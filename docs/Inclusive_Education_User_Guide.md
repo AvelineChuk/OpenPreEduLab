@@ -113,6 +113,14 @@ and dimension. It applies no automatic pass/fail threshold and does not treat
 reliability as validity or unidimensionality evidence. See the
 [Preliminary Reliability Protocol](Inclusive_Education_Reliability_Protocol.md).
 
+For one explicitly selected instrument version and administration round, the
+construct-structure readiness workflow reports an item-correlation matrix,
+overall and item-level KMO, Bartlett's test, correlation-matrix eigenvalues,
+and researcher-selected unrotated principal-component loadings. It does not
+automatically choose a factor count or make item decisions. PCA is not labelled
+as EFA or CFA, and the output does not validate the proposed five dimensions.
+See the [Construct Structure Readiness Protocol](Inclusive_Education_Construct_Structure_Protocol.md).
+
 ## Exploratory Scenarios
 
 Four interfaces change one item by a researcher-selected number of 0–100 scale

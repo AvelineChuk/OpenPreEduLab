@@ -128,6 +128,13 @@ Before editing, downloading, processing data, or pushing commits:
   thresholds or item decisions. It does not establish validity,
   unidimensionality, fairness, or cross-version comparability; no governed
   empirical reliability study has been completed.
+- Researcher Mode now includes a session-only construct-structure readiness
+  and exploratory principal-components audit for one explicitly selected
+  instrument version and administration round. It reports item correlations,
+  overall and item-level KMO, Bartlett's test, eigenvalues, and researcher-
+  selected unrotated PCA loadings. It does not automate factor-count or item
+  decisions, label PCA as EFA/CFA, or validate the proposed five dimensions;
+  no governed empirical construct-validation study has been completed.
 - `dd8b3d2 Fix landing page transition warning`: removed `st.rerun()` from a
   button callback. The old Dashboard warning *“Calling st.rerun() within a
   callback is a no-op.”* should not reappear.
@@ -138,7 +145,7 @@ Before editing, downloading, processing data, or pushing commits:
 - `e60babd Document AI interpretation export formats`.
 - `69765b8 Add project history record and workflow screenshot`.
 
-The most recent validated test result was **91 passed** in one complete pytest
+The most recent validated test result was **104 passed** in one complete pytest
 run. Streamlit interface tests loaded all current Dashboard routes, including
 Inclusive Education, and explicitly checked the expert content-review materials
 and download entry.

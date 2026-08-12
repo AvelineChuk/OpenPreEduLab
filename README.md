@@ -209,6 +209,7 @@ The default scenario parameters are prototype assumptions for workflow demonstra
 - [Inclusive Education Versioning Protocol](docs/Inclusive_Education_Versioning_Protocol.md)
 - [Inclusive Education Feasibility Protocol](docs/Inclusive_Education_Feasibility_Protocol.md)
 - [Inclusive Education Reliability Protocol](docs/Inclusive_Education_Reliability_Protocol.md)
+- [Inclusive Education Construct Structure Readiness Protocol](docs/Inclusive_Education_Construct_Structure_Protocol.md)
 - [Inclusive Education Accessibility Check](docs/Inclusive_Education_Accessibility_Check.md)
 - [Research Journal](Research_Journal.md)
 - [Contributing](CONTRIBUTING.md)
