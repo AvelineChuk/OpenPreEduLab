@@ -64,4 +64,4 @@ Consensus must not be manufactured by deleting dissent. Removed or superseded wo
 
 A cognitive-interview round is complete only when recruitment and governance records, interview coverage, non-identifying evidence, issue summaries, unresolved disagreements, and limitations are documented. An instrument revision is complete only when every changed item has an auditable version transition and required safeguarding and equity/accessibility review.
 
-Completion does not establish reliability, construct validity, measurement invariance, external validity, or causal validity. Those require separately justified future studies.
+Completion does not establish reliability, construct validity, measurement invariance, external validity, or causal validity. Version snapshots and structural comparisons should follow the [Instrument Versioning and Comparability Protocol](Inclusive_Education_Versioning_Protocol.md). Empirical comparability requires separately justified future studies.

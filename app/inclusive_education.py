@@ -34,6 +34,11 @@ from models.inclusion_cognitive_interviews import (
     summarize_cognitive_interviews,
     summarize_item_revision_log,
 )
+from models.inclusion_versioning import (
+    audit_instrument_version_comparability,
+    create_instrument_version_registry_template,
+    load_instrument_version_registry_csv,
+)
 from models.inclusion_content_validity import (
     calculate_content_validity_summaries,
     create_content_validity_review_template,
@@ -494,6 +499,104 @@ def render_inclusive_education_page(project_root: Path) -> None:
                         "text/csv",
                         key="inclusive_item_revision_summary_download",
                     )
+        st.markdown("#### Instrument version registry and comparability audit")
+        st.caption(
+            "Structural audit only. The platform never converts scores or assumes that "
+            "two instrument versions are empirically comparable."
+        )
+        with st.expander("Instrument version and comparability workflow"):
+            version_template = create_instrument_version_registry_template()
+            st.markdown(
+                "Register complete active-item snapshots for each version. Weights must sum "
+                "to 1 within every version and dimension."
+            )
+            st.download_button(
+                "Download instrument version registry template",
+                version_template.to_csv(index=False).encode("utf-8-sig"),
+                "inclusive_instrument_version_registry_template.csv",
+                "text/csv",
+                key="inclusive_version_registry_template_download",
+            )
+            version_upload = st.file_uploader(
+                "Upload instrument version registry CSV",
+                type=["csv"],
+                key="inclusive_version_registry_upload",
+                help="Session-only structural metadata. Do not include institution or child records.",
+            )
+            if version_upload is not None:
+                try:
+                    version_registry = load_instrument_version_registry_csv(version_upload)
+                except ValueError as error:
+                    st.error(f"Instrument-version registry validation failed: {error}")
+                else:
+                    version_options = version_registry["instrument_version"].drop_duplicates().tolist()
+                    st.success(
+                        f"Validated {len(version_options)} registered instrument version(s)."
+                    )
+                    if len(version_options) < 2:
+                        st.info("Register at least two versions to run a comparability audit.")
+                    else:
+                        version_columns = st.columns(2)
+                        with version_columns[0]:
+                            source_version = st.selectbox(
+                                "Source instrument version",
+                                version_options,
+                                key="inclusive_source_instrument_version",
+                            )
+                        with version_columns[1]:
+                            target_version = st.selectbox(
+                                "Target instrument version",
+                                version_options,
+                                index=1,
+                                key="inclusive_target_instrument_version",
+                            )
+                        if source_version == target_version:
+                            st.error("Select two different instrument versions for the audit.")
+                        else:
+                            version_audit = audit_instrument_version_comparability(
+                                version_registry,
+                                source_version,
+                                target_version,
+                            )
+                            st.warning(str(version_audit["interpretation"]))
+                            st.dataframe(
+                                version_audit["transition_summary"],
+                                width="stretch",
+                                hide_index=True,
+                            )
+                            st.markdown("**Dimension structure comparison**")
+                            st.dataframe(
+                                version_audit["dimension_summary"],
+                                width="stretch",
+                                hide_index=True,
+                            )
+                            st.markdown("**Shared-item structural changes**")
+                            st.dataframe(
+                                version_audit["item_change_summary"],
+                                width="stretch",
+                                hide_index=True,
+                            )
+                            st.download_button(
+                                "Download version transition summary",
+                                version_audit["transition_summary"].to_csv(index=False).encode("utf-8-sig"),
+                                "inclusive_version_transition_summary.csv",
+                                "text/csv",
+                                key="inclusive_version_transition_summary_download",
+                            )
+                            st.download_button(
+                                "Download dimension structure comparison",
+                                version_audit["dimension_summary"].to_csv(index=False).encode("utf-8-sig"),
+                                "inclusive_version_dimension_comparison.csv",
+                                "text/csv",
+                                key="inclusive_version_dimension_summary_download",
+                            )
+                            st.download_button(
+                                "Download shared-item structural changes",
+                                version_audit["item_change_summary"].to_csv(index=False).encode("utf-8-sig"),
+                                "inclusive_version_item_changes.csv",
+                                "text/csv",
+                                key="inclusive_version_item_changes_download",
+                            )
         if len(selected_variables) >= 2:
             st.markdown("#### Correlation — descriptive association only")
             st.dataframe(correlation_matrix(analysis_data, selected_variables), width="stretch")

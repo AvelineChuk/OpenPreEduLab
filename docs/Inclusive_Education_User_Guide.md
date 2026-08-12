@@ -95,6 +95,12 @@ revision decisions require explicit instrument-version transitions, rationale,
 minority-view records, and safeguarding and equity/accessibility review. See
 the [Cognitive Interview and Item Revision Protocol](Inclusive_Education_Cognitive_Interview_Protocol.md).
 
+Researcher Mode also provides a complete instrument-version registry and
+structural comparability audit. It identifies item, dimension, wording, response-
+scale, and weight changes. Structural alignment does not establish empirical
+comparability, and structural change does not permit automatic score conversion.
+See the [Instrument Versioning and Comparability Protocol](Inclusive_Education_Versioning_Protocol.md).
+
 ## Exploratory Scenarios
 
 Four interfaces change one item by a researcher-selected number of 0–100 scale

@@ -110,6 +110,11 @@ Before editing, downloading, processing data, or pushing commits:
   versioned item-revision audit workflows. They validate and summarize
   human-entered records without simulating interviews or making item decisions;
   no real interviews or revision decisions have been completed.
+- Researcher Mode now includes complete instrument-version registration and
+  structural comparability auditing. It records item snapshots and flags
+  wording, dimension, response-scale, weight, added-item, and removed-item
+  changes. It never converts scores or authorises direct comparison; no
+  empirical linking study has been completed.
 - `dd8b3d2 Fix landing page transition warning`: removed `st.rerun()` from a
   button callback. The old Dashboard warning *“Calling st.rerun() within a
   callback is a no-op.”* should not reappear.
@@ -120,7 +125,7 @@ Before editing, downloading, processing data, or pushing commits:
 - `e60babd Document AI interpretation export formats`.
 - `69765b8 Add project history record and workflow screenshot`.
 
-The most recent validated test result was **66 passed** in one complete pytest
+The most recent validated test result was **74 passed** in one complete pytest
 run. Streamlit interface tests loaded all current Dashboard routes, including
 Inclusive Education, and explicitly checked the expert content-review materials
 and download entry.

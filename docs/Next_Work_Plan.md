@@ -32,7 +32,9 @@ The blank 28-item expert-review CSV, strict rating validation, threshold-free
 I-CVI, S-CVI/Ave, and CVR calculation backend, and session-only completed-
 rating upload interface are implemented. The cognitive-interview evidence and
 versioned item-revision audit templates, validators, summaries, uploads, and
-exports are also implemented. Actual expert recruitment, rating collection,
+exports are also implemented. Complete instrument-version registration and
+structural comparability auditing are implemented without score conversion or
+automatic comparison. Actual expert recruitment, rating collection,
 cognitive interviews, and instrument decisions require separate governance and
 human participation; they have not been completed.
 

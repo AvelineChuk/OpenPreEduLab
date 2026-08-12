@@ -97,7 +97,9 @@ def test_inclusive_education_dashboard_renders_research_pathway() -> None:
     uploader_labels = [uploader.label for uploader in app.get("file_uploader")]
     assert "Upload cognitive interview record CSV" in uploader_labels
     assert "Upload item revision decision CSV" in uploader_labels
-    assert len(app.get("download_button")) >= 7
+    assert "Instrument version and comparability workflow" in expander_labels
+    assert "Upload instrument version registry CSV" in uploader_labels
+    assert len(app.get("download_button")) >= 8
 
 def test_reports_page_offers_markdown_word_and_pdf_downloads() -> None:
     """Users should be able to choose a familiar report-download format."""

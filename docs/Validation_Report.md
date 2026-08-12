@@ -32,7 +32,10 @@ S-CVI/Ave, CVR, UTF-8 CSV loading, blank-template rejection, and
 missing-column rejection without automatic validity decisions. Cognitive-
 interview and revision-audit tests separately cover partial item review, issue
 logic, non-identifying summaries, version transitions, move targets, revised
-wording, dates, and duplicate decisions.
+wording, dates, and duplicate decisions. Version-registry tests cover complete
+five-dimension snapshots, weights, predecessor metadata, release metadata,
+wording/scale/weight changes, added and removed item IDs, and the rule that no
+audit authorises direct comparison.
 
 Run the suite from the project root with:
 
