@@ -50,6 +50,11 @@ from models.inclusion_reliability import (
     create_reliability_audit_template,
     load_reliability_audit_csv,
 )
+from models.inclusion_subgroup_comparability import (
+    audit_subgroup_comparability,
+    create_subgroup_comparability_template,
+    load_subgroup_comparability_csv,
+)
 from models.inclusion_versioning import (
     audit_instrument_version_comparability,
     create_instrument_version_registry_template,
@@ -1031,6 +1036,154 @@ def render_inclusive_education_page(project_root: Path) -> None:
                                 file_name,
                                 "text/csv",
                                 key=f"inclusive_{summary_key}_download",
+                            )
+        st.markdown("#### Subgroup measurement comparability readiness audit")
+        st.caption(
+            "Readiness evidence only. Descriptive group differences do not establish "
+            "measurement invariance, DIF, bias, fairness, or substantive group effects."
+        )
+        with st.expander("Subgroup measurement comparability readiness workflow"):
+            subgroup_template = create_subgroup_comparability_template()
+            st.download_button(
+                "Download subgroup comparability audit template",
+                subgroup_template.to_csv(index=False).encode("utf-8-sig"),
+                "inclusive_subgroup_comparability_template.csv",
+                "text/csv",
+                key="inclusive_subgroup_comparability_template_download",
+            )
+            subgroup_upload = st.file_uploader(
+                "Upload subgroup comparability audit CSV",
+                type=["csv"],
+                key="inclusive_subgroup_comparability_upload",
+                help=(
+                    "comparison_group must use ethically justified institutional-level "
+                    "categories. Do not upload child, family, teacher, clinical, or case data."
+                ),
+            )
+            subgroup_scale = st.selectbox(
+                "Subgroup comparability audit response scale",
+                ["0–100", "0–1", "Custom range"],
+                key="inclusive_subgroup_comparability_scale",
+            )
+            if subgroup_scale == "0–100":
+                subgroup_min, subgroup_max = 0.0, 100.0
+            elif subgroup_scale == "0–1":
+                subgroup_min, subgroup_max = 0.0, 1.0
+            else:
+                subgroup_scale_columns = st.columns(2)
+                with subgroup_scale_columns[0]:
+                    subgroup_min = float(
+                        st.number_input(
+                            "Subgroup comparability scale minimum",
+                            value=1.0,
+                            key="inclusive_subgroup_comparability_min",
+                        )
+                    )
+                with subgroup_scale_columns[1]:
+                    subgroup_max = float(
+                        st.number_input(
+                            "Subgroup comparability scale maximum",
+                            value=5.0,
+                            key="inclusive_subgroup_comparability_max",
+                        )
+                    )
+            if subgroup_upload is not None:
+                try:
+                    subgroup_data = load_subgroup_comparability_csv(
+                        subgroup_upload,
+                        subgroup_min,
+                        subgroup_max,
+                    )
+                except ValueError as error:
+                    st.error(f"Subgroup-comparability validation failed: {error}")
+                else:
+                    subgroup_versions = (
+                        subgroup_data["instrument_version"].drop_duplicates().tolist()
+                    )
+                    selected_subgroup_version = st.selectbox(
+                        "Version for subgroup comparability audit",
+                        subgroup_versions,
+                        key="inclusive_subgroup_comparability_version",
+                    )
+                    subgroup_rounds = sorted(
+                        subgroup_data.loc[
+                            subgroup_data["instrument_version"].eq(
+                                selected_subgroup_version
+                            ),
+                            "administration_round",
+                        ].unique()
+                    )
+                    selected_subgroup_round = st.selectbox(
+                        "Administration round for subgroup comparability audit",
+                        subgroup_rounds,
+                        key="inclusive_subgroup_comparability_round",
+                    )
+                    try:
+                        subgroup_audit = audit_subgroup_comparability(
+                            subgroup_data,
+                            selected_subgroup_version,
+                            int(selected_subgroup_round),
+                            subgroup_min,
+                            subgroup_max,
+                        )
+                    except ValueError as error:
+                        st.error(f"Subgroup-comparability audit failed: {error}")
+                    else:
+                        st.warning(str(subgroup_audit["interpretation"]))
+                        for title, summary_key in (
+                            ("Group coverage", "group_coverage_summary"),
+                            ("Group item distributions", "group_item_distribution_summary"),
+                            ("Pairwise item differences", "pairwise_item_difference_summary"),
+                            (
+                                "Correlation-structure differences",
+                                "correlation_structure_difference_summary",
+                            ),
+                            (
+                                "Research question candidates",
+                                "research_question_candidates",
+                            ),
+                        ):
+                            st.markdown(f"**{title}**")
+                            st.dataframe(
+                                subgroup_audit[summary_key],
+                                width="stretch",
+                                hide_index=True,
+                            )
+                        for label, summary_key, file_name in (
+                            (
+                                "Download subgroup coverage summary",
+                                "group_coverage_summary",
+                                "inclusive_subgroup_coverage.csv",
+                            ),
+                            (
+                                "Download subgroup item distributions",
+                                "group_item_distribution_summary",
+                                "inclusive_subgroup_item_distributions.csv",
+                            ),
+                            (
+                                "Download pairwise item differences",
+                                "pairwise_item_difference_summary",
+                                "inclusive_subgroup_item_differences.csv",
+                            ),
+                            (
+                                "Download correlation-structure differences",
+                                "correlation_structure_difference_summary",
+                                "inclusive_subgroup_correlation_differences.csv",
+                            ),
+                            (
+                                "Download subgroup research questions",
+                                "research_question_candidates",
+                                "inclusive_subgroup_research_questions.csv",
+                            ),
+                        ):
+                            st.download_button(
+                                label,
+                                subgroup_audit[summary_key].to_csv(index=False).encode(
+                                    "utf-8-sig"
+                                ),
+                                file_name,
+                                "text/csv",
+                                key=f"inclusive_subgroup_{summary_key}_download",
                             )
         if len(selected_variables) >= 2:
             st.markdown("#### Correlation — descriptive association only")

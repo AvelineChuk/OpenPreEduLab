@@ -120,6 +120,14 @@ def test_inclusive_education_dashboard_renders_research_pathway() -> None:
     assert "Download construct structure audit template" in [
         button.label for button in app.get("download_button")
     ]
+    assert "Subgroup measurement comparability readiness workflow" in expander_labels
+    assert "Upload subgroup comparability audit CSV" in uploader_labels
+    assert "Subgroup comparability audit response scale" in [
+        selectbox.label for selectbox in app.selectbox
+    ]
+    assert "Download subgroup comparability audit template" in [
+        button.label for button in app.get("download_button")
+    ]
     assert len(app.get("download_button")) >= 10
 
 def test_reports_page_offers_markdown_word_and_pdf_downloads() -> None:

@@ -121,6 +121,15 @@ automatically choose a factor count or make item decisions. PCA is not labelled
 as EFA or CFA, and the output does not validate the proposed five dimensions.
 See the [Construct Structure Readiness Protocol](Inclusive_Education_Construct_Structure_Protocol.md).
 
+The subgroup measurement-comparability readiness workflow adds an ethically
+justified institutional `comparison_group` to complete records from one selected
+version and round. It reports group coverage, item distributions, descriptive
+standardised mean differences, and correlation-structure difference summaries.
+These results do not establish measurement invariance, DIF, bias, fairness, or
+substantive group effects. The workflow applies no automatic threshold, ranking,
+group judgement, or item decision. See the
+[Subgroup Measurement Comparability Readiness Protocol](Inclusive_Education_Subgroup_Comparability_Protocol.md).
+
 ## Exploratory Scenarios
 
 Four interfaces change one item by a researcher-selected number of 0–100 scale
