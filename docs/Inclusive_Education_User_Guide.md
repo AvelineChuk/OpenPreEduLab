@@ -107,6 +107,12 @@ burden, and administration mode. These outputs are implementation and data-
 quality questions, not reliability or validity evidence. See the
 [Feasibility Pilot and Data Quality Protocol](Inclusive_Education_Feasibility_Protocol.md).
 
+For complete, governed records, the preliminary reliability workflow reports
+internal consistency and matched repeated-administration stability by version
+and dimension. It applies no automatic pass/fail threshold and does not treat
+reliability as validity or unidimensionality evidence. See the
+[Preliminary Reliability Protocol](Inclusive_Education_Reliability_Protocol.md).
+
 ## Exploratory Scenarios
 
 Four interfaces change one item by a researcher-selected number of 0–100 scale

@@ -37,6 +37,9 @@ structural comparability auditing are implemented without score conversion or
 automatic comparison. A separate feasibility-pilot workflow now preserves
 missingness and audits completion, endpoint concentration, variation, duration,
 burden, and administration modes without treating them as validity evidence.
+A separate preliminary reliability workflow now calculates dimension-level
+Cronbach alpha, item diagnostics, and matched repeated-administration Pearson
+and ICC(3,1) summaries without automatic thresholds or validity claims.
 Actual expert recruitment, rating collection,
 cognitive interviews, and instrument decisions require separate governance and
 human participation; they have not been completed.

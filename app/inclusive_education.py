@@ -39,6 +39,12 @@ from models.inclusion_feasibility import (
     create_feasibility_pilot_template,
     load_feasibility_pilot_csv,
 )
+from models.inclusion_reliability import (
+    calculate_internal_consistency,
+    calculate_repeated_administration_stability,
+    create_reliability_audit_template,
+    load_reliability_audit_csv,
+)
 from models.inclusion_versioning import (
     audit_instrument_version_comparability,
     create_instrument_version_registry_template,
@@ -731,6 +737,174 @@ def render_inclusive_education_page(project_root: Path) -> None:
                             "text/csv",
                             key=f"inclusive_{summary_key}_download",
                         )
+        st.markdown("#### Preliminary reliability and repeated-administration audit")
+        st.caption(
+            "Reliability evidence only. Coefficients do not establish validity, "
+            "unidimensionality, fairness, or cross-version comparability."
+        )
+        with st.expander("Reliability and repeated-administration workflow"):
+            reliability_template = create_reliability_audit_template()
+            st.download_button(
+                "Download reliability audit template",
+                reliability_template.to_csv(index=False).encode("utf-8-sig"),
+                "inclusive_reliability_audit_template.csv",
+                "text/csv",
+                key="inclusive_reliability_template_download",
+            )
+            reliability_upload = st.file_uploader(
+                "Upload reliability audit CSV",
+                type=["csv"],
+                key="inclusive_reliability_upload",
+                help=(
+                    "Use complete, non-identifying institutional records. Missing item "
+                    "responses are rejected and never imputed."
+                ),
+            )
+            reliability_scale = st.selectbox(
+                "Reliability audit response scale",
+                ["0–100", "0–1", "Custom range"],
+                key="inclusive_reliability_scale",
+            )
+            if reliability_scale == "0–100":
+                reliability_min, reliability_max = 0.0, 100.0
+            elif reliability_scale == "0–1":
+                reliability_min, reliability_max = 0.0, 1.0
+            else:
+                reliability_scale_columns = st.columns(2)
+                with reliability_scale_columns[0]:
+                    reliability_min = float(
+                        st.number_input(
+                            "Reliability scale minimum",
+                            value=1.0,
+                            key="inclusive_reliability_min",
+                        )
+                    )
+                with reliability_scale_columns[1]:
+                    reliability_max = float(
+                        st.number_input(
+                            "Reliability scale maximum",
+                            value=5.0,
+                            key="inclusive_reliability_max",
+                        )
+                    )
+            if reliability_upload is not None:
+                try:
+                    reliability_data = load_reliability_audit_csv(
+                        reliability_upload,
+                        reliability_min,
+                        reliability_max,
+                    )
+                    internal_consistency = calculate_internal_consistency(
+                        reliability_data,
+                        reliability_min,
+                        reliability_max,
+                    )
+                except ValueError as error:
+                    st.error(f"Reliability-audit validation failed: {error}")
+                else:
+                    st.warning(str(internal_consistency["interpretation"]))
+                    st.markdown("**Dimension internal-consistency summary**")
+                    st.dataframe(
+                        internal_consistency["dimension_summary"],
+                        width="stretch",
+                        hide_index=True,
+                    )
+                    st.markdown("**Item internal-consistency diagnostics**")
+                    st.dataframe(
+                        internal_consistency["item_summary"],
+                        width="stretch",
+                        hide_index=True,
+                    )
+                    st.download_button(
+                        "Download dimension internal-consistency summary",
+                        internal_consistency["dimension_summary"].to_csv(index=False).encode("utf-8-sig"),
+                        "inclusive_internal_consistency_dimensions.csv",
+                        "text/csv",
+                        key="inclusive_internal_consistency_dimension_download",
+                    )
+                    st.download_button(
+                        "Download item internal-consistency diagnostics",
+                        internal_consistency["item_summary"].to_csv(index=False).encode("utf-8-sig"),
+                        "inclusive_internal_consistency_items.csv",
+                        "text/csv",
+                        key="inclusive_internal_consistency_item_download",
+                    )
+                    reliability_versions = (
+                        reliability_data["instrument_version"].drop_duplicates().tolist()
+                    )
+                    selected_reliability_version = st.selectbox(
+                        "Version for repeated-administration audit",
+                        reliability_versions,
+                        key="inclusive_reliability_version",
+                    )
+                    version_rounds = sorted(
+                        reliability_data.loc[
+                            reliability_data["instrument_version"].eq(
+                                selected_reliability_version
+                            ),
+                            "administration_round",
+                        ].unique()
+                    )
+                    if len(version_rounds) < 2:
+                        st.info(
+                            "At least two rounds within one version are required for a "
+                            "repeated-administration audit."
+                        )
+                    else:
+                        round_columns = st.columns(2)
+                        with round_columns[0]:
+                            first_reliability_round = st.selectbox(
+                                "First administration round",
+                                version_rounds,
+                                key="inclusive_first_reliability_round",
+                            )
+                        with round_columns[1]:
+                            second_reliability_round = st.selectbox(
+                                "Second administration round",
+                                version_rounds,
+                                index=1,
+                                key="inclusive_second_reliability_round",
+                            )
+                        if first_reliability_round == second_reliability_round:
+                            st.error("Select two different rounds for stability analysis.")
+                        else:
+                            try:
+                                stability = calculate_repeated_administration_stability(
+                                    reliability_data,
+                                    selected_reliability_version,
+                                    int(first_reliability_round),
+                                    int(second_reliability_round),
+                                    reliability_min,
+                                    reliability_max,
+                                )
+                            except ValueError as error:
+                                st.error(f"Repeated-administration audit failed: {error}")
+                            else:
+                                st.warning(str(stability["interpretation"]))
+                                st.dataframe(
+                                    stability["matching_coverage_summary"],
+                                    width="stretch",
+                                    hide_index=True,
+                                )
+                                st.dataframe(
+                                    stability["dimension_stability_summary"],
+                                    width="stretch",
+                                    hide_index=True,
+                                )
+                                st.download_button(
+                                    "Download repeated-administration coverage summary",
+                                    stability["matching_coverage_summary"].to_csv(index=False).encode("utf-8-sig"),
+                                    "inclusive_repeated_administration_coverage.csv",
+                                    "text/csv",
+                                    key="inclusive_reliability_coverage_download",
+                                )
+                                st.download_button(
+                                    "Download repeated-administration stability summary",
+                                    stability["dimension_stability_summary"].to_csv(index=False).encode("utf-8-sig"),
+                                    "inclusive_repeated_administration_stability.csv",
+                                    "text/csv",
+                                    key="inclusive_reliability_stability_download",
+                                )
         if len(selected_variables) >= 2:
             st.markdown("#### Correlation — descriptive association only")
             st.dataframe(correlation_matrix(analysis_data, selected_variables), width="stretch")

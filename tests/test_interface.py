@@ -107,7 +107,12 @@ def test_inclusive_education_dashboard_renders_research_pathway() -> None:
     slider_labels = [slider.label for slider in app.slider]
     assert "Endpoint follow-up threshold" in slider_labels
     assert "Missingness follow-up threshold" in slider_labels
-    assert len(app.get("download_button")) >= 9
+    assert "Reliability and repeated-administration workflow" in expander_labels
+    assert "Upload reliability audit CSV" in uploader_labels
+    assert "Reliability audit response scale" in [
+        selectbox.label for selectbox in app.selectbox
+    ]
+    assert len(app.get("download_button")) >= 10
 
 def test_reports_page_offers_markdown_word_and_pdf_downloads() -> None:
     """Users should be able to choose a familiar report-download format."""

@@ -121,6 +121,13 @@ Before editing, downloading, processing data, or pushing commits:
   administration mode. It never imputes missing responses or passes incomplete
   records into five-dimension scoring, and its flags are not validity evidence
   or automatic item-removal rules.
+- Researcher Mode now includes preliminary internal-consistency and repeated-
+  administration audits for complete, non-identifying records. It reports
+  Cronbach alpha, corrected item-total correlations, alpha-if-item-removed,
+  matched coverage, Pearson correlation, and ICC(3,1) without automatic
+  thresholds or item decisions. It does not establish validity,
+  unidimensionality, fairness, or cross-version comparability; no governed
+  empirical reliability study has been completed.
 - `dd8b3d2 Fix landing page transition warning`: removed `st.rerun()` from a
   button callback. The old Dashboard warning *“Calling st.rerun() within a
   callback is a no-op.”* should not reappear.
@@ -131,7 +138,7 @@ Before editing, downloading, processing data, or pushing commits:
 - `e60babd Document AI interpretation export formats`.
 - `69765b8 Add project history record and workflow screenshot`.
 
-The most recent validated test result was **82 passed** in one complete pytest
+The most recent validated test result was **91 passed** in one complete pytest
 run. Streamlit interface tests loaded all current Dashboard routes, including
 Inclusive Education, and explicitly checked the expert content-review materials
 and download entry.

@@ -38,7 +38,7 @@ wording/scale/weight changes, added and removed item IDs, and the rule that no
 audit authorises direct comparison. Feasibility-pilot tests cover preserved
 missingness, numeric and range errors, completion-status consistency, duration
 and burden rules, endpoint and no-variation flags, explicit thresholds, UTF-8
-loading, and de-identified summaries.
+loading, and de-identified summaries. Reliability tests cover complete-response validation, duplicate unit-round rejection, minimum group size, undefined zero-variance alpha, dimension and item diagnostics, matched-round coverage, Pearson and ICC(3,1) summaries, invalid round designs, UTF-8 loading, and de-identified outputs.
 
 Run the suite from the project root with:
 

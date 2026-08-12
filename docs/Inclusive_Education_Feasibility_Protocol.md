@@ -58,4 +58,4 @@ Future work may require a governed pilot sample, pre-specified recruitment and a
 
 ## 8. Completion criteria
 
-A feasibility round is complete only when the instrument version, administration procedures, response interval, missing-data rules, flag thresholds, coverage, limitations, and follow-up decisions are documented. Completion means the pilot process has an auditable record; it does not mean the instrument is validated.
+A feasibility round is complete only when the instrument version, administration procedures, response interval, missing-data rules, flag thresholds, coverage, limitations, and follow-up decisions are documented. Completion means the pilot process has an auditable record; it does not mean the instrument is validated. If complete governed responses are available, preliminary consistency analysis should follow the [Preliminary Reliability Protocol](Inclusive_Education_Reliability_Protocol.md).
