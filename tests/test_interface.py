@@ -145,6 +145,16 @@ def test_inclusive_education_dashboard_renders_research_pathway() -> None:
     download_labels = [button.label for button in app.get("download_button")]
     assert "Download complete response template for weight sensitivity" in download_labels
     assert "Download alternative weight scheme template" in download_labels
+    assert "Bootstrap sampling uncertainty workflow" in expander_labels
+    assert "Upload Bootstrap audit response CSV" in uploader_labels
+    assert "Bootstrap audit response scale" in [
+        selectbox.label for selectbox in app.selectbox
+    ]
+    number_input_labels = [item.label for item in app.number_input]
+    assert "Bootstrap resamples" in number_input_labels
+    assert "Bootstrap random seed" in number_input_labels
+    assert "Bootstrap interval level (%)" in [slider.label for slider in app.slider]
+    assert "Download Bootstrap audit response template" in download_labels
     assert len(app.get("download_button")) >= 10
 
 def test_reports_page_offers_markdown_word_and_pdf_downloads() -> None:

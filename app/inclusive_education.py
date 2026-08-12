@@ -26,6 +26,7 @@ from models.inclusion import (
     simulate_inclusion_scenarios,
     standardize_inclusion_data,
 )
+from models.inclusion_bootstrap import audit_bootstrap_uncertainty
 from models.inclusion_cognitive_interviews import (
     create_cognitive_interview_template,
     create_item_revision_log_template,
@@ -1484,6 +1485,178 @@ def render_inclusive_education_page(project_root: Path) -> None:
                                 file_name,
                                 "text/csv",
                                 key=f"inclusive_weight_{summary_key}_download",
+                            )
+        st.markdown("#### Bootstrap sampling uncertainty audit")
+        st.caption(
+            "Prototype resampling evidence only. Intervals do not establish validity, "
+            "representativeness, causal effects, or policy effects."
+        )
+        with st.expander("Bootstrap sampling uncertainty workflow"):
+            st.download_button(
+                "Download Bootstrap audit response template",
+                create_reliability_audit_template().to_csv(index=False).encode("utf-8-sig"),
+                "inclusive_bootstrap_response_template.csv",
+                "text/csv",
+                key="inclusive_bootstrap_template_download",
+            )
+            bootstrap_upload = st.file_uploader(
+                "Upload Bootstrap audit response CSV",
+                type=["csv"],
+                key="inclusive_bootstrap_upload",
+                help=(
+                    "Use complete, non-identifying institutional records from a documented "
+                    "sampling design. Uploaded records are processed in the current session."
+                ),
+            )
+            bootstrap_scale = st.selectbox(
+                "Bootstrap audit response scale",
+                ["0–100", "0–1", "Custom range"],
+                key="inclusive_bootstrap_scale",
+            )
+            if bootstrap_scale == "0–100":
+                bootstrap_min, bootstrap_max = 0.0, 100.0
+            elif bootstrap_scale == "0–1":
+                bootstrap_min, bootstrap_max = 0.0, 1.0
+            else:
+                bootstrap_scale_columns = st.columns(2)
+                with bootstrap_scale_columns[0]:
+                    bootstrap_min = float(
+                        st.number_input(
+                            "Bootstrap scale minimum",
+                            value=1.0,
+                            key="inclusive_bootstrap_min",
+                        )
+                    )
+                with bootstrap_scale_columns[1]:
+                    bootstrap_max = float(
+                        st.number_input(
+                            "Bootstrap scale maximum",
+                            value=5.0,
+                            key="inclusive_bootstrap_max",
+                        )
+                    )
+            bootstrap_setting_columns = st.columns(3)
+            with bootstrap_setting_columns[0]:
+                bootstrap_resamples = int(
+                    st.number_input(
+                        "Bootstrap resamples",
+                        min_value=100,
+                        max_value=10000,
+                        value=1000,
+                        step=100,
+                        key="inclusive_bootstrap_resamples",
+                    )
+                )
+            with bootstrap_setting_columns[1]:
+                bootstrap_confidence_percent = int(
+                    st.slider(
+                        "Bootstrap interval level (%)",
+                        min_value=80,
+                        max_value=99,
+                        value=95,
+                        step=1,
+                        key="inclusive_bootstrap_confidence",
+                    )
+                )
+            with bootstrap_setting_columns[2]:
+                bootstrap_seed = int(
+                    st.number_input(
+                        "Bootstrap random seed",
+                        min_value=0,
+                        value=42,
+                        step=1,
+                        key="inclusive_bootstrap_seed",
+                    )
+                )
+            if bootstrap_upload is not None:
+                try:
+                    bootstrap_data = load_reliability_audit_csv(
+                        bootstrap_upload,
+                        bootstrap_min,
+                        bootstrap_max,
+                    )
+                except ValueError as error:
+                    st.error(f"Bootstrap-audit validation failed: {error}")
+                else:
+                    bootstrap_versions = (
+                        bootstrap_data["instrument_version"].drop_duplicates().tolist()
+                    )
+                    selected_bootstrap_version = st.selectbox(
+                        "Version for Bootstrap audit",
+                        bootstrap_versions,
+                        key="inclusive_bootstrap_version",
+                    )
+                    bootstrap_rounds = sorted(
+                        bootstrap_data.loc[
+                            bootstrap_data["instrument_version"].eq(
+                                selected_bootstrap_version
+                            ),
+                            "administration_round",
+                        ].unique()
+                    )
+                    selected_bootstrap_round = st.selectbox(
+                        "Administration round for Bootstrap audit",
+                        bootstrap_rounds,
+                        key="inclusive_bootstrap_round",
+                    )
+                    try:
+                        bootstrap_audit = audit_bootstrap_uncertainty(
+                            bootstrap_data,
+                            selected_bootstrap_version,
+                            int(selected_bootstrap_round),
+                            n_resamples=bootstrap_resamples,
+                            confidence_level=bootstrap_confidence_percent / 100,
+                            random_seed=bootstrap_seed,
+                            source_min=bootstrap_min,
+                            source_max=bootstrap_max,
+                        )
+                    except ValueError as error:
+                        st.error(f"Bootstrap audit failed: {error}")
+                    else:
+                        st.warning(str(bootstrap_audit["interpretation"]))
+                        st.markdown("**Bootstrap run settings**")
+                        st.dataframe(
+                            bootstrap_audit["bootstrap_run_summary"],
+                            width="stretch",
+                            hide_index=True,
+                        )
+                        st.markdown("**Dimension and Support Gap uncertainty summary**")
+                        st.dataframe(
+                            bootstrap_audit["bootstrap_interval_summary"],
+                            width="stretch",
+                            hide_index=True,
+                        )
+                        st.markdown("**Research question candidates**")
+                        st.dataframe(
+                            bootstrap_audit["research_question_candidates"],
+                            width="stretch",
+                            hide_index=True,
+                        )
+                        for label, summary_key, file_name in (
+                            (
+                                "Download Bootstrap run summary",
+                                "bootstrap_run_summary",
+                                "inclusive_bootstrap_run_summary.csv",
+                            ),
+                            (
+                                "Download Bootstrap uncertainty summary",
+                                "bootstrap_interval_summary",
+                                "inclusive_bootstrap_uncertainty.csv",
+                            ),
+                            (
+                                "Download Bootstrap research questions",
+                                "research_question_candidates",
+                                "inclusive_bootstrap_research_questions.csv",
+                            ),
+                        ):
+                            st.download_button(
+                                label,
+                                bootstrap_audit[summary_key].to_csv(index=False).encode(
+                                    "utf-8-sig"
+                                ),
+                                file_name,
+                                "text/csv",
+                                key=f"inclusive_bootstrap_{summary_key}_download",
                             )
         if len(selected_variables) >= 2:
             st.markdown("#### Correlation — descriptive association only")

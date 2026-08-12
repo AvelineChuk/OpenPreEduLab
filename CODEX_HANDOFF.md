@@ -156,6 +156,13 @@ Before editing, downloading, processing data, or pushing commits:
   Gap summaries with the equal-item baseline without exposing unit IDs. It
   does not learn, optimise, rank, recommend, validate, or adopt weights; the
   platform default remains equal-item weighting.
+- Researcher Mode now includes a session-only nonparametric Bootstrap
+  sampling-uncertainty audit for complete records from one version and round.
+  Researchers select 100-10,000 resamples, an 80%-99% percentile interval
+  level, and a reproducible seed. The audit reports point estimates, Bootstrap
+  means, bias, standard errors, and percentile bounds for five dimension and
+  three Support Gap means without exporting draws or unit IDs. It does not
+  establish representativeness, validity, causal effects, or stability labels.
 - `dd8b3d2 Fix landing page transition warning`: removed `st.rerun()` from a
   button callback. The old Dashboard warning *“Calling st.rerun() within a
   callback is a no-op.”* should not reappear.
@@ -166,7 +173,7 @@ Before editing, downloading, processing data, or pushing commits:
 - `e60babd Document AI interpretation export formats`.
 - `69765b8 Add project history record and workflow screenshot`.
 
-The most recent validated test result was **127 passed** in one complete pytest
+The most recent validated test result was **144 passed** in one complete pytest
 run. Streamlit interface tests loaded all current Dashboard routes, including
 Inclusive Education, and explicitly checked the expert content-review materials
 and download entry.

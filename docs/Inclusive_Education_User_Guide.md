@@ -149,6 +149,15 @@ The platform does not learn, rank, recommend, validate, or adopt weights, and
 the default scoring model remains equal-item weighting. See the
 [Alternative Weight Sensitivity Protocol](Inclusive_Education_Weight_Sensitivity_Protocol.md).
 
+The Bootstrap sampling-uncertainty workflow resamples complete institutional
+records with replacement for one selected instrument version and round. It
+reports the original point estimate, Bootstrap mean, estimated bias, standard
+error, and percentile interval for five dimension means and three Support Gap
+means. Researchers explicitly select the resample count, interval level, and
+random seed. These summaries do not establish representativeness, validity,
+causal effects, population parameters, or stability classifications. See the
+[Bootstrap Sampling Uncertainty Protocol](Inclusive_Education_Bootstrap_Uncertainty_Protocol.md).
+
 ## Exploratory Scenarios
 
 Four interfaces change one item by a researcher-selected number of 0–100 scale
