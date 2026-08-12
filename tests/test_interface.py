@@ -128,6 +128,14 @@ def test_inclusive_education_dashboard_renders_research_pathway() -> None:
     assert "Download subgroup comparability audit template" in [
         button.label for button in app.get("download_button")
     ]
+    assert "External measure relationship readiness workflow" in expander_labels
+    assert "Upload external measure audit CSV" in uploader_labels
+    assert "External measure audit item response scale" in [
+        selectbox.label for selectbox in app.selectbox
+    ]
+    assert "Download external measure audit template" in [
+        button.label for button in app.get("download_button")
+    ]
     assert len(app.get("download_button")) >= 10
 
 def test_reports_page_offers_markdown_word_and_pdf_downloads() -> None:

@@ -142,6 +142,13 @@ Before editing, downloading, processing data, or pushing commits:
   bounded future research questions. It does not establish measurement
   invariance, DIF, bias, fairness, or substantive group effects and produces
   no automatic thresholds, rankings, group judgements, or item decisions.
+- Researcher Mode now includes a session-only external-measure relationship
+  readiness audit for complete records from one version and round. It records
+  one independent institutional measure and its provenance, then reports
+  paired coverage, Pearson and Spearman relationships with the five dimensions,
+  and approximate Fisher-z intervals. Expected relationship type is design
+  metadata only; the workflow does not establish any form of validity, make
+  causal claims, or produce automatic thresholds or decisions.
 - `dd8b3d2 Fix landing page transition warning`: removed `st.rerun()` from a
   button callback. The old Dashboard warning *“Calling st.rerun() within a
   callback is a no-op.”* should not reappear.
@@ -152,7 +159,7 @@ Before editing, downloading, processing data, or pushing commits:
 - `e60babd Document AI interpretation export formats`.
 - `69765b8 Add project history record and workflow screenshot`.
 
-The most recent validated test result was **111 passed** in one complete pytest
+The most recent validated test result was **119 passed** in one complete pytest
 run. Streamlit interface tests loaded all current Dashboard routes, including
 Inclusive Education, and explicitly checked the expert content-review materials
 and download entry.

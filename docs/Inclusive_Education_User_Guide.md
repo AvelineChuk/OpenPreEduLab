@@ -130,6 +130,16 @@ substantive group effects. The workflow applies no automatic threshold, ranking,
 group judgement, or item decision. See the
 [Subgroup Measurement Comparability Readiness Protocol](Inclusive_Education_Subgroup_Comparability_Protocol.md).
 
+The external-measure relationship readiness workflow pairs complete
+institutional item records with one documented independent institutional
+measure. It reports paired-record coverage, Pearson and Spearman correlations
+between the external measure and the five equal-item dimension scores, and an
+approximate Fisher-z interval for Pearson correlation. The expected relationship
+type is research-design metadata, not an automatic hypothesis test. Correlation
+does not establish convergent, discriminant, criterion-related, predictive,
+external, or causal validity. See the
+[External Measure Relationship Readiness Protocol](Inclusive_Education_External_Measure_Protocol.md).
+
 ## Exploratory Scenarios
 
 Four interfaces change one item by a researcher-selected number of 0–100 scale

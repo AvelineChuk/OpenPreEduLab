@@ -39,6 +39,11 @@ from models.inclusion_construct_structure import (
     create_construct_structure_template,
     load_construct_structure_csv,
 )
+from models.inclusion_external_measure import (
+    audit_external_measure_relationships,
+    create_external_measure_template,
+    load_external_measure_csv,
+)
 from models.inclusion_feasibility import (
     audit_feasibility_pilot,
     create_feasibility_pilot_template,
@@ -1184,6 +1189,143 @@ def render_inclusive_education_page(project_root: Path) -> None:
                                 file_name,
                                 "text/csv",
                                 key=f"inclusive_subgroup_{summary_key}_download",
+                            )
+        st.markdown("#### External measure relationship readiness audit")
+        st.caption(
+            "Relationship-readiness evidence only. Correlation does not establish "
+            "construct, criterion-related, predictive, or causal validity."
+        )
+        with st.expander("External measure relationship readiness workflow"):
+            external_template = create_external_measure_template()
+            st.download_button(
+                "Download external measure audit template",
+                external_template.to_csv(index=False).encode("utf-8-sig"),
+                "inclusive_external_measure_template.csv",
+                "text/csv",
+                key="inclusive_external_measure_template_download",
+            )
+            external_upload = st.file_uploader(
+                "Upload external measure audit CSV",
+                type=["csv"],
+                key="inclusive_external_measure_upload",
+                help=(
+                    "Use one independently sourced, non-identifying institutional measure. "
+                    "Do not upload child, family, teacher, clinical, or case data."
+                ),
+            )
+            external_scale = st.selectbox(
+                "External measure audit item response scale",
+                ["0–100", "0–1", "Custom range"],
+                key="inclusive_external_measure_scale",
+            )
+            if external_scale == "0–100":
+                external_min, external_max = 0.0, 100.0
+            elif external_scale == "0–1":
+                external_min, external_max = 0.0, 1.0
+            else:
+                external_scale_columns = st.columns(2)
+                with external_scale_columns[0]:
+                    external_min = float(
+                        st.number_input(
+                            "External measure audit item scale minimum",
+                            value=1.0,
+                            key="inclusive_external_measure_min",
+                        )
+                    )
+                with external_scale_columns[1]:
+                    external_max = float(
+                        st.number_input(
+                            "External measure audit item scale maximum",
+                            value=5.0,
+                            key="inclusive_external_measure_max",
+                        )
+                    )
+            if external_upload is not None:
+                try:
+                    external_data = load_external_measure_csv(
+                        external_upload,
+                        external_min,
+                        external_max,
+                    )
+                except ValueError as error:
+                    st.error(f"External-measure validation failed: {error}")
+                else:
+                    external_versions = (
+                        external_data["instrument_version"].drop_duplicates().tolist()
+                    )
+                    selected_external_version = st.selectbox(
+                        "Version for external measure audit",
+                        external_versions,
+                        key="inclusive_external_measure_version",
+                    )
+                    external_rounds = sorted(
+                        external_data.loc[
+                            external_data["instrument_version"].eq(
+                                selected_external_version
+                            ),
+                            "administration_round",
+                        ].unique()
+                    )
+                    selected_external_round = st.selectbox(
+                        "Administration round for external measure audit",
+                        external_rounds,
+                        key="inclusive_external_measure_round",
+                    )
+                    try:
+                        external_audit = audit_external_measure_relationships(
+                            external_data,
+                            selected_external_version,
+                            int(selected_external_round),
+                            external_min,
+                            external_max,
+                        )
+                    except ValueError as error:
+                        st.error(f"External-measure audit failed: {error}")
+                    else:
+                        st.warning(str(external_audit["interpretation"]))
+                        st.markdown("**External measure and paired-record coverage**")
+                        st.dataframe(
+                            external_audit["external_measure_coverage_summary"],
+                            width="stretch",
+                            hide_index=True,
+                        )
+                        st.markdown("**Five-dimension relationship summary**")
+                        st.dataframe(
+                            external_audit["dimension_relationship_summary"],
+                            width="stretch",
+                            hide_index=True,
+                        )
+                        st.markdown("**Research question candidates**")
+                        st.dataframe(
+                            external_audit["research_question_candidates"],
+                            width="stretch",
+                            hide_index=True,
+                        )
+                        for label, summary_key, file_name in (
+                            (
+                                "Download external measure coverage summary",
+                                "external_measure_coverage_summary",
+                                "inclusive_external_measure_coverage.csv",
+                            ),
+                            (
+                                "Download dimension relationship summary",
+                                "dimension_relationship_summary",
+                                "inclusive_external_dimension_relationships.csv",
+                            ),
+                            (
+                                "Download external measure research questions",
+                                "research_question_candidates",
+                                "inclusive_external_measure_research_questions.csv",
+                            ),
+                        ):
+                            st.download_button(
+                                label,
+                                external_audit[summary_key].to_csv(index=False).encode(
+                                    "utf-8-sig"
+                                ),
+                                file_name,
+                                "text/csv",
+                                key=f"inclusive_external_{summary_key}_download",
                             )
         if len(selected_variables) >= 2:
             st.markdown("#### Correlation — descriptive association only")
