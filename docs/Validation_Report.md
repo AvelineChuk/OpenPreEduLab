@@ -25,7 +25,10 @@ Each implemented model module has four test categories:
 | Support Gap | Produces signed adjacent and overall gaps | Retains negative gaps | Missing pathway score | Non-finite or out-of-range score |
 
 Inclusive Education validation also checks that leave-one-item-out sensitivity
-returns one diagnostic row per item with bounded recalculated scores.
+returns one diagnostic row per item with bounded recalculated scores. The
+prospective content-review workflow separately checks its blank item template,
+complete reviewer-by-item matrices, rating categories, item mappings, I-CVI,
+S-CVI/Ave, and CVR calculations without automatic validity decisions.
 
 Run the suite from the project root with:
 

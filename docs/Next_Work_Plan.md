@@ -28,6 +28,12 @@ content-validation protocol. No expert ratings have been collected and no
 content-validity claim is authorised. See
 `docs/Inclusive_Education_Content_Validation_Protocol.md`.
 
+The blank 28-item expert-review CSV, strict rating validation, and threshold-
+free I-CVI, S-CVI/Ave, and CVR calculation backend are implemented. Actual
+expert recruitment, rating collection, cognitive interviewing, and instrument
+revision require separate governance and human participation; they have not
+been completed.
+
 ## Priority 0: Complete the 2026 Fund Provenance Chain
 
 **Current status:** An official government republication has been verified: Xinxing County Finance Bureau's page for the Ministry of Finance and Ministry of Education notice `Caijiao [2026] No. 68`, with both XLS attachments. The local supplied files and republished files have different binary hashes but identical visible workbook content. The primary Ministry of Finance notice page has now been located: `http://jkw.mof.gov.cn/zxzyzf/zcxqjyfzzj/202604/t20260429_3988831.htm`, published 2026-04-29.

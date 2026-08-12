@@ -116,12 +116,10 @@ Before editing, downloading, processing data, or pushing commits:
 - `e60babd Document AI interpretation export formats`.
 - `69765b8 Add project history record and workflow screenshot`.
 
-The most recent validated test result was **48 passed** when non-interface and
-interface test files were run separately. A dedicated Streamlit smoke test
-loaded all current Dashboard routes, including Inclusive Education. The
-combined pytest process previously exceeded the environment timeout because of
-AppTest accumulation; this was a test-runner timing issue, not an assertion
-failure.
+The most recent validated test result was **52 passed** in one complete pytest
+run. Streamlit interface tests loaded all current Dashboard routes, including
+Inclusive Education, and explicitly checked the expert content-review materials
+and download entry.
 
 ### Deliberately incomplete / future areas
 

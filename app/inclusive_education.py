@@ -26,6 +26,7 @@ from models.inclusion import (
     simulate_inclusion_scenarios,
     standardize_inclusion_data,
 )
+from models.inclusion_content_validity import create_content_validity_review_template
 from models.support_gap import calculate_support_gaps
 from reporting.exports import report_to_docx, report_to_pdf
 from visualization.inclusion_charts import (
@@ -314,6 +315,27 @@ def render_inclusive_education_page(project_root: Path) -> None:
             "inclusive_dimension_sensitivity.csv",
             "text/csv",
             key="inclusive_sensitivity_download",
+        )
+        st.markdown("#### Expert content-review materials")
+        st.caption(
+            "Prospective validation materials only. No expert ratings have been "
+            "collected, and downloading this template does not validate the item set."
+        )
+        review_template = create_content_validity_review_template()
+        with st.expander("Review template instructions"):
+            st.markdown(
+                "Duplicate the complete 28-item block for every eligible reviewer. "
+                "Use relevance and clarity ratings 1–4; use essential, "
+                "useful_not_essential, or not_necessary for essential_rating; and "
+                "record qualitative comments, recommendations, roles, and conflicts. "
+                "Do not enter identifiable child or family information."
+            )
+        st.download_button(
+            "Download blank expert content-review template",
+            review_template.to_csv(index=False).encode("utf-8-sig"),
+            "inclusive_content_review_template.csv",
+            "text/csv",
+            key="inclusive_content_review_template_download",
         )
         if len(selected_variables) >= 2:
             st.markdown("#### Correlation — descriptive association only")

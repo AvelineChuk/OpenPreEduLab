@@ -78,6 +78,12 @@ planning substantive use should follow the
 [Inclusive Education Content Validation Protocol](Inclusive_Education_Content_Validation_Protocol.md)
 before treating the dimensions as a validated instrument.
 
+Researcher Mode provides a blank expert content-review CSV. Duplicate the
+complete 28-item block for each reviewer. Relevance and clarity use declared
+1–4 categories; essentiality uses `essential`, `useful_not_essential`, or
+`not_necessary`. The template contains no expert evidence and does not
+validate the current item set.
+
 ## Exploratory Scenarios
 
 Four interfaces change one item by a researcher-selected number of 0–100 scale

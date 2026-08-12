@@ -130,7 +130,7 @@ released.
 
 Current automated software validation status:
 
-- 48 project tests passed after the Inclusive Education module, report-export,
+- 52 project tests passed after the Inclusive Education module, report-export,
   AI integration, and interface changes;
 - all current Dashboard routes loaded in Streamlit smoke testing;
 - DOCX and PDF exports were checked as valid document containers;

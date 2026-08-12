@@ -60,6 +60,8 @@ Decision rules must be registered before ratings are collected. No item should b
 
 Every change creates a new instrument version. Historical wording and decision records must remain reproducible.
 
+The platform provides `inclusive_content_review_template.csv` as a blank data structure. Researchers must duplicate its complete 28-item block for each reviewer. The software validation layer rejects missing item ratings, duplicate reviewer-item rows, invalid categories, and item-dimension mismatches. It calculates numerical summaries without an automatic retain/remove decision.
+
 ## 8. Ethical and governance requirements
 
 Content review does not authorise identifiable or clinical child-data collection. Recruitment, consent, compensation, accessibility, confidentiality, and conflict-of-interest arrangements require prior governance approval.

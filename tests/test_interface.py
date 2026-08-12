@@ -85,8 +85,10 @@ def test_inclusive_education_dashboard_renders_research_pathway() -> None:
     assert "not a child assessment" in content
     assert "Research Question Candidates" in content
     assert "does not depend on colour alone" in content
+    assert "Expert content-review materials" in content
     assert "Accessible chart data tables" in [expander.label for expander in app.expander]
-    assert len(app.get("download_button")) >= 4
+    assert "Review template instructions" in [expander.label for expander in app.expander]
+    assert len(app.get("download_button")) >= 5
 
 def test_reports_page_offers_markdown_word_and_pdf_downloads() -> None:
     """Users should be able to choose a familiar report-download format."""
