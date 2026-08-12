@@ -82,7 +82,11 @@ Researcher Mode provides a blank expert content-review CSV. Duplicate the
 complete 28-item block for each reviewer. Relevance and clarity use declared
 1–4 categories; essentiality uses `essential`, `useful_not_essential`, or
 `not_necessary`. The template contains no expert evidence and does not
-validate the current item set.
+validate the current item set. A completed CSV may be uploaded in Researcher
+Mode. The platform validates the full reviewer-by-item matrix, then displays
+item-level I-CVI, clarity I-CVI, and CVR plus dimension-level S-CVI/Ave
+summaries. It does not apply automatic retain/remove thresholds. Uploads are
+processed in the current session and are not intentionally persisted.
 
 ## Exploratory Scenarios
 

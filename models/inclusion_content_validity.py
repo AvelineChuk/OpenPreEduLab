@@ -72,6 +72,20 @@ def create_content_validity_review_template() -> pd.DataFrame:
     return pd.DataFrame(rows, columns=RATING_COLUMNS)
 
 
+def load_content_validity_ratings_csv(source: object) -> pd.DataFrame:
+    """Load and validate a completed expert-rating CSV.
+
+    ``source`` may be a path or a readable file-like object accepted by
+    :func:`pandas.read_csv`. UTF-8 files with or without a byte-order mark are
+    supported. The function does not persist the uploaded data or impute
+    missing ratings.
+    """
+    try:
+        ratings = pd.read_csv(source, encoding="utf-8-sig")
+    except (OSError, UnicodeDecodeError, pd.errors.ParserError) as error:
+        raise ValueError(f"Content-review CSV could not be read: {error}") from error
+    return validate_content_validity_ratings(ratings)
+
 def validate_content_validity_ratings(ratings: pd.DataFrame) -> pd.DataFrame:
     """Validate a complete reviewer-by-item matrix without imputing ratings."""
     missing_columns = sorted(set(RATING_COLUMNS) - set(ratings.columns))
@@ -132,6 +146,9 @@ def validate_content_validity_ratings(ratings: pd.DataFrame) -> pd.DataFrame:
     reviewer_item_counts = validated.groupby("reviewer_id")["item"].nunique()
     if not reviewer_item_counts.eq(len(ITEM_COLUMNS)).all():
         raise ValueError("Every reviewer must rate every current inclusion item exactly once.")
+    reviewer_role_counts = validated.groupby("reviewer_id")["reviewer_role"].nunique()
+    if not reviewer_role_counts.eq(1).all():
+        raise ValueError("Each reviewer_id must use one consistent reviewer_role.")
     return validated
 
 

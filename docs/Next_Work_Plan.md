@@ -28,8 +28,9 @@ content-validation protocol. No expert ratings have been collected and no
 content-validity claim is authorised. See
 `docs/Inclusive_Education_Content_Validation_Protocol.md`.
 
-The blank 28-item expert-review CSV, strict rating validation, and threshold-
-free I-CVI, S-CVI/Ave, and CVR calculation backend are implemented. Actual
+The blank 28-item expert-review CSV, strict rating validation, threshold-free
+I-CVI, S-CVI/Ave, and CVR calculation backend, and session-only completed-
+rating upload interface are implemented. Actual
 expert recruitment, rating collection, cognitive interviewing, and instrument
 revision require separate governance and human participation; they have not
 been completed.

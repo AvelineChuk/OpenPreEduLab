@@ -60,7 +60,7 @@ Decision rules must be registered before ratings are collected. No item should b
 
 Every change creates a new instrument version. Historical wording and decision records must remain reproducible.
 
-The platform provides `inclusive_content_review_template.csv` as a blank data structure. Researchers must duplicate its complete 28-item block for each reviewer. The software validation layer rejects missing item ratings, duplicate reviewer-item rows, invalid categories, and item-dimension mismatches. It calculates numerical summaries without an automatic retain/remove decision.
+The platform provides `inclusive_content_review_template.csv` as a blank data structure. Researchers must duplicate its complete 28-item block for each reviewer. The software validation layer rejects missing item ratings, duplicate reviewer-item rows, invalid categories, and item-dimension mismatches. It calculates numerical summaries without an automatic retain/remove decision. A completed CSV can be analysed in Researcher Mode; the upload is processed in the current session, and downloadable statistical summaries exclude reviewer identifiers, roles, comments, recommendations, and conflict disclosures. The research team remains responsible for safeguarding the original review record and interpreting qualitative dissent.
 
 ## 8. Ethical and governance requirements
 

@@ -28,7 +28,7 @@ Inclusive Education validation also checks that leave-one-item-out sensitivity
 returns one diagnostic row per item with bounded recalculated scores. The
 prospective content-review workflow separately checks its blank item template,
 complete reviewer-by-item matrices, rating categories, item mappings, I-CVI,
-S-CVI/Ave, and CVR calculations without automatic validity decisions.
+S-CVI/Ave, CVR, UTF-8 CSV loading, blank-template rejection, and missing-column rejection without automatic validity decisions.
 
 Run the suite from the project root with:
 

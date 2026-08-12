@@ -88,6 +88,9 @@ def test_inclusive_education_dashboard_renders_research_pathway() -> None:
     assert "Expert content-review materials" in content
     assert "Accessible chart data tables" in [expander.label for expander in app.expander]
     assert "Review template instructions" in [expander.label for expander in app.expander]
+    assert "Upload completed expert content-review CSV" in [
+        uploader.label for uploader in app.get("file_uploader")
+    ]
     assert len(app.get("download_button")) >= 5
 
 def test_reports_page_offers_markdown_word_and_pdf_downloads() -> None:

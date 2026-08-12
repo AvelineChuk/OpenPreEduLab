@@ -1,5 +1,7 @@
 """Validation for the prospective inclusive content-review workflow."""
 
+from io import BytesIO
+
 import pandas as pd
 import pytest
 
@@ -7,6 +9,7 @@ from models.inclusion import ITEM_COLUMNS
 from models.inclusion_content_validity import (
     calculate_content_validity_summaries,
     create_content_validity_review_template,
+    load_content_validity_ratings_csv,
     validate_content_validity_ratings,
 )
 
@@ -66,4 +69,31 @@ def test_content_review_rejects_range_and_mapping_errors() -> None:
     panel = _completed_panel()
     panel.loc[0, "dimension"] = "Wrong Dimension"
     with pytest.raises(ValueError, match="mapping is invalid"):
+        validate_content_validity_ratings(panel)
+
+def test_content_review_csv_loader_supports_utf8_bom() -> None:
+    panel = _completed_panel()
+    payload = BytesIO(panel.to_csv(index=False).encode("utf-8-sig"))
+    loaded = load_content_validity_ratings_csv(payload)
+    assert len(loaded) == len(panel)
+    assert loaded["reviewer_id"].nunique() == 4
+
+
+def test_content_review_csv_loader_rejects_blank_template_and_missing_column() -> None:
+    blank = create_content_validity_review_template()
+    with pytest.raises(ValueError, match="must not be blank"):
+        load_content_validity_ratings_csv(
+            BytesIO(blank.to_csv(index=False).encode("utf-8-sig"))
+        )
+
+    panel = _completed_panel().drop(columns=["clarity_rating"])
+    with pytest.raises(ValueError, match="missing required columns"):
+        load_content_validity_ratings_csv(
+            BytesIO(panel.to_csv(index=False).encode("utf-8-sig"))
+        )
+
+def test_content_review_rejects_inconsistent_reviewer_role() -> None:
+    panel = _completed_panel()
+    panel.loc[0, "reviewer_role"] = "different_role"
+    with pytest.raises(ValueError, match="consistent reviewer_role"):
         validate_content_validity_ratings(panel)

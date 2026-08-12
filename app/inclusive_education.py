@@ -26,7 +26,11 @@ from models.inclusion import (
     simulate_inclusion_scenarios,
     standardize_inclusion_data,
 )
-from models.inclusion_content_validity import create_content_validity_review_template
+from models.inclusion_content_validity import (
+    calculate_content_validity_summaries,
+    create_content_validity_review_template,
+    load_content_validity_ratings_csv,
+)
 from models.support_gap import calculate_support_gaps
 from reporting.exports import report_to_docx, report_to_pdf
 from visualization.inclusion_charts import (
@@ -337,6 +341,60 @@ def render_inclusive_education_page(project_root: Path) -> None:
             "text/csv",
             key="inclusive_content_review_template_download",
         )
+        completed_review_upload = st.file_uploader(
+            "Upload completed expert content-review CSV",
+            type=["csv"],
+            key="inclusive_content_review_upload",
+            help=(
+                "Processed only in the current session. Use pseudonymous reviewer IDs "
+                "and do not include child, family, or unnecessary personal information."
+            ),
+        )
+        if completed_review_upload is not None:
+            try:
+                completed_ratings = load_content_validity_ratings_csv(completed_review_upload)
+                validity_summaries = calculate_content_validity_summaries(completed_ratings)
+            except ValueError as error:
+                st.error(f"Expert content-review validation failed: {error}")
+                st.info(
+                    "Every reviewer must rate all 28 current items exactly once. "
+                    "Missing ratings are not imputed and no automatic validity decision is made."
+                )
+            else:
+                reviewer_count = completed_ratings["reviewer_id"].nunique()
+                st.success(
+                    f"Validated a complete matrix from {reviewer_count} declared reviewer(s)."
+                )
+                st.warning(
+                    "These are descriptive content-review summaries, not proof that the "
+                    "instrument is valid and not automatic retain/remove decisions."
+                )
+                st.markdown("**Item-level content-review summaries**")
+                st.dataframe(
+                    validity_summaries["item_summary"],
+                    width="stretch",
+                    hide_index=True,
+                )
+                st.markdown("**Dimension-level content-review summaries**")
+                st.dataframe(
+                    validity_summaries["dimension_summary"],
+                    width="stretch",
+                    hide_index=True,
+                )
+                st.download_button(
+                    "Download item-level content-review summaries",
+                    validity_summaries["item_summary"].to_csv(index=False).encode("utf-8-sig"),
+                    "inclusive_content_review_item_summary.csv",
+                    "text/csv",
+                    key="inclusive_content_review_item_summary_download",
+                )
+                st.download_button(
+                    "Download dimension-level content-review summaries",
+                    validity_summaries["dimension_summary"].to_csv(index=False).encode("utf-8-sig"),
+                    "inclusive_content_review_dimension_summary.csv",
+                    "text/csv",
+                    key="inclusive_content_review_dimension_summary_download",
+                )
         if len(selected_variables) >= 2:
             st.markdown("#### Correlation — descriptive association only")
             st.dataframe(correlation_matrix(analysis_data, selected_variables), width="stretch")
