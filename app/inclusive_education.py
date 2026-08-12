@@ -26,6 +26,7 @@ from models.inclusion import (
     simulate_inclusion_scenarios,
     standardize_inclusion_data,
 )
+from models.inclusion_attrition import audit_longitudinal_attrition
 from models.inclusion_bootstrap import audit_bootstrap_uncertainty
 from models.inclusion_cognitive_interviews import (
     create_cognitive_interview_template,
@@ -1791,6 +1792,128 @@ def render_inclusive_education_page(project_root: Path) -> None:
                                 file_name,
                                 "text/csv",
                                 key=f"inclusive_longitudinal_{summary_key}_download",
+                            )
+        st.markdown("#### Longitudinal attrition and panel composition audit")
+        st.caption(
+            "Attrition-readiness evidence only. Descriptive differences do not identify "
+            "missingness mechanisms, bias, causes, or corrective weights."
+        )
+        with st.expander("Longitudinal attrition and panel composition workflow"):
+            st.download_button(
+                "Download attrition audit response template",
+                create_reliability_audit_template().to_csv(index=False).encode("utf-8-sig"),
+                "inclusive_attrition_audit_template.csv",
+                "text/csv",
+                key="inclusive_attrition_template_download",
+            )
+            attrition_upload = st.file_uploader(
+                "Upload attrition audit response CSV",
+                type=["csv"],
+                key="inclusive_attrition_upload",
+                help=(
+                    "Use stable pseudonymous institutional IDs across rounds. Small-group "
+                    "statistics are suppressed; no missing values are imputed."
+                ),
+            )
+            attrition_scale = st.selectbox(
+                "Attrition audit response scale",
+                ["0–100", "0–1", "Custom range"],
+                key="inclusive_attrition_scale",
+            )
+            if attrition_scale == "0–100":
+                attrition_min, attrition_max = 0.0, 100.0
+            elif attrition_scale == "0–1":
+                attrition_min, attrition_max = 0.0, 1.0
+            else:
+                attrition_scale_columns = st.columns(2)
+                with attrition_scale_columns[0]:
+                    attrition_min = float(
+                        st.number_input(
+                            "Attrition audit scale minimum",
+                            value=1.0,
+                            key="inclusive_attrition_min",
+                        )
+                    )
+                with attrition_scale_columns[1]:
+                    attrition_max = float(
+                        st.number_input(
+                            "Attrition audit scale maximum",
+                            value=5.0,
+                            key="inclusive_attrition_max",
+                        )
+                    )
+            if attrition_upload is not None:
+                try:
+                    attrition_data = load_reliability_audit_csv(
+                        attrition_upload,
+                        attrition_min,
+                        attrition_max,
+                    )
+                except ValueError as error:
+                    st.error(f"Attrition-audit validation failed: {error}")
+                else:
+                    attrition_versions = (
+                        attrition_data["instrument_version"].drop_duplicates().tolist()
+                    )
+                    selected_attrition_version = st.selectbox(
+                        "Version for attrition audit",
+                        attrition_versions,
+                        key="inclusive_attrition_version",
+                    )
+                    try:
+                        attrition_audit = audit_longitudinal_attrition(
+                            attrition_data,
+                            selected_attrition_version,
+                            attrition_min,
+                            attrition_max,
+                        )
+                    except ValueError as error:
+                        st.error(f"Attrition audit failed: {error}")
+                    else:
+                        st.warning(str(attrition_audit["interpretation"]))
+                        st.markdown("**Adjacent-round retention, exit, and entry coverage**")
+                        st.dataframe(
+                            attrition_audit["attrition_coverage_summary"],
+                            width="stretch",
+                            hide_index=True,
+                        )
+                        st.markdown("**Panel composition comparisons**")
+                        st.dataframe(
+                            attrition_audit["panel_composition_comparison_summary"],
+                            width="stretch",
+                            hide_index=True,
+                        )
+                        st.markdown("**Research question candidates**")
+                        st.dataframe(
+                            attrition_audit["research_question_candidates"],
+                            width="stretch",
+                            hide_index=True,
+                        )
+                        for label, summary_key, file_name in (
+                            (
+                                "Download attrition coverage summary",
+                                "attrition_coverage_summary",
+                                "inclusive_attrition_coverage.csv",
+                            ),
+                            (
+                                "Download panel composition comparisons",
+                                "panel_composition_comparison_summary",
+                                "inclusive_panel_composition_comparisons.csv",
+                            ),
+                            (
+                                "Download attrition research questions",
+                                "research_question_candidates",
+                                "inclusive_attrition_research_questions.csv",
+                            ),
+                        ):
+                            st.download_button(
+                                label,
+                                attrition_audit[summary_key].to_csv(index=False).encode(
+                                    "utf-8-sig"
+                                ),
+                                file_name,
+                                "text/csv",
+                                key=f"inclusive_attrition_{summary_key}_download",
                             )
         if len(selected_variables) >= 2:
             st.markdown("#### Correlation — descriptive association only")

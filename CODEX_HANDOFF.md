@@ -1,6 +1,6 @@
 # OpenPreEduLab — Codex Continuation Guide
 
-**Last updated:** 4 August 2026  
+**Last updated:** 13 August 2026
 **Repository:** `C:\Users\86198\Desktop\OpenPreEduLab`  
 **GitHub:** <https://github.com/AvelineChuk/OpenPreEduLab>  
 **Branch:** `main`  
@@ -170,6 +170,14 @@ Before editing, downloading, processing data, or pushing commits:
   change statistics without exporting unit trajectories. Missing rounds are
   not imputed and versions are not pooled. Time order is not treated as
   evidence of improvement, deterioration, policy effects, or causality.
+- Researcher Mode now includes a session-only longitudinal attrition and panel-
+  composition audit. For adjacent rounds it reports retained, exited, and
+  entered institution counts, retention and entry proportions, and bounded
+  aggregate comparisons for the five dimensions and three Support Gaps.
+  Comparison statistics are suppressed unless both groups contain at least
+  three institutions. The workflow does not infer attrition reasons or missing-
+  data mechanisms, diagnose bias, generate weights or imputations, expose unit
+  identifiers, or treat standardised differences as causal or quality evidence.
 - `dd8b3d2 Fix landing page transition warning`: removed `st.rerun()` from a
   button callback. The old Dashboard warning *“Calling st.rerun() within a
   callback is a no-op.”* should not reappear.
@@ -180,10 +188,10 @@ Before editing, downloading, processing data, or pushing commits:
 - `e60babd Document AI interpretation export formats`.
 - `69765b8 Add project history record and workflow screenshot`.
 
-The most recent validated test result was **152 passed** in one complete pytest
+The most recent validated test result was **159 passed** in one complete pytest
 run. Streamlit interface tests loaded all current Dashboard routes, including
-Inclusive Education, and explicitly checked the expert content-review materials
-and download entry.
+Inclusive Education, and explicitly checked the longitudinal attrition audit
+workflow, materials, and download entries.
 
 ### Deliberately incomplete / future areas
 

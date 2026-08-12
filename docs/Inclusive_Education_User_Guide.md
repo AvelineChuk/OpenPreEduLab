@@ -167,6 +167,15 @@ Time order and descriptive change do not establish longitudinal measurement
 comparability, improvement, deterioration, policy effects, or causality. See the
 [Longitudinal Panel Readiness Protocol](Inclusive_Education_Longitudinal_Readiness_Protocol.md).
 
+The longitudinal attrition and panel-composition workflow compares retained,
+first-round-only, and second-round-only institutional groups across adjacent
+observed rounds. It reports coverage counts and, only when both groups contain
+at least three institutions, descriptive dimension and Support Gap mean
+differences. Small-group statistics are suppressed. These outputs do not identify
+missingness mechanisms, attrition causes, bias, or corrective weights, and the
+platform does not impute missing rounds. See the
+[Longitudinal Attrition and Panel Composition Protocol](Inclusive_Education_Attrition_Protocol.md).
+
 ## Exploratory Scenarios
 
 Four interfaces change one item by a researcher-selected number of 0–100 scale

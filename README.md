@@ -215,6 +215,7 @@ The default scenario parameters are prototype assumptions for workflow demonstra
 - [Inclusive Education Alternative Weight Sensitivity Protocol](docs/Inclusive_Education_Weight_Sensitivity_Protocol.md)
 - [Inclusive Education Bootstrap Sampling Uncertainty Protocol](docs/Inclusive_Education_Bootstrap_Uncertainty_Protocol.md)
 - [Inclusive Education Longitudinal Panel Readiness Protocol](docs/Inclusive_Education_Longitudinal_Readiness_Protocol.md)
+- [Inclusive Education Longitudinal Attrition Protocol](docs/Inclusive_Education_Attrition_Protocol.md)
 - [Inclusive Education Accessibility Check](docs/Inclusive_Education_Accessibility_Check.md)
 - [Research Journal](Research_Journal.md)
 - [Contributing](CONTRIBUTING.md)

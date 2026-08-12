@@ -161,6 +161,12 @@ def test_inclusive_education_dashboard_renders_research_pathway() -> None:
         selectbox.label for selectbox in app.selectbox
     ]
     assert "Download longitudinal panel response template" in download_labels
+    assert "Longitudinal attrition and panel composition workflow" in expander_labels
+    assert "Upload attrition audit response CSV" in uploader_labels
+    assert "Attrition audit response scale" in [
+        selectbox.label for selectbox in app.selectbox
+    ]
+    assert "Download attrition audit response template" in download_labels
     assert len(app.get("download_button")) >= 10
 
 def test_reports_page_offers_markdown_word_and_pdf_downloads() -> None:
