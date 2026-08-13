@@ -61,6 +61,11 @@ from models.inclusion_longitudinal import audit_longitudinal_panel_readiness
 from models.inclusion_longitudinal_bootstrap import (
     audit_paired_longitudinal_bootstrap,
 )
+from models.inclusion_longitudinal_metadata import (
+    audit_longitudinal_metadata,
+    create_longitudinal_metadata_template,
+    load_longitudinal_metadata_csv,
+)
 from models.inclusion_subgroup_comparability import (
     audit_subgroup_comparability,
     create_subgroup_comparability_template,
@@ -2074,6 +2079,101 @@ def render_inclusive_education_page(project_root: Path) -> None:
                                 file_name,
                                 "text/csv",
                                 key=f"inclusive_paired_bootstrap_{summary_key}_download",
+                            )
+        st.markdown("#### Longitudinal timing and fieldwork metadata audit")
+        st.caption(
+            "Research-record readiness only. Timing and implementation metadata do not "
+            "establish data quality, explain score changes, or identify policy effects."
+        )
+        with st.expander("Longitudinal timing and fieldwork metadata workflow"):
+            st.download_button(
+                "Download longitudinal metadata template",
+                create_longitudinal_metadata_template().to_csv(index=False).encode("utf-8-sig"),
+                "inclusive_longitudinal_metadata_template.csv",
+                "text/csv",
+                key="inclusive_longitudinal_metadata_template_download",
+            )
+            longitudinal_metadata_upload = st.file_uploader(
+                "Upload longitudinal timing and fieldwork metadata CSV",
+                type=["csv"],
+                key="inclusive_longitudinal_metadata_upload",
+                help=(
+                    "Provide one non-identifying record per version and round. Fieldwork "
+                    "notes are validated but are not reproduced in summaries or downloads."
+                ),
+            )
+            if longitudinal_metadata_upload is not None:
+                try:
+                    longitudinal_metadata = load_longitudinal_metadata_csv(
+                        longitudinal_metadata_upload
+                    )
+                except ValueError as error:
+                    st.error(f"Longitudinal metadata validation failed: {error}")
+                else:
+                    longitudinal_metadata_versions = (
+                        longitudinal_metadata["instrument_version"]
+                        .drop_duplicates()
+                        .tolist()
+                    )
+                    selected_longitudinal_metadata_version = st.selectbox(
+                        "Version for longitudinal metadata audit",
+                        longitudinal_metadata_versions,
+                        key="inclusive_longitudinal_metadata_version",
+                    )
+                    try:
+                        longitudinal_metadata_audit = audit_longitudinal_metadata(
+                            longitudinal_metadata,
+                            selected_longitudinal_metadata_version,
+                        )
+                    except ValueError as error:
+                        st.error(f"Longitudinal metadata audit failed: {error}")
+                    else:
+                        st.warning(str(longitudinal_metadata_audit["interpretation"]))
+                        for title, summary_key in (
+                            ("Metadata overview", "longitudinal_metadata_overview"),
+                            ("Round metadata", "round_metadata_summary"),
+                            (
+                                "Adjacent-round metadata comparison",
+                                "adjacent_round_metadata_comparison",
+                            ),
+                            ("Research question candidates", "research_question_candidates"),
+                        ):
+                            st.markdown(f"**{title}**")
+                            st.dataframe(
+                                longitudinal_metadata_audit[summary_key],
+                                width="stretch",
+                                hide_index=True,
+                            )
+                        for label, summary_key, file_name in (
+                            (
+                                "Download longitudinal metadata overview",
+                                "longitudinal_metadata_overview",
+                                "inclusive_longitudinal_metadata_overview.csv",
+                            ),
+                            (
+                                "Download longitudinal round metadata summary",
+                                "round_metadata_summary",
+                                "inclusive_longitudinal_round_metadata.csv",
+                            ),
+                            (
+                                "Download adjacent-round metadata comparison",
+                                "adjacent_round_metadata_comparison",
+                                "inclusive_longitudinal_metadata_comparison.csv",
+                            ),
+                            (
+                                "Download longitudinal metadata research questions",
+                                "research_question_candidates",
+                                "inclusive_longitudinal_metadata_questions.csv",
+                            ),
+                        ):
+                            st.download_button(
+                                label,
+                                longitudinal_metadata_audit[summary_key]
+                                .to_csv(index=False)
+                                .encode("utf-8-sig"),
+                                file_name,
+                                "text/csv",
+                                key=f"inclusive_longitudinal_metadata_{summary_key}_download",
                             )
         if len(selected_variables) >= 2:
             st.markdown("#### Correlation — descriptive association only")

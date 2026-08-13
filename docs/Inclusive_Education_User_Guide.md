@@ -187,6 +187,16 @@ longitudinal measurement comparability, statistical significance, improvement,
 deterioration, policy effects, or causality. See the
 [Paired Longitudinal Bootstrap Protocol](Inclusive_Education_Paired_Longitudinal_Bootstrap_Protocol.md).
 
+The longitudinal timing and fieldwork metadata workflow records one
+non-identifying metadata row per instrument version and round. It validates
+collection dates, administration mode, recruitment scope, sampling-frame
+reference, round purpose, and fieldwork-event status. Outputs describe collection
+windows, midpoint intervals, overlapping windows, and adjacent-round metadata
+changes. Human-entered event notes are not reproduced in summaries or downloads.
+These records do not establish data quality, bias, longitudinal comparability,
+reasons for score change, improvement, policy effects, or causality. See the
+[Longitudinal Timing and Fieldwork Metadata Protocol](Inclusive_Education_Longitudinal_Metadata_Protocol.md).
+
 ## Exploratory Scenarios
 
 Four interfaces change one item by a researcher-selected number of 0–100 scale

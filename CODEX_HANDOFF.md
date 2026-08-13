@@ -185,6 +185,13 @@ Before editing, downloading, processing data, or pushing commits:
   dimensions and three Support Gaps without exporting IDs, pair trajectories,
   or resampling draws. It does not establish longitudinal comparability,
   significance, improvement, deterioration, policy effects, or causality.
+- Researcher Mode now includes a session-only longitudinal timing and fieldwork
+  metadata audit. It validates one non-identifying record per version and round,
+  then reports collection windows, observed intervals, overlapping windows, and
+  changes in administration mode, recruitment scope, sampling-frame reference,
+  round purpose, and event-status documentation. Human-entered event notes are
+  not reproduced in outputs. Metadata differences are research prompts, not
+  quality, bias, validity, improvement, policy-effect, or causal judgements.
 - `dd8b3d2 Fix landing page transition warning`: removed `st.rerun()` from a
   button callback. The old Dashboard warning *“Calling st.rerun() within a
   callback is a no-op.”* should not reappear.
@@ -195,7 +202,7 @@ Before editing, downloading, processing data, or pushing commits:
 - `e60babd Document AI interpretation export formats`.
 - `69765b8 Add project history record and workflow screenshot`.
 
-The most recent validated test result was **173 passed** in one complete pytest
+The most recent validated test result was **179 passed** in one complete pytest
 run. Streamlit interface tests loaded all current Dashboard routes, including
 Inclusive Education, and explicitly checked the longitudinal attrition audit
 workflow, materials, and download entries.

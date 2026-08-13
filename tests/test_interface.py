@@ -178,6 +178,9 @@ def test_inclusive_education_dashboard_renders_research_pathway() -> None:
         slider.label for slider in app.slider
     ]
     assert "Download paired longitudinal Bootstrap response template" in download_labels
+    assert "Longitudinal timing and fieldwork metadata workflow" in expander_labels
+    assert "Upload longitudinal timing and fieldwork metadata CSV" in uploader_labels
+    assert "Download longitudinal metadata template" in download_labels
     assert len(app.get("download_button")) >= 10
 
 def test_reports_page_offers_markdown_word_and_pdf_downloads() -> None:
