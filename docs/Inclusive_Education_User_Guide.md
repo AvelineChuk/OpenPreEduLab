@@ -206,6 +206,15 @@ scalar, strict, or other measurement invariance, DIF, bias, validity, substantiv
 change, improvement, policy effects, or causality. See the
 [Longitudinal Measurement Comparability Protocol](Inclusive_Education_Longitudinal_Comparability_Protocol.md).
 
+The longitudinal analysis-plan readiness workflow records the planned unit,
+population, round contrast, change direction, estimand, missing-data and weighting
+strategies, uncertainty method, dependence structure, measurement-comparability
+basis, evidence references, causal-language setting, and preregistration status.
+It generates bounded documentation prompts when key decisions remain undefined.
+The workflow does not choose a method, fit a model, approve a plan, estimate an
+effect, or validate causal assumptions. See the
+[Longitudinal Analysis-Plan Readiness Protocol](Inclusive_Education_Longitudinal_Analysis_Plan_Protocol.md).
+
 ## Exploratory Scenarios
 
 Four interfaces change one item by a researcher-selected number of 0–100 scale

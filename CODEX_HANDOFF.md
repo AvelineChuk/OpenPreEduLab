@@ -199,6 +199,13 @@ Before editing, downloading, processing data, or pushing commits:
   correlation-structure differences. It does not run or claim CFA, DIF, or any
   form of measurement invariance, adjust panel composition, make item decisions,
   or infer bias, validity, substantive change, policy effects, or causality.
+- Researcher Mode now includes a session-only longitudinal analysis-plan
+  readiness audit. Researchers document the unit, population, round contrast,
+  change direction, estimand, missing-data and weighting strategies, uncertainty
+  method, dependence structure, measurement-comparability basis, evidence
+  references, causal-language setting, and preregistration status. The workflow
+  produces bounded documentation prompts but does not select a method, fit a
+  model, approve a plan, estimate an effect, or validate causal assumptions.
 - `dd8b3d2 Fix landing page transition warning`: removed `st.rerun()` from a
   button callback. The old Dashboard warning *“Calling st.rerun() within a
   callback is a no-op.”* should not reappear.
@@ -209,7 +216,7 @@ Before editing, downloading, processing data, or pushing commits:
 - `e60babd Document AI interpretation export formats`.
 - `69765b8 Add project history record and workflow screenshot`.
 
-The most recent validated test result was **185 passed** in one complete pytest
+The most recent validated test result was **190 passed** in one complete pytest
 run. Streamlit interface tests loaded all current Dashboard routes, including
 Inclusive Education, and explicitly checked the longitudinal attrition audit
 workflow, materials, and download entries.

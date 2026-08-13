@@ -69,6 +69,11 @@ from models.inclusion_longitudinal_metadata import (
 from models.inclusion_longitudinal_comparability import (
     audit_longitudinal_comparability,
 )
+from models.inclusion_longitudinal_plan import (
+    audit_longitudinal_plan,
+    create_longitudinal_plan_template,
+    load_longitudinal_plan_csv,
+)
 from models.inclusion_subgroup_comparability import (
     audit_subgroup_comparability,
     create_subgroup_comparability_template,
@@ -2313,6 +2318,75 @@ def render_inclusive_education_page(project_root: Path) -> None:
                                 "text/csv",
                                 key=f"inclusive_longitudinal_comparability_{summary_key}_download",
                             )
+        st.markdown("#### Longitudinal analysis-plan readiness audit")
+        st.caption(
+            "Documentation readiness only. This workflow does not fit a model, select a method, "
+            "or establish causal identification."
+        )
+        with st.expander("Longitudinal analysis-plan readiness workflow"):
+            st.download_button(
+                "Download longitudinal analysis-plan template",
+                create_longitudinal_plan_template().to_csv(index=False).encode("utf-8-sig"),
+                "inclusive_longitudinal_analysis_plan_template.csv",
+                "text/csv",
+                key="inclusive_longitudinal_plan_template_download",
+            )
+            longitudinal_plan_upload = st.file_uploader(
+                "Upload longitudinal analysis-plan CSV",
+                type=["csv"],
+                key="inclusive_longitudinal_plan_upload",
+                help=(
+                    "Record the declared estimand, comparison, missing-data, weighting, "
+                    "uncertainty, dependence, and measurement-comparability decisions."
+                ),
+            )
+            if longitudinal_plan_upload is not None:
+                try:
+                    longitudinal_plan_data = load_longitudinal_plan_csv(
+                        longitudinal_plan_upload
+                    )
+                except ValueError as error:
+                    st.error(f"Longitudinal analysis-plan validation failed: {error}")
+                else:
+                    longitudinal_plan_audit = audit_longitudinal_plan(longitudinal_plan_data)
+                    st.warning(str(longitudinal_plan_audit["interpretation"]))
+                    for title, summary_key in (
+                        ("Plan summary", "longitudinal_plan_summary"),
+                        ("Method documentation prompts", "method_documentation_prompts"),
+                        ("Research question candidates", "research_question_candidates"),
+                    ):
+                        st.markdown(f"**{title}**")
+                        st.dataframe(
+                            longitudinal_plan_audit[summary_key],
+                            width="stretch",
+                            hide_index=True,
+                        )
+                    for label, summary_key, file_name in (
+                        (
+                            "Download longitudinal plan summary",
+                            "longitudinal_plan_summary",
+                            "inclusive_longitudinal_plan_summary.csv",
+                        ),
+                        (
+                            "Download method documentation prompts",
+                            "method_documentation_prompts",
+                            "inclusive_longitudinal_plan_prompts.csv",
+                        ),
+                        (
+                            "Download longitudinal plan research questions",
+                            "research_question_candidates",
+                            "inclusive_longitudinal_plan_questions.csv",
+                        ),
+                    ):
+                        st.download_button(
+                            label,
+                            longitudinal_plan_audit[summary_key]
+                            .to_csv(index=False)
+                            .encode("utf-8-sig"),
+                            file_name,
+                            "text/csv",
+                            key=f"inclusive_longitudinal_plan_{summary_key}_download",
+                        )
         if len(selected_variables) >= 2:
             st.markdown("#### Correlation — descriptive association only")
             st.dataframe(correlation_matrix(analysis_data, selected_variables), width="stretch")
