@@ -178,6 +178,13 @@ Before editing, downloading, processing data, or pushing commits:
   three institutions. The workflow does not infer attrition reasons or missing-
   data mechanisms, diagnose bias, generate weights or imputations, expose unit
   identifiers, or treat standardised differences as causal or quality evidence.
+- Researcher Mode now includes a session-only paired longitudinal Bootstrap
+  uncertainty audit. Matched institutions are resampled as intact pairs for
+  each adjacent observed-round comparison. The audit reports point mean changes,
+  Bootstrap means, bias, standard errors, and percentile intervals for five
+  dimensions and three Support Gaps without exporting IDs, pair trajectories,
+  or resampling draws. It does not establish longitudinal comparability,
+  significance, improvement, deterioration, policy effects, or causality.
 - `dd8b3d2 Fix landing page transition warning`: removed `st.rerun()` from a
   button callback. The old Dashboard warning *“Calling st.rerun() within a
   callback is a no-op.”* should not reappear.
@@ -188,7 +195,7 @@ Before editing, downloading, processing data, or pushing commits:
 - `e60babd Document AI interpretation export formats`.
 - `69765b8 Add project history record and workflow screenshot`.
 
-The most recent validated test result was **159 passed** in one complete pytest
+The most recent validated test result was **173 passed** in one complete pytest
 run. Streamlit interface tests loaded all current Dashboard routes, including
 Inclusive Education, and explicitly checked the longitudinal attrition audit
 workflow, materials, and download entries.

@@ -167,6 +167,17 @@ def test_inclusive_education_dashboard_renders_research_pathway() -> None:
         selectbox.label for selectbox in app.selectbox
     ]
     assert "Download attrition audit response template" in download_labels
+    assert "Paired longitudinal Bootstrap uncertainty workflow" in expander_labels
+    assert "Upload paired longitudinal Bootstrap response CSV" in uploader_labels
+    assert "Paired longitudinal Bootstrap response scale" in [
+        selectbox.label for selectbox in app.selectbox
+    ]
+    assert "Paired longitudinal Bootstrap resamples" in number_input_labels
+    assert "Paired longitudinal Bootstrap random seed" in number_input_labels
+    assert "Paired longitudinal Bootstrap interval level (%)" in [
+        slider.label for slider in app.slider
+    ]
+    assert "Download paired longitudinal Bootstrap response template" in download_labels
     assert len(app.get("download_button")) >= 10
 
 def test_reports_page_offers_markdown_word_and_pdf_downloads() -> None:

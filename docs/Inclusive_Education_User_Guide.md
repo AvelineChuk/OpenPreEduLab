@@ -176,6 +176,17 @@ missingness mechanisms, attrition causes, bias, or corrective weights, and the
 platform does not impute missing rounds. See the
 [Longitudinal Attrition and Panel Composition Protocol](Inclusive_Education_Attrition_Protocol.md).
 
+The paired longitudinal Bootstrap workflow resamples matched institutions as
+intact earlier/later-round pairs for each adjacent observed-round comparison.
+It reports the point mean change, Bootstrap mean change, estimated bias,
+standard error, and percentile interval for the five dimensions and three
+Support Gaps. Researchers select the resample count, interval level, and random
+seed. Missing rounds are not imputed, versions are not pooled, and pair-level
+trajectories or Bootstrap draws are not exported. The intervals do not establish
+longitudinal measurement comparability, statistical significance, improvement,
+deterioration, policy effects, or causality. See the
+[Paired Longitudinal Bootstrap Protocol](Inclusive_Education_Paired_Longitudinal_Bootstrap_Protocol.md).
+
 ## Exploratory Scenarios
 
 Four interfaces change one item by a researcher-selected number of 0–100 scale

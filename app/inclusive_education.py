@@ -58,6 +58,9 @@ from models.inclusion_reliability import (
     load_reliability_audit_csv,
 )
 from models.inclusion_longitudinal import audit_longitudinal_panel_readiness
+from models.inclusion_longitudinal_bootstrap import (
+    audit_paired_longitudinal_bootstrap,
+)
 from models.inclusion_subgroup_comparability import (
     audit_subgroup_comparability,
     create_subgroup_comparability_template,
@@ -1914,6 +1917,163 @@ def render_inclusive_education_page(project_root: Path) -> None:
                                 file_name,
                                 "text/csv",
                                 key=f"inclusive_attrition_{summary_key}_download",
+                            )
+        st.markdown("#### Paired longitudinal Bootstrap uncertainty audit")
+        st.caption(
+            "Prototype uncertainty for matched mean changes only. Intervals do not establish "
+            "longitudinal comparability, significance, improvement, policy effects, or causality."
+        )
+        with st.expander("Paired longitudinal Bootstrap uncertainty workflow"):
+            st.download_button(
+                "Download paired longitudinal Bootstrap response template",
+                create_reliability_audit_template().to_csv(index=False).encode("utf-8-sig"),
+                "inclusive_paired_longitudinal_bootstrap_template.csv",
+                "text/csv",
+                key="inclusive_paired_bootstrap_template_download",
+            )
+            paired_bootstrap_upload = st.file_uploader(
+                "Upload paired longitudinal Bootstrap response CSV",
+                type=["csv"],
+                key="inclusive_paired_bootstrap_upload",
+                help=(
+                    "Use stable pseudonymous institutional IDs across rounds within one "
+                    "instrument version. Pair-level records and Bootstrap draws are not exported."
+                ),
+            )
+            paired_bootstrap_scale = st.selectbox(
+                "Paired longitudinal Bootstrap response scale",
+                ["0–100", "0–1", "Custom range"],
+                key="inclusive_paired_bootstrap_scale",
+            )
+            if paired_bootstrap_scale == "0–100":
+                paired_bootstrap_min, paired_bootstrap_max = 0.0, 100.0
+            elif paired_bootstrap_scale == "0–1":
+                paired_bootstrap_min, paired_bootstrap_max = 0.0, 1.0
+            else:
+                paired_bootstrap_scale_columns = st.columns(2)
+                with paired_bootstrap_scale_columns[0]:
+                    paired_bootstrap_min = float(
+                        st.number_input(
+                            "Paired longitudinal Bootstrap scale minimum",
+                            value=1.0,
+                            key="inclusive_paired_bootstrap_min",
+                        )
+                    )
+                with paired_bootstrap_scale_columns[1]:
+                    paired_bootstrap_max = float(
+                        st.number_input(
+                            "Paired longitudinal Bootstrap scale maximum",
+                            value=5.0,
+                            key="inclusive_paired_bootstrap_max",
+                        )
+                    )
+            paired_bootstrap_settings = st.columns(2)
+            with paired_bootstrap_settings[0]:
+                paired_bootstrap_resamples = int(
+                    st.number_input(
+                        "Paired longitudinal Bootstrap resamples",
+                        min_value=100,
+                        max_value=10000,
+                        value=1000,
+                        step=100,
+                        key="inclusive_paired_bootstrap_resamples",
+                    )
+                )
+            with paired_bootstrap_settings[1]:
+                paired_bootstrap_seed = int(
+                    st.number_input(
+                        "Paired longitudinal Bootstrap random seed",
+                        min_value=0,
+                        value=42,
+                        step=1,
+                        key="inclusive_paired_bootstrap_seed",
+                    )
+                )
+            paired_bootstrap_confidence_percent = st.slider(
+                "Paired longitudinal Bootstrap interval level (%)",
+                min_value=80,
+                max_value=99,
+                value=95,
+                step=1,
+                key="inclusive_paired_bootstrap_confidence",
+            )
+            if paired_bootstrap_upload is not None:
+                try:
+                    paired_bootstrap_data = load_reliability_audit_csv(
+                        paired_bootstrap_upload,
+                        paired_bootstrap_min,
+                        paired_bootstrap_max,
+                    )
+                except ValueError as error:
+                    st.error(f"Paired longitudinal Bootstrap validation failed: {error}")
+                else:
+                    paired_bootstrap_versions = (
+                        paired_bootstrap_data["instrument_version"]
+                        .drop_duplicates()
+                        .tolist()
+                    )
+                    selected_paired_bootstrap_version = st.selectbox(
+                        "Version for paired longitudinal Bootstrap audit",
+                        paired_bootstrap_versions,
+                        key="inclusive_paired_bootstrap_version",
+                    )
+                    try:
+                        paired_bootstrap_audit = audit_paired_longitudinal_bootstrap(
+                            paired_bootstrap_data,
+                            selected_paired_bootstrap_version,
+                            n_resamples=paired_bootstrap_resamples,
+                            confidence_level=paired_bootstrap_confidence_percent / 100,
+                            random_seed=paired_bootstrap_seed,
+                            source_min=paired_bootstrap_min,
+                            source_max=paired_bootstrap_max,
+                        )
+                    except ValueError as error:
+                        st.error(f"Paired longitudinal Bootstrap audit failed: {error}")
+                    else:
+                        st.warning(str(paired_bootstrap_audit["interpretation"]))
+                        st.markdown("**Paired Bootstrap run settings**")
+                        st.dataframe(
+                            paired_bootstrap_audit["paired_bootstrap_run_summary"],
+                            width="stretch",
+                            hide_index=True,
+                        )
+                        st.markdown("**Matched mean-change uncertainty summary**")
+                        st.dataframe(
+                            paired_bootstrap_audit["paired_bootstrap_interval_summary"],
+                            width="stretch",
+                            hide_index=True,
+                        )
+                        st.markdown("**Research question candidates**")
+                        st.dataframe(
+                            paired_bootstrap_audit["research_question_candidates"],
+                            width="stretch",
+                            hide_index=True,
+                        )
+                        for label, summary_key, file_name in (
+                            (
+                                "Download paired Bootstrap run summary",
+                                "paired_bootstrap_run_summary",
+                                "inclusive_paired_bootstrap_run_summary.csv",
+                            ),
+                            (
+                                "Download paired Bootstrap uncertainty summary",
+                                "paired_bootstrap_interval_summary",
+                                "inclusive_paired_bootstrap_uncertainty.csv",
+                            ),
+                            (
+                                "Download paired Bootstrap research questions",
+                                "research_question_candidates",
+                                "inclusive_paired_bootstrap_research_questions.csv",
+                            ),
+                        ):
+                            st.download_button(
+                                label,
+                                paired_bootstrap_audit[summary_key]
+                                .to_csv(index=False)
+                                .encode("utf-8-sig"),
+                                file_name,
+                                "text/csv",
+                                key=f"inclusive_paired_bootstrap_{summary_key}_download",
                             )
         if len(selected_variables) >= 2:
             st.markdown("#### Correlation — descriptive association only")
