@@ -193,6 +193,9 @@ def test_inclusive_education_dashboard_renders_research_pathway() -> None:
     assert "Longitudinal policy and context event alignment workflow" in expander_labels
     assert "Upload event-alignment round metadata CSV" in uploader_labels
     assert "Upload longitudinal policy and context event CSV" in uploader_labels
+    assert "Event exposure definition readiness workflow" in expander_labels
+    assert "Upload event exposure-definition CSV" in uploader_labels
+    assert "Download event exposure-definition template" in download_labels
     assert "Download longitudinal event registry template" in download_labels
     assert len(app.get("download_button")) >= 10
 

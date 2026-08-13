@@ -213,6 +213,11 @@ Before editing, downloading, processing data, or pushing commits:
   descriptions. Temporal alignment does not establish exposure, mechanisms,
   attribution, confounding control, counterfactual outcomes, policy effects, or
   causality, and no automatic adjustment or effect conclusion is produced.
+- Researcher Mode now includes a session-only event exposure-definition readiness
+  audit. It distinguishes registered chronology from institution-level exposure and
+  records scope, status, timing, intensity, lag, comparator, and evidence fields.
+  Unresolved exposure definitions produce documentation prompts. The workflow does
+  not infer treatment, dose, exposure, policy effects, or causality.
 - `dd8b3d2 Fix landing page transition warning`: removed `st.rerun()` from a
   button callback. The old Dashboard warning *“Calling st.rerun() within a
   callback is a no-op.”* should not reappear.
@@ -223,7 +228,7 @@ Before editing, downloading, processing data, or pushing commits:
 - `e60babd Document AI interpretation export formats`.
 - `69765b8 Add project history record and workflow screenshot`.
 
-The most recent validated test result was **194 passed** in one complete pytest
+The most recent validated test result was **197 passed** in one complete pytest
 run. Streamlit interface tests loaded all current Dashboard routes, including
 Inclusive Education, and explicitly checked the longitudinal attrition audit
 workflow, materials, and download entries.

@@ -79,6 +79,11 @@ from models.inclusion_longitudinal_events import (
     create_longitudinal_event_template,
     load_longitudinal_event_csv,
 )
+from models.inclusion_event_exposure import (
+    audit_event_exposure_definitions,
+    create_event_exposure_template,
+    load_event_exposure_csv,
+)
 from models.inclusion_subgroup_comparability import (
     audit_subgroup_comparability,
     create_subgroup_comparability_template,
@@ -2477,6 +2482,26 @@ def render_inclusive_education_page(project_root: Path) -> None:
                                     "text/csv",
                                     key=f"inclusive_event_{summary_key}_download",
                                 )
+        st.markdown("#### Event exposure definition readiness audit")
+        st.caption("Exposure documentation only. Registered events are not assumed to be institution-level treatment or causal exposure.")
+        with st.expander("Event exposure definition readiness workflow"):
+            st.download_button("Download event exposure-definition template", create_event_exposure_template().to_csv(index=False).encode("utf-8-sig"), "inclusive_event_exposure_template.csv", "text/csv", key="inclusive_event_exposure_template_download")
+            exposure_upload = st.file_uploader("Upload event exposure-definition CSV", type=["csv"], key="inclusive_event_exposure_upload")
+            if exposure_upload is not None:
+                try:
+                    exposure_data = load_event_exposure_csv(exposure_upload)
+                except ValueError as error:
+                    st.error(f"Event-exposure validation failed: {error}")
+                else:
+                    exposure_versions = exposure_data["instrument_version"].drop_duplicates().tolist()
+                    selected_exposure_version = st.selectbox("Version for event-exposure audit", exposure_versions, key="inclusive_event_exposure_version")
+                    exposure_audit = audit_event_exposure_definitions(exposure_data, selected_exposure_version)
+                    st.warning(str(exposure_audit["interpretation"]))
+                    for title, key in (("Exposure definitions", "event_exposure_summary"), ("Definition prompts", "exposure_definition_prompts"), ("Research question candidates", "research_question_candidates")):
+                        st.markdown(f"**{title}**")
+                        st.dataframe(exposure_audit[key], width="stretch", hide_index=True)
+                    for label, key, filename in (("Download event exposure summary", "event_exposure_summary", "inclusive_event_exposure_summary.csv"), ("Download exposure prompts", "exposure_definition_prompts", "inclusive_event_exposure_prompts.csv"), ("Download exposure research questions", "research_question_candidates", "inclusive_event_exposure_questions.csv")):
+                        st.download_button(label, exposure_audit[key].to_csv(index=False).encode("utf-8-sig"), filename, "text/csv", key=f"inclusive_event_exposure_{key}_download")
         if len(selected_variables) >= 2:
             st.markdown("#### Correlation — descriptive association only")
             st.dataframe(correlation_matrix(analysis_data, selected_variables), width="stretch")

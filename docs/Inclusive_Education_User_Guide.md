@@ -223,6 +223,13 @@ outputs. Chronology and overlap do not establish institutional exposure,
 mechanisms, attribution, policy effects, counterfactual outcomes, or causality.
 See the [Longitudinal Event Alignment Protocol](Inclusive_Education_Longitudinal_Event_Alignment_Protocol.md).
 
+The event exposure-definition workflow distinguishes a registered event from
+institution-level exposure. It records exposure scope and status, timing,
+intensity, lag, comparator, and evidence references, then generates documentation
+prompts when these definitions remain unresolved. It does not infer treatment,
+dose, exposure, policy effects, or causality. See the
+[Event Exposure Definition Protocol](Inclusive_Education_Event_Exposure_Protocol.md).
+
 ## Exploratory Scenarios
 
 Four interfaces change one item by a researcher-selected number of 0–100 scale
