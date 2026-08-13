@@ -190,6 +190,10 @@ def test_inclusive_education_dashboard_renders_research_pathway() -> None:
     assert "Longitudinal analysis-plan readiness workflow" in expander_labels
     assert "Upload longitudinal analysis-plan CSV" in uploader_labels
     assert "Download longitudinal analysis-plan template" in download_labels
+    assert "Longitudinal policy and context event alignment workflow" in expander_labels
+    assert "Upload event-alignment round metadata CSV" in uploader_labels
+    assert "Upload longitudinal policy and context event CSV" in uploader_labels
+    assert "Download longitudinal event registry template" in download_labels
     assert len(app.get("download_button")) >= 10
 
 def test_reports_page_offers_markdown_word_and_pdf_downloads() -> None:

@@ -220,6 +220,7 @@ The default scenario parameters are prototype assumptions for workflow demonstra
 - [Inclusive Education Longitudinal Timing and Fieldwork Metadata Protocol](docs/Inclusive_Education_Longitudinal_Metadata_Protocol.md)
 - [Inclusive Education Longitudinal Measurement Comparability Protocol](docs/Inclusive_Education_Longitudinal_Comparability_Protocol.md)
 - [Inclusive Education Longitudinal Analysis-Plan Readiness Protocol](docs/Inclusive_Education_Longitudinal_Analysis_Plan_Protocol.md)
+- [Inclusive Education Longitudinal Event Alignment Protocol](docs/Inclusive_Education_Longitudinal_Event_Alignment_Protocol.md)
 - [Inclusive Education Accessibility Check](docs/Inclusive_Education_Accessibility_Check.md)
 - [Research Journal](Research_Journal.md)
 - [Contributing](CONTRIBUTING.md)

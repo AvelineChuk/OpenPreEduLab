@@ -74,6 +74,11 @@ from models.inclusion_longitudinal_plan import (
     create_longitudinal_plan_template,
     load_longitudinal_plan_csv,
 )
+from models.inclusion_longitudinal_events import (
+    audit_longitudinal_event_alignment,
+    create_longitudinal_event_template,
+    load_longitudinal_event_csv,
+)
 from models.inclusion_subgroup_comparability import (
     audit_subgroup_comparability,
     create_subgroup_comparability_template,
@@ -2387,6 +2392,91 @@ def render_inclusive_education_page(project_root: Path) -> None:
                             "text/csv",
                             key=f"inclusive_longitudinal_plan_{summary_key}_download",
                         )
+        st.markdown("#### Longitudinal policy and context event alignment audit")
+        st.caption(
+            "Chronology evidence only. Event timing and overlap do not establish exposure, "
+            "policy effects, mechanisms, or causality."
+        )
+        with st.expander("Longitudinal policy and context event alignment workflow"):
+            event_template_columns = st.columns(2)
+            with event_template_columns[0]:
+                st.download_button(
+                    "Download event-alignment metadata template",
+                    create_longitudinal_metadata_template().to_csv(index=False).encode("utf-8-sig"),
+                    "inclusive_event_alignment_metadata_template.csv",
+                    "text/csv",
+                    key="inclusive_event_metadata_template_download",
+                )
+            with event_template_columns[1]:
+                st.download_button(
+                    "Download longitudinal event registry template",
+                    create_longitudinal_event_template().to_csv(index=False).encode("utf-8-sig"),
+                    "inclusive_longitudinal_event_registry_template.csv",
+                    "text/csv",
+                    key="inclusive_event_registry_template_download",
+                )
+            event_metadata_upload = st.file_uploader(
+                "Upload event-alignment round metadata CSV",
+                type=["csv"],
+                key="inclusive_event_metadata_upload",
+            )
+            event_registry_upload = st.file_uploader(
+                "Upload longitudinal policy and context event CSV",
+                type=["csv"],
+                key="inclusive_event_registry_upload",
+                help="Use non-identifying descriptions. Description text is not reproduced in outputs.",
+            )
+            if event_metadata_upload is not None and event_registry_upload is not None:
+                try:
+                    event_metadata = load_longitudinal_metadata_csv(event_metadata_upload)
+                    event_registry = load_longitudinal_event_csv(event_registry_upload)
+                except ValueError as error:
+                    st.error(f"Event-alignment validation failed: {error}")
+                else:
+                    versions = sorted(
+                        set(event_metadata["instrument_version"])
+                        & set(event_registry["instrument_version"])
+                    )
+                    if not versions:
+                        st.error("Event alignment requires a shared instrument version in both files.")
+                    else:
+                        selected_event_version = st.selectbox(
+                            "Version for event-alignment audit",
+                            versions,
+                            key="inclusive_event_alignment_version",
+                        )
+                        try:
+                            event_audit = audit_longitudinal_event_alignment(
+                                event_metadata,
+                                event_registry,
+                                selected_event_version,
+                            )
+                        except ValueError as error:
+                            st.error(f"Event-alignment audit failed: {error}")
+                        else:
+                            st.warning(str(event_audit["interpretation"]))
+                            for title, summary_key in (
+                                ("Event alignment", "event_alignment_summary"),
+                                (
+                                    "Adjacent-round event context",
+                                    "adjacent_round_event_context_summary",
+                                ),
+                                ("Research question candidates", "research_question_candidates"),
+                            ):
+                                st.markdown(f"**{title}**")
+                                st.dataframe(event_audit[summary_key], width="stretch", hide_index=True)
+                            for label, summary_key, file_name in (
+                                ("Download event alignment summary", "event_alignment_summary", "inclusive_event_alignment.csv"),
+                                ("Download adjacent-round event context", "adjacent_round_event_context_summary", "inclusive_adjacent_round_event_context.csv"),
+                                ("Download event-alignment research questions", "research_question_candidates", "inclusive_event_alignment_questions.csv"),
+                            ):
+                                st.download_button(
+                                    label,
+                                    event_audit[summary_key].to_csv(index=False).encode("utf-8-sig"),
+                                    file_name,
+                                    "text/csv",
+                                    key=f"inclusive_event_{summary_key}_download",
+                                )
         if len(selected_variables) >= 2:
             st.markdown("#### Correlation — descriptive association only")
             st.dataframe(correlation_matrix(analysis_data, selected_variables), width="stretch")

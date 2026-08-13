@@ -215,6 +215,14 @@ The workflow does not choose a method, fit a model, approve a plan, estimate an
 effect, or validate causal assumptions. See the
 [Longitudinal Analysis-Plan Readiness Protocol](Inclusive_Education_Longitudinal_Analysis_Plan_Protocol.md).
 
+The longitudinal policy and context event-alignment workflow combines round
+timing metadata with a versioned event registry. It describes events overlapping
+collection windows, events between adjacent rounds, event types, scope, evidence
+sources, and verification status. Event-description text is not reproduced in
+outputs. Chronology and overlap do not establish institutional exposure,
+mechanisms, attribution, policy effects, counterfactual outcomes, or causality.
+See the [Longitudinal Event Alignment Protocol](Inclusive_Education_Longitudinal_Event_Alignment_Protocol.md).
+
 ## Exploratory Scenarios
 
 Four interfaces change one item by a researcher-selected number of 0–100 scale

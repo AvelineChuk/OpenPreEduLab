@@ -206,6 +206,13 @@ Before editing, downloading, processing data, or pushing commits:
   references, causal-language setting, and preregistration status. The workflow
   produces bounded documentation prompts but does not select a method, fit a
   model, approve a plan, estimate an effect, or validate causal assumptions.
+- Researcher Mode now includes a session-only longitudinal policy and context
+  event-alignment audit. It combines round timing metadata with a versioned event
+  registry to report event chronology, collection-window overlap, adjacent-round
+  event context, scope, source, and verification status without reproducing event
+  descriptions. Temporal alignment does not establish exposure, mechanisms,
+  attribution, confounding control, counterfactual outcomes, policy effects, or
+  causality, and no automatic adjustment or effect conclusion is produced.
 - `dd8b3d2 Fix landing page transition warning`: removed `st.rerun()` from a
   button callback. The old Dashboard warning *“Calling st.rerun() within a
   callback is a no-op.”* should not reappear.
@@ -216,7 +223,7 @@ Before editing, downloading, processing data, or pushing commits:
 - `e60babd Document AI interpretation export formats`.
 - `69765b8 Add project history record and workflow screenshot`.
 
-The most recent validated test result was **190 passed** in one complete pytest
+The most recent validated test result was **194 passed** in one complete pytest
 run. Streamlit interface tests loaded all current Dashboard routes, including
 Inclusive Education, and explicitly checked the longitudinal attrition audit
 workflow, materials, and download entries.
