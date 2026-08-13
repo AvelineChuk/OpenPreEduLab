@@ -66,6 +66,9 @@ from models.inclusion_longitudinal_metadata import (
     create_longitudinal_metadata_template,
     load_longitudinal_metadata_csv,
 )
+from models.inclusion_longitudinal_comparability import (
+    audit_longitudinal_comparability,
+)
 from models.inclusion_subgroup_comparability import (
     audit_subgroup_comparability,
     create_subgroup_comparability_template,
@@ -2174,6 +2177,141 @@ def render_inclusive_education_page(project_root: Path) -> None:
                                 file_name,
                                 "text/csv",
                                 key=f"inclusive_longitudinal_metadata_{summary_key}_download",
+                            )
+        st.markdown("#### Longitudinal measurement-comparability readiness audit")
+        st.caption(
+            "Descriptive readiness evidence only. Round differences do not establish "
+            "measurement invariance, bias, improvement, policy effects, or causality."
+        )
+        with st.expander("Longitudinal measurement-comparability readiness workflow"):
+            st.download_button(
+                "Download longitudinal comparability response template",
+                create_reliability_audit_template().to_csv(index=False).encode("utf-8-sig"),
+                "inclusive_longitudinal_comparability_template.csv",
+                "text/csv",
+                key="inclusive_longitudinal_comparability_template_download",
+            )
+            longitudinal_comparability_upload = st.file_uploader(
+                "Upload longitudinal comparability response CSV",
+                type=["csv"],
+                key="inclusive_longitudinal_comparability_upload",
+                help=(
+                    "Use complete institutional records from at least two rounds of one "
+                    "instrument version. No scores or item responses are imputed."
+                ),
+            )
+            longitudinal_comparability_scale = st.selectbox(
+                "Longitudinal comparability response scale",
+                ["0–100", "0–1", "Custom range"],
+                key="inclusive_longitudinal_comparability_scale",
+            )
+            if longitudinal_comparability_scale == "0–100":
+                longitudinal_comparability_min, longitudinal_comparability_max = 0.0, 100.0
+            elif longitudinal_comparability_scale == "0–1":
+                longitudinal_comparability_min, longitudinal_comparability_max = 0.0, 1.0
+            else:
+                longitudinal_comparability_columns = st.columns(2)
+                with longitudinal_comparability_columns[0]:
+                    longitudinal_comparability_min = float(
+                        st.number_input(
+                            "Longitudinal comparability scale minimum",
+                            value=1.0,
+                            key="inclusive_longitudinal_comparability_min",
+                        )
+                    )
+                with longitudinal_comparability_columns[1]:
+                    longitudinal_comparability_max = float(
+                        st.number_input(
+                            "Longitudinal comparability scale maximum",
+                            value=5.0,
+                            key="inclusive_longitudinal_comparability_max",
+                        )
+                    )
+            if longitudinal_comparability_upload is not None:
+                try:
+                    longitudinal_comparability_data = load_reliability_audit_csv(
+                        longitudinal_comparability_upload,
+                        longitudinal_comparability_min,
+                        longitudinal_comparability_max,
+                    )
+                except ValueError as error:
+                    st.error(f"Longitudinal comparability validation failed: {error}")
+                else:
+                    longitudinal_comparability_versions = (
+                        longitudinal_comparability_data["instrument_version"]
+                        .drop_duplicates()
+                        .tolist()
+                    )
+                    selected_longitudinal_comparability_version = st.selectbox(
+                        "Version for longitudinal comparability audit",
+                        longitudinal_comparability_versions,
+                        key="inclusive_longitudinal_comparability_version",
+                    )
+                    try:
+                        longitudinal_comparability_audit = audit_longitudinal_comparability(
+                            longitudinal_comparability_data,
+                            selected_longitudinal_comparability_version,
+                            longitudinal_comparability_min,
+                            longitudinal_comparability_max,
+                        )
+                    except ValueError as error:
+                        st.error(f"Longitudinal comparability audit failed: {error}")
+                    else:
+                        st.warning(str(longitudinal_comparability_audit["interpretation"]))
+                        for title, summary_key in (
+                            ("Round coverage", "round_coverage_summary"),
+                            ("Round item distributions", "round_item_distribution_summary"),
+                            (
+                                "Adjacent-round item differences",
+                                "adjacent_round_item_difference_summary",
+                            ),
+                            (
+                                "Adjacent-round correlation differences",
+                                "adjacent_round_correlation_difference_summary",
+                            ),
+                            ("Research question candidates", "research_question_candidates"),
+                        ):
+                            st.markdown(f"**{title}**")
+                            st.dataframe(
+                                longitudinal_comparability_audit[summary_key],
+                                width="stretch",
+                                hide_index=True,
+                            )
+                        for label, summary_key, file_name in (
+                            (
+                                "Download longitudinal comparability round coverage",
+                                "round_coverage_summary",
+                                "inclusive_longitudinal_comparability_coverage.csv",
+                            ),
+                            (
+                                "Download longitudinal item distributions",
+                                "round_item_distribution_summary",
+                                "inclusive_longitudinal_item_distributions.csv",
+                            ),
+                            (
+                                "Download adjacent-round item differences",
+                                "adjacent_round_item_difference_summary",
+                                "inclusive_longitudinal_item_differences.csv",
+                            ),
+                            (
+                                "Download adjacent-round correlation differences",
+                                "adjacent_round_correlation_difference_summary",
+                                "inclusive_longitudinal_correlation_differences.csv",
+                            ),
+                            (
+                                "Download longitudinal comparability research questions",
+                                "research_question_candidates",
+                                "inclusive_longitudinal_comparability_questions.csv",
+                            ),
+                        ):
+                            st.download_button(
+                                label,
+                                longitudinal_comparability_audit[summary_key]
+                                .to_csv(index=False)
+                                .encode("utf-8-sig"),
+                                file_name,
+                                "text/csv",
+                                key=f"inclusive_longitudinal_comparability_{summary_key}_download",
                             )
         if len(selected_variables) >= 2:
             st.markdown("#### Correlation — descriptive association only")

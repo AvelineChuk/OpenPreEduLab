@@ -192,6 +192,13 @@ Before editing, downloading, processing data, or pushing commits:
   round purpose, and event-status documentation. Human-entered event notes are
   not reproduced in outputs. Metadata differences are research prompts, not
   quality, bias, validity, improvement, policy-effect, or causal judgements.
+- Researcher Mode now includes a session-only longitudinal measurement-
+  comparability readiness audit for complete records across rounds of one
+  instrument version. It reports round coverage, item distributions, adjacent-
+  round standardised mean differences, matched coverage, and descriptive
+  correlation-structure differences. It does not run or claim CFA, DIF, or any
+  form of measurement invariance, adjust panel composition, make item decisions,
+  or infer bias, validity, substantive change, policy effects, or causality.
 - `dd8b3d2 Fix landing page transition warning`: removed `st.rerun()` from a
   button callback. The old Dashboard warning *“Calling st.rerun() within a
   callback is a no-op.”* should not reappear.
@@ -202,7 +209,7 @@ Before editing, downloading, processing data, or pushing commits:
 - `e60babd Document AI interpretation export formats`.
 - `69765b8 Add project history record and workflow screenshot`.
 
-The most recent validated test result was **179 passed** in one complete pytest
+The most recent validated test result was **185 passed** in one complete pytest
 run. Streamlit interface tests loaded all current Dashboard routes, including
 Inclusive Education, and explicitly checked the longitudinal attrition audit
 workflow, materials, and download entries.

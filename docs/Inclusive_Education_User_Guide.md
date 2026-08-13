@@ -197,6 +197,15 @@ These records do not establish data quality, bias, longitudinal comparability,
 reasons for score change, improvement, policy effects, or causality. See the
 [Longitudinal Timing and Fieldwork Metadata Protocol](Inclusive_Education_Longitudinal_Metadata_Protocol.md).
 
+The longitudinal measurement-comparability readiness workflow compares item
+distributions, standardised mean differences, and item-correlation structures
+across adjacent rounds of one instrument version. It uses all complete records
+in each round and does not adjust for panel composition. These summaries are
+descriptive research prompts only: they do not establish configural, metric,
+scalar, strict, or other measurement invariance, DIF, bias, validity, substantive
+change, improvement, policy effects, or causality. See the
+[Longitudinal Measurement Comparability Protocol](Inclusive_Education_Longitudinal_Comparability_Protocol.md).
+
 ## Exploratory Scenarios
 
 Four interfaces change one item by a researcher-selected number of 0–100 scale
