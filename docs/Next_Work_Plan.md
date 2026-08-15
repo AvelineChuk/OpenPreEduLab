@@ -40,6 +40,12 @@ burden, and administration modes without treating them as validity evidence.
 A separate preliminary reliability workflow now calculates dimension-level
 Cronbach alpha, item diagnostics, and matched repeated-administration Pearson
 and ICC(3,1) summaries without automatic thresholds or validity claims.
+The later policy-research readiness sequence now also documents longitudinal
+event alignment, institution-level exposure definitions, identification-design
+assumptions, falsification and sensitivity plans, and estimation specifications.
+These are session-only planning audits. They run no causal model, estimate no
+effect, approve no design, and do not convert temporal ordering into evidence
+of policy impact.
 Actual expert recruitment, rating collection,
 cognitive interviews, and instrument decisions require separate governance and
 human participation; they have not been completed.

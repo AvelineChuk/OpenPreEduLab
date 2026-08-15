@@ -161,7 +161,9 @@ Future validation should include expert content review, instrument provenance,
 reliability assessment, measurement invariance, alternative weights, missing-
 data protocols, multilevel designs, longitudinal analysis, and independently
 reviewed real-data studies. Causal questions require an explicit identification
-strategy rather than interpretation of the conceptual arrows.
+strategy rather than interpretation of the conceptual arrows. Any future effect
+analysis also requires a preregistered estimation specification; see the
+[Estimation-Specification Readiness Protocol](Inclusive_Education_Estimation_Specification_Protocol.md).
 
 The planned expert-review process is specified in the
 [Inclusive Education Content Validation Protocol](Inclusive_Education_Content_Validation_Protocol.md).

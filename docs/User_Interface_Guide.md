@@ -28,6 +28,17 @@ The application has two connected spaces:
 2. **Research Platform** — a sidebar-based research workspace with an overview,
    data layer, PRAI, equity, visualisation, and module-status pages.
 
+### Sidebar access and shared workspace links
+
+The research workspace keeps `?view=platform` in the browser address. A
+collaborator can therefore refresh or share that address and return directly
+to the sidebar-based workspace instead of the Landing Page.
+
+On a narrow browser window, Streamlit may collapse the sidebar. Use the
+top-left sidebar control to reopen it. OpenPreEduLab keeps this control visible
+while hiding unrelated hosting controls. If the sidebar still does not fit,
+widen the browser window or reduce browser zoom to 100%.
+
 The Landing Page is intentionally a research presentation rather than a
 generic data-dashboard entry point. The platform uses a restrained white,
 soft-gray, and deep-blue visual system to keep analytical content primary.

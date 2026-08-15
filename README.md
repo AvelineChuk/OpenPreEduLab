@@ -3,13 +3,13 @@
 [![Version](https://img.shields.io/badge/version-0.1.0-blue)](VERSION)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 ![Python](https://img.shields.io/badge/python-3.10%2B-blue)
-[![Launch Platform](https://img.shields.io/badge/launch-platform-3F7357)](https://openpreedulab-85aycdefait8stbdivqxpx.streamlit.app/)
+[![Launch Platform](https://img.shields.io/badge/launch-platform-3F7357)](https://openpreedulab-85aycdefait8stbdivqxpx.streamlit.app/?view=platform)
 
 **Project Status:** Research Prototype v0.1.0
 
 Current version focuses on framework development and prototype implementation.
 
-> [Launch OpenPreEduLab Platform](https://openpreedulab-85aycdefait8stbdivqxpx.streamlit.app/)
+> [Launch OpenPreEduLab Platform](https://openpreedulab-85aycdefait8stbdivqxpx.streamlit.app/?view=platform)
 
 ## Open Preschool Education Research Platform
 

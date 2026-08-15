@@ -231,6 +231,14 @@ Before editing, downloading, processing data, or pushing commits:
   and interpretation rules. It runs no diagnostic or model, and favourable
   results would not prove identification, policy effects, or causality.
 - `dd8b3d2 Fix landing page transition warning`: removed `st.rerun()` from a
+- Researcher Mode now includes a session-only estimation-specification readiness
+  audit. It records the proposed outcome, estimand, population, unit, time scale,
+  estimator family, functional form, treatment encoding, comparison contrast,
+  adjustment, dependence, standard-error and clustering methods, weighting,
+  missing-data handling, event window, multiplicity, uncertainty, software, and
+  output-disclosure boundary. It fits no model and produces no coefficient,
+  effect estimate, p-value, significance label, approval, policy effect, or
+  causal conclusion.
   button callback. The old Dashboard warning *“Calling st.rerun() within a
   callback is a no-op.”* should not reappear.
 - `04e5177 Update Streamlit width parameters`: deprecated
@@ -240,9 +248,9 @@ Before editing, downloading, processing data, or pushing commits:
 - `e60babd Document AI interpretation export formats`.
 - `69765b8 Add project history record and workflow screenshot`.
 
-The most recent validated test result was **203 passed** in one complete pytest
+The most recent validated test result was **208 passed** in one complete pytest
 run. Streamlit interface tests loaded all current Dashboard routes, including
-Inclusive Education, and explicitly checked the longitudinal attrition audit
+Inclusive Education, and explicitly checked the estimation-specification audit
 workflow, materials, and download entries.
 
 ### Deliberately incomplete / future areas

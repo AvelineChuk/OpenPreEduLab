@@ -244,6 +244,14 @@ multiple-testing strategy, and interpretation rules. It does not run tests, and
 favourable diagnostics would not prove identification or causality. See the
 [Falsification and Sensitivity Plan Protocol](Inclusive_Education_Falsification_Plan_Protocol.md).
 
+The estimation-specification readiness workflow records the proposed outcome,
+estimand, analysis population, estimator family, functional form, treatment
+encoding, comparison contrast, dependence and standard-error methods,
+clustering, weighting, missing-data handling, event window, uncertainty,
+software environment, and output-disclosure boundary. It fits no model and
+produces no effect estimate or causal conclusion. See the
+[Estimation-Specification Readiness Protocol](Inclusive_Education_Estimation_Specification_Protocol.md).
+
 ## Exploratory Scenarios
 
 Four interfaces change one item by a researcher-selected number of 0–100 scale

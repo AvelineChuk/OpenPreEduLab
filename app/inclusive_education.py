@@ -94,6 +94,11 @@ from models.inclusion_falsification_plan import (
     create_falsification_plan_template,
     load_falsification_plan_csv,
 )
+from models.inclusion_estimation_specification import (
+    audit_estimation_specification,
+    create_estimation_specification_template,
+    load_estimation_specification_csv,
+)
 from models.inclusion_subgroup_comparability import (
     audit_subgroup_comparability,
     create_subgroup_comparability_template,
@@ -2552,6 +2557,26 @@ def render_inclusive_education_page(project_root: Path) -> None:
                         st.dataframe(falsification_audit[key], width="stretch", hide_index=True)
                     for label, key, filename in (("Download falsification-plan summary", "falsification_plan_summary", "inclusive_falsification_plan_summary.csv"), ("Download falsification-plan prompts", "falsification_plan_prompts", "inclusive_falsification_plan_prompts.csv"), ("Download falsification research questions", "research_question_candidates", "inclusive_falsification_questions.csv")):
                         st.download_button(label, falsification_audit[key].to_csv(index=False).encode("utf-8-sig"), filename, "text/csv", key=f"inclusive_falsification_{key}_download")
+        st.markdown("#### Estimation-specification readiness audit")
+        st.caption("Specification documentation only. The workflow fits no model and estimates no policy or context effect.")
+        with st.expander("Estimation-specification readiness workflow"):
+            st.download_button("Download estimation-specification template", create_estimation_specification_template().to_csv(index=False).encode("utf-8-sig"), "inclusive_estimation_specification_template.csv", "text/csv", key="inclusive_estimation_specification_template_download")
+            estimation_upload = st.file_uploader("Upload estimation-specification CSV", type=["csv"], key="inclusive_estimation_specification_upload")
+            if estimation_upload is not None:
+                try:
+                    estimation_data = load_estimation_specification_csv(estimation_upload)
+                except ValueError as error:
+                    st.error(f"Estimation-specification validation failed: {error}")
+                else:
+                    estimation_versions = estimation_data["instrument_version"].drop_duplicates().tolist()
+                    selected_estimation_version = st.selectbox("Version for estimation-specification audit", estimation_versions, key="inclusive_estimation_specification_version")
+                    estimation_audit = audit_estimation_specification(estimation_data, selected_estimation_version)
+                    st.warning(str(estimation_audit["interpretation"]))
+                    for title, key in (("Specification summary", "estimation_specification_summary"), ("Specification prompts", "estimation_specification_prompts"), ("Research question candidates", "research_question_candidates")):
+                        st.markdown(f"**{title}**")
+                        st.dataframe(estimation_audit[key], width="stretch", hide_index=True)
+                    for label, key, filename in (("Download estimation-specification summary", "estimation_specification_summary", "inclusive_estimation_specification_summary.csv"), ("Download estimation-specification prompts", "estimation_specification_prompts", "inclusive_estimation_specification_prompts.csv"), ("Download estimation research questions", "research_question_candidates", "inclusive_estimation_specification_questions.csv")):
+                        st.download_button(label, estimation_audit[key].to_csv(index=False).encode("utf-8-sig"), filename, "text/csv", key=f"inclusive_estimation_specification_{key}_download")
         if len(selected_variables) >= 2:
             st.markdown("#### Correlation — descriptive association only")
             st.dataframe(correlation_matrix(analysis_data, selected_variables), width="stretch")

@@ -18,6 +18,19 @@ def test_landing_page_loads_without_runtime_errors() -> None:
     assert "Launch Platform" in [button.label for button in app.button]
 
 
+def test_workspace_query_parameter_opens_sidebar_navigation() -> None:
+    """A shared workspace URL should open directly with research navigation."""
+    app = AppTest.from_file(str(APP_PATH))
+    app.query_params["view"] = "platform"
+    app.run(timeout=60)
+
+    assert not app.exception
+    navigation = next(radio for radio in app.radio if radio.label == "Workflow navigation")
+    assert "Inclusive Education" in navigation.options
+    assert "Workflow" in navigation.options
+
+
+
 def test_launch_platform_enters_research_workspace() -> None:
     """Launch Platform should provide a working Dashboard transition."""
     app = AppTest.from_file(str(APP_PATH))
@@ -26,6 +39,7 @@ def test_launch_platform_enters_research_workspace() -> None:
     next(button for button in app.button if button.label == "Launch Platform").click().run(timeout=60)
 
     assert not app.exception
+    assert app.query_params["view"] == ["platform"]
     content = "\n".join(item.value for item in app.markdown)
     assert "Welcome back." in content
     assert "Workflow" in app.radio[0].options
@@ -202,6 +216,9 @@ def test_inclusive_education_dashboard_renders_research_pathway() -> None:
     assert "Falsification and sensitivity plan readiness workflow" in expander_labels
     assert "Upload falsification and sensitivity plan CSV" in uploader_labels
     assert "Download falsification-plan template" in download_labels
+    assert "Estimation-specification readiness workflow" in expander_labels
+    assert "Upload estimation-specification CSV" in uploader_labels
+    assert "Download estimation-specification template" in download_labels
     assert "Download longitudinal event registry template" in download_labels
     assert len(app.get("download_button")) >= 10
 
