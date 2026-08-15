@@ -84,6 +84,11 @@ from models.inclusion_event_exposure import (
     create_event_exposure_template,
     load_event_exposure_csv,
 )
+from models.inclusion_identification_design import (
+    audit_identification_design,
+    create_identification_design_template,
+    load_identification_design_csv,
+)
 from models.inclusion_subgroup_comparability import (
     audit_subgroup_comparability,
     create_subgroup_comparability_template,
@@ -2502,6 +2507,26 @@ def render_inclusive_education_page(project_root: Path) -> None:
                         st.dataframe(exposure_audit[key], width="stretch", hide_index=True)
                     for label, key, filename in (("Download event exposure summary", "event_exposure_summary", "inclusive_event_exposure_summary.csv"), ("Download exposure prompts", "exposure_definition_prompts", "inclusive_event_exposure_prompts.csv"), ("Download exposure research questions", "research_question_candidates", "inclusive_event_exposure_questions.csv")):
                         st.download_button(label, exposure_audit[key].to_csv(index=False).encode("utf-8-sig"), filename, "text/csv", key=f"inclusive_event_exposure_{key}_download")
+        st.markdown("#### Identification-design readiness audit")
+        st.caption("Design documentation only. Selecting a design label does not establish causal identification.")
+        with st.expander("Identification-design readiness workflow"):
+            st.download_button("Download identification-design template", create_identification_design_template().to_csv(index=False).encode("utf-8-sig"), "inclusive_identification_design_template.csv", "text/csv", key="inclusive_identification_template_download")
+            identification_upload = st.file_uploader("Upload identification-design CSV", type=["csv"], key="inclusive_identification_upload")
+            if identification_upload is not None:
+                try:
+                    identification_data = load_identification_design_csv(identification_upload)
+                except ValueError as error:
+                    st.error(f"Identification-design validation failed: {error}")
+                else:
+                    identification_versions = identification_data["instrument_version"].drop_duplicates().tolist()
+                    selected_identification_version = st.selectbox("Version for identification-design audit", identification_versions, key="inclusive_identification_version")
+                    identification_audit = audit_identification_design(identification_data, selected_identification_version)
+                    st.warning(str(identification_audit["interpretation"]))
+                    for title, key in (("Design summary", "identification_design_summary"), ("Identification prompts", "identification_design_prompts"), ("Research question candidates", "research_question_candidates")):
+                        st.markdown(f"**{title}**")
+                        st.dataframe(identification_audit[key], width="stretch", hide_index=True)
+                    for label, key, filename in (("Download identification-design summary", "identification_design_summary", "inclusive_identification_design_summary.csv"), ("Download identification prompts", "identification_design_prompts", "inclusive_identification_prompts.csv"), ("Download identification research questions", "research_question_candidates", "inclusive_identification_questions.csv")):
+                        st.download_button(label, identification_audit[key].to_csv(index=False).encode("utf-8-sig"), filename, "text/csv", key=f"inclusive_identification_{key}_download")
         if len(selected_variables) >= 2:
             st.markdown("#### Correlation — descriptive association only")
             st.dataframe(correlation_matrix(analysis_data, selected_variables), width="stretch")

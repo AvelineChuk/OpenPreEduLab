@@ -222,6 +222,7 @@ The default scenario parameters are prototype assumptions for workflow demonstra
 - [Inclusive Education Longitudinal Analysis-Plan Readiness Protocol](docs/Inclusive_Education_Longitudinal_Analysis_Plan_Protocol.md)
 - [Inclusive Education Longitudinal Event Alignment Protocol](docs/Inclusive_Education_Longitudinal_Event_Alignment_Protocol.md)
 - [Inclusive Education Event Exposure Definition Protocol](docs/Inclusive_Education_Event_Exposure_Protocol.md)
+- [Inclusive Education Identification-Design Readiness Protocol](docs/Inclusive_Education_Identification_Design_Protocol.md)
 - [Inclusive Education Accessibility Check](docs/Inclusive_Education_Accessibility_Check.md)
 - [Research Journal](Research_Journal.md)
 - [Contributing](CONTRIBUTING.md)

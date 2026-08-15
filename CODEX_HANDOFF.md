@@ -218,6 +218,12 @@ Before editing, downloading, processing data, or pushing commits:
   records scope, status, timing, intensity, lag, comparator, and evidence fields.
   Unresolved exposure definitions produce documentation prompts. The workflow does
   not infer treatment, dose, exposure, policy effects, or causality.
+- Researcher Mode now includes a session-only identification-design readiness
+  audit. It records proposed design labels, treatment and comparison definitions,
+  time zero, pre/post periods, identification assumptions, confounding,
+  anticipation, interference, baseline evidence, negative controls, sensitivity
+  analysis, and causal-claim status. It does not fit an effect model or establish
+  identification, valid controls, policy effects, or causality.
 - `dd8b3d2 Fix landing page transition warning`: removed `st.rerun()` from a
   button callback. The old Dashboard warning *“Calling st.rerun() within a
   callback is a no-op.”* should not reappear.
@@ -228,7 +234,7 @@ Before editing, downloading, processing data, or pushing commits:
 - `e60babd Document AI interpretation export formats`.
 - `69765b8 Add project history record and workflow screenshot`.
 
-The most recent validated test result was **197 passed** in one complete pytest
+The most recent validated test result was **200 passed** in one complete pytest
 run. Streamlit interface tests loaded all current Dashboard routes, including
 Inclusive Education, and explicitly checked the longitudinal attrition audit
 workflow, materials, and download entries.

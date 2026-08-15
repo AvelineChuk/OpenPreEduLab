@@ -230,6 +230,13 @@ prompts when these definitions remain unresolved. It does not infer treatment,
 dose, exposure, policy effects, or causality. See the
 [Event Exposure Definition Protocol](Inclusive_Education_Event_Exposure_Protocol.md).
 
+The identification-design readiness workflow records the proposed design type,
+treatment and comparison definitions, time zero, pre/post periods, identification
+assumptions, confounding, anticipation, interference, baseline evidence, negative
+controls, sensitivity analysis, and causal-claim status. Design labels are
+candidates only and do not establish causal identification. See the
+[Identification-Design Readiness Protocol](Inclusive_Education_Identification_Design_Protocol.md).
+
 ## Exploratory Scenarios
 
 Four interfaces change one item by a researcher-selected number of 0–100 scale
