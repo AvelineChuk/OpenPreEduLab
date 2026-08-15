@@ -237,6 +237,13 @@ controls, sensitivity analysis, and causal-claim status. Design labels are
 candidates only and do not establish causal identification. See the
 [Identification-Design Readiness Protocol](Inclusive_Education_Identification_Design_Protocol.md).
 
+The falsification and sensitivity-plan workflow records planned pretrend checks,
+placebo event times, negative controls, alternative comparison groups, windows
+and specifications, unobserved-confounding and missing-data sensitivity,
+multiple-testing strategy, and interpretation rules. It does not run tests, and
+favourable diagnostics would not prove identification or causality. See the
+[Falsification and Sensitivity Plan Protocol](Inclusive_Education_Falsification_Plan_Protocol.md).
+
 ## Exploratory Scenarios
 
 Four interfaces change one item by a researcher-selected number of 0–100 scale

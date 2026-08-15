@@ -199,6 +199,9 @@ def test_inclusive_education_dashboard_renders_research_pathway() -> None:
     assert "Identification-design readiness workflow" in expander_labels
     assert "Upload identification-design CSV" in uploader_labels
     assert "Download identification-design template" in download_labels
+    assert "Falsification and sensitivity plan readiness workflow" in expander_labels
+    assert "Upload falsification and sensitivity plan CSV" in uploader_labels
+    assert "Download falsification-plan template" in download_labels
     assert "Download longitudinal event registry template" in download_labels
     assert len(app.get("download_button")) >= 10
 

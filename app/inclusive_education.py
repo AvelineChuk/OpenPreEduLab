@@ -89,6 +89,11 @@ from models.inclusion_identification_design import (
     create_identification_design_template,
     load_identification_design_csv,
 )
+from models.inclusion_falsification_plan import (
+    audit_falsification_plan,
+    create_falsification_plan_template,
+    load_falsification_plan_csv,
+)
 from models.inclusion_subgroup_comparability import (
     audit_subgroup_comparability,
     create_subgroup_comparability_template,
@@ -2527,6 +2532,26 @@ def render_inclusive_education_page(project_root: Path) -> None:
                         st.dataframe(identification_audit[key], width="stretch", hide_index=True)
                     for label, key, filename in (("Download identification-design summary", "identification_design_summary", "inclusive_identification_design_summary.csv"), ("Download identification prompts", "identification_design_prompts", "inclusive_identification_prompts.csv"), ("Download identification research questions", "research_question_candidates", "inclusive_identification_questions.csv")):
                         st.download_button(label, identification_audit[key].to_csv(index=False).encode("utf-8-sig"), filename, "text/csv", key=f"inclusive_identification_{key}_download")
+        st.markdown("#### Falsification and sensitivity plan readiness audit")
+        st.caption("Plan documentation only. Favourable diagnostics would not prove causal identification.")
+        with st.expander("Falsification and sensitivity plan readiness workflow"):
+            st.download_button("Download falsification-plan template", create_falsification_plan_template().to_csv(index=False).encode("utf-8-sig"), "inclusive_falsification_plan_template.csv", "text/csv", key="inclusive_falsification_template_download")
+            falsification_upload = st.file_uploader("Upload falsification and sensitivity plan CSV", type=["csv"], key="inclusive_falsification_upload")
+            if falsification_upload is not None:
+                try:
+                    falsification_data = load_falsification_plan_csv(falsification_upload)
+                except ValueError as error:
+                    st.error(f"Falsification-plan validation failed: {error}")
+                else:
+                    falsification_versions = falsification_data["instrument_version"].drop_duplicates().tolist()
+                    selected_falsification_version = st.selectbox("Version for falsification-plan audit", falsification_versions, key="inclusive_falsification_version")
+                    falsification_audit = audit_falsification_plan(falsification_data, selected_falsification_version)
+                    st.warning(str(falsification_audit["interpretation"]))
+                    for title, key in (("Plan summary", "falsification_plan_summary"), ("Plan prompts", "falsification_plan_prompts"), ("Research question candidates", "research_question_candidates")):
+                        st.markdown(f"**{title}**")
+                        st.dataframe(falsification_audit[key], width="stretch", hide_index=True)
+                    for label, key, filename in (("Download falsification-plan summary", "falsification_plan_summary", "inclusive_falsification_plan_summary.csv"), ("Download falsification-plan prompts", "falsification_plan_prompts", "inclusive_falsification_plan_prompts.csv"), ("Download falsification research questions", "research_question_candidates", "inclusive_falsification_questions.csv")):
+                        st.download_button(label, falsification_audit[key].to_csv(index=False).encode("utf-8-sig"), filename, "text/csv", key=f"inclusive_falsification_{key}_download")
         if len(selected_variables) >= 2:
             st.markdown("#### Correlation — descriptive association only")
             st.dataframe(correlation_matrix(analysis_data, selected_variables), width="stretch")

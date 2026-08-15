@@ -224,6 +224,12 @@ Before editing, downloading, processing data, or pushing commits:
   anticipation, interference, baseline evidence, negative controls, sensitivity
   analysis, and causal-claim status. It does not fit an effect model or establish
   identification, valid controls, policy effects, or causality.
+- Researcher Mode now includes a session-only falsification and sensitivity-plan
+  readiness audit. It records planned pretrend checks, placebo event times,
+  negative controls, alternative comparisons, windows and specifications,
+  unobserved-confounding and missing-data sensitivity, multiple-testing strategy,
+  and interpretation rules. It runs no diagnostic or model, and favourable
+  results would not prove identification, policy effects, or causality.
 - `dd8b3d2 Fix landing page transition warning`: removed `st.rerun()` from a
   button callback. The old Dashboard warning *“Calling st.rerun() within a
   callback is a no-op.”* should not reappear.
@@ -234,7 +240,7 @@ Before editing, downloading, processing data, or pushing commits:
 - `e60babd Document AI interpretation export formats`.
 - `69765b8 Add project history record and workflow screenshot`.
 
-The most recent validated test result was **200 passed** in one complete pytest
+The most recent validated test result was **203 passed** in one complete pytest
 run. Streamlit interface tests loaded all current Dashboard routes, including
 Inclusive Education, and explicitly checked the longitudinal attrition audit
 workflow, materials, and download entries.
