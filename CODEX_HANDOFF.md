@@ -247,11 +247,17 @@ Before editing, downloading, processing data, or pushing commits:
 - `93f084e Add AI interpretation DOCX and PDF downloads`.
 - `e60babd Document AI interpretation export formats`.
 - `69765b8 Add project history record and workflow screenshot`.
+- Researcher Mode now includes a session-only analysis-reproducibility
+  readiness audit. It records data snapshots and checksums, code commits,
+  environment locks, seed policies, specification locks and deviations,
+  quality-control status, review status, and output boundaries. It executes no
+  code, opens no repository or data snapshot, verifies no result, and produces
+  no estimate, p-value, approval, policy effect, or causal conclusion.
 
-The most recent validated test result was **208 passed** in one complete pytest
+The most recent validated test result was **212 passed** in one complete pytest
 run. Streamlit interface tests loaded all current Dashboard routes, including
-Inclusive Education, and explicitly checked the estimation-specification audit
-workflow, materials, and download entries.
+Inclusive Education, and explicitly checked the estimation-specification and
+analysis-reproducibility audit workflows, materials, and download entries.
 
 ### Deliberately incomplete / future areas
 

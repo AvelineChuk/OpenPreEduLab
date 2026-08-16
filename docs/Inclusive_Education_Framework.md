@@ -164,6 +164,12 @@ reviewed real-data studies. Causal questions require an explicit identification
 strategy rather than interpretation of the conceptual arrows. Any future effect
 analysis also requires a preregistered estimation specification; see the
 [Estimation-Specification Readiness Protocol](Inclusive_Education_Estimation_Specification_Protocol.md).
+Future execution also requires a traceable data snapshot, code commit,
+environment lock, seed policy, specification lock, deviation record, and
+governed output boundary; see the
+[Analysis Reproducibility Readiness Protocol](Inclusive_Education_Analysis_Reproducibility_Protocol.md).
+Documentation completeness is not evidence that a result is valid,
+reproducible, or causal.
 
 The planned expert-review process is specified in the
 [Inclusive Education Content Validation Protocol](Inclusive_Education_Content_Validation_Protocol.md).

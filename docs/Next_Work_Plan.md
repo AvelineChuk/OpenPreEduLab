@@ -46,9 +46,16 @@ assumptions, falsification and sensitivity plans, and estimation specifications.
 These are session-only planning audits. They run no causal model, estimate no
 effect, approve no design, and do not convert temporal ordering into evidence
 of policy impact.
-Actual expert recruitment, rating collection,
-cognitive interviews, and instrument decisions require separate governance and
-human participation; they have not been completed.
+The subsequent analysis-reproducibility readiness audit now records data
+snapshot, checksum, code commit, environment lock, random-seed policy,
+specification lock, deviations, quality-control status, and governed output
+boundaries. It executes no code and verifies no result. Actual computational
+reproduction requires separately authorised data, code, environment, execution,
+and independent review.
+
+Actual expert recruitment, rating collection, cognitive interviews, and
+instrument decisions require separate governance and human participation; they
+have not been completed.
 
 ## Priority 0: Complete the 2026 Fund Provenance Chain
 

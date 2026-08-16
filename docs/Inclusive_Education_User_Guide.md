@@ -252,6 +252,13 @@ software environment, and output-disclosure boundary. It fits no model and
 produces no effect estimate or causal conclusion. See the
 [Estimation-Specification Readiness Protocol](Inclusive_Education_Estimation_Specification_Protocol.md).
 
+The analysis reproducibility readiness workflow records the data-snapshot
+identity and checksum, code commit, environment lock, random-seed policy,
+specification-lock and deviation-log status, quality-control status, and output
+storage and disclosure boundaries. It executes no code, verifies no result, and
+does not treat documentation completeness as methodological validity. See the
+[Analysis Reproducibility Readiness Protocol](Inclusive_Education_Analysis_Reproducibility_Protocol.md).
+
 ## Exploratory Scenarios
 
 Four interfaces change one item by a researcher-selected number of 0–100 scale

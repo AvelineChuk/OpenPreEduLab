@@ -99,6 +99,11 @@ from models.inclusion_estimation_specification import (
     create_estimation_specification_template,
     load_estimation_specification_csv,
 )
+from models.inclusion_analysis_reproducibility import (
+    audit_analysis_reproducibility,
+    create_analysis_reproducibility_template,
+    load_analysis_reproducibility_csv,
+)
 from models.inclusion_subgroup_comparability import (
     audit_subgroup_comparability,
     create_subgroup_comparability_template,
@@ -2577,6 +2582,26 @@ def render_inclusive_education_page(project_root: Path) -> None:
                         st.dataframe(estimation_audit[key], width="stretch", hide_index=True)
                     for label, key, filename in (("Download estimation-specification summary", "estimation_specification_summary", "inclusive_estimation_specification_summary.csv"), ("Download estimation-specification prompts", "estimation_specification_prompts", "inclusive_estimation_specification_prompts.csv"), ("Download estimation research questions", "research_question_candidates", "inclusive_estimation_specification_questions.csv")):
                         st.download_button(label, estimation_audit[key].to_csv(index=False).encode("utf-8-sig"), filename, "text/csv", key=f"inclusive_estimation_specification_{key}_download")
+        st.markdown("#### Analysis reproducibility readiness audit")
+        st.caption("Execution-record documentation only. The workflow runs no code and verifies no result.")
+        with st.expander("Analysis reproducibility readiness workflow"):
+            st.download_button("Download analysis reproducibility template", create_analysis_reproducibility_template().to_csv(index=False).encode("utf-8-sig"), "inclusive_analysis_reproducibility_template.csv", "text/csv", key="inclusive_analysis_reproducibility_template_download")
+            reproducibility_upload = st.file_uploader("Upload analysis reproducibility CSV", type=["csv"], key="inclusive_analysis_reproducibility_upload")
+            if reproducibility_upload is not None:
+                try:
+                    reproducibility_data = load_analysis_reproducibility_csv(reproducibility_upload)
+                except ValueError as error:
+                    st.error(f"Analysis-reproducibility validation failed: {error}")
+                else:
+                    reproducibility_versions = reproducibility_data["instrument_version"].drop_duplicates().tolist()
+                    selected_reproducibility_version = st.selectbox("Version for analysis reproducibility audit", reproducibility_versions, key="inclusive_analysis_reproducibility_version")
+                    reproducibility_audit = audit_analysis_reproducibility(reproducibility_data, selected_reproducibility_version)
+                    st.warning(str(reproducibility_audit["interpretation"]))
+                    for title, key in (("Reproducibility summary", "analysis_reproducibility_summary"), ("Reproducibility prompts", "analysis_reproducibility_prompts"), ("Research question candidates", "research_question_candidates")):
+                        st.markdown(f"**{title}**")
+                        st.dataframe(reproducibility_audit[key], width="stretch", hide_index=True)
+                    for label, key, filename in (("Download analysis reproducibility summary", "analysis_reproducibility_summary", "inclusive_analysis_reproducibility_summary.csv"), ("Download reproducibility prompts", "analysis_reproducibility_prompts", "inclusive_analysis_reproducibility_prompts.csv"), ("Download reproducibility research questions", "research_question_candidates", "inclusive_analysis_reproducibility_questions.csv")):
+                        st.download_button(label, reproducibility_audit[key].to_csv(index=False).encode("utf-8-sig"), filename, "text/csv", key=f"inclusive_analysis_reproducibility_{key}_download")
         if len(selected_variables) >= 2:
             st.markdown("#### Correlation — descriptive association only")
             st.dataframe(correlation_matrix(analysis_data, selected_variables), width="stretch")
