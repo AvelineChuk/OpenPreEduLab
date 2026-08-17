@@ -1,7 +1,8 @@
 # Inclusive Education Accessibility Check
 
-**Review status:** Automated and code-level prototype review completed; manual
-screen-reader and multi-device review remains required.
+**Review status:** Automated, code-level, and public desktop-browser prototype
+review completed; manual screen-reader and physical multi-device review
+remains required.
 
 ## Scope
 
@@ -33,13 +34,25 @@ access needs.
   boundary.
 - Streamlit AppTest verifies the route, boundary language, non-colour data
   alternative, and download controls.
+- A public desktop-browser review at a 1280-pixel viewport confirmed that the
+  sidebar, Methodological Readiness Navigator, phase selector, and catalog
+  download control render without application errors or page-level horizontal
+  overflow. Data tables retain small internal scroll regions rather than
+  widening the full page.
+- Narrow-screen CSS now keeps the sidebar recovery control visible, constrains
+  the sidebar to the available viewport, gives buttons a 44-pixel minimum
+  target height, and provides local horizontal overflow for tabs, tables, and
+  charts. An AppTest regression guard verifies that these rules remain present.
 
 ## Remaining Manual Checks
 
 - Keyboard-only navigation order and visible focus indicators.
 - NVDA, Narrator, VoiceOver, or another screen-reader reading order.
-- Browser zoom at 200% and text reflow without horizontal loss.
-- Mobile and tablet layouts for charts, tabs, tables, and sidebar navigation.
+- Browser zoom at 200% and text reflow without horizontal loss on supported
+  desktop browsers.
+- Physical mobile and tablet interaction review for charts, tabs, tables, and
+  sidebar navigation. The current in-app browser remained fixed at 1280 pixels,
+  so the CSS and automated guard are not presented as real-device evidence.
 - Contrast measurement for custom CSS, chart palettes, muted captions, and
   focus states.
 - User review of plain-language explanations and cognitive load.

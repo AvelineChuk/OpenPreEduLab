@@ -137,6 +137,16 @@ def _inject_design_system() -> None:
         .dashboard-pipeline{display:flex;align-items:center;gap:7px;overflow-x:auto;padding:22px 0 6px}.pipeline-node{min-width:94px;text-align:center;font-size:11px;color:#637086}.pipeline-icon{width:38px;height:38px;border-radius:50%;margin:0 auto 8px;display:grid;place-items:center;background:#edf8f3;border:1px solid #c9ead8;color:#16915f}.pipeline-off .pipeline-icon{background:#f2f4f7;border-color:#e2e6ec;color:#9aa5b4}.pipeline-arrow{color:#b7c1ce}
         .module-card{border:1px solid #e8edf4;background:white;border-radius:20px;padding:22px;min-height:175px}.module-card h3{font-size:18px;margin:16px 0 8px}.module-card p{font-size:12px;color:#748095;line-height:1.65}.module-tag{font:500 10px 'DM Mono',monospace;color:#4370b9}.quiet-note{border-left:3px solid #8db3ea;background:#f3f7fd;padding:14px 16px;color:#55708f;font-size:12px;border-radius:0 12px 12px 0}
         @media(max-width:760px){.block-container{padding:1rem 1.1rem 3rem}.nav-links{display:none}.hero-shell{min-height:auto}.hero-art{min-height:390px}.section{padding-top:78px}.quote-block{padding:85px 4%}.timeline{padding-bottom:12px}}
+        @media(max-width:760px){
+          [data-testid='stExpandSidebarButton']{visibility:visible!important;position:fixed!important;top:.55rem;left:.55rem;z-index:1001!important}
+          [data-testid='stSidebar']{min-width:min(88vw,320px)!important;max-width:min(88vw,320px)!important}
+          [data-testid='stSidebar'] .block-container{padding:1rem .8rem 2rem}
+          .dashboard-top{padding-top:2.4rem}.dashboard-top h1{font-size:clamp(30px,9vw,42px)}
+          .stButton>button,.stDownloadButton>button{min-height:44px;white-space:normal;overflow-wrap:anywhere}
+          .stTabs [data-baseweb='tab-list']{overflow-x:auto;flex-wrap:nowrap;scrollbar-width:thin}
+          [data-testid='stDataFrame'],[data-testid='stTable'],[data-testid='stPlotlyChart']{max-width:100%;overflow-x:auto}
+          [data-testid='stMarkdownContainer'] p,[data-testid='stMarkdownContainer'] li{overflow-wrap:anywhere}
+        }
         @media(max-width:760px){.impact-hero{min-height:590px}.hero-center{padding-top:100px}.hero-side-note{display:none}.hero-kid-scene{width:115%;bottom:6%}}
         </style>
         """,

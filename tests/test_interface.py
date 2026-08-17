@@ -31,6 +31,21 @@ def test_workspace_query_parameter_opens_sidebar_navigation() -> None:
 
 
 
+def test_workspace_includes_narrow_screen_navigation_guards() -> None:
+    """The workspace stylesheet should preserve navigation and safe overflow."""
+    app = AppTest.from_file(str(APP_PATH))
+    app.query_params["view"] = "platform"
+    app.run(timeout=60)
+
+    assert not app.exception
+    styles = "\n".join(item.value for item in app.markdown)
+    assert "[data-testid='stExpandSidebarButton']" in styles
+    assert "min-width:min(88vw,320px)" in styles
+    assert "[data-testid='stDataFrame']" in styles
+    assert "overflow-x:auto" in styles
+    assert "min-height:44px" in styles
+
+
 def test_launch_platform_enters_research_workspace() -> None:
     """Launch Platform should provide a working Dashboard transition."""
     app = AppTest.from_file(str(APP_PATH))
