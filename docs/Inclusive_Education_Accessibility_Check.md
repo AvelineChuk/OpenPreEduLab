@@ -57,6 +57,12 @@ access needs.
   three-pixel blue focus ring with a white separation ring. Sidebar radio
   labels and selectbox containers receive the same visible treatment when
   their nested input has keyboard focus.
+- Code-level high-zoom guards now allow the landing hero title to wrap, scale
+  large headings responsively, prevent metric and module cards from enforcing
+  excess width, and contain preformatted content within a local scroll region.
+- The in-app browser zoom shortcut was attempted, but its viewport remained at
+  1280 pixels. These CSS protections and automated checks are therefore not
+  presented as completed 200% browser evidence.
 
 
 ## Remaining Manual Checks
@@ -64,8 +70,9 @@ access needs.
 - Full keyboard-only traversal of every long Researcher Mode workflow and
   confirmation of focus order across all 191 currently rendered controls.
 - NVDA, Narrator, VoiceOver, or another screen-reader reading order.
-- Browser zoom at 200% and text reflow without horizontal loss on supported
-  desktop browsers.
+- Physical browser zoom at 200% and confirmation of text reflow without
+  horizontal loss on supported desktop browsers. This requires a browser
+  surface whose zoom level can be changed and verified.
 - Physical mobile and tablet interaction review for charts, tabs, tables, and
   sidebar navigation. The current in-app browser remained fixed at 1280 pixels,
   so the CSS and automated guard are not presented as real-device evidence.

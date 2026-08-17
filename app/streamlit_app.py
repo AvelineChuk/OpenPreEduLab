@@ -155,6 +155,12 @@ def _inject_design_system() -> None:
           .stTabs [data-baseweb='tab-list']{overflow-x:auto;flex-wrap:nowrap;scrollbar-width:thin}
           [data-testid='stDataFrame'],[data-testid='stTable'],[data-testid='stPlotlyChart']{max-width:100%;overflow-x:auto}
           [data-testid='stMarkdownContainer'] p,[data-testid='stMarkdownContainer'] li{overflow-wrap:anywhere}
+          .hero-center h1{white-space:normal;font-size:clamp(38px,12vw,64px);overflow-wrap:anywhere}
+          .launch-panel h2{font-size:clamp(30px,10vw,44px);overflow-wrap:anywhere}
+          .section-title,.dashboard-top h1,.module-card h3{overflow-wrap:anywhere}
+          .metric-card,.module-card,[data-testid='stMetric']{min-width:0}
+          [data-testid='stMarkdownContainer'] pre{max-width:100%;overflow-x:auto;white-space:pre}
+          [data-testid='stMarkdownContainer'] code{overflow-wrap:anywhere}
         }
         @media(max-width:760px){.impact-hero{min-height:590px}.hero-center{padding-top:100px}.hero-side-note{display:none}.hero-kid-scene{width:115%;bottom:6%}}
         </style>

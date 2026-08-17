@@ -88,6 +88,22 @@ def test_workspace_small_text_colours_meet_contrast_reference() -> None:
 
     ratio = (relative_luminance("#ffffff") + 0.05) / (relative_luminance("#5f6e82") + 0.05)
     assert ratio >= 4.5
+def test_workspace_includes_zoom_reflow_guards() -> None:
+    """High zoom and narrow layouts should retain readable content reflow."""
+    app = AppTest.from_file(str(APP_PATH))
+    app.query_params["view"] = "platform"
+    app.run(timeout=60)
+
+    assert not app.exception
+    styles = "\n".join(item.value for item in app.markdown)
+    assert ".hero-center h1{white-space:normal" in styles
+    assert "font-size:clamp(38px,12vw,64px)" in styles
+    assert ".launch-panel h2{font-size:clamp(30px,10vw,44px)" in styles
+    assert ".metric-card,.module-card,[data-testid='stMetric']{min-width:0}" in styles
+    assert "pre{max-width:100%;overflow-x:auto;white-space:pre}" in styles
+    assert "code{overflow-wrap:anywhere}" in styles
+
+
 def test_launch_platform_enters_research_workspace() -> None:
     """Launch Platform should provide a working Dashboard transition."""
     app = AppTest.from_file(str(APP_PATH))
