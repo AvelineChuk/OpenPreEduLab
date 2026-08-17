@@ -12,6 +12,7 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+from matplotlib.colors import to_rgb
 
 from models.inclusion import DIMENSION_LABELS, SCORE_COLUMNS
 
@@ -23,6 +24,35 @@ PALETTE = {
     "navy": "#1B2D35",
     "soft": "#E8EFEB",
 }
+
+
+def _relative_luminance(colour: Sequence[float]) -> float:
+    """Return WCAG relative luminance for an RGB or RGBA colour."""
+    channels = [
+        value / 12.92 if value <= 0.04045 else ((value + 0.055) / 1.055) ** 2.4
+        for value in colour[:3]
+    ]
+    return (
+        0.2126 * channels[0]
+        + 0.7152 * channels[1]
+        + 0.0722 * channels[2]
+    )
+
+
+def _contrast_ratio(first_luminance: float, second_luminance: float) -> float:
+    """Return the WCAG contrast ratio between two relative luminances."""
+    lighter = max(first_luminance, second_luminance)
+    darker = min(first_luminance, second_luminance)
+    return (lighter + 0.05) / (darker + 0.05)
+
+
+def _contrast_text_color(background: Sequence[float]) -> str:
+    """Choose the higher-contrast chart text colour for a background."""
+    background_luminance = _relative_luminance(background)
+    light_contrast = _contrast_ratio(background_luminance, 1.0)
+    dark_luminance = _relative_luminance(to_rgb(PALETTE["navy"]))
+    dark_contrast = _contrast_ratio(background_luminance, dark_luminance)
+    return "white" if light_contrast > dark_contrast else PALETTE["navy"]
 
 
 def _save(fig: plt.Figure, output_path: str | Path | None) -> None:
@@ -197,7 +227,16 @@ def plot_dimension_heatmap(
     for row in range(matrix.shape[0]):
         for column in range(matrix.shape[1]):
             value = matrix.iat[row, column]
-            ax.text(column, row, f"{value:.0f}", ha="center", va="center", fontsize=8, color="white" if value < 55 else "#152D35")
+            background = image.cmap(image.norm(value))
+            ax.text(
+                column,
+                row,
+                f"{value:.0f}",
+                ha="center",
+                va="center",
+                fontsize=8,
+                color=_contrast_text_color(background),
+            )
     colourbar = fig.colorbar(image, ax=ax, pad=0.02)
     colourbar.set_label("Score (0–100)")
     _save(fig, output_path)

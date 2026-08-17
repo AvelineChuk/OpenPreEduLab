@@ -43,6 +43,13 @@ access needs.
   the sidebar to the available viewport, gives buttons a 44-pixel minimum
   target height, and provides local horizontal overflow for tabs, tables, and
   charts. An AppTest regression guard verifies that these rules remain present.
+- Key dashboard small-text colours were measured against their declared light
+  backgrounds. Dashboard subtitles and module descriptions now use #5f6e82,
+  which exceeds the 4.5:1 reference against white; an automated regression
+  test preserves this minimum.
+- Dimension heatmap labels now select light or dark text from the actual cell
+  colour instead of using a fixed score threshold. Tests cover both the light
+  and dark ends of the heatmap scale.
 
 ## Remaining Manual Checks
 
@@ -53,8 +60,8 @@ access needs.
 - Physical mobile and tablet interaction review for charts, tabs, tables, and
   sidebar navigation. The current in-app browser remained fixed at 1280 pixels,
   so the CSS and automated guard are not presented as real-device evidence.
-- Contrast measurement for custom CSS, chart palettes, muted captions, and
-  focus states.
+- Browser-assisted contrast review remains required for third-party Streamlit
+  widgets, interactive focus states, disabled controls, and image overlays.
 - User review of plain-language explanations and cognitive load.
 
 ## Research and Ethical Boundary

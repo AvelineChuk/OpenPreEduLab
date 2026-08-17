@@ -46,6 +46,32 @@ def test_workspace_includes_narrow_screen_navigation_guards() -> None:
     assert "min-height:44px" in styles
 
 
+def test_workspace_small_text_colours_meet_contrast_reference() -> None:
+    """Key small-text colours should meet the 4.5:1 contrast reference."""
+    app = AppTest.from_file(str(APP_PATH))
+    app.query_params["view"] = "platform"
+    app.run(timeout=60)
+
+    assert not app.exception
+    styles = "\n".join(item.value for item in app.markdown)
+    assert ".dashboard-top p{color:#5f6e82" in styles
+    assert ".module-card p{font-size:12px;color:#5f6e82" in styles
+
+    def relative_luminance(hex_colour: str) -> float:
+        channels = [
+            int(hex_colour[index : index + 2], 16) / 255
+            for index in (1, 3, 5)
+        ]
+        linear = [
+            value / 12.92
+            if value <= 0.04045
+            else ((value + 0.055) / 1.055) ** 2.4
+            for value in channels
+        ]
+        return 0.2126 * linear[0] + 0.7152 * linear[1] + 0.0722 * linear[2]
+
+    ratio = (relative_luminance("#ffffff") + 0.05) / (relative_luminance("#5f6e82") + 0.05)
+    assert ratio >= 4.5
 def test_launch_platform_enters_research_workspace() -> None:
     """Launch Platform should provide a working Dashboard transition."""
     app = AppTest.from_file(str(APP_PATH))
