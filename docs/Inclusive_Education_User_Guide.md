@@ -259,6 +259,13 @@ storage and disclosure boundaries. It executes no code, verifies no result, and
 does not treat documentation completeness as methodological validity. See the
 [Analysis Reproducibility Readiness Protocol](Inclusive_Education_Analysis_Reproducibility_Protocol.md).
 
+The results-reporting and claim-boundary readiness workflow records primary and
+secondary reporting scope, null and uncertain-result handling, uncertainty,
+multiplicity, deviations, subgroup privacy, visualization scales, Support Gap
+language, causal wording, and human review of AI assistance. It receives no
+result values and verifies no finding. See the
+[Results Reporting and Claim-Boundary Protocol](Inclusive_Education_Results_Reporting_Protocol.md).
+
 ## Exploratory Scenarios
 
 Four interfaces change one item by a researcher-selected number of 0–100 scale

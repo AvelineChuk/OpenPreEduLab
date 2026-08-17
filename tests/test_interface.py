@@ -222,6 +222,9 @@ def test_inclusive_education_dashboard_renders_research_pathway() -> None:
     assert "Analysis reproducibility readiness workflow" in expander_labels
     assert "Upload analysis reproducibility CSV" in uploader_labels
     assert "Download analysis reproducibility template" in download_labels
+    assert "Results reporting and claim-boundary readiness workflow" in expander_labels
+    assert "Upload results-reporting plan CSV" in uploader_labels
+    assert "Download results-reporting template" in download_labels
     assert "Download longitudinal event registry template" in download_labels
     assert len(app.get("download_button")) >= 10
 

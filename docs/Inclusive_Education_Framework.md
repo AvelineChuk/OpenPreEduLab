@@ -170,6 +170,11 @@ governed output boundary; see the
 [Analysis Reproducibility Readiness Protocol](Inclusive_Education_Analysis_Reproducibility_Protocol.md).
 Documentation completeness is not evidence that a result is valid,
 reproducible, or causal.
+Future public outputs also require a preregistered reporting scope, transparent
+uncertainty and deviation disclosure, privacy suppression, descriptive Support
+Gap language, and bounded AI use; see the
+[Results Reporting and Claim-Boundary Protocol](Inclusive_Education_Results_Reporting_Protocol.md).
+A complete reporting plan does not validate any result or causal claim.
 
 The planned expert-review process is specified in the
 [Inclusive Education Content Validation Protocol](Inclusive_Education_Content_Validation_Protocol.md).

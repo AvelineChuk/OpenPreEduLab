@@ -253,11 +253,17 @@ Before editing, downloading, processing data, or pushing commits:
   quality-control status, review status, and output boundaries. It executes no
   code, opens no repository or data snapshot, verifies no result, and produces
   no estimate, p-value, approval, policy effect, or causal conclusion.
+- Researcher Mode now includes a session-only results-reporting and
+  claim-boundary readiness audit. It records complete reporting scope,
+  uncertainty, multiplicity, deviations, subgroup privacy, visualization
+  scales, Support Gap language, causal wording, AI assistance, and human
+  verification plans. It receives no result values, verifies no finding, and
+  produces no significance label, approval, policy effect, or causal conclusion.
 
-The most recent validated test result was **212 passed** in one complete pytest
+The most recent validated test result was **216 passed** in one complete pytest
 run. Streamlit interface tests loaded all current Dashboard routes, including
-Inclusive Education, and explicitly checked the estimation-specification and
-analysis-reproducibility audit workflows, materials, and download entries.
+Inclusive Education, and explicitly checked the estimation-specification,
+analysis-reproducibility, and results-reporting audit workflow entries.
 
 ### Deliberately incomplete / future areas
 

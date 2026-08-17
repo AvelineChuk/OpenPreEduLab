@@ -53,6 +53,12 @@ boundaries. It executes no code and verifies no result. Actual computational
 reproduction requires separately authorised data, code, environment, execution,
 and independent review.
 
+The results-reporting and claim-boundary readiness audit now documents complete
+reporting scope, uncertainty, multiplicity, deviations, subgroup privacy,
+visualization scales, Support Gap language, causal wording, and bounded AI
+review. It receives no numerical results and produces no significance, policy,
+or causal conclusion.
+
 Actual expert recruitment, rating collection, cognitive interviews, and
 instrument decisions require separate governance and human participation; they
 have not been completed.

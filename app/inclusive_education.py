@@ -104,6 +104,11 @@ from models.inclusion_analysis_reproducibility import (
     create_analysis_reproducibility_template,
     load_analysis_reproducibility_csv,
 )
+from models.inclusion_results_reporting import (
+    audit_results_reporting,
+    create_results_reporting_template,
+    load_results_reporting_csv,
+)
 from models.inclusion_subgroup_comparability import (
     audit_subgroup_comparability,
     create_subgroup_comparability_template,
@@ -2602,6 +2607,26 @@ def render_inclusive_education_page(project_root: Path) -> None:
                         st.dataframe(reproducibility_audit[key], width="stretch", hide_index=True)
                     for label, key, filename in (("Download analysis reproducibility summary", "analysis_reproducibility_summary", "inclusive_analysis_reproducibility_summary.csv"), ("Download reproducibility prompts", "analysis_reproducibility_prompts", "inclusive_analysis_reproducibility_prompts.csv"), ("Download reproducibility research questions", "research_question_candidates", "inclusive_analysis_reproducibility_questions.csv")):
                         st.download_button(label, reproducibility_audit[key].to_csv(index=False).encode("utf-8-sig"), filename, "text/csv", key=f"inclusive_analysis_reproducibility_{key}_download")
+        st.markdown("#### Results reporting and claim-boundary readiness audit")
+        st.caption("Reporting-plan documentation only. The workflow receives no result values and verifies no finding.")
+        with st.expander("Results reporting and claim-boundary readiness workflow"):
+            st.download_button("Download results-reporting template", create_results_reporting_template().to_csv(index=False).encode("utf-8-sig"), "inclusive_results_reporting_template.csv", "text/csv", key="inclusive_results_reporting_template_download")
+            reporting_upload = st.file_uploader("Upload results-reporting plan CSV", type=["csv"], key="inclusive_results_reporting_upload")
+            if reporting_upload is not None:
+                try:
+                    reporting_data = load_results_reporting_csv(reporting_upload)
+                except ValueError as error:
+                    st.error(f"Results-reporting validation failed: {error}")
+                else:
+                    reporting_versions = reporting_data["instrument_version"].drop_duplicates().tolist()
+                    selected_reporting_version = st.selectbox("Version for results-reporting audit", reporting_versions, key="inclusive_results_reporting_version")
+                    reporting_audit = audit_results_reporting(reporting_data, selected_reporting_version)
+                    st.warning(str(reporting_audit["interpretation"]))
+                    for title, key in (("Reporting summary", "results_reporting_summary"), ("Reporting prompts", "results_reporting_prompts"), ("Research question candidates", "research_question_candidates")):
+                        st.markdown(f"**{title}**")
+                        st.dataframe(reporting_audit[key], width="stretch", hide_index=True)
+                    for label, key, filename in (("Download results-reporting summary", "results_reporting_summary", "inclusive_results_reporting_summary.csv"), ("Download results-reporting prompts", "results_reporting_prompts", "inclusive_results_reporting_prompts.csv"), ("Download reporting research questions", "research_question_candidates", "inclusive_results_reporting_questions.csv")):
+                        st.download_button(label, reporting_audit[key].to_csv(index=False).encode("utf-8-sig"), filename, "text/csv", key=f"inclusive_results_reporting_{key}_download")
         if len(selected_variables) >= 2:
             st.markdown("#### Correlation — descriptive association only")
             st.dataframe(correlation_matrix(analysis_data, selected_variables), width="stretch")
