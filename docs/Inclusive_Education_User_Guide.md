@@ -266,6 +266,13 @@ language, causal wording, and human review of AI assistance. It receives no
 result values and verifies no finding. See the
 [Results Reporting and Claim-Boundary Protocol](Inclusive_Education_Results_Reporting_Protocol.md).
 
+The claim-evidence traceability readiness workflow links each non-identifying
+claim record to its specification, aggregate output reference, evidence type,
+population and time scope, uncertainty, limitations, alternative explanations,
+Support Gap boundary, provenance, AI origin, human review, and disclosure
+status. It reads no result values and does not judge truth. See the
+[Claim-Evidence Traceability Protocol](Inclusive_Education_Claim_Traceability_Protocol.md).
+
 ## Exploratory Scenarios
 
 Four interfaces change one item by a researcher-selected number of 0–100 scale

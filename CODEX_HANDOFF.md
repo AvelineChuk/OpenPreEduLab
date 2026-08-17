@@ -259,11 +259,19 @@ Before editing, downloading, processing data, or pushing commits:
   scales, Support Gap language, causal wording, AI assistance, and human
   verification plans. It receives no result values, verifies no finding, and
   produces no significance label, approval, policy effect, or causal conclusion.
+- Researcher Mode now includes a session-only claim-evidence traceability
+  readiness audit. It links non-identifying claim records to specifications,
+  aggregate output references, evidence types, uncertainty, limitations,
+  alternative explanations, Support Gap boundaries, provenance, AI origin,
+  human review, and disclosure status. It reads no result values, does not
+  reproduce free-text claims, and makes no truth, publication, policy-effect,
+  or causal judgement.
 
-The most recent validated test result was **216 passed** in one complete pytest
+The most recent validated test result was **220 passed** in one complete pytest
 run. Streamlit interface tests loaded all current Dashboard routes, including
 Inclusive Education, and explicitly checked the estimation-specification,
-analysis-reproducibility, and results-reporting audit workflow entries.
+analysis-reproducibility, results-reporting, and claim-traceability audit
+workflow entries.
 
 ### Deliberately incomplete / future areas
 

@@ -109,6 +109,11 @@ from models.inclusion_results_reporting import (
     create_results_reporting_template,
     load_results_reporting_csv,
 )
+from models.inclusion_claim_traceability import (
+    audit_claim_traceability,
+    create_claim_traceability_template,
+    load_claim_traceability_csv,
+)
 from models.inclusion_subgroup_comparability import (
     audit_subgroup_comparability,
     create_subgroup_comparability_template,
@@ -2627,6 +2632,26 @@ def render_inclusive_education_page(project_root: Path) -> None:
                         st.dataframe(reporting_audit[key], width="stretch", hide_index=True)
                     for label, key, filename in (("Download results-reporting summary", "results_reporting_summary", "inclusive_results_reporting_summary.csv"), ("Download results-reporting prompts", "results_reporting_prompts", "inclusive_results_reporting_prompts.csv"), ("Download reporting research questions", "research_question_candidates", "inclusive_results_reporting_questions.csv")):
                         st.download_button(label, reporting_audit[key].to_csv(index=False).encode("utf-8-sig"), filename, "text/csv", key=f"inclusive_results_reporting_{key}_download")
+        st.markdown("#### Claim-evidence traceability readiness audit")
+        st.caption("Evidence-link documentation only. The workflow reads no result values and does not verify claim truth.")
+        with st.expander("Claim-evidence traceability readiness workflow"):
+            st.download_button("Download claim-traceability template", create_claim_traceability_template().to_csv(index=False).encode("utf-8-sig"), "inclusive_claim_traceability_template.csv", "text/csv", key="inclusive_claim_traceability_template_download")
+            traceability_upload = st.file_uploader("Upload claim-traceability CSV", type=["csv"], key="inclusive_claim_traceability_upload")
+            if traceability_upload is not None:
+                try:
+                    traceability_data = load_claim_traceability_csv(traceability_upload)
+                except ValueError as error:
+                    st.error(f"Claim-traceability validation failed: {error}")
+                else:
+                    traceability_versions = traceability_data["instrument_version"].drop_duplicates().tolist()
+                    selected_traceability_version = st.selectbox("Version for claim-traceability audit", traceability_versions, key="inclusive_claim_traceability_version")
+                    traceability_audit = audit_claim_traceability(traceability_data, selected_traceability_version)
+                    st.warning(str(traceability_audit["interpretation"]))
+                    for title, key in (("Traceability summary", "claim_traceability_summary"), ("Traceability prompts", "claim_traceability_prompts"), ("Research question candidates", "research_question_candidates")):
+                        st.markdown(f"**{title}**")
+                        st.dataframe(traceability_audit[key], width="stretch", hide_index=True)
+                    for label, key, filename in (("Download claim-traceability summary", "claim_traceability_summary", "inclusive_claim_traceability_summary.csv"), ("Download claim-traceability prompts", "claim_traceability_prompts", "inclusive_claim_traceability_prompts.csv"), ("Download traceability research questions", "research_question_candidates", "inclusive_claim_traceability_questions.csv")):
+                        st.download_button(label, traceability_audit[key].to_csv(index=False).encode("utf-8-sig"), filename, "text/csv", key=f"inclusive_claim_traceability_{key}_download")
         if len(selected_variables) >= 2:
             st.markdown("#### Correlation — descriptive association only")
             st.dataframe(correlation_matrix(analysis_data, selected_variables), width="stretch")

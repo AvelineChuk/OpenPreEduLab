@@ -175,6 +175,11 @@ uncertainty and deviation disclosure, privacy suppression, descriptive Support
 Gap language, and bounded AI use; see the
 [Results Reporting and Claim-Boundary Protocol](Inclusive_Education_Results_Reporting_Protocol.md).
 A complete reporting plan does not validate any result or causal claim.
+Future research statements should also remain traceable to reviewed evidence,
+uncertainty, limitations, alternative explanations, provenance, and disclosure
+status; see the
+[Claim-Evidence Traceability Protocol](Inclusive_Education_Claim_Traceability_Protocol.md).
+A documented link does not verify the truth or validity of a statement.
 
 The planned expert-review process is specified in the
 [Inclusive Education Content Validation Protocol](Inclusive_Education_Content_Validation_Protocol.md).
