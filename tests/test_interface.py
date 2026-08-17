@@ -168,12 +168,16 @@ def test_inclusive_education_dashboard_renders_research_pathway() -> None:
         + [item.value for item in app.caption]
     )
     assert "From Resources to Participation" in content
+    assert "<h1>From Resources to Participation.</h1>" in content
+    assert "## Research pathway" in content
+    assert "## Research data" in content
     assert "Policy → Resources → Practices → Child Participation → Equity" in content
     assert "not a child assessment" in content
     assert "Research Question Candidates" in content
     assert "does not depend on colour alone" in content
     assert "Expert content-review materials" in content
     assert "Accessible chart data tables" in [expander.label for expander in app.expander]
+    assert len(app.get("table")) >= 3
     assert "Review template instructions" in [expander.label for expander in app.expander]
     assert "Upload completed expert content-review CSV" in [
         uploader.label for uploader in app.get("file_uploader")

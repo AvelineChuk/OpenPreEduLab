@@ -230,7 +230,7 @@ def _load_page_data(project_root: Path) -> tuple[pd.DataFrame | None, str, float
     """Render safe data-source controls and return raw data plus scale metadata."""
     sample_path = project_root / "datasets" / "sample_inclusive_data.csv"
     template_path = project_root / "datasets" / "templates" / "inclusive_research_input_template.csv"
-    st.markdown("### Research data")
+    st.markdown("## Research data")
     st.caption(
         "Use synthetic demonstration data or a non-identifying institution-level CSV. "
         "Do not upload child, family, clinical, or identifiable case records."
@@ -299,7 +299,7 @@ def render_inclusive_education_page(project_root: Path) -> None:
     """Render the complete non-diagnostic inclusive education research module."""
     st.markdown(
         "<div class='eyebrow'>INCLUSIVE EDUCATION</div>"
-        "<h2>From Resources to Participation.</h2>"
+        "<h1>From Resources to Participation.</h1>"
         "<p class='section-copy'>An open research infrastructure for studying how policy and institutional support may be reflected in inclusive practices, meaningful child participation, and educational equity. The pathway is conceptual and has not been validated as a causal model.</p>",
         unsafe_allow_html=True,
     )
@@ -307,7 +307,7 @@ def render_inclusive_education_page(project_root: Path) -> None:
         "<div class='quiet-note'><b>Research boundary:</b> This module is not a child assessment, diagnostic, disability-determination, placement, clinical, or teacher-rating tool. Participation is not child ability. Institution-level scores are research-prototype summaries.</div>",
         unsafe_allow_html=True,
     )
-    st.markdown("### Research pathway")
+    st.markdown("## Research pathway")
     st.markdown("**Policy → Resources → Practices → Child Participation → Equity**")
 
     raw_data, source_label, source_min, source_max, scale_note = _load_page_data(project_root)
@@ -388,14 +388,12 @@ def render_inclusive_education_page(project_root: Path) -> None:
                 }
             )
             st.markdown("**Research pathway values**")
-            st.dataframe(pathway_table, width="stretch", hide_index=True)
+            st.table(pathway_table.set_index("pathway_stage"))
             st.markdown("**Support Gap values**")
-            st.dataframe(gap_table, width="stretch", hide_index=True)
+            st.table(gap_table.set_index("support_gap"))
             st.markdown("**Institution-by-dimension values**")
-            st.dataframe(
-                scores.loc[:, ["institution_id", *SCORE_COLUMNS]],
-                width="stretch",
-                hide_index=True,
+            st.table(
+                scores.loc[:, ["institution_id", *SCORE_COLUMNS]].set_index("institution_id")
             )
 
     with researcher:

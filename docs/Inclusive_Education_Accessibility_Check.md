@@ -63,7 +63,12 @@ access needs.
 - The in-app browser zoom shortcut was attempted, but its viewport remained at
   1280 pixels. These CSS protections and automated checks are therefore not
   presented as completed 200% browser evidence.
-
+- The module heading hierarchy now begins with one page-level H1. Research
+  pathway and research data are H2 sections, with tab content and method
+  workflows nested beneath them.
+- The three chart-alternative datasets now render as static semantic tables
+  instead of interactive dataframe canvases. Researcher Mode retains
+  interactive dataframes where sorting and exploration are part of the task.
 
 ## Remaining Manual Checks
 
