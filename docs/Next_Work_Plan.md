@@ -58,12 +58,17 @@ reporting scope, uncertainty, multiplicity, deviations, subgroup privacy,
 visualization scales, Support Gap language, causal wording, and bounded AI
 review. It receives no numerical results and produces no significance, policy,
 or causal conclusion.
+
 The claim-evidence traceability readiness audit now links non-identifying claim
 records to specifications, aggregate output references, uncertainty,
 limitations, alternative explanations, provenance, AI origin, human review,
 and disclosure status. It reads no result values and makes no truth,
 publication, policy-effect, or causal judgement.
 
+The release package readiness audit now records versioned manifests, checksums,
+documentation, licenses, citations, privacy, accessibility, claim review,
+Synthetic Data labels, AI disclosure, and independent review. It does not
+inspect, approve, upload, or publish files.
 
 Actual expert recruitment, rating collection, cognitive interviews, and
 instrument decisions require separate governance and human participation; they

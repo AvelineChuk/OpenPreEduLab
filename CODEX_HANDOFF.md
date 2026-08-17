@@ -266,12 +266,19 @@ Before editing, downloading, processing data, or pushing commits:
   human review, and disclosure status. It reads no result values, does not
   reproduce free-text claims, and makes no truth, publication, policy-effect,
   or causal judgement.
+- Researcher Mode now includes a session-only release-package readiness audit.
+  It records package scope and version, manifests, checksums, documentation,
+  licenses, citations, privacy, accessibility, claim review, AI disclosure,
+  limitations, Synthetic Data labels, release channel, embargo status, and
+  independent review. It does not inspect, approve, upload, or publish files
+  and produces no finding, policy effect, causal conclusion, or release
+  decision.
 
-The most recent validated test result was **220 passed** in one complete pytest
+The most recent validated test result was **224 passed** in one complete pytest
 run. Streamlit interface tests loaded all current Dashboard routes, including
 Inclusive Education, and explicitly checked the estimation-specification,
-analysis-reproducibility, results-reporting, and claim-traceability audit
-workflow entries.
+analysis-reproducibility, results-reporting, claim-traceability, and release-
+readiness audit workflow entries.
 
 ### Deliberately incomplete / future areas
 

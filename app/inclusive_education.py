@@ -114,6 +114,11 @@ from models.inclusion_claim_traceability import (
     create_claim_traceability_template,
     load_claim_traceability_csv,
 )
+from models.inclusion_release_readiness import (
+    audit_release_readiness,
+    create_release_readiness_template,
+    load_release_readiness_csv,
+)
 from models.inclusion_subgroup_comparability import (
     audit_subgroup_comparability,
     create_subgroup_comparability_template,
@@ -2652,6 +2657,26 @@ def render_inclusive_education_page(project_root: Path) -> None:
                         st.dataframe(traceability_audit[key], width="stretch", hide_index=True)
                     for label, key, filename in (("Download claim-traceability summary", "claim_traceability_summary", "inclusive_claim_traceability_summary.csv"), ("Download claim-traceability prompts", "claim_traceability_prompts", "inclusive_claim_traceability_prompts.csv"), ("Download traceability research questions", "research_question_candidates", "inclusive_claim_traceability_questions.csv")):
                         st.download_button(label, traceability_audit[key].to_csv(index=False).encode("utf-8-sig"), filename, "text/csv", key=f"inclusive_claim_traceability_{key}_download")
+        st.markdown("#### Release package readiness audit")
+        st.caption("Pre-release documentation only. The workflow does not inspect, approve, upload, or publish files.")
+        with st.expander("Release package readiness workflow"):
+            st.download_button("Download release-readiness template", create_release_readiness_template().to_csv(index=False).encode("utf-8-sig"), "inclusive_release_readiness_template.csv", "text/csv", key="inclusive_release_readiness_template_download")
+            release_upload = st.file_uploader("Upload release-readiness CSV", type=["csv"], key="inclusive_release_readiness_upload")
+            if release_upload is not None:
+                try:
+                    release_data = load_release_readiness_csv(release_upload)
+                except ValueError as error:
+                    st.error(f"Release-readiness validation failed: {error}")
+                else:
+                    release_versions = release_data["instrument_version"].drop_duplicates().tolist()
+                    selected_release_version = st.selectbox("Version for release-readiness audit", release_versions, key="inclusive_release_readiness_version")
+                    release_audit = audit_release_readiness(release_data, selected_release_version)
+                    st.warning(str(release_audit["interpretation"]))
+                    for title, key in (("Release summary", "release_readiness_summary"), ("Release prompts", "release_readiness_prompts"), ("Research question candidates", "research_question_candidates")):
+                        st.markdown(f"**{title}**")
+                        st.dataframe(release_audit[key], width="stretch", hide_index=True)
+                    for label, key, filename in (("Download release-readiness summary", "release_readiness_summary", "inclusive_release_readiness_summary.csv"), ("Download release-readiness prompts", "release_readiness_prompts", "inclusive_release_readiness_prompts.csv"), ("Download release research questions", "research_question_candidates", "inclusive_release_readiness_questions.csv")):
+                        st.download_button(label, release_audit[key].to_csv(index=False).encode("utf-8-sig"), filename, "text/csv", key=f"inclusive_release_readiness_{key}_download")
         if len(selected_variables) >= 2:
             st.markdown("#### Correlation — descriptive association only")
             st.dataframe(correlation_matrix(analysis_data, selected_variables), width="stretch")

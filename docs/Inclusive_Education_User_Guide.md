@@ -273,6 +273,13 @@ Support Gap boundary, provenance, AI origin, human review, and disclosure
 status. It reads no result values and does not judge truth. See the
 [Claim-Evidence Traceability Protocol](Inclusive_Education_Claim_Traceability_Protocol.md).
 
+The release package readiness workflow records package scope and version, file
+and checksum manifests, documentation index, license and citation status,
+privacy, accessibility and claim reviews, AI disclosure, limitations,
+Synthetic Data labels, release channel, embargo status, and independent review.
+It does not inspect or publish files. See the
+[Release Package Readiness Protocol](Inclusive_Education_Release_Readiness_Protocol.md).
+
 ## Exploratory Scenarios
 
 Four interfaces change one item by a researcher-selected number of 0–100 scale

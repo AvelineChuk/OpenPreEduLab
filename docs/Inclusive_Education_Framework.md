@@ -180,6 +180,11 @@ uncertainty, limitations, alternative explanations, provenance, and disclosure
 status; see the
 [Claim-Evidence Traceability Protocol](Inclusive_Education_Claim_Traceability_Protocol.md).
 A documented link does not verify the truth or validity of a statement.
+Future dissemination additionally requires a versioned, checksummed,
+documented, licensed, privacy-reviewed, accessible, and correctly labelled
+aggregate release candidate; see the
+[Release Package Readiness Protocol](Inclusive_Education_Release_Readiness_Protocol.md).
+The platform does not approve or publish a release.
 
 The planned expert-review process is specified in the
 [Inclusive Education Content Validation Protocol](Inclusive_Education_Content_Validation_Protocol.md).
