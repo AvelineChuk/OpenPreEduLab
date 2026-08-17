@@ -46,6 +46,22 @@ def test_workspace_includes_narrow_screen_navigation_guards() -> None:
     assert "min-height:44px" in styles
 
 
+def test_workspace_includes_visible_keyboard_focus_guards() -> None:
+    """Keyboard focus should remain visible on controls and sidebar choices."""
+    app = AppTest.from_file(str(APP_PATH))
+    app.query_params["view"] = "platform"
+    app.run(timeout=60)
+
+    assert not app.exception
+    styles = "\n".join(item.value for item in app.markdown)
+    assert ":focus-visible" in styles
+    assert "outline:3px solid #0b5fff!important" in styles
+    assert "outline-offset:3px!important" in styles
+    assert "label:has(input:focus-visible)" in styles
+    assert "[role='group']:has(input:focus-visible)" in styles
+    assert "box-shadow:0 0 0 2px #fff!important" in styles
+
+
 def test_workspace_small_text_colours_meet_contrast_reference() -> None:
     """Key small-text colours should meet the 4.5:1 contrast reference."""
     app = AppTest.from_file(str(APP_PATH))

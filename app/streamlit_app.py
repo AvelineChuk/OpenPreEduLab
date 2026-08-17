@@ -136,6 +136,15 @@ def _inject_design_system() -> None:
         .metric-card { padding:20px; border:1px solid #dce4e8; background:#fff; border-radius:16px; min-height:118px; box-shadow:0 5px 16px rgba(35,61,70,.05); }.metric-label{font:500 10px 'DM Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#65747b}.metric-value{font-size:29px;font-weight:800;letter-spacing:-.05em;color:#162e53;margin:10px 0 4px}.metric-note{font-size:11px;color:#64747b}.status-ok{color:#117a54}.status-muted{color:#68777d}
         .dashboard-pipeline{display:flex;align-items:center;gap:7px;overflow-x:auto;padding:22px 0 6px}.pipeline-node{min-width:94px;text-align:center;font-size:11px;color:#637086}.pipeline-icon{width:38px;height:38px;border-radius:50%;margin:0 auto 8px;display:grid;place-items:center;background:#edf8f3;border:1px solid #c9ead8;color:#16915f}.pipeline-off .pipeline-icon{background:#f2f4f7;border-color:#e2e6ec;color:#9aa5b4}.pipeline-arrow{color:#b7c1ce}
         .module-card{border:1px solid #e8edf4;background:white;border-radius:20px;padding:22px;min-height:175px}.module-card h3{font-size:18px;margin:16px 0 8px}.module-card p{font-size:12px;color:#5f6e82;line-height:1.65}.module-tag{font:500 10px 'DM Mono',monospace;color:#4370b9}.quiet-note{border-left:3px solid #8db3ea;background:#f3f7fd;padding:14px 16px;color:#55708f;font-size:12px;border-radius:0 12px 12px 0}
+        .stApp :is(button,a[href],input,select,textarea,[role='tab'],[tabindex]):focus-visible{
+          outline:3px solid #0b5fff!important;outline-offset:3px!important;
+          box-shadow:0 0 0 2px #fff!important
+        }
+        [data-testid='stSidebar'] label:has(input:focus-visible),
+        .stSelectbox [role='group']:has(input:focus-visible){
+          outline:3px solid #0b5fff!important;outline-offset:3px!important;
+          border-radius:8px!important;box-shadow:0 0 0 2px #fff!important
+        }
         @media(max-width:760px){.block-container{padding:1rem 1.1rem 3rem}.nav-links{display:none}.hero-shell{min-height:auto}.hero-art{min-height:390px}.section{padding-top:78px}.quote-block{padding:85px 4%}.timeline{padding-bottom:12px}}
         @media(max-width:760px){
           [data-testid='stExpandSidebarButton']{visibility:visible!important;position:fixed!important;top:.55rem;left:.55rem;z-index:1001!important}

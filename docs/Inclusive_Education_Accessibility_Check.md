@@ -50,10 +50,19 @@ access needs.
 - Dimension heatmap labels now select light or dark text from the actual cell
   colour instead of using a fixed score threshold. Tests cover both the light
   and dark ends of the heatmap scale.
+- A public desktop keyboard review confirmed arrow-key navigation from
+  Workflow to Inclusive Education, arrow-key tab switching into Researcher
+  Mode, and keyboard operation of the readiness phase selector.
+- Buttons, links, inputs, tabs, and other focusable controls now receive a
+  three-pixel blue focus ring with a white separation ring. Sidebar radio
+  labels and selectbox containers receive the same visible treatment when
+  their nested input has keyboard focus.
+
 
 ## Remaining Manual Checks
 
-- Keyboard-only navigation order and visible focus indicators.
+- Full keyboard-only traversal of every long Researcher Mode workflow and
+  confirmation of focus order across all 191 currently rendered controls.
 - NVDA, Narrator, VoiceOver, or another screen-reader reading order.
 - Browser zoom at 200% and text reflow without horizontal loss on supported
   desktop browsers.
