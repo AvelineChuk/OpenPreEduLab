@@ -119,6 +119,11 @@ from models.inclusion_release_readiness import (
     create_release_readiness_template,
     load_release_readiness_csv,
 )
+from models.inclusion_method_registry import (
+    PHASE_ORDER,
+    filter_method_readiness_catalog,
+    method_readiness_catalog,
+)
 from models.inclusion_subgroup_comparability import (
     audit_subgroup_comparability,
     create_subgroup_comparability_template,
@@ -396,6 +401,25 @@ def render_inclusive_education_page(project_root: Path) -> None:
     with researcher:
         st.markdown("### Researcher Mode")
         st.caption("Select variables and methods. Outputs are descriptive and model-dependent.")
+        st.markdown("#### Methodological readiness navigator")
+        st.caption(
+            "This catalog organises prototype workflows by research stage. "
+            "It is not a score, validation result, approval sequence, or causal evidence."
+        )
+        navigator_phase = st.selectbox(
+            "Readiness navigator phase",
+            ["All phases", *PHASE_ORDER],
+            key="inclusive_readiness_navigator_phase",
+        )
+        navigator_catalog = filter_method_readiness_catalog(navigator_phase)
+        st.dataframe(navigator_catalog, width="stretch", hide_index=True)
+        st.download_button(
+            "Download methodological readiness catalog",
+            method_readiness_catalog().to_csv(index=False).encode("utf-8-sig"),
+            "inclusive_methodological_readiness_catalog.csv",
+            "text/csv",
+            key="inclusive_readiness_catalog_download",
+        )
         dimension_selection = st.multiselect(
             "Select dimensions",
             list(SCORE_COLUMNS),

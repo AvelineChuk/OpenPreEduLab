@@ -273,12 +273,17 @@ Before editing, downloading, processing data, or pushing commits:
   independent review. It does not inspect, approve, upload, or publish files
   and produces no finding, policy effect, causal conclusion, or release
   decision.
+- Researcher Mode now includes a Methodological Readiness Navigator covering
+  all 25 readiness workflows across five phases. It provides phase filtering,
+  research problems, prototype outputs, interpretation boundaries, protocol
+  references, and a CSV download. It is not a readiness score, validation
+  result, approval sequence, required linear path, or causal evidence.
 
-The most recent validated test result was **224 passed** in one complete pytest
+The most recent validated test result was **228 passed** in one complete pytest
 run. Streamlit interface tests loaded all current Dashboard routes, including
 Inclusive Education, and explicitly checked the estimation-specification,
 analysis-reproducibility, results-reporting, claim-traceability, and release-
-readiness audit workflow entries.
+readiness audit workflow entries, plus the 25-workflow methodological navigator.
 
 ### Deliberately incomplete / future areas
 

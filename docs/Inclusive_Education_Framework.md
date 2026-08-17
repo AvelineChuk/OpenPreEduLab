@@ -185,6 +185,10 @@ documented, licensed, privacy-reviewed, accessible, and correctly labelled
 aggregate release candidate; see the
 [Release Package Readiness Protocol](Inclusive_Education_Release_Readiness_Protocol.md).
 The platform does not approve or publish a release.
+The
+[Methodological Readiness Map](Inclusive_Education_Methodological_Readiness_Map.md)
+organises these workflows into five phases. It is a navigation aid, not a
+readiness score, validation result, approval sequence, or causal pathway.
 
 The planned expert-review process is specified in the
 [Inclusive Education Content Validation Protocol](Inclusive_Education_Content_Validation_Protocol.md).

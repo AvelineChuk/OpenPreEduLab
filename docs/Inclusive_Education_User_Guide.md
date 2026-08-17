@@ -280,6 +280,12 @@ Synthetic Data labels, release channel, embargo status, and independent review.
 It does not inspect or publish files. See the
 [Release Package Readiness Protocol](Inclusive_Education_Release_Readiness_Protocol.md).
 
+At the start of Researcher Mode, the Methodological Readiness Navigator groups
+the 25 prototype workflows into five research phases. Researchers can filter
+the catalog and download it as CSV to identify each workflow's research
+problem, output, interpretation boundary, and protocol. See the
+[Methodological Readiness Map](Inclusive_Education_Methodological_Readiness_Map.md).
+
 ## Exploratory Scenarios
 
 Four interfaces change one item by a researcher-selected number of 0–100 scale

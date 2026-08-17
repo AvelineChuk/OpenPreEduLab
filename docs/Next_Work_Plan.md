@@ -70,6 +70,12 @@ documentation, licenses, citations, privacy, accessibility, claim review,
 Synthetic Data labels, AI disclosure, and independent review. It does not
 inspect, approve, upload, or publish files.
 
+The Methodological Readiness Navigator now organises all 25 readiness workflows
+into instrument foundations, measurement evidence, longitudinal readiness,
+policy-design readiness, and reproducibility and release. The downloadable
+catalog improves navigation without assigning scores, approvals, or causal
+status.
+
 Actual expert recruitment, rating collection, cognitive interviews, and
 instrument decisions require separate governance and human participation; they
 have not been completed.
