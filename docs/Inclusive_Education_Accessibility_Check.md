@@ -69,11 +69,16 @@ access needs.
 - The three chart-alternative datasets now render as static semantic tables
   instead of interactive dataframe canvases. Researcher Mode retains
   interactive dataframes where sorting and exploration are part of the task.
+- Researcher Mode now begins with a semantic navigation landmark linking seven
+  major task areas: method map, core analysis, instrument foundations,
+  longitudinal readiness, policy-design readiness, reproducibility and
+  release, and Support Gap analysis. No workflow is hidden or presented as a
+  required validation sequence.
 
 ## Remaining Manual Checks
 
 - Full keyboard-only traversal of every long Researcher Mode workflow and
-  confirmation of focus order across all 191 currently rendered controls.
+  confirmation of focus order across all currently rendered controls.
 - NVDA, Narrator, VoiceOver, or another screen-reader reading order.
 - Physical browser zoom at 200% and confirmation of text reflow without
   horizontal loss on supported desktop browsers. This requires a browser

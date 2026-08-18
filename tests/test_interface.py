@@ -102,6 +102,7 @@ def test_workspace_includes_zoom_reflow_guards() -> None:
     assert ".metric-card,.module-card,[data-testid='stMetric']{min-width:0}" in styles
     assert "pre{max-width:100%;overflow-x:auto;white-space:pre}" in styles
     assert "code{overflow-wrap:anywhere}" in styles
+    assert ".researcher-quick-nav a{width:100%" in styles
 
 
 def test_launch_platform_enters_research_workspace() -> None:
@@ -174,6 +175,18 @@ def test_inclusive_education_dashboard_renders_research_pathway() -> None:
     assert "Policy → Resources → Practices → Child Participation → Equity" in content
     assert "not a child assessment" in content
     assert "Research Question Candidates" in content
+    assert "aria-label='Researcher Mode quick navigation'" in content
+    for anchor_id in (
+        "inclusive-method-map",
+        "inclusive-core-analysis",
+        "inclusive-instrument-foundations",
+        "inclusive-longitudinal-readiness",
+        "inclusive-policy-design",
+        "inclusive-reproducibility",
+        "inclusive-support-gap",
+    ):
+        assert f"id='{anchor_id}'" in content
+
     assert "does not depend on colour alone" in content
     assert "Expert content-review materials" in content
     assert "Accessible chart data tables" in [expander.label for expander in app.expander]

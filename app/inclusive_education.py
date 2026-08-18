@@ -164,6 +164,40 @@ def _score_card(label: str, value: float, note: str) -> str:
     )
 
 
+def _researcher_section_anchor(anchor_id: str) -> None:
+    """Render a stable in-page target for the Researcher Mode route map."""
+    st.markdown(
+        f"<span id='{anchor_id}' class='researcher-anchor' aria-hidden='true'></span>",
+        unsafe_allow_html=True,
+    )
+
+
+def _render_researcher_quick_navigation() -> None:
+    """Render a compact semantic route map without hiding research workflows."""
+    st.markdown(
+        """
+        <nav class='researcher-quick-nav' aria-label='Researcher Mode quick navigation'>
+          <strong>Researcher Mode quick navigation</strong>
+          <div>
+            <a href='#inclusive-method-map'>Method map</a>
+            <a href='#inclusive-core-analysis'>Core analysis</a>
+            <a href='#inclusive-instrument-foundations'>Instrument foundations</a>
+            <a href='#inclusive-longitudinal-readiness'>Longitudinal readiness</a>
+            <a href='#inclusive-policy-design'>Policy-design readiness</a>
+            <a href='#inclusive-reproducibility'>Reproducibility and release</a>
+            <a href='#inclusive-support-gap'>Support Gap analysis</a>
+          </div>
+        </nav>
+        """,
+        unsafe_allow_html=True,
+    )
+    st.caption(
+        "Use the route map to move between major research tasks. All workflows "
+        "remain available; the links organise navigation and do not imply a "
+        "required sequence, validation status, or causal hierarchy."
+    )
+
+
 def _build_report(
     data: pd.DataFrame,
     scores: pd.DataFrame,
@@ -399,6 +433,8 @@ def render_inclusive_education_page(project_root: Path) -> None:
     with researcher:
         st.markdown("### Researcher Mode")
         st.caption("Select variables and methods. Outputs are descriptive and model-dependent.")
+        _render_researcher_quick_navigation()
+        _researcher_section_anchor("inclusive-method-map")
         st.markdown("#### Methodological readiness navigator")
         st.caption(
             "This catalog organises prototype workflows by research stage. "
@@ -433,6 +469,7 @@ def render_inclusive_education_page(project_root: Path) -> None:
             default=list(dimension_selection) if dimension_selection else list(SCORE_COLUMNS),
             key="inclusive_variables",
         )
+        _researcher_section_anchor("inclusive-core-analysis")
         if selected_variables:
             st.markdown("#### Descriptive statistics")
             st.dataframe(descriptive_statistics(analysis_data, selected_variables), width="stretch", hide_index=True)
@@ -450,6 +487,7 @@ def render_inclusive_education_page(project_root: Path) -> None:
             "text/csv",
             key="inclusive_sensitivity_download",
         )
+        _researcher_section_anchor("inclusive-instrument-foundations")
         st.markdown("#### Expert content-review materials")
         st.caption(
             "Prospective validation materials only. No expert ratings have been "
@@ -1743,6 +1781,7 @@ def render_inclusive_education_page(project_root: Path) -> None:
                                 "text/csv",
                                 key=f"inclusive_bootstrap_{summary_key}_download",
                             )
+        _researcher_section_anchor("inclusive-longitudinal-readiness")
         st.markdown("#### Longitudinal panel readiness audit")
         st.caption(
             "Descriptive longitudinal readiness only. Time order does not establish "
@@ -2559,6 +2598,7 @@ def render_inclusive_education_page(project_root: Path) -> None:
                         st.dataframe(exposure_audit[key], width="stretch", hide_index=True)
                     for label, key, filename in (("Download event exposure summary", "event_exposure_summary", "inclusive_event_exposure_summary.csv"), ("Download exposure prompts", "exposure_definition_prompts", "inclusive_event_exposure_prompts.csv"), ("Download exposure research questions", "research_question_candidates", "inclusive_event_exposure_questions.csv")):
                         st.download_button(label, exposure_audit[key].to_csv(index=False).encode("utf-8-sig"), filename, "text/csv", key=f"inclusive_event_exposure_{key}_download")
+        _researcher_section_anchor("inclusive-policy-design")
         st.markdown("#### Identification-design readiness audit")
         st.caption("Design documentation only. Selecting a design label does not establish causal identification.")
         with st.expander("Identification-design readiness workflow"):
@@ -2619,6 +2659,7 @@ def render_inclusive_education_page(project_root: Path) -> None:
                         st.dataframe(estimation_audit[key], width="stretch", hide_index=True)
                     for label, key, filename in (("Download estimation-specification summary", "estimation_specification_summary", "inclusive_estimation_specification_summary.csv"), ("Download estimation-specification prompts", "estimation_specification_prompts", "inclusive_estimation_specification_prompts.csv"), ("Download estimation research questions", "research_question_candidates", "inclusive_estimation_specification_questions.csv")):
                         st.download_button(label, estimation_audit[key].to_csv(index=False).encode("utf-8-sig"), filename, "text/csv", key=f"inclusive_estimation_specification_{key}_download")
+        _researcher_section_anchor("inclusive-reproducibility")
         st.markdown("#### Analysis reproducibility readiness audit")
         st.caption("Execution-record documentation only. The workflow runs no code and verifies no result.")
         with st.expander("Analysis reproducibility readiness workflow"):
@@ -2711,6 +2752,7 @@ def render_inclusive_education_page(project_root: Path) -> None:
         )
         st.dataframe(distributional_equity_report(scores, equity_dimension), width="stretch", hide_index=True)
         st.caption("Lower inequality does not establish adequate support; distribution and level must be interpreted together.")
+        _researcher_section_anchor("inclusive-support-gap")
         st.markdown("#### Gap analysis")
         st.dataframe(scores.merge(gaps, on=["institution_id", "institution_type", "region"], validate="one_to_one"), width="stretch", hide_index=True)
         comparison_ids = st.multiselect(

@@ -145,6 +145,14 @@ def _inject_design_system() -> None:
           outline:3px solid #0b5fff!important;outline-offset:3px!important;
           border-radius:8px!important;box-shadow:0 0 0 2px #fff!important
         }
+        .researcher-quick-nav{border:1px solid #d8e3ef;background:#f7faff;border-radius:16px;padding:16px 18px;margin:12px 0 8px}
+        .researcher-quick-nav strong{display:block;color:#162e53;margin-bottom:10px}
+        .researcher-quick-nav div{display:flex;flex-wrap:wrap;gap:8px}
+        .researcher-quick-nav a{display:inline-flex;padding:7px 10px;border-radius:999px;background:#eef3fa;color:#193a69;font-size:12px;font-weight:700;text-decoration:none}
+        .researcher-quick-nav a:hover{text-decoration:underline;background:#e3ebf6}
+        .researcher-anchor{display:block;height:0;position:relative;scroll-margin-top:1rem}
+        @media(max-width:760px){.researcher-quick-nav{padding:14px}.researcher-quick-nav a{width:100%;border-radius:10px}}
+
         @media(max-width:760px){.block-container{padding:1rem 1.1rem 3rem}.nav-links{display:none}.hero-shell{min-height:auto}.hero-art{min-height:390px}.section{padding-top:78px}.quote-block{padding:85px 4%}.timeline{padding-bottom:12px}}
         @media(max-width:760px){
           [data-testid='stExpandSidebarButton']{visibility:visible!important;position:fixed!important;top:.55rem;left:.55rem;z-index:1001!important}
