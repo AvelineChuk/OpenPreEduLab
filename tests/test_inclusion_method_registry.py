@@ -4,8 +4,10 @@ import pytest
 
 from models.inclusion_method_registry import (
     PHASE_ORDER,
+    RESEARCH_TASK_ORDER,
     filter_method_readiness_catalog,
     method_readiness_catalog,
+    research_task_guidance,
 )
 
 
@@ -42,3 +44,20 @@ def test_catalog_retains_methodological_boundaries() -> None:
     assert "does not establish identification" in combined
     assert "no model, coefficient, p-value, or effect estimate" in combined
     assert "does not inspect, approve, upload, or publish files" in combined
+
+def test_research_task_guide_covers_distinct_user_intents() -> None:
+    """Each plain-language task should point to an area, inputs, and a boundary."""
+    assert len(RESEARCH_TASK_ORDER) == 6
+    assert len(set(RESEARCH_TASK_ORDER)) == len(RESEARCH_TASK_ORDER)
+    for task in RESEARCH_TASK_ORDER:
+        guidance = research_task_guidance(task)
+        assert guidance["task"] == task
+        assert guidance["relevant_area"]
+        assert len(guidance["data_needed"]) >= 30
+        assert len(guidance["boundary"]) >= 40
+
+
+def test_unknown_research_task_fails_closed() -> None:
+    """The guide must not invent advice for an undeclared research task."""
+    with pytest.raises(ValueError, match="Unknown inclusive-education research task"):
+        research_task_guidance("Diagnose a child")

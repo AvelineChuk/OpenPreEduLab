@@ -75,6 +75,11 @@ access needs.
   release, and Support Gap analysis. No workflow is hidden or presented as a
   required validation sequence.
 
+- A plain-language research-task guide now states the relevant area, expected
+  data or documentation, and interpretation boundary for six common research
+  intentions. It reduces navigation burden without assigning readiness scores,
+  prescribing methods, approving studies, or imposing a fixed sequence.
+
 ## Remaining Manual Checks
 
 - Full keyboard-only traversal of every long Researcher Mode workflow and

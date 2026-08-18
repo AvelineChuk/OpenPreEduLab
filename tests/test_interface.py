@@ -322,6 +322,12 @@ def test_inclusive_education_dashboard_renders_research_pathway() -> None:
     assert "Upload release-readiness CSV" in uploader_labels
     assert "Download release-readiness template" in download_labels
     assert "Methodological readiness navigator" in content
+    assert "Start with your research task" in content
+    assert "Relevant area:" in content
+    assert "Interpretation boundary:" in content
+    assert "What are you trying to do?" in [
+        selectbox.label for selectbox in app.selectbox
+    ]
     assert "Readiness navigator phase" in [
         selectbox.label for selectbox in app.selectbox
     ]

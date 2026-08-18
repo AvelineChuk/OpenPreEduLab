@@ -121,8 +121,10 @@ from models.inclusion_release_readiness import (
 )
 from models.inclusion_method_registry import (
     PHASE_ORDER,
+    RESEARCH_TASK_ORDER,
     filter_method_readiness_catalog,
     method_readiness_catalog,
+    research_task_guidance,
 )
 from models.inclusion_subgroup_comparability import (
     audit_subgroup_comparability,
@@ -432,8 +434,27 @@ def render_inclusive_education_page(project_root: Path) -> None:
 
     with researcher:
         st.markdown("### Researcher Mode")
-        st.caption("Select variables and methods. Outputs are descriptive and model-dependent.")
+        st.caption(
+            "Choose a research task, then use the workflows relevant to your current study. "
+            "Outputs are descriptive and model-dependent."
+        )
         _render_researcher_quick_navigation()
+        st.markdown("#### Start with your research task")
+        st.caption(
+            "This guide helps you find a relevant area. It does not score readiness, prescribe a "
+            "method, approve a study, or require a fixed sequence."
+        )
+        selected_research_task = st.selectbox(
+            "What are you trying to do?",
+            RESEARCH_TASK_ORDER,
+            key="inclusive_research_task_guide",
+        )
+        task_guidance = research_task_guidance(selected_research_task)
+        st.markdown(
+            "**Relevant area:** " + task_guidance["relevant_area"] + "  \n"
+            "**Data or documentation needed:** " + task_guidance["data_needed"] + "  \n"
+            "**Interpretation boundary:** " + task_guidance["boundary"]
+        )
         _researcher_section_anchor("inclusive-method-map")
         st.markdown("#### Methodological readiness navigator")
         st.caption(

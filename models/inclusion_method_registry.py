@@ -15,6 +15,49 @@ PHASE_ORDER: Final[tuple[str, ...]] = (
     "5. Reproducibility and release",
 )
 
+RESEARCH_TASK_ORDER: Final[tuple[str, ...]] = (
+    "Explore current scores and Support Gaps",
+    "Develop or revise the research instrument",
+    "Examine preliminary measurement evidence",
+    "Prepare repeated-round research",
+    "Document a possible policy-study design",
+    "Prepare reproducible reporting and release",
+)
+
+_RESEARCH_TASK_GUIDE: Final[dict[str, tuple[str, str, str]]] = {
+    RESEARCH_TASK_ORDER[0]: (
+        "Core analysis and Support Gap analysis",
+        "A validated institution-level CSV, or the clearly labelled synthetic demonstration dataset",
+        "Produces descriptive profiles, associations, and diagnostic gaps; it does not diagnose children or estimate causal effects.",
+    ),
+    RESEARCH_TASK_ORDER[1]: (
+        PHASE_ORDER[0],
+        "Proposed items, expert ratings, cognitive-interview records, revision decisions, or feasibility-pilot records",
+        "Documents instrument-development evidence; it does not validate items or make automatic revision decisions.",
+    ),
+    RESEARCH_TASK_ORDER[2]: (
+        PHASE_ORDER[1],
+        "Complete, non-identifying responses from one declared instrument version and administration round",
+        "Provides preliminary descriptive evidence; it does not establish validity, fairness, invariance, or optimal weights.",
+    ),
+    RESEARCH_TASK_ORDER[3]: (
+        PHASE_ORDER[2],
+        "Version-controlled institutional records from at least two rounds, with timing and fieldwork metadata",
+        "Checks longitudinal readiness and uncertainty; time order is not evidence of improvement, deterioration, or policy effects.",
+    ),
+    RESEARCH_TASK_ORDER[4]: (
+        PHASE_ORDER[3],
+        "Documented events, exposure definitions, comparison logic, assumptions, diagnostics, and a proposed estimation specification",
+        "Organises design assumptions only; it fits no effect model and does not establish identification or causality.",
+    ),
+    RESEARCH_TASK_ORDER[5]: (
+        PHASE_ORDER[4],
+        "Versioned data and code references, reporting plans, claim-evidence links, and release-governance records",
+        "Checks documentation completeness only; it does not verify results, approve claims, or publish files.",
+    ),
+}
+
+
 _WORKFLOWS: Final[tuple[tuple[str, str, str, str, str, str], ...]] = (
     (PHASE_ORDER[0], "Expert content review", "Are proposed items relevant and clear?", "Threshold-free review summaries", "Prospective expert evidence; no validity claim", "Inclusive_Education_Content_Validation_Protocol.md"),
     (PHASE_ORDER[0], "Cognitive interview and item revision", "How are items understood and revised?", "Human-entered evidence and decision logs", "No simulated interviews or automatic item decisions", "Inclusive_Education_Cognitive_Interview_Protocol.md"),
@@ -67,3 +110,16 @@ def filter_method_readiness_catalog(phase: str | None = None) -> pd.DataFrame:
     if phase not in PHASE_ORDER:
         raise ValueError(f"Unknown methodological-readiness phase: {phase}")
     return catalog[catalog["phase"].eq(phase)].reset_index(drop=True)
+
+
+def research_task_guidance(task: str) -> dict[str, str]:
+    """Return bounded task-oriented guidance without scoring or prescribing a method."""
+    if task not in _RESEARCH_TASK_GUIDE:
+        raise ValueError(f"Unknown inclusive-education research task: {task}")
+    relevant_area, data_needed, boundary = _RESEARCH_TASK_GUIDE[task]
+    return {
+        "task": task,
+        "relevant_area": relevant_area,
+        "data_needed": data_needed,
+        "boundary": boundary,
+    }

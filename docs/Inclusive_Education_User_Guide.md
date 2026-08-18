@@ -63,6 +63,13 @@ where sorting and exploration are part of the research task.
 
 ## Researcher Mode
 
+Researcher Mode begins with a plain-language task guide. Select what you are
+trying to do to see the relevant analysis area, the data or documentation that
+the area expects, and the interpretation boundary that must remain attached to
+its outputs. The guide does not score readiness, prescribe a method, approve a
+study, or impose a fixed validation sequence. It is a navigation aid for a
+large prototype workspace.
+
 Researchers can inspect variables and records, select dimensions and variables,
 calculate descriptive statistics and Pearson correlations, examine CV/Gini/
 Theil distributional inequality, inspect institution-level gaps, compare
