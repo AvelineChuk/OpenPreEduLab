@@ -1,10 +1,13 @@
 # OpenPreEduLab — Codex Continuation Guide
 
-**Last updated:** 13 August 2026
+**Last updated:** 18 August 2026
 **Repository:** `C:\Users\86198\Desktop\OpenPreEduLab`  
 **GitHub:** <https://github.com/AvelineChuk/OpenPreEduLab>  
 **Branch:** `main`  
 **Current version:** v0.1 Research Prototype  
+**Local publication status:** the latest Inclusive Education accessibility and
+Researcher Mode navigation commits are local and have not yet been pushed or
+deployed. Verify current branch divergence before any publication action.
 **Public platform:** <https://openpreedulab-85aycdefait8stbdivqxpx.streamlit.app/>
 
 This file is the operational handoff for future Codex sessions. **Read it in
@@ -95,10 +98,20 @@ Before editing, downloading, processing data, or pushing commits:
 
 ### Recent verified maintenance
 
-- Inclusive Education now provides accessible numerical alternatives for the
-  pathway, radar, Gap, and heatmap views. Automated/code-level review is in
-  `docs/Inclusive_Education_Accessibility_Check.md`; keyboard, screen-reader,
-  zoom/reflow, contrast, and mobile review remain manual follow-up items.
+- Inclusive Education accessibility follow-up now includes non-colour semantic
+  chart tables, one H1 with ordered section headings, measured key-text and
+  heatmap-label contrast, visible focus rings, narrow-screen overflow guards,
+  high-zoom reflow safeguards, and regression coverage.
+- Public desktop checks confirmed sidebar access, Methodological Readiness
+  Navigator rendering, keyboard sidebar navigation, keyboard tab switching,
+  readiness-phase selection, and absence of page-level horizontal overflow.
+- Researcher Mode now begins with a semantic seven-link task map. It improves
+  navigation without hiding methods, assigning readiness scores, prescribing a
+  validation order, or implying causal hierarchy.
+- Remaining manual work is physical mobile/tablet review, verifiable 200% zoom,
+  full keyboard traversal, NVDA/Narrator/VoiceOver testing, third-party widget
+  contrast review, and stakeholder review of language and cognitive load. See
+  [Inclusive Education Accessibility Check](docs/Inclusive_Education_Accessibility_Check.md).
 - Inclusive Education Researcher Mode now includes leave-one-item-out dimension
   sensitivity analysis. This is a robustness check, not item validation or a
   causal analysis.
@@ -279,11 +292,13 @@ Before editing, downloading, processing data, or pushing commits:
   references, and a CSV download. It is not a readiness score, validation
   result, approval sequence, required linear path, or causal evidence.
 
-The most recent validated test result was **228 passed** in one complete pytest
+The most recent validated test result was **233 passed** in one complete pytest
 run. Streamlit interface tests loaded all current Dashboard routes, including
 Inclusive Education, and explicitly checked the estimation-specification,
 analysis-reproducibility, results-reporting, claim-traceability, and release-
-readiness audit workflow entries, plus the 25-workflow methodological navigator.
+readiness audit workflow entries, the 25-workflow methodological navigator,
+responsive/focus/contrast/reflow guards, semantic chart tables, heading
+hierarchy, and the seven-link Researcher Mode task map.
 
 ### Deliberately incomplete / future areas
 

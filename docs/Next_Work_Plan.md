@@ -14,10 +14,15 @@ not empirically validated, and no inclusive-education record is approved for
 `datasets/processed/`. Future work is methodological review, accessibility, and
 eventual separately governed real-data validation.
 
-An automated and code-level accessibility follow-up has added non-colour chart
-data tables and route regression coverage. Manual keyboard, screen-reader,
-zoom/reflow, contrast, and mobile checks remain pending; see
-`docs/Inclusive_Education_Accessibility_Check.md`.
+Automated, code-level, and public desktop accessibility follow-up now covers
+non-colour semantic chart tables, narrow-screen overflow guards, sidebar
+recovery, measured key-text contrast, heatmap label contrast, visible keyboard
+focus, heading hierarchy, keyboard operation of the main navigation and
+Researcher Mode tabs, and a semantic Researcher Mode quick-navigation map.
+Physical mobile/tablet review, verifiable 200% browser zoom, full keyboard
+traversal, real screen-reader testing, third-party widget contrast, and
+stakeholder review of plain language and cognitive load remain manual; see
+[Inclusive Education Accessibility Check](Inclusive_Education_Accessibility_Check.md).
 
 The first inclusive-method robustness check is also complete: Researcher Mode
 now reports leave-one-item-out dimension sensitivity. It does not replace

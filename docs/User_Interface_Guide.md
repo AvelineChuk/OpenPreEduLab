@@ -36,8 +36,11 @@ to the sidebar-based workspace instead of the Landing Page.
 
 On a narrow browser window, Streamlit may collapse the sidebar. Use the
 top-left sidebar control to reopen it. OpenPreEduLab keeps this control visible
-while hiding unrelated hosting controls. If the sidebar still does not fit,
-widen the browser window or reduce browser zoom to 100%.
+while hiding unrelated hosting controls. Narrow-screen guards constrain the
+sidebar, wrap long buttons and headings, and keep tables and tabs inside local
+scroll regions. Users should not be required to reduce an accessibility zoom
+setting merely to recover navigation. Physical 200% zoom and multi-device
+review remain documented manual checks.
 
 The Landing Page is intentionally a research presentation rather than a
 generic data-dashboard entry point. The platform uses a restrained white,
@@ -64,6 +67,9 @@ soft-gray, and deep-blue visual system to keep analytical content primary.
    Support Gap, Researcher Mode, exploratory scenarios, bounded insight, and
    CSV/Markdown/Word/PDF export. See
    `docs/Inclusive_Education_User_Guide.md`.
+   Researcher Mode begins with a seven-link quick-navigation map for major
+   research tasks. It changes navigation only; it does not hide methods,
+   validate a workflow, or imply a causal sequence.
 8. Use **Reports** to download the same research-run summary as Markdown,
    Word, or PDF.
 

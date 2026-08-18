@@ -57,6 +57,9 @@ data tables** to inspect the pathway, Support Gap, and institution-dimension
 values without relying on colour or chart geometry. See
 `docs/Inclusive_Education_Accessibility_Check.md` for the current automated
 review and remaining manual checks.
+These three chart alternatives render as static semantic tables so their values
+can be read in document order. Researcher Mode retains interactive dataframes
+where sorting and exploration are part of the research task.
 
 ## Researcher Mode
 
@@ -285,6 +288,12 @@ the 25 prototype workflows into five research phases. Researchers can filter
 the catalog and download it as CSV to identify each workflow's research
 problem, output, interpretation boundary, and protocol. See the
 [Methodological Readiness Map](Inclusive_Education_Methodological_Readiness_Map.md).
+
+Researcher Mode also begins with a semantic quick-navigation map. It links to
+the method catalog, core analysis, instrument foundations, longitudinal
+readiness, policy-design readiness, reproducibility and release, and Support
+Gap analysis. The links do not hide workflows, prescribe a validation order,
+or change the interpretation boundary of any method.
 
 ## Exploratory Scenarios
 
