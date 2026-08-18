@@ -108,8 +108,13 @@ Before editing, downloading, processing data, or pushing commits:
 - Researcher Mode now begins with a semantic seven-link task map. It improves
   navigation without hiding methods, assigning readiness scores, prescribing a
   validation order, or implying causal hierarchy.
-- Remaining manual work is physical mobile/tablet review, verifiable 200% zoom,
 - Researcher Mode now includes a six-intent plain-language task guide. It maps
+  common intentions to the relevant area, expected evidence, and interpretation
+  boundary. The default task links directly to core and Support Gap analysis;
+  the other tasks show compact associated-method tables while retaining the
+  complete 25-workflow navigator. It does not score readiness, prescribe a
+  method, approve a study, hide workflows, or impose a fixed sequence.
+- Remaining manual work is physical mobile/tablet review, verifiable 200% zoom,
   full keyboard traversal, NVDA/Narrator/VoiceOver testing, third-party widget
   contrast review, and stakeholder review of language and cognitive load. See
   [Inclusive Education Accessibility Check](docs/Inclusive_Education_Accessibility_Check.md).
@@ -293,7 +298,7 @@ Before editing, downloading, processing data, or pushing commits:
   references, and a CSV download. It is not a readiness score, validation
   result, approval sequence, required linear path, or causal evidence.
 
-The most recent validated test result was **235 passed** in one complete pytest
+The most recent validated test result was **236 passed** in one complete pytest
 run. Streamlit interface tests loaded all current Dashboard routes, including
 Inclusive Education, and explicitly checked the estimation-specification,
 analysis-reproducibility, results-reporting, claim-traceability, and release-

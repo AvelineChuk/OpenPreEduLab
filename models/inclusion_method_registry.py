@@ -123,3 +123,12 @@ def research_task_guidance(task: str) -> dict[str, str]:
         "data_needed": data_needed,
         "boundary": boundary,
     }
+
+
+def research_task_workflows(task: str) -> pd.DataFrame:
+    """Return workflows associated with a task without ranking or recommending them."""
+    guidance = research_task_guidance(task)
+    relevant_area = guidance["relevant_area"]
+    if relevant_area not in PHASE_ORDER:
+        return method_readiness_catalog().iloc[0:0].copy()
+    return filter_method_readiness_catalog(relevant_area)

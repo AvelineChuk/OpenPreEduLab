@@ -125,6 +125,7 @@ from models.inclusion_method_registry import (
     filter_method_readiness_catalog,
     method_readiness_catalog,
     research_task_guidance,
+    research_task_workflows,
 )
 from models.inclusion_subgroup_comparability import (
     audit_subgroup_comparability,
@@ -455,6 +456,21 @@ def render_inclusive_education_page(project_root: Path) -> None:
             "**Data or documentation needed:** " + task_guidance["data_needed"] + "  \n"
             "**Interpretation boundary:** " + task_guidance["boundary"]
         )
+        task_workflows = research_task_workflows(selected_research_task)
+        if task_workflows.empty:
+            st.markdown(
+                "<a href='#inclusive-core-analysis'>Go to core analysis</a> | "
+                "<a href='#inclusive-support-gap'>Go to Support Gap analysis</a>",
+                unsafe_allow_html=True,
+            )
+        else:
+            st.markdown("**Methods associated with this research task**")
+            st.dataframe(
+                task_workflows.loc[:, ["workflow", "research_problem", "prototype_output", "interpretation_boundary"]],
+                width="stretch",
+                hide_index=True,
+            )
+            st.caption("All 25 workflows remain available in the complete navigator below.")
         _researcher_section_anchor("inclusive-method-map")
         st.markdown("#### Methodological readiness navigator")
         st.caption(

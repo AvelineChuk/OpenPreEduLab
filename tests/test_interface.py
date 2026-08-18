@@ -325,6 +325,8 @@ def test_inclusive_education_dashboard_renders_research_pathway() -> None:
     assert "Start with your research task" in content
     assert "Relevant area:" in content
     assert "Interpretation boundary:" in content
+    assert "Go to core analysis" in content
+    assert "Go to Support Gap analysis" in content
     assert "What are you trying to do?" in [
         selectbox.label for selectbox in app.selectbox
     ]
@@ -334,6 +336,20 @@ def test_inclusive_education_dashboard_renders_research_pathway() -> None:
     assert "Download methodological readiness catalog" in download_labels
     assert "Download longitudinal event registry template" in download_labels
     assert len(app.get("download_button")) >= 10
+
+    task_selector = next(
+        selectbox
+        for selectbox in app.selectbox
+        if selectbox.label == "What are you trying to do?"
+    )
+    task_selector.set_value("Develop or revise the research instrument").run(timeout=60)
+    assert not app.exception
+    updated_content = "\n".join(
+        [item.value for item in app.markdown] + [item.value for item in app.caption]
+    )
+    assert "Methods associated with this research task" in updated_content
+    assert "All 25 workflows remain available" in updated_content
+
 
 def test_reports_page_offers_markdown_word_and_pdf_downloads() -> None:
     """Users should be able to choose a familiar report-download format."""

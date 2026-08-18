@@ -8,6 +8,7 @@ from models.inclusion_method_registry import (
     filter_method_readiness_catalog,
     method_readiness_catalog,
     research_task_guidance,
+    research_task_workflows,
 )
 
 
@@ -45,6 +46,7 @@ def test_catalog_retains_methodological_boundaries() -> None:
     assert "no model, coefficient, p-value, or effect estimate" in combined
     assert "does not inspect, approve, upload, or publish files" in combined
 
+
 def test_research_task_guide_covers_distinct_user_intents() -> None:
     """Each plain-language task should point to an area, inputs, and a boundary."""
     assert len(RESEARCH_TASK_ORDER) == 6
@@ -61,3 +63,13 @@ def test_unknown_research_task_fails_closed() -> None:
     """The guide must not invent advice for an undeclared research task."""
     with pytest.raises(ValueError, match="Unknown inclusive-education research task"):
         research_task_guidance("Diagnose a child")
+
+
+def test_research_task_workflows_are_bounded_to_the_associated_area() -> None:
+    """Task filtering should reduce navigation load without ranking workflows."""
+    assert research_task_workflows(RESEARCH_TASK_ORDER[0]).empty
+    for task, phase in zip(RESEARCH_TASK_ORDER[1:], PHASE_ORDER):
+        workflows = research_task_workflows(task)
+        assert not workflows.empty
+        assert workflows["phase"].eq(phase).all()
+        assert workflows["workflow"].is_unique

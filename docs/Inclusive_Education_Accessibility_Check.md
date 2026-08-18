@@ -79,6 +79,9 @@ access needs.
   data or documentation, and interpretation boundary for six common research
   intentions. It reduces navigation burden without assigning readiness scores,
   prescribing methods, approving studies, or imposing a fixed sequence.
+- The default task provides semantic in-page links to core and Support Gap
+  analysis. Other tasks expose a compact relevant-method table while retaining
+  the complete workflow navigator.
 
 ## Remaining Manual Checks
 

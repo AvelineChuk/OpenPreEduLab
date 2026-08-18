@@ -70,6 +70,11 @@ its outputs. The guide does not score readiness, prescribe a method, approve a
 study, or impose a fixed validation sequence. It is a navigation aid for a
 large prototype workspace.
 
+For core score and Support Gap exploration, the guide provides direct links to
+the relevant analysis sections. For the other five intentions, it displays the
+associated methodological workflows and their interpretation boundaries. The
+complete 25-workflow navigator remains available immediately below.
+
 Researchers can inspect variables and records, select dimensions and variables,
 calculate descriptive statistics and Pearson correlations, examine CV/Gini/
 Theil distributional inequality, inspect institution-level gaps, compare
