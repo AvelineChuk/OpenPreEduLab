@@ -192,6 +192,9 @@ The default scenario parameters are prototype assumptions for workflow demonstra
 - **Human-led:** AI supports research interpretation; it does not substitute for researchers' intellectual responsibility.
 
 ## Documentation
+- [Continuation README for a new Codex conversation](docs/OPENPREEDULAB_CONTINUATION_README.md)
+
+
 
 - [Project Charter](docs/Project_Charter.md)
 - [Vision](docs/Vision.md)
@@ -235,5 +238,4 @@ If you use OpenPreEduLab in academic work, please cite the software record in [C
 ## Status
 
 OpenPreEduLab v0.1 is an early-stage research software prototype. Its models and scenario mechanisms require contextual validation before use with substantive data or policy claims.
-- [Continuation README for a new Codex conversation](docs/OPENPREEDULAB_CONTINUATION_README.md)
 
