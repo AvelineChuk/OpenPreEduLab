@@ -5,9 +5,9 @@
 **GitHub:** <https://github.com/AvelineChuk/OpenPreEduLab>  
 **Branch:** `main`  
 **Current version:** v0.1 Research Prototype  
-**Local publication status:** the latest Inclusive Education accessibility and
-Researcher Mode navigation commits are local and have not yet been pushed or
-deployed. Verify current branch divergence before any publication action.
+**Local publication status:** latest project commits, including the continuation
+README and Inclusive Education Researcher Mode routing, have been pushed to
+origin/main through commit a24edd4. Re-verify Streamlit deployment separately.
 **Public platform:** <https://openpreedulab-85aycdefait8stbdivqxpx.streamlit.app/>
 
 This file is the operational handoff for future Codex sessions. **Read it in
