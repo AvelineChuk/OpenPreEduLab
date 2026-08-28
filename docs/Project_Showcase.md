@@ -16,7 +16,26 @@ The workflow begins with a research question and documented data, then moves thr
 
 The LLM stage is optional. It is designed to interpret supplied model outputs and does not calculate statistics, make causal inferences, or run by default.
 
-## 3. Model Pipeline
+## 3. Platform Interface
+
+These browser captures show the locally verified v0.1 interface with the
+repository sample dataset. They do not show real-world research data, personal
+data, API credentials, or a generated AI draft.
+
+![OpenPreEduLab landing page](screenshots/platform_landing.jpg)
+
+![Research report format selector](screenshots/platform_reports_format.jpg)
+
+The Reports page offers Markdown, Word, and PDF versions of the same
+traceable research-run summary. The AI Interpretation page is also captured in
+its safe, no-network state below. Its interpretation-record format selector is
+available only after a visitor has explicitly opted into an external DeepSeek
+request and received a draft; no credential or draft is included in this
+showcase.
+
+![AI Interpretation safe no-network state](screenshots/platform_ai_interpretation_format.jpg)
+
+## 4. Model Pipeline
 
 The implemented v0.1 pipeline combines:
 
@@ -29,7 +48,7 @@ The implemented v0.1 pipeline combines:
 
 The pipeline writes separate result tables for each module. The models retain their own assumptions and limitations; a combined workflow does not turn them into a single causal model.
 
-## 4. Example Outputs
+## 5. Example Outputs
 
 The figure below is generated from `datasets/sample_preschool_data.csv`, which is synthetic. It illustrates the types of visual outputs available from the project: a PRAI ranking, descriptive equity statistics, and a scenario comparison.
 
@@ -41,6 +60,6 @@ The terminal-style preview records the intended pipeline sequence. It does not i
 
 ![Illustrative pipeline terminal preview](screenshots/demo_output.png)
 
-## 5. Future Development
+## 6. Future Development
 
 Future work may include validation against authorised real-world datasets, benchmark-oriented normalisation, uncertainty analysis, extended demographic methods, research-intelligence tooling, and community-contributed model specifications. These directions remain subject to theoretical, empirical, ethical, and data-governance review.

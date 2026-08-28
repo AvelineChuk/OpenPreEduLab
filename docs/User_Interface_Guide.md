@@ -1,0 +1,108 @@
+# User Interface Guide
+
+## Purpose
+
+The OpenPreEduLab interface is a local Streamlit research-prototype front end
+for the existing allocation and equity modules. It is designed to make a
+reproducible software workflow inspectable; it is not a policy-decision or
+automatic-reporting system.
+
+## Run locally
+
+From the repository root, install dependencies and run:
+
+```bash
+pip install -r requirements.txt
+streamlit run app/streamlit_app.py
+```
+
+The application opens in a local browser window.
+
+## Platform structure
+
+The application has two connected spaces:
+
+1. **Landing Page** — an editorial introduction to the research challenge,
+   workflow, modules, and research philosophy. Select **Launch Platform** to
+   enter the workspace.
+2. **Research Platform** — a sidebar-based research workspace with an overview,
+   data layer, PRAI, equity, visualisation, and module-status pages.
+
+### Sidebar access and shared workspace links
+
+The research workspace keeps `?view=platform` in the browser address. A
+collaborator can therefore refresh or share that address and return directly
+to the sidebar-based workspace instead of the Landing Page.
+
+On a narrow browser window, Streamlit may collapse the sidebar. Use the
+top-left sidebar control to reopen it. OpenPreEduLab keeps this control visible
+while hiding unrelated hosting controls. Narrow-screen guards constrain the
+sidebar, wrap long buttons and headings, and keep tables and tabs inside local
+scroll regions. Users should not be required to reduce an accessibility zoom
+setting merely to recover navigation. Physical 200% zoom and multi-device
+review remain documented manual checks.
+
+The Landing Page is intentionally a research presentation rather than a
+generic data-dashboard entry point. The platform uses a restrained white,
+soft-gray, and deep-blue visual system to keep analytical content primary.
+
+## Available workflow
+
+1. Select the synthetic sample dataset or upload a PRAI-compatible CSV in the
+   sidebar.
+2. Inspect the Data page for schema and research-governance boundaries.
+3. Calculate the MVP PRAI result and download it for transparent downstream
+   analysis.
+4. Inspect descriptive equity indicators and the ranking, trend, heatmap, and
+   dimension-profile visualisations.
+5. Run the documented prototype interfaces for DEA efficiency, population and
+   resource forecasting, and conditional policy scenarios. Their visible
+   assumptions remain adjustable and their outputs are exportable.
+6. Use **AI Interpretation** either to download a bounded prompt or, after
+   explicit consent and with a visitor-controlled DeepSeek key, generate a
+   clearly labelled interpretation draft. The resulting interpretation record
+   can be downloaded as Markdown, Word, or PDF.
+7. Use **Inclusive Education** for a separate non-identifying institution-level
+   workflow covering Policy, Resources, Practices, Child Participation, Equity,
+   Support Gap, Researcher Mode, exploratory scenarios, bounded insight, and
+   CSV/Markdown/Word/PDF export. See
+   `docs/Inclusive_Education_User_Guide.md`.
+   Researcher Mode begins with a seven-link quick-navigation map for major
+   research tasks. It changes navigation only; it does not hide methods,
+   validate a workflow, or imply a causal sequence.
+8. Use **Reports** to download the same research-run summary as Markdown,
+   Word, or PDF.
+
+These interactive functions demonstrate reproducible software workflows. They
+do not validate a dataset, establish causal effects, or turn a prototype output
+into a policy conclusion.
+
+## Data-governance boundary
+
+An uploaded file is not automatically an approved research dataset. The
+interface does not establish source provenance, harmonise definitions, impute
+missing values, remove outliers, or convert reported teacher headcounts into
+FTE values. Real data must follow the repository workflow:
+
+`raw → staging → independent review → processed`
+
+Until a definition-compatible processed dataset exists, interface outputs using
+sample or user-provided data are software demonstrations only.
+
+The Inclusive Education upload path is separate from PRAI. It accepts only
+non-identifying institution-level aggregate research fields. Passing its schema
+and range checks does not validate an instrument, research design, institution,
+or child-participation claim.
+
+## Research report downloads
+
+The **Reports** page creates one bounded research-run summary and lets the
+visitor select its presentation format before downloading:
+
+- **Markdown (.md)** for transparent, version-controlled research records;
+- **Word (.docx)** for reading, annotation, and sharing with collaborators; or
+- **PDF (.pdf)** for a fixed-layout copy.
+
+The three formats contain the same computed summary and research-use note.
+Changing the file format does not validate a dataset or turn a prototype run
+into a real-world policy finding.

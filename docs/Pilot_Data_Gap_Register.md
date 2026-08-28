@@ -10,11 +10,11 @@ The machine-readable record is `datasets/metadata/pilot_variable_coverage.csv`.
 
 The pilot has independently reviewed source-faithful evidence for selected
 education-supply variables, including kindergarten count, enrolled children,
-and reported `专任教师` counts. These records remain in the staging layer. Three
+and reported `专任教师` counts. These records remain in the staging layer. Four
 kindergarten datasets are held because reported teacher counts have no
-documented FTE mapping, and three Shanghai datasets require provenance
-resolution. No region currently has a documented, harmonised set of all PRAI
-dimensions.
+documented FTE mapping. Shanghai provenance review has been resolved; its
+population and fiscal series are approved for context-only use. No region
+currently has a documented, harmonised set of all PRAI dimensions.
 
 The archive also contains provincial or municipal context series for Beijing, Shanghai, Guangdong, and Sichuan, such as total or 0–14 resident population and general public-budget aggregates. These support descriptive context, source review, and later calibration work. They do not satisfy the PRAI requirement for preschool-age population or preschool-specific public expenditure and must not be substituted for those variables.
 

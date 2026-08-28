@@ -49,9 +49,9 @@ The archived official *Guangdong Statistical Yearbook 2025* was also checked
 on 31 July 2026. Table 3-4, *Age Composition and Dependency Ratio of Permanent
 Population*, reports 2015-2024 values only for `0-14`, `15-64`, and `65 and
 over`. It does not provide single-year ages or a 3-5/3-6 group. The source has
-been registered as `GD_YEARBOOK_2025_TABLE_3_4_SCREEN` for independent
-confirmation; pending that review, it is exclusion evidence only and may not
-be used as a preschool-age denominator.
+been registered as `GD_YEARBOOK_2025_TABLE_3_4_SCREEN` and independently
+confirmed as exclusion evidence on 1 August 2026; it may not be used as a
+preschool-age denominator.
 
 ## Next official channels
 
@@ -66,3 +66,11 @@ Any candidate must be registered before extraction, archived without
 modification, independently reviewed, and checked against the project variable
 definition. A broad age group, enrolment count, gross-enrolment-rate inversion,
 or demographic interpolation is not an acceptable substitute.
+
+The Gansu Provincial Bureau of Statistics official *Gansu Statistical Yearbook
+2025* was acquired through a normal browser session on 6 August 2026. Its
+archive entry `zk/html/02-04.xls`, *Age Composition and Dependency Ratio of
+Population*, reports only `0-14`, `15-64`, and `65 and over` groups for
+2001-2024. It is recorded as `GANSU_YEARBOOK_2025_TABLE_2_4_SCREEN` and cannot
+provide a strict 3-5 or 3-6 denominator without unsupported decomposition.
+Independent source review remains pending.

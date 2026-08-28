@@ -11,8 +11,8 @@ complete or that any policy effect has been validated.
 | Layer | Records | Readiness | Permitted use |
 | --- | ---: | --- | --- |
 | Sample data | `sample_preschool_data.csv` | Demonstration-ready | Tests, notebooks, and software examples only |
-| Staging data | 12 datasets | Two conditionally approved for policy-simulation parameters; four approved context-only; three held for definition review; three returned for provenance correction | No staging dataset is approved for processed analytical use |
-| Raw-source review register | 13 records | Eight scope decisions confirmed; one original return-for-correction record retained as audit history; four new sources pending scope review | Scope and provenance review only |
+| Staging data | 12 datasets | Two conditionally approved for policy-simulation parameters; six approved context-only; four held for definition review | No staging dataset is approved for processed analytical use |
+| Raw-source review register | 14 records | Five context-only decisions, three definition-incompatible decisions, four policy-simulation candidate decisions, one retained return-for-correction audit record, and one pending Gansu source-screening assignment | Scope and provenance review only |
 | Processed data | 0 datasets | Not available | None |
 
 ## Staging datasets
@@ -23,7 +23,7 @@ The current staging register is maintained in
 | Coverage | Contents | Current analytical status |
 | --- | --- | --- |
 | Beijing | Kindergarten statistics; population and education-finance context | Kindergarten values held for teacher-definition review; population and finance records approved context-only |
-| Shanghai | Kindergarten statistics; population and fiscal context | All three records returned for raw-provenance hash correction; not available for analytical use |
+| Shanghai | Kindergarten statistics; population and fiscal context | Kindergarten values held for teacher-definition review; population and fiscal records approved context-only |
 | Guangdong | Kindergarten statistics; population and fiscal context | Kindergarten values held for teacher-definition review; population and fiscal records approved context-only |
 | Sichuan | Kindergarten statistics; population context | Kindergarten values held for teacher-definition review; population record approved context-only |
 | National 2026 fund allocation | Support-for-preschool-development allocation attachment | Independently reviewed; approved only as a conditional policy-simulation parameter |
@@ -38,14 +38,15 @@ Assignments are maintained in
 | --- | --- | --- |
 | 2020 national census grouped-age table | Uses 0, 1-4, and 5-9 age groups; no compatible 3-5 or 3-6 group | Independently confirmed exclusion evidence only |
 | Guangdong 2025 population sample survey bulletin | Reports only broad 0-14 and 0-15 age groups | Independently confirmed exclusion evidence only |
-| Guangdong Statistical Yearbook 2025, Table 3-4 | Reports only 0-14, 15-64, and 65-and-over permanent-population groups | Raw candidate pending independent exclusion review only |
-| Guangdong Statistical Yearbook 2025, Table 8-2 | Reports general education expenditure without a preschool/kindergarten sub-item | Raw candidate pending independent exclusion review only |
+| Guangdong Statistical Yearbook 2025, Table 3-4 | Reports only 0-14, 15-64, and 65-and-over permanent-population groups | Independently confirmed definition-incompatible exclusion evidence only |
+| Guangdong Statistical Yearbook 2025, Table 8-2 | Reports general education expenditure without a preschool/kindergarten sub-item | Independently confirmed general-education context only |
 | Guangdong 2017 provincial-level final accounts | Contains a `学前教育` row and covers Guangdong provincial-level expenditure rather than a Guangdong-wide total | Correction independently re-reviewed; context-only narrow fiscal reference, not an analytical input |
 | Guangdong 2024 education-finance statistics | General-public-budget education expenditure, not preschool-specific | Independently reviewed; context-only cross-validation candidate |
 | Guangdong 2020 provincial-level final accounts | Contains a `学前教育` row in a provincial-level final-accounts table | Raw candidate pending independent scope review; not an analytical input |
 | Guangdong 2019 provincial-level final accounts | Contains a `学前教育` row in a provincial-level final-accounts table | Raw candidate pending independent scope review; not an analytical input |
 | Guangdong 2023 preschool fund allocation | Central transfer allocation, with separate attachment scopes | Independently reviewed policy-simulation parameter candidate only |
 | Guangdong 2022, 2024, and 2025 performance reports | Central support-for-preschool-development transfer-payment programme | Independently reviewed programme funding/execution parameter candidates |
+| Gansu Statistical Yearbook 2025 | Official provincial ZIP archive containing 2024 education and kindergarten table entries; its population age-structure table uses broad age groups | Pending independent source-scope review; no staging or analytical use |
 
 The 2022, 2024, and 2025 performance reports are comparable only as records of
 the named central transfer-payment programme. They must not be interpreted as a

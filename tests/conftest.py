@@ -15,3 +15,9 @@ if str(PROJECT_ROOT) not in sys.path:
 def sample_dataset_path() -> Path:
     """Return the repository's synthetic city-year sample dataset path."""
     return PROJECT_ROOT / "datasets" / "sample_preschool_data.csv"
+
+
+@pytest.fixture
+def sample_inclusive_dataset_path() -> Path:
+    """Return the synthetic institution-level inclusive research dataset."""
+    return PROJECT_ROOT / "datasets" / "sample_inclusive_data.csv"

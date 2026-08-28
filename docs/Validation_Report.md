@@ -8,7 +8,9 @@ This is **software validation**, not policy validation. Passing tests does not v
 
 ## Validation Method
 
-The test suite is organised with `pytest` in `tests/` and uses `datasets/sample_preschool_data.csv` as its source dataset. The sample data are synthetic and are used only to exercise the software workflow.
+The test suite is organised with `pytest` in `tests/` and uses the synthetic
+`datasets/sample_preschool_data.csv` and `datasets/sample_inclusive_data.csv`
+files only to exercise software workflows.
 
 Each implemented model module has four test categories:
 
@@ -19,6 +21,24 @@ Each implemented model module has four test categories:
 | Efficiency Evaluation | Produces DEA scores for the panel | Two-DMU cross-section | Missing preparation field | Same variable selected as input and output |
 | Forecast | Produces population, teacher, and fiscal projections | One-year horizon | Missing population field | Forecast year is not future |
 | Policy Simulation | Produces baseline plus four scenarios | Zero population change | Missing baseline field | Population decline at or below 100 percent |
+| Inclusive Education | Produces five bounded dimension scores | Accepts 0 and 100 scale endpoints and declared 0–1 conversion | Missing item or value | Out-of-range value or duplicate institution ID |
+| Support Gap | Produces signed adjacent and overall gaps | Retains negative gaps | Missing pathway score | Non-finite or out-of-range score |
+
+Inclusive Education validation also checks that leave-one-item-out sensitivity
+returns one diagnostic row per item with bounded recalculated scores. The
+prospective content-review workflow separately checks its blank item template,
+complete reviewer-by-item matrices, rating categories, item mappings, I-CVI,
+S-CVI/Ave, CVR, UTF-8 CSV loading, blank-template rejection, and
+missing-column rejection without automatic validity decisions. Cognitive-
+interview and revision-audit tests separately cover partial item review, issue
+logic, non-identifying summaries, version transitions, move targets, revised
+wording, dates, and duplicate decisions. Version-registry tests cover complete
+five-dimension snapshots, weights, predecessor metadata, release metadata,
+wording/scale/weight changes, added and removed item IDs, and the rule that no
+audit authorises direct comparison. Feasibility-pilot tests cover preserved
+missingness, numeric and range errors, completion-status consistency, duration
+and burden rules, endpoint and no-variation flags, explicit thresholds, UTF-8
+loading, and de-identified summaries. Reliability tests cover complete-response validation, duplicate unit-round rejection, minimum group size, undefined zero-variance alpha, dimension and item diagnostics, matched-round coverage, Pearson and ICC(3,1) summaries, invalid round designs, UTF-8 loading, and de-identified outputs.
 
 Run the suite from the project root with:
 
@@ -35,11 +55,15 @@ The expected result is that all tests pass when the code is run with the documen
 - forecast and simulation outputs have the expected records and fields;
 - documented boundary behaviour is reproducible; and
 - missing or invalid inputs raise explicit errors rather than silently producing results.
+- inclusive charts and the Streamlit route render from synthetic data; and
+- the inclusive LLM request preserves non-diagnostic and non-causal boundaries.
 
 ## Current Limitations
 
 - The tests use synthetic data and do not assess real-world data quality or external validity.
 - Unit tests do not establish the theoretical validity of selected indicators, weights, DEA variables, or scenario transition rules.
+- Inclusive education tests do not validate the item system, equal weights,
+  Equity Score, Support Gap interpretation, or institution-level instrument.
 - The suite does not yet include performance, cross-platform, security, uncertainty, or regression testing against versioned empirical benchmarks.
 - The LLM Interpretation Engine is intentionally excluded from external-call testing because it is provider-agnostic and does not make network requests by default.
 

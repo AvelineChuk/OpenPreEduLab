@@ -3,10 +3,13 @@
 [![Version](https://img.shields.io/badge/version-0.1.0-blue)](VERSION)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 ![Python](https://img.shields.io/badge/python-3.10%2B-blue)
+[![Launch Platform](https://img.shields.io/badge/launch-platform-3F7357)](https://openpreedulab-85aycdefait8stbdivqxpx.streamlit.app/?view=platform)
 
 **Project Status:** Research Prototype v0.1.0
 
 Current version focuses on framework development and prototype implementation.
+
+> [Launch OpenPreEduLab Platform](https://openpreedulab-85aycdefait8stbdivqxpx.streamlit.app/?view=platform)
 
 ## Open Preschool Education Research Platform
 
@@ -58,6 +61,10 @@ The following figures demonstrate the workflow of OpenPreEduLab using sample dat
 
 ![Sample-data visualisation examples](docs/screenshots/visualization_example.png)
 
+![OpenPreEduLab landing page](docs/screenshots/platform_landing.jpg)
+
+![Research report format selector](docs/screenshots/platform_reports_format.jpg)
+
 See [Project Showcase](docs/Project_Showcase.md) for interpretation notes and presentation context.
 
 ## Implemented Features (v0.1)
@@ -69,6 +76,7 @@ See [Project Showcase](docs/Project_Showcase.md) for interpretation notes and pr
 - **Policy Simulation Engine:** conditional scenarios for subsidy changes, population decline, teacher-cost increases, and fiscal constraints.
 - **Visualization Engine:** ranking, trend, radar, heatmap, forecast, and scenario-comparison figures using matplotlib.
 - **LLM Interpretation Engine:** provider-agnostic, prompt-reviewed, evidence-bounded research interpretation interface.
+- **Inclusive Education Research Module:** five-dimension Policy → Resources → Practices → Participation → Equity analysis, descriptive Support Gap, Researcher Mode, exploratory scenarios, bounded insights, and research exports using synthetic or non-identifying institution-level inputs.
 - **Research Pipeline:** an end-to-end workflow that writes reproducible result tables and a provenance-oriented summary.
 
 The included dataset is synthetic and intended only for testing the workflow. Results generated from it must not be interpreted as evidence about real cities or policies.
@@ -94,7 +102,21 @@ review status, and permitted uses.
 
 Planned work may include literature and policy evidence mining, benchmark-oriented PRAI normalisation, richer demographic methods, uncertainty analysis, expanded validation, data-governance tooling, and community-contributed research assets.
 
-These are directions of development, not currently available capabilities.
+The v0.2 [Inclusive Support design blueprint](docs/Inclusive_Support_Design.md)
+has begun. It is a non-diagnostic, non-personal-data design foundation for
+evidence organisation and human-reviewed inclusive-practice reflection; it is
+not an assessment, placement, or automated recommendation service. The public
+interface now exposes only its static purpose, safety boundaries, and release
+gates; evidence resources and other interactive functions are not enabled.
+
+The separate [Inclusive Education Research Framework](docs/Inclusive_Education_Framework.md)
+now provides a working aggregate research prototype. It does not assess or
+diagnose children, determine disability status, rate teachers, or estimate
+causal effects. Its Support Gap is descriptive, and its included institution
+data are entirely synthetic.
+
+The remaining items in this section are directions of development, not current
+platform capabilities.
 
 ## Installation
 
@@ -103,7 +125,7 @@ OpenPreEduLab v0.1 requires Python 3.10 or later.
 ```bash
 git clone <your-repository-url>
 cd OpenPreEduLab
-python -m pip install numpy pandas scipy scikit-learn matplotlib
+python -m pip install -r requirements.txt
 ```
 
 No external LLM credential is required for the core pipeline. An LLM is called only when a researcher explicitly provides an approved client implementation.
@@ -117,6 +139,26 @@ python -c "from pipeline.research_pipeline import run_research_pipeline; run_res
 ```
 
 The pipeline writes result tables and `research_summary.md` to `results/`. See [Getting Started](docs/Getting_Started.md) for the full workflow and interpretation guidance.
+
+## Local Research Interface
+
+The repository also includes a local Streamlit interface for the sample-data
+workflow. It provides input-schema checks, PRAI calculation, descriptive equity
+evaluation, reusable visualisations, and result download.
+
+```bash
+streamlit run app/streamlit_app.py
+```
+
+The interface is available at [OpenPreEduLab Platform](https://openpreedulab-85aycdefait8stbdivqxpx.streamlit.app/). It is a research prototype. Calculations with the sample dataset or
+an uploaded CSV do not establish source provenance, variable comparability, or
+policy effects. See [User Interface Guide](docs/User_Interface_Guide.md).
+
+## Platform Deployment
+
+GitHub hosts the project source and research documentation. The interactive
+Streamlit interface is deployed at [OpenPreEduLab Platform](https://openpreedulab-85aycdefait8stbdivqxpx.streamlit.app/). See [Deployment Guide](docs/Deployment_Guide.md) for the
+Streamlit Community Cloud workflow and post-deployment verification checklist.
 
 ## Example Workflow
 
@@ -150,6 +192,9 @@ The default scenario parameters are prototype assumptions for workflow demonstra
 - **Human-led:** AI supports research interpretation; it does not substitute for researchers' intellectual responsibility.
 
 ## Documentation
+- [Continuation README for a new Codex conversation](docs/OPENPREEDULAB_CONTINUATION_README.md)
+
+
 
 - [Project Charter](docs/Project_Charter.md)
 - [Vision](docs/Vision.md)
@@ -159,6 +204,30 @@ The default scenario parameters are prototype assumptions for workflow demonstra
 - [Data Catalog](docs/Data_Catalog.md)
 - [Pipeline Guide](docs/Pipeline_Guide.md)
 - [LLM Interpretation](docs/LLM_Interpretation.md)
+- [Inclusive Education Framework](docs/Inclusive_Education_Framework.md)
+- [Support Gap Methodology](docs/Support_Gap_Methodology.md)
+- [Inclusive Education User Guide](docs/Inclusive_Education_User_Guide.md)
+- [Inclusive Education Content Validation Protocol](docs/Inclusive_Education_Content_Validation_Protocol.md)
+- [Inclusive Education Cognitive Interview Protocol](docs/Inclusive_Education_Cognitive_Interview_Protocol.md)
+- [Inclusive Education Versioning Protocol](docs/Inclusive_Education_Versioning_Protocol.md)
+- [Inclusive Education Feasibility Protocol](docs/Inclusive_Education_Feasibility_Protocol.md)
+- [Inclusive Education Reliability Protocol](docs/Inclusive_Education_Reliability_Protocol.md)
+- [Inclusive Education Construct Structure Readiness Protocol](docs/Inclusive_Education_Construct_Structure_Protocol.md)
+- [Inclusive Education Subgroup Comparability Readiness Protocol](docs/Inclusive_Education_Subgroup_Comparability_Protocol.md)
+- [Inclusive Education External Measure Relationship Readiness Protocol](docs/Inclusive_Education_External_Measure_Protocol.md)
+- [Inclusive Education Alternative Weight Sensitivity Protocol](docs/Inclusive_Education_Weight_Sensitivity_Protocol.md)
+- [Inclusive Education Bootstrap Sampling Uncertainty Protocol](docs/Inclusive_Education_Bootstrap_Uncertainty_Protocol.md)
+- [Inclusive Education Longitudinal Panel Readiness Protocol](docs/Inclusive_Education_Longitudinal_Readiness_Protocol.md)
+- [Inclusive Education Longitudinal Attrition Protocol](docs/Inclusive_Education_Attrition_Protocol.md)
+- [Inclusive Education Paired Longitudinal Bootstrap Protocol](docs/Inclusive_Education_Paired_Longitudinal_Bootstrap_Protocol.md)
+- [Inclusive Education Longitudinal Timing and Fieldwork Metadata Protocol](docs/Inclusive_Education_Longitudinal_Metadata_Protocol.md)
+- [Inclusive Education Longitudinal Measurement Comparability Protocol](docs/Inclusive_Education_Longitudinal_Comparability_Protocol.md)
+- [Inclusive Education Longitudinal Analysis-Plan Readiness Protocol](docs/Inclusive_Education_Longitudinal_Analysis_Plan_Protocol.md)
+- [Inclusive Education Longitudinal Event Alignment Protocol](docs/Inclusive_Education_Longitudinal_Event_Alignment_Protocol.md)
+- [Inclusive Education Event Exposure Definition Protocol](docs/Inclusive_Education_Event_Exposure_Protocol.md)
+- [Inclusive Education Identification-Design Readiness Protocol](docs/Inclusive_Education_Identification_Design_Protocol.md)
+- [Inclusive Education Falsification and Sensitivity Plan Protocol](docs/Inclusive_Education_Falsification_Plan_Protocol.md)
+- [Inclusive Education Accessibility Check](docs/Inclusive_Education_Accessibility_Check.md)
 - [Research Journal](Research_Journal.md)
 - [Contributing](CONTRIBUTING.md)
 
@@ -169,3 +238,4 @@ If you use OpenPreEduLab in academic work, please cite the software record in [C
 ## Status
 
 OpenPreEduLab v0.1 is an early-stage research software prototype. Its models and scenario mechanisms require contextual validation before use with substantive data or policy claims.
+

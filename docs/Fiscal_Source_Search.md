@@ -24,8 +24,8 @@ review:
 | Year | Official publication | Provisional status |
 | --- | --- | --- |
 | 2017 | Provincial-level final accounts | Independently confirmed as a narrow, single-year context reference only |
-| 2019 | Provincial-level final-accounts draft (statements) | Pending independent scope review |
-| 2020 | Provincial-level final-accounts draft (statements) | Pending independent scope review |
+| 2019 | Provincial-level final accounts | Independently confirmed as a provincial-level, single-year context reference only |
+| 2020 | Provincial-level final accounts | Independently confirmed as a provincial-level, single-year context reference only |
 
 Each source visibly reports a `学前教育` field in a provincial-level general
 public-budget expenditure final-accounts table. The field must not be staged,
@@ -36,8 +36,8 @@ The archived official *Guangdong Statistical Yearbook 2025* was screened on
 31 July 2026. Its Table 8-2, *Basic Items of Local Government General Public
 Budget Revenue and Expenditure*, reports a general `教育` (Education)
 expenditure row for 2010-2024 but no preschool/kindergarten sub-item. It is
-registered as `GD_YEARBOOK_2025_TABLE_8_2_SCREEN` for independent confirmation
-and may be used only as potential general-education-finance context, never as
+registered as `GD_YEARBOOK_2025_TABLE_8_2_SCREEN` and independently confirmed
+as general-education-finance context only. It can never be used as
 preschool-specific expenditure or a PRAI fiscal input.
 
 ## Official search boundary
@@ -63,6 +63,13 @@ This is a search outcome only. The verified county-finance-bureau republication
 remains the retained official-government source, and the funding record remains
 a policy-simulation parameter rather than historical preschool expenditure.
 
+On 2 August 2026, the Guangdong Provincial Department of Education official
+search service was queried for `学前教育 决算`, `幼儿园 决算`, and `学前教育
+经费`. It returned no result that could be verified as a preschool- or
+kindergarten-specific expenditure publication. This negative official-search
+result does not establish non-existence; it does not permit substitution with
+general education expenditure or transfer-payment allocations.
+
 ## Next official channels
 
 1. Guangdong Provincial Department of Finance historical information-disclosure
@@ -75,3 +82,20 @@ a policy-simulation parameter rather than historical preschool expenditure.
 Any future candidate must be archived with its source URL, retrieval date,
 SHA-256 checksum, visible table location, unit, and scope. It must then pass
 independent review before any proposed analytical use is considered.
+
+## Gansu yearbook candidate
+
+The Gansu Provincial Bureau of Statistics official *Gansu Statistical Yearbook
+2025* was acquired through a normal browser session on 6 August 2026 and
+archived with its URL and SHA-256 in the raw-source manifest. Archive entry
+`zk/html/18-24.xls` is titled *Basic Statistics on Educational Funds in Various
+School (2023)*. Its visible table structure includes a `Kindergartens` row and
+`Government Appropriation for Education` fields, making it a prospective
+preschool-fiscal source candidate.
+
+This is not yet an approved analytical source. The table is single-year and
+requires independent verification of geographic scope, unit (`万元`),
+accounting basis, and whether the government-appropriation field is compatible
+with the intended preschool-expenditure variable. No values have been
+transcribed to staging or processed. The candidate is registered as
+`GANSU_2025_YEARBOOK_TABLE_18_24_SCREEN`.

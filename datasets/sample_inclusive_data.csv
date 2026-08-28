@@ -1,0 +1,13 @@
+institution_id,institution_type,region,policy_clarity,implementation_requirements,professional_support,resource_guarantee,evaluation_mechanism,teacher_support,special_education_support,financial_support,material_support,environmental_support,training_support,family_community_support,curriculum_adaptation,instructional_support,individualized_support,behavior_support,peer_support,family_collaboration,teacher_reflection,play_participation,group_activity_participation,peer_interaction,communication,autonomy,belonging,support_equity,participation_equity,resource_equity
+SYN-001,Public Kindergarten,North,84,79,76,82,71,86,72,83,80,78,68,74,69,66,62,65,70,73,67,63,64,61,68,66,70,72,67,64
+SYN-002,Public Kindergarten,East,91,88,85,89,82,90,84,92,88,86,82,80,79,77,73,75,78,81,76,74,75,72,79,77,81,83,78,76
+SYN-003,Community Kindergarten,Central,68,64,60,66,58,70,51,62,65,61,55,67,57,54,49,53,59,63,61,56,58,52,60,57,66,64,59,55
+SYN-004,Private Inclusive Kindergarten,South,77,74,80,70,69,75,82,71,76,79,84,81,83,80,78,82,76,86,88,79,84,81,87,85,82,90,80,84
+SYN-005,Public Kindergarten,West,62,59,54,61,52,65,44,57,60,55,48,58,49,45,41,47,52,55,50,46,48,43,51,49,56,54,50,46
+SYN-006,Community Kindergarten,North,73,70,67,72,63,74,61,68,70,66,64,71,65,62,59,63,65,69,70,61,66,60,67,64,71,73,65,62
+SYN-007,Private Inclusive Kindergarten,East,88,84,86,81,79,83,91,80,82,88,89,87,90,86,84,89,82,91,92,85,90,88,93,91,87,94,88,91
+SYN-008,Public Kindergarten,Central,79,76,69,78,67,82,58,75,77,73,63,69,60,61,57,60,64,68,62,58,60,55,63,61,69,67,61,58
+SYN-009,Community Kindergarten,West,57,55,49,54,46,60,39,50,53,49,43,52,45,40,38,42,47,50,48,41,43,39,46,44,52,49,45,41
+SYN-010,Public Kindergarten,South,85,80,78,83,74,88,76,84,82,81,72,77,73,72,69,71,74,78,75,70,74,69,76,73,79,80,73,71
+SYN-011,Private Inclusive Kindergarten,North,81,78,83,75,72,77,87,74,79,84,86,83,88,82,79,85,80,89,90,81,86,83,91,88,84,92,84,88
+SYN-012,Community Kindergarten,East,70,66,63,69,60,72,56,64,67,62,59,65,61,58,55,57,61,66,64,54,62,56,65,62,68,69,61,59
