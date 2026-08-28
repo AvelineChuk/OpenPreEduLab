@@ -671,7 +671,6 @@ def _dashboard() -> None:
         if st.button("← Back to landing", width="stretch"):
             st.session_state["view"] = "landing"
             st.query_params.clear()
-            st.rerun()
 
     try:
         if source == "Sample dataset":

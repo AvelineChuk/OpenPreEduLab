@@ -130,8 +130,9 @@ released.
 
 Current automated software validation status:
 
-- 91 project tests passed after the Inclusive Education module, report-export,
-  AI integration, and interface changes;
+- 236 project tests passed in the current complete regression run after the
+  Inclusive Education module, report-export, AI integration, and interface
+  changes;
 - all current Dashboard routes loaded in Streamlit smoke testing;
 - DOCX and PDF exports were checked as valid document containers;
 - public mobile access returned HTTP 200 without a detected login wall.

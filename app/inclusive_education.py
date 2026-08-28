@@ -344,6 +344,10 @@ def render_inclusive_education_page(project_root: Path) -> None:
         "<div class='quiet-note'><b>Research boundary:</b> This module is not a child assessment, diagnostic, disability-determination, placement, clinical, or teacher-rating tool. Participation is not child ability. Institution-level scores are research-prototype summaries.</div>",
         unsafe_allow_html=True,
     )
+    st.info(
+        "Demonstration status: this page uses synthetic or non-identifying institution-level data. "
+        "Displayed scores are descriptive research-prototype outputs and are not real findings."
+    )
     st.markdown("## Research pathway")
     st.markdown("**Policy → Resources → Practices → Child Participation → Equity**")
 
