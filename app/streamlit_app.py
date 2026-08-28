@@ -171,6 +171,50 @@ def _inject_design_system() -> None:
           [data-testid='stMarkdownContainer'] code{overflow-wrap:anywhere}
         }
         @media(max-width:760px){.impact-hero{min-height:590px}.hero-center{padding-top:100px}.hero-side-note{display:none}.hero-kid-scene{width:115%;bottom:6%}}
+
+        /* Final light research-platform palette: warm white, blue actions, deep teal vision panel. */
+        :root { --ink:#172b33; --muted:#66747b; --line:#e2e7e5; --paper:#ffffff; --blue:#2f55d4; --softblue:#eef3ff; --green:#35694d; --wood:#a97d50; }
+        .stApp { background:linear-gradient(180deg,#ffffff 0%,#fbfaf7 52%,#f1f5f2 100%)!important; color:#172b33!important; }
+        h1,h2,h3,p,li,label { color:#172b33; }
+        .landing-nav { background:rgba(255,255,255,.92)!important; border-color:#e2e7e5!important; box-shadow:0 10px 28px rgba(42,61,64,.08)!important; }
+        .brand { color:#172b33!important; } .brand-dot { color:#2f55d4!important; } .nav-links { color:#66747b!important; }
+        .impact-hero { background:linear-gradient(135deg,#f7f8f5 0%,#ffffff 55%,#eaf3ee 100%)!important; border-color:#e2e7e5!important; box-shadow:0 22px 55px rgba(42,61,64,.12)!important; }
+        .impact-hero:after { background:linear-gradient(90deg,rgba(255,255,255,.18),transparent 45%,rgba(53,105,77,.08))!important; }
+        .hero-center { color:#172b33!important; } .hero-center h1 { color:#172b33!important; text-shadow:none!important; }
+        .hero-center p { color:#334248!important; background:rgba(255,255,255,.9)!important; border-color:#dfe7e5!important; text-shadow:none!important; }
+        .hero-flag { background:#eef3ff!important; border-color:#d7e1ff!important; color:#2f55d4!important; }
+        .glass-research-card { background:rgba(255,255,255,.92)!important; border-color:#dfe7e5!important; color:#245149!important; box-shadow:0 14px 30px rgba(42,61,64,.12)!important; }
+        .glass-research-card b { color:#35694d!important; } .glass-research-card span { color:#3d5558!important; }
+        .section { background:linear-gradient(135deg,#ffffff,#f2f6f3)!important; border-color:#e0e7e4!important; box-shadow:0 14px 36px rgba(42,61,64,.07)!important; }
+        .section-title { color:#172b33!important; } .section-copy { color:#66747b!important; }
+        .glass-card,.module-card { background:#ffffff!important; border-color:#e2e7e5!important; box-shadow:0 9px 24px rgba(42,61,64,.08)!important; }
+        .glass-card h3,.module-card h3 { color:#172b33!important; } .glass-card p,.module-card p { color:#66747b!important; }
+        .comparison { background:linear-gradient(145deg,#fffdf8,#edf5ef)!important; border-color:#e2e7e5!important; }
+        .quote-block { background:linear-gradient(135deg,#eaf3ec,#dcebe2)!important; border-color:#d7e5dc!important; }
+        .quote-block p { color:#254b3c!important; } .quote-block span { color:#62816e!important; }
+        .launch-panel { background:linear-gradient(135deg,#274c50,#4b715d)!important; box-shadow:0 24px 55px rgba(39,76,80,.2)!important; }
+        .stButton>button { background:#2f55d4!important; color:#fff!important; border:0!important; border-radius:8px!important; box-shadow:0 7px 16px rgba(47,85,212,.22)!important; }
+        .stButton>button:hover { background:#2446bb!important; filter:none!important; }
+        .secondary-button .stButton>button { background:#eef3ff!important; color:#2f55d4!important; border:1px solid #d7e1ff!important; }
+        [data-testid='stSidebar'] { background:#f7f9fc!important; border-right-color:#e8edf4!important; }
+        [data-testid='stSidebar'] .stRadio label { color:#5f6e82!important; }
+        .metric-card { background:#ffffff!important; border-color:#e2e7e5!important; }
+        .prototype-pill { color:#3560a8!important; background:#edf4ff!important; }
+        .quiet-note { background:#f3f7fd!important; color:#55708f!important; border-left-color:#8db3ea!important; }
+        /* Final layout corrections for the bright research landing page. */
+        .impact-hero .glass-research-card { left:4%; bottom:4%; width:190px; min-height:112px; padding:15px; z-index:2; }
+        .impact-hero .glass-research-card span { font-size:12px; line-height:1.4; }
+        .impact-hero .hero-center { max-width:760px; padding:116px 24px 150px; }
+        .impact-hero .hero-center p { max-width:640px; }
+        .stButton>button { background:linear-gradient(135deg,#4f8174,#35694d)!important; color:#ffffff!important; border:1px solid #3f735f!important; box-shadow:0 7px 16px rgba(53,105,77,.2)!important; }
+        .stButton>button p, .stButton>button span, .stButton>button div { color:#ffffff!important; }
+        .stButton>button:hover { background:linear-gradient(135deg,#5b9182,#407c5c)!important; color:#ffffff!important; }
+        .secondary-button .stButton>button { background:#e8f1ec!important; color:#35694d!important; border:1px solid #c9ddd2!important; box-shadow:none!important; }
+        .secondary-button .stButton>button p, .secondary-button .stButton>button span, .secondary-button .stButton>button div { color:#35694d!important; }
+        @media(max-width:760px){
+          .impact-hero .glass-research-card { left:5%; bottom:3%; width:160px; min-height:96px; padding:12px; }
+          .impact-hero .hero-center { padding:100px 16px 138px; }
+        }
         </style>
         """,
         unsafe_allow_html=True,
